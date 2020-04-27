@@ -7,6 +7,28 @@
     <link rel="stylesheet" href=".\css\bulma.css">
     <link rel="stylesheet" href=".\css\NanoCroft.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+        // Check if there are any navbar burgers
+        if ($navbarBurgers.length > 0) {
+          // Add a click event on each of them
+          $navbarBurgers.forEach( el => {
+            el.addEventListener('click', () => {
+              // Get the target from the "data-target" attribute
+              const target = el.dataset.target;
+              const $target = document.getElementById(target);
+
+              // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+              el.classList.toggle('is-active');
+              $target.classList.toggle('is-active');
+            });
+          });
+        }
+      });
+    </script>
   </head>
 
   <body>
@@ -90,28 +112,26 @@
               <!-- Blog Highlight Template-->
               <div class="tile is-child">
                 <article class="tile is-child notification has-background-light has-text-black">
-                  <p class="title">Blog Post #1</p>
-                  <p class="subtitle">Summary Text Here</p>
+                  <p class="title">Rising of The Crescent Moon</p>
+                  <p class="subtitle">Project Crescent is a 3D action RPG game with a modern fantasy setting being developed in the Unity game engine. This development blog...</p>
                   <p>
-                    <a>Read More...</a>
+                    <a href="Views/blog.html">Read More...</a>
                   </p>
                 </article>
-              
               
               
               </div>
+              <!---->
                 <br/>
               <div class="tile is-child">
                 <article class="tile is-child notification has-background-light has-text-black">
-                  <p class="title">Blog Post #2</p>
-                  <p class="subtitle">Summary Text Here</p>
+                  <p class="title">More To Come!</p>
+                  <p class="subtitle">Check back next week to unlock the next blog post!</p>
                   <p>
-                    <a>Read More...</a>
+                    
                   </p>
                 </article>
-              
-              
-              
+
               </div>
 
 
