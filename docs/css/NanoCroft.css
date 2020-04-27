@@ -1,0 +1,47 @@
+html, body{
+    height: 100%;
+    margin: 0;
+}
+
+.wrapper{
+    min-height: 100%;
+    margin-bottom: -150px;
+}
+
+.fixed-footer,
+.push{
+    height: 150px;
+}
+
+.background-dark{
+    background-color: #353a3d;
+}
+
+.font-white{
+    color:white;
+}
+
+.has-15px-padding{
+    padding: 15px;
+}
+
+.profile-pad{
+    padding: 5px, 15px, 5px, 5px;
+}
+
+.float-to-right{
+    float: right;
+}
+
+.has-border-radius-10px{
+    border-radius: 10px;
+}
+
+.linkedin-link{
+    text-decoration: none;
+    text-align: center;
+}
+
+.team-bios-background{
+    background-color: #ffb347;
+}
