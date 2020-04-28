@@ -35,24 +35,22 @@ public class PlayerMovement : MonoBehaviour
     public float LookYLimit = 60f;
 
     [Header("")]
+    public PlayerAnimator Animator;
     public Transform PlayerModel;
     public Transform bottomOfPlayer;
-    public LayerMask GroundLayer;
+    public List<LayerMask> Layers;
 
     // ************** Private Variables **************
     private PlayerController Controller;
 
     //Private Variables
     private CharacterController Character;
+    private PlayerSurroundingDetection Detect;
     private Vector2 input_Move;
     private Vector3 velocity;
 
     //Used for speed calulations and set with the speed variables above
     private float movementSpeed = 5f;
-    private float slideFiction = 0.3f;
-    private Vector3 hitNormal;
-    private float forwardMultiplier = 1;
-    private Vector3 forwardDirection;
 
 
     //Camera Rotation 
@@ -64,24 +62,18 @@ public class PlayerMovement : MonoBehaviour
     {
         Controller = GetComponent<PlayerController>();
         Character = GetComponent<CharacterController>();
+        Detect = GetComponent<PlayerSurroundingDetection>();
         rotation.y = transform.eulerAngles.y;
     }
 
     void Update()
     {
+        IsGrounded = Detect.OnGround();
 
         ResetVelocity();
 
         Move(input_Move);
-
-        IsGrounded = TouchingGround();
-        
-        Gravity();  
-    }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        IsGrounded = true;
+        Gravity();
     }
 
 
@@ -98,11 +90,21 @@ public class PlayerMovement : MonoBehaviour
             if (IsCrouching)
                 movementSpeed = CrouchSpeed;
 
-            if (direction.sqrMagnitude < 0.01)
+            if (direction.sqrMagnitude < 0.01) //If character not moving then don't bother carrying out calculations
+            {
+                if (Animator != null && IsGrounded)
+                {
+                    Animator.SwitchTo(PlayerAnimation.Idle);
+                }
                 return;
+            }
 
+
+            //Scale speed so framerate doesn't affect it
             var scaledMoveSpeed = movementSpeed * Time.deltaTime;
 
+
+            //Calculations for moving the player relative to camera position
             Vector3 forward = transform.TransformDirection(Vector3.forward);
             Vector3 right = transform.TransformDirection(Vector3.right);
 
@@ -113,6 +115,11 @@ public class PlayerMovement : MonoBehaviour
             //Player model rotation so they are facing the correct position
             PlayerModel.rotation = Quaternion.Slerp(PlayerModel.rotation, Quaternion.LookRotation(moveDirection), 0.15F);
             
+            if(Animator != null && IsGrounded)
+            {
+                Animator.SwitchTo(PlayerAnimation.Walk);
+            }
+
             //Moves position of Character
             Character.Move(moveDirection);
         }
@@ -134,8 +141,10 @@ public class PlayerMovement : MonoBehaviour
             }
             rotation.x = Mathf.Clamp(rotation.x, -LookYLimit, LookYLimit);
 
-            CameraParent.localRotation = Quaternion.Euler(rotation.x, 0, 0);
+            Quaternion modelRotation = PlayerModel.rotation;
+            CameraParent.localRotation = Quaternion.Euler(rotation.x, 0, 0); //Moves camera around the player seperatly
             transform.eulerAngles = new Vector2(0, rotation.y);
+            PlayerModel.rotation = modelRotation;
         }
     }
 
@@ -149,48 +158,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Gravity()
     {
-        if (velocity.y <= -2)
-        {
-            IsJumping = false;
-        }
-
-        if (!IsGrounded)
-        {
+       
 
             velocity.y += 2f * FallSpeed * Time.deltaTime; // y = ((1/2)*g) * t^2
 
             Character.Move(velocity * Time.deltaTime); //T = time.deltaTime
-        }
+        
     }
 
-    private bool TouchingGround()
-    {
-        RaycastHit[] hits;
-
-        //Need to refactor but raycasting around the character allows for properground check, by sinking slightly into collider of player, we avoid wall collision issues
-        if (RaycastRing(bottomOfPlayer.position, Vector3.down, 0.2f, out hits, 0.15f, GroundLayer))
-        {
-            return true;
-        }
-
-        return false;
-
-
-    }
-
-    private bool RaycastRing(Vector3 position,Vector3 direction,float radius,out RaycastHit[] hits, float MaxDistance, LayerMask layer)
-    {
-
-        hits = new RaycastHit[4];
-        if (Physics.Raycast(position + new Vector3(radius, 0.1f, 0), direction, out hits[0], MaxDistance, layer) || //Right
-            Physics.Raycast(position + new Vector3(-radius, 0.1f, 0), direction, out hits[1], MaxDistance, layer) || //Left
-            Physics.Raycast(position + new Vector3(0, 0.1f, -radius), direction, out hits[2], MaxDistance, layer) || //Front
-            Physics.Raycast(position + new Vector3(0, 0.1f, radius), direction, out hits[3], MaxDistance, layer))  //Back
-        {
-            return true;
-        }
-        else return false;
-    }
 
 
     // ************** Input Action Methods **************
@@ -217,7 +192,6 @@ public class PlayerMovement : MonoBehaviour
         Look(context.ReadValue<Vector2>());
     }
 
-
     public void OnJump(InputAction.CallbackContext context)
     {
         switch (context.phase)
@@ -227,8 +201,11 @@ public class PlayerMovement : MonoBehaviour
                 {
                     velocity.y = Mathf.Sqrt(JumpHeight * -2 * FallSpeed); //v = Square root of (h * -2 * g)
                     Character.Move(velocity * Time.deltaTime);
-                    IsGrounded = false;
-                    IsJumping = true;
+
+                    if (Animator != null)
+                    {
+                        Animator.SwitchTo(PlayerAnimation.Jump);
+                    }
                 }
                 break;
 
@@ -271,15 +248,4 @@ public class PlayerMovement : MonoBehaviour
 
 
     // ************** Debug **************
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawRay(bottomOfPlayer.position + new Vector3(0.2f, 0.1f, 0), new Vector3(0,-1,0) * 0.15f);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawRay(bottomOfPlayer.position + new Vector3(-0.2f, 0.1f, 0),new Vector3(0,-1,0) * 0.15f);
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(bottomOfPlayer.position + new Vector3(0, 0.1f, -0.2f), new Vector3(0,-1,0) * 0.15f);
-        Gizmos.color = Color.white;
-        Gizmos.DrawRay(bottomOfPlayer.position + new Vector3(0, 0.1f, 0.2f), new Vector3(0,-1,0) * 0.15f);
-    }
 }
