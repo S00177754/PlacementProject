@@ -11,7 +11,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {
-        
+        SheathWeapon();
     }
 
     public void OnPrimaryAttack(InputAction.CallbackContext context)
@@ -19,26 +19,27 @@ public class PlayerAttack : MonoBehaviour
         switch (context.phase)
         {
             case InputActionPhase.Performed:
-                if (WeaponSheathed)
+                if (WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching && !GetComponent<PlayerMovement>().IsJumping && !GetComponent<PlayerMovement>().IsFalling)
                 {
                     WeaponSheathed = false;
-                    UnsheathWeapon();
+                    //UnsheathWeapon();
                 }
-                else
+                else if(!WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching)
                 {
                     Equipment.ActiveWeapon.GetComponent<WeaponInfo>().Attack();
+                    GetComponent<PlayerAnimator>().SwitchTo(PlayerAnimation.Slash);
                 }
                 break;
         }
     }
 
-    public void OnSprint(InputAction.CallbackContext context)
+    public void OnSneak(InputAction.CallbackContext context)
     {
         if (!WeaponSheathed)
         {
             WeaponSheathed = true;
-            SheathWeapon();
         }
+        
 
     }
 

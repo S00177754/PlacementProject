@@ -890,8 +890,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1259964542}
-        m_MethodName: OnSprint
+    m_ActionId: 1cec724d-c10a-4756-94b7-2b1664002bed
+    m_ActionName: Player/Sprint[/DualShock4GamepadHID/leftStickPress,/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1259964534}
+        m_MethodName: OnCrouch
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -901,12 +905,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 1cec724d-c10a-4756-94b7-2b1664002bed
-    m_ActionName: Player/Sprint[/DualShock4GamepadHID/leftStickPress,/Keyboard/leftShift]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1259964534}
-        m_MethodName: OnCrouch
+      - m_Target: {fileID: 1259964542}
+        m_MethodName: OnSneak
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -991,7 +991,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   GroundRangeCheck: 0.4
-  FallToLandDistance: 0.3
+  FallToLandDistance: 0.6
 --- !u!114 &1259964540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1412,6 +1412,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4492581464409478614}
   - component: {fileID: 5823955637363882156}
+  - component: {fileID: 577449019601020870}
   m_Layer: 0
   m_Name: xbot
   m_TagString: Untagged
@@ -1419,6 +1420,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &577449019601020870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577449019601020869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5005e1b6e907d4244b53faac549480d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &592843566299894688
 GameObject:
   m_ObjectHideFlags: 0

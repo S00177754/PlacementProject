@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerAnimation { Idle, Walk, Run, Jump, Fall, Land, Crouch }
+public enum PlayerAnimation { Idle, Walk, Run, Jump, Fall, Land, Crouch, Slash }
 
 public class PlayerAnimator : MonoBehaviour
 {
     public Animator Animator;
     public PlayerAnimation CurrentAnimation;
     private PlayerMovement movement;
+    private PlayerAttack attack;
 
     private void Start()
     {
         movement = GetComponent<PlayerMovement>();
+        attack = GetComponent<PlayerAttack>();
     }
 
     private void Update()
@@ -20,6 +22,7 @@ public class PlayerAnimator : MonoBehaviour
         Animator.SetBool("IsJumping", movement.IsJumping);
         Animator.SetBool("IsFalling", movement.IsFalling);
         Animator.SetBool("IsCrouching", movement.IsCrouching);
+        Animator.SetBool("IsWeaponSheathed", attack.WeaponSheathed);
     }
 
 
@@ -52,6 +55,10 @@ public class PlayerAnimator : MonoBehaviour
 
             case PlayerAnimation.Land:
                 Animator.SetTrigger("FallToLand");
+                break;
+
+            case PlayerAnimation.Slash:
+                Animator.SetTrigger("Attack");
                 break;
 
         }
