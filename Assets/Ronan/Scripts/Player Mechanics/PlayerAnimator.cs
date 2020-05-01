@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerAnimation { Idle, Walk, Jump }
+public enum PlayerAnimation { Idle, Walk, Run, Jump, Fall, Land, Crouch }
 
 public class PlayerAnimator : MonoBehaviour
 {
@@ -17,7 +17,9 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Update()
     {
-
+        Animator.SetBool("IsJumping", movement.IsJumping);
+        Animator.SetBool("IsFalling", movement.IsFalling);
+        Animator.SetBool("IsCrouching", movement.IsCrouching);
     }
 
 
@@ -26,23 +28,32 @@ public class PlayerAnimator : MonoBehaviour
         switch (animation)
         {
             default:
+                break;
+
             case PlayerAnimation.Idle:
-                Animator.ResetTrigger("Walking");
-                //Animator.ResetTrigger("Jump");
-                Animator.SetTrigger("Idle");
+                Animator.SetFloat("Speed", 0);
                 break;
 
             case PlayerAnimation.Walk:
-                Animator.ResetTrigger("Idle");
-               // Animator.ResetTrigger("Jump");
-                Animator.SetTrigger("Walking");
+                Animator.SetFloat("Speed", 2);
                 break;
 
-            case PlayerAnimation.Jump:
-                Animator.ResetTrigger("Idle");
-                Animator.ResetTrigger("Walking");
-                Animator.SetTrigger("Jump");
+            case PlayerAnimation.Run:
+                Animator.SetFloat("Speed", 6);
                 break;
+
+            //case PlayerAnimation.Jump:
+            //    Animator.SetBool("Jump",movement.IsJumping);
+            //    break;
+
+            //case PlayerAnimation.Fall:
+            //    Animator.SetFloat("Speed", 6);
+            //    break;
+
+            case PlayerAnimation.Land:
+                Animator.SetTrigger("FallToLand");
+                break;
+
         }
     }
 }

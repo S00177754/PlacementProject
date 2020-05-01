@@ -8,6 +8,7 @@ public class PlayerSurroundingDetection : MonoBehaviour
     public Transform Bottom;
     public LayerMask Layer;
     public float GroundRangeCheck = 0.4f;
+    public float FallToLandDistance = 0.3f;
 
     public bool OnGround()
     {
@@ -17,11 +18,18 @@ public class PlayerSurroundingDetection : MonoBehaviour
         return false;
     }
 
+    public bool LandOnGroundCheck()
+    {
+        if (Physics.CheckSphere(Bottom.position, GroundRangeCheck, Layer))
+            return true;
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.green;
-    //    Gizmos.DrawSphere(Bottom.position, GroundRangeCheck);
-    //}
+        return false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(Bottom.position, FallToLandDistance);
+    }
 
 }

@@ -5,32 +5,55 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
+    public bool WeaponSheathed = true;
     public EquipmentManager Equipment;
-    public EquipmentAttachController Attacher;
+    public EquipmentAttachController AttachPoints;
 
-
+    private void Start()
+    {
+        
+    }
 
     public void OnPrimaryAttack(InputAction.CallbackContext context)
     {
         switch (context.phase)
         {
             case InputActionPhase.Performed:
-                
-                if (Equipment.WeaponSheathed)
+                if (WeaponSheathed)
                 {
-                    Attacher.AttatchTo(AttachPoint.RightHand,Equipment.UnsheathWeapon().transform);
+                    WeaponSheathed = false;
+                    UnsheathWeapon();
                 }
-                
+                else
+                {
+                    Equipment.ActiveWeapon.GetComponent<WeaponInfo>().Attack();
+                }
                 break;
         }
     }
 
-    public void SheatheWeapon(InputAction.CallbackContext context)
+    public void OnSprint(InputAction.CallbackContext context)
     {
-        if (!Equipment.WeaponSheathed)
+        if (!WeaponSheathed)
         {
-            Attacher.AttatchTo(AttachPoint.LeftHip, Equipment.SheatheWeapon().transform);
+            WeaponSheathed = true;
+            SheathWeapon();
         }
+
+    }
+
+    public void SheathWeapon()
+    {
+        AttachPoints.AttatchTo(AttachPoint.LeftHip, Equipment.ActiveWeapon.GetComponent<WeaponInfo>());
+    }
+
+    public void UnsheathWeapon()
+    {
+        AttachPoints.AttatchTo(AttachPoint.RightHand, Equipment.ActiveWeapon.GetComponent<WeaponInfo>());
+    }
+
+    public void Attack()
+    {
 
     }
 }

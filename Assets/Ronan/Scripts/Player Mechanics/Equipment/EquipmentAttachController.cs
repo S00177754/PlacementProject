@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public enum AttachPoint { LeftHand, LeftHip, RightHand, RightHip, Back}
 
-public class EquipmentAttachController : MonoBehaviour
+[Serializable]
+public class EquipmentAttachController
 {
     [Header("Attatchment Points")]
     public Transform LeftHandAttachPoint;
@@ -13,34 +15,49 @@ public class EquipmentAttachController : MonoBehaviour
     public Transform LeftHipAttachPoint;
     public Transform RightHipAttachPoint;
 
-    public void AttatchTo(AttachPoint attachPoint,Transform gameObj)
+    public void AttatchTo(AttachPoint attachPoint, WeaponInfo info)
     {
+        Quaternion rotation;
         switch (attachPoint)
         {
             case AttachPoint.LeftHand:
-                gameObj.transform.parent = LeftHandAttachPoint.transform;
-                gameObj.transform.position = LeftHandAttachPoint.transform.position;
+                info.gameObject.transform.SetParent(LeftHandAttachPoint);
+                info.gameObject.transform.localPosition = info.PositioningDetails.UnsheathedPosition;
+                rotation = Quaternion.Euler(info.PositioningDetails.UnsheathedRotation);
+                info.gameObject.transform.localRotation = rotation;
+                //animator set weapon to true
                 break;
 
             case AttachPoint.RightHand:
-                gameObj.transform.parent = RightHandAttachPoint.transform;
-                gameObj.transform.position = RightHandAttachPoint.transform.position;
+                info.gameObject.transform.SetParent(RightHandAttachPoint);
+                info.gameObject.transform.localPosition = info.PositioningDetails.UnsheathedPosition;
+                rotation = Quaternion.Euler(info.PositioningDetails.UnsheathedRotation);
+                info.gameObject.transform.localRotation = rotation;
+                //animator set weapon to true
                 break;
 
             case AttachPoint.RightHip:
-                gameObj.transform.parent = RightHipAttachPoint.transform;
-                gameObj.transform.position = RightHipAttachPoint.transform.position;
-                gameObj.transform.localEulerAngles = new Vector3(190,-85,48);
+                info.gameObject.transform.SetParent(RightHipAttachPoint);
+                info.gameObject.transform.localPosition = info.PositioningDetails.SheathedPosition;
+                rotation = Quaternion.Euler(info.PositioningDetails.SheathedRotation);
+                info.gameObject.transform.localRotation = rotation;
+                //animator set weapon to false
                 break;
 
             case AttachPoint.LeftHip:
-                gameObj.transform.parent = LeftHipAttachPoint.transform;
-                gameObj.transform.position = LeftHipAttachPoint.transform.position;
+                info.gameObject.transform.SetParent(LeftHipAttachPoint);
+                info.gameObject.transform.localPosition = info.PositioningDetails.SheathedPosition;
+                rotation = Quaternion.Euler(info.PositioningDetails.SheathedRotation);
+                info.gameObject.transform.localRotation = rotation;
+                //animator set weapon to false
                 break;
 
             case AttachPoint.Back:
-                gameObj.transform.parent = BackAttachPoint.transform;
-                gameObj.transform.position = BackAttachPoint.transform.position;
+                info.gameObject.transform.SetParent(BackAttachPoint);
+                info.gameObject.transform.localPosition = info.PositioningDetails.SheathedPosition;
+                rotation = Quaternion.Euler(info.PositioningDetails.SheathedRotation);
+                info.gameObject.transform.localRotation = rotation;
+                //animator set weapon to false
                 break;
         }
     }

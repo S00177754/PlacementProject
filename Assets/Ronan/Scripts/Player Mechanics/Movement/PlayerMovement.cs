@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public bool IsClimbing = false;
     
     public bool IsJumping = false;
+    public bool IsFalling = false;
     [HideInInspector]
     public bool IsMoving = false;
 
@@ -38,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     public PlayerAnimator Animator;
     public Transform PlayerModel;
     public Transform bottomOfPlayer;
-    public List<LayerMask> Layers;
+    //public List<LayerMask> Layers;
 
     // ************** Private Variables **************
     private PlayerController Controller;
@@ -64,11 +65,33 @@ public class PlayerMovement : MonoBehaviour
         Character = GetComponent<CharacterController>();
         Detect = GetComponent<PlayerSurroundingDetection>();
         rotation.y = transform.eulerAngles.y;
+        movementSpeed = WalkSpeed;
     }
 
     void Update()
     {
         IsGrounded = Detect.OnGround();
+
+        if(IsFalling && Detect.LandOnGroundCheck())
+        {
+            Animator.SwitchTo(PlayerAnimation.Land);
+        }
+        if(!IsGrounded && velocity.y > 0)
+        {
+            IsJumping = true;
+            IsFalling = false;
+        }
+        else if (!IsGrounded && velocity.y < 0)
+        {
+            IsFalling = true;
+            IsJumping = false;
+        }
+        else if (IsGrounded)
+        {
+            IsFalling = false;
+            IsJumping = false;
+        }
+
 
         ResetVelocity();
 
@@ -117,7 +140,22 @@ public class PlayerMovement : MonoBehaviour
             
             if(Animator != null && IsGrounded)
             {
-                Animator.SwitchTo(PlayerAnimation.Walk);
+                if(scaledMoveSpeed == 0)
+                {
+                    Animator.SwitchTo(PlayerAnimation.Idle);
+                }
+                else if(movementSpeed == WalkSpeed)
+                {
+                    Animator.SwitchTo(PlayerAnimation.Walk);
+                }
+                else if(movementSpeed == SprintSpeed)
+                {
+                    Animator.SwitchTo(PlayerAnimation.Run);
+                }
+                else if (movementSpeed == CrouchSpeed)
+                {
+                    Animator.SwitchTo(PlayerAnimation.Walk);
+                }
             }
 
             //Moves position of Character
