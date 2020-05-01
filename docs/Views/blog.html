@@ -58,7 +58,7 @@
             Dev Blog
           </a>
     
-          <a class="navbar-item">
+          <a href="comingsoon.html" class="navbar-item">
             Download
           </a>
     
@@ -99,6 +99,42 @@
               <!-- Blog Highlight Template-->
               <div class="tile is-child">
                 <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_2"></a>
+                  <p class="title">Main Character Development - #2</p>
+                  <p class="subtitle">The beginning of the adventure!</p>
+                  <p>
+                    This week I've been mainly focusing on the development of the main character prototype, this encompasses components such as movement, animation, attacking and sensing. We've decided to use Unity's newest Input system in Unity 2019.3 which is a preview package and while there has been a bit of a learning curve to using it, it does remind me of the SteamVR 2.0 action system which I have used in a previous project. This event driven system is great for a action, adventure game as when the button is hit we can map it to call a particular method, however I can see a few issues down the line we may have but my remedy to this is to create an input manager that should solve any issues.
+                  </p>
+
+                  <p >
+                    <video width="320" height="240" controls class="center">
+                      <source src="../Videos/characterControllerV1.mp4"" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                  </p>
+                  
+                  <p>As you can see from the video above, I've got the basics for movement completed, this includes, walking, running, crouching as well as the same actions while having a weapon equipped and active. I will admit that I was thinking about checking for the ground under the player in a rather complex way when there was a much simpler way that was more than suitable for the job, it took about a day and a half of development time from me but I've leanred from it. The next step after this was to setup the animation controller as I planned to use unity's animation events alongside my attack script for sheathing and unsheathing your sword.</p>
+
+                  <p>
+                    The coup de grâce of the the new Input System in Unity 2019.3 however is the ability to properly map button input for controllers in a simple way that allows you to use multiple control schemes from the very start of development. For instance, I've been using a PS4 dualshock for testing and debugging as well as swapping to mouse and keyboard if I want to see how it handles the swapping of controls and in the past week, I've learned quite a few little tricks in Unity that I wasn't aware of before such as animation events, attaching gameobjects to another object through the use of SetParent() without it causing strange scaling issues.
+                  </p>
+
+                                    
+                  <p>
+                    The next step on the road to our fully complete main character protoype is the development of an inventory and equipment system which I already have begun on, so check in next week to see further progress and hopefully the completed main character prototype!
+                  </p>
+
+                  <p>
+                    By Ronan Cassidy - 1st of May 2020
+                  </p>
+                </article>
+              </div>
+
+              <br/>
+              
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_1"></a>
                   <p class="title">Rising of The Crescent Moon - #1</p>
                   <p class="subtitle">Welcome to the development blog for Project Crescent!</p>
                   <p>
