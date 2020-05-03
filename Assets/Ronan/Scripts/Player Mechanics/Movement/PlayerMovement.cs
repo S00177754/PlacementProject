@@ -70,6 +70,17 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if(GameStateController.gameState == GameState.Paused)
+        {
+            FreezeMovement = true;
+        }
+        else
+        {
+            FreezeMovement = false;
+        }
+
+       
+
         IsGrounded = Detect.OnGround();
 
         if(IsFalling && Detect.LandOnGroundCheck())
@@ -211,17 +222,21 @@ public class PlayerMovement : MonoBehaviour
     #region Input Actions
     public void OnMove(InputAction.CallbackContext context)
     {
-        input_Move = context.ReadValue<Vector2>();
+        if (!FreezeMovement)
+        {
 
-        //When the joystick is no longer active
-        if (context.canceled)
-        {
-            IsMoving = false;
-            movementSpeed = WalkSpeed;
-        }
-        else
-        {
-            IsMoving = true;
+            input_Move = context.ReadValue<Vector2>();
+
+            //When the joystick is no longer active
+            if (context.canceled)
+            {
+                IsMoving = false;
+                movementSpeed = WalkSpeed;
+            }
+            else
+            {
+                IsMoving = true;
+            }
         }
     }
 
@@ -235,7 +250,7 @@ public class PlayerMovement : MonoBehaviour
         switch (context.phase)
         {
             case InputActionPhase.Performed:
-                if (IsGrounded)
+                if (IsGrounded && !FreezeMovement)
                 {
                     velocity.y = Mathf.Sqrt(JumpHeight * -2 * FallSpeed); //v = Square root of (h * -2 * g)
                     Character.Move(velocity * Time.deltaTime);
@@ -254,31 +269,37 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnSprint(InputAction.CallbackContext context)
     {
-        //Sprint Toggle
-        if (movementSpeed == WalkSpeed)
+        if (!FreezeMovement)
         {
-            if (IsMoving & !IsCrouching) //To avoid speed increase without moving
+            //Sprint Toggle
+            if (movementSpeed == WalkSpeed)
             {
-                movementSpeed = SprintSpeed; 
+                if (IsMoving & !IsCrouching) //To avoid speed increase without moving
+                {
+                    movementSpeed = SprintSpeed; 
+                }
             }
-        }
-        else
-        {
-            movementSpeed = WalkSpeed;
+            else
+            {
+                movementSpeed = WalkSpeed;
+            }
         }
     }
 
     public void OnCrouch(InputAction.CallbackContext context)
     {
-        //Crouch Toggle
-        if (IsCrouching)
+        if (!FreezeMovement)
         {
-            IsCrouching = false;
-            movementSpeed = WalkSpeed;
-        }
-        else
-        {
-            IsCrouching = true;
+            //Crouch Toggle
+            if (IsCrouching)
+            {
+                IsCrouching = false;
+                movementSpeed = WalkSpeed;
+            }
+            else
+            {
+                IsCrouching = true;
+            }
         }
     }
 

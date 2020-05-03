@@ -16,30 +16,36 @@ public class PlayerAttack : MonoBehaviour
 
     public void OnPrimaryAttack(InputAction.CallbackContext context)
     {
-        switch (context.phase)
+        if (!GetComponent<PlayerMovement>().FreezeMovement)
         {
-            case InputActionPhase.Performed:
-                if (WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching && !GetComponent<PlayerMovement>().IsJumping && !GetComponent<PlayerMovement>().IsFalling)
-                {
-                    WeaponSheathed = false;
-                    //UnsheathWeapon();
-                }
-                else if(!WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching)
-                {
-                    Equipment.ActiveWeapon.GetComponent<WeaponInfo>().Attack();
-                    GetComponent<PlayerAnimator>().SwitchTo(PlayerAnimation.Slash);
-                }
-                break;
+
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    if (WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching && !GetComponent<PlayerMovement>().IsJumping && !GetComponent<PlayerMovement>().IsFalling)
+                    {
+                        WeaponSheathed = false;
+                        //UnsheathWeapon();
+                    }
+                    else if (!WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching)
+                    {
+                        Equipment.ActiveWeapon.GetComponent<WeaponInfo>().Attack();
+                        GetComponent<PlayerAnimator>().SwitchTo(PlayerAnimation.Slash);
+                    }
+                    break;
+            }
         }
     }
 
     public void OnSneak(InputAction.CallbackContext context)
     {
-        if (!WeaponSheathed)
+        if (!GetComponent<PlayerMovement>().FreezeMovement)
         {
-            WeaponSheathed = true;
+            if (!WeaponSheathed)
+            {
+                WeaponSheathed = true;
+            }
         }
-        
 
     }
 
