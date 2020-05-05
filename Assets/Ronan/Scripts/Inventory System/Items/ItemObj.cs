@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType {Weapon, Bauble, Ammo, Potion, KeyItem  }
+//Need to refactor item type to include all weapons
+public enum ItemType {Weapon, Potion, Bauble, Ammo,  KeyItem  }
 public enum InventorySection { Equipment, Potions, KeyItems }
 
 //Base item class

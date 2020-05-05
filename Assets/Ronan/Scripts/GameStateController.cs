@@ -13,7 +13,9 @@ public class GameStateController : MonoBehaviour
 
     static public GameState gameState;
     static public GameState previousGameState;
+
     public PauseMenuController PauseMenu;
+    public GameObject PlayerHUD;
 
 
     private void Start()
@@ -22,6 +24,10 @@ public class GameStateController : MonoBehaviour
         SetGameState(GameState.Explore);
     }
 
+    private void Update()
+    {
+       
+    }
 
     static public void SetGameState(GameState state)
     {
@@ -76,7 +82,7 @@ public class GameStateController : MonoBehaviour
     {
         Time.timeScale = 1;
         ChangeAllPlayerMapsTo("Player");
-
+        Instance.PlayerHUD.SetActive(false);
         PauseMenuClear();
     }
 
@@ -91,7 +97,7 @@ public class GameStateController : MonoBehaviour
     {
         Time.timeScale = 1;
         ChangeAllPlayerMapsTo("Player");
-
+        Instance.PlayerHUD.SetActive(true);
         PauseMenuClear();
     }
 
@@ -99,7 +105,7 @@ public class GameStateController : MonoBehaviour
     {
         Time.timeScale = 1;
         ChangeAllPlayerMapsTo("Player");
-
+        Instance.PlayerHUD.SetActive(false);
         PauseMenuClear();
     }
 
@@ -107,7 +113,7 @@ public class GameStateController : MonoBehaviour
     {
         Time.timeScale = 1;
         ChangeAllPlayerMapsTo("Player");
-
+        Instance.PlayerHUD.SetActive(false);
         PauseMenuClear();
     }
 
@@ -115,13 +121,14 @@ public class GameStateController : MonoBehaviour
     {
         Time.timeScale = 1;
         ChangeAllPlayerMapsTo("Player");
-
+        Instance.PlayerHUD.SetActive(false);
         PauseMenuClear();
     }
 
     static private void ChangeAllPlayerMapsTo(string map)
     {
         Instance.GetComponent<GameManager>().Players.ForEach(p => p.GetComponent<PlayerInput>().SwitchCurrentActionMap(map));
+
     }
 
     static private void PauseMenuClear()

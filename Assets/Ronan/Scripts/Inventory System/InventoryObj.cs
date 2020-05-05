@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Inevntory Object", menuName = "Inventory System/Inventory")]
@@ -20,7 +21,7 @@ public class InventoryObj : ScriptableObject
             }
         }
 
-        Collection.Add(new InventorySlot(item, amount));     
+        Collection.Add(new InventorySlot(item, amount));
     }
 
 }

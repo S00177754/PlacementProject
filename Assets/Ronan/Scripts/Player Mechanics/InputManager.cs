@@ -10,15 +10,32 @@ public class InputManager : MonoBehaviour
     private GameStateController gameStateController;
     private PlayerInput playerInput;
 
+    public GameObject SelectedOnRegained;
+
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
         gameStateController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>();
     }
 
+    private void Update()
+    {
+       
+    }
+
     public void SwitchToMap(string map)
     {
         playerInput.SwitchCurrentActionMap(map);
+    }
+
+    public void SetSelecOnRegain(GameObject go)
+    {
+        SelectedOnRegained = go;
+    }
+
+    public void OnRegain()
+    {
+        UIHelper.SelectedObjectSet(SelectedOnRegained);
     }
 
     //PLAYER 
@@ -57,6 +74,8 @@ public class InputManager : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
+            
+
             GameStateController.SetGameState(GameState.Paused);
         }
     }
