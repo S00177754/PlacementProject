@@ -23,6 +23,23 @@ public class InventoryObj : ScriptableObject
 
         Collection.Add(new InventorySlot(item, amount));
     }
+     
+    public void RemoveItem(ItemObj item, int amount)
+    {
+        for (int i = 0; i < Collection.Count; i++)
+        {
+            if (Collection[i].Item == item)
+            {
+                Collection[i].RemoveAmount(amount);
+
+                if(Collection[i].Amount == 0)
+                {
+                    Collection.RemoveAt(i);
+                }
+                return;
+            }
+        }
+    }
 
 }
 
@@ -41,5 +58,16 @@ public class InventorySlot
     public void AddAmount(int amount)
     {
         Amount += amount;
+    }
+
+    public bool RemoveAmount(int amount)
+    {
+        if(amount <= Amount)
+        {
+            Amount -= amount;
+            return true;
+        }
+
+        return false;
     }
 }

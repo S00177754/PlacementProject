@@ -10,7 +10,6 @@ public class BaubleObj : ItemObj
     public float MaxHealthBonus;
     public float MaxMPBonus;
 
-
     public void Awake()
     {
         Type = ItemType.Bauble;

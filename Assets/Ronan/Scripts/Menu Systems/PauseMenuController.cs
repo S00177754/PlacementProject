@@ -106,7 +106,7 @@ public class PauseMenuController : MonoBehaviour
                 Settings.SubMenuObject.SetActive(false);
                 RootMenu.SubMenuObject.SetActive(true);
                 UIHelper.SelectedObjectSet(RootMenu.DefaultSelectedUIElement);
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().Players[0].GetComponent<InputManager>().SetSelecOnRegain(RootMenu.DefaultSelectedUIElement);
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer.GetComponent<InputManager>().SetSelecOnRegain(RootMenu.DefaultSelectedUIElement);
                 break;
 
             case PauseMenuState.Inventory:
@@ -114,7 +114,7 @@ public class PauseMenuController : MonoBehaviour
                 Settings.SubMenuObject.SetActive(false);
                 Inventory.SubMenuObject.SetActive(true);
                 UIHelper.SelectedObjectSet(Inventory.DefaultSelectedUIElement);
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().Players[0].GetComponent<InputManager>().SetSelecOnRegain(Inventory.DefaultSelectedUIElement);
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer.GetComponent<InputManager>().SetSelecOnRegain(Inventory.DefaultSelectedUIElement);
                 break;
 
             case PauseMenuState.Settings:
@@ -122,7 +122,7 @@ public class PauseMenuController : MonoBehaviour
                 Inventory.SubMenuObject.SetActive(false);
                 Settings.SubMenuObject.SetActive(true);
                 UIHelper.SelectedObjectSet(Settings.DefaultSelectedUIElement);
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().Players[0].GetComponent<InputManager>().SetSelecOnRegain(Settings.DefaultSelectedUIElement);
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer.GetComponent<InputManager>().SetSelecOnRegain(Settings.DefaultSelectedUIElement);
                 break;
         }
     }

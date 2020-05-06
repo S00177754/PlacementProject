@@ -4,5 +4,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public List<PlayerController> Players;
+    public PlayerController MainPlayer;
+
+    public List<PartyMember> Party;
+
+    private void Start()
+    {
+        Party = new List<PartyMember>();
+    }
 }

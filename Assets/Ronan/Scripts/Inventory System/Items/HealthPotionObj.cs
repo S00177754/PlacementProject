@@ -12,4 +12,28 @@ public class HealthPotionObj : ItemObj
     {
         Type = ItemType.Potion;
     }
+
+    public override bool UseItem(PlayerController player)
+    {
+        if(player.GameStats.Health < player.GameStats.MaxHealth)
+        {
+            player.GameStats.Health += HealAmount;
+
+            if (player.GameStats.Health > player.GameStats.MaxHealth)
+                player.GameStats.Health = player.GameStats.MaxHealth;
+
+            return true;
+        }
+
+
+        base.UseItem(player);
+        return false;
+    }
+
+    public override bool UseItem(PartyMember member)
+    {
+        base.UseItem(member);
+        return false;
+    }
+
 }

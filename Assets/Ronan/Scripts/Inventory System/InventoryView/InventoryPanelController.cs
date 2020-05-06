@@ -27,12 +27,10 @@ public class InventoryPanelController : MonoBehaviour
     {
         ClearList();
 
-       
-
         for (int i = 0; i < PlayerInventory.Collection.Count; i++)
         {
             GameObject panel = Instantiate(ItemPanelPrefab, ScrollViewContent);
-            panel.GetComponent<InventoryItemPanel>().SetDetails(PlayerInventory.Collection[i]);
+            panel.GetComponent<InventoryItemPanel>().SetDetails(PlayerInventory.Collection[i], this);
         }
 
         if(ScrollViewContent.childCount > 0)

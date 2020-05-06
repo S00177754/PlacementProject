@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public string PlayerName;
-    public PlayerStats GameStats;
+    public CharacterStats GameStats;
     public PlayerSettings Settings;
 }
 
@@ -19,7 +19,7 @@ public class PlayerSettings
 }
 
 [Serializable]
-public class PlayerStats
+public class CharacterStats
 {
     public int Level;
 

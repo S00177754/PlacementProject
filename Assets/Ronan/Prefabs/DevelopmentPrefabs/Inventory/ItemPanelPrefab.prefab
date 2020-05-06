@@ -140,6 +140,7 @@ MonoBehaviour:
   ItemName: {fileID: 7130320037107671671}
   AmountDisplay: {fileID: 2049402038217394159}
   Item: {fileID: 0}
+  InventoryPanel: {fileID: 0}
 --- !u!114 &5295425957041533339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +212,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5295425957041533339}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3388530894255998509}
+        m_MethodName: UseInventoryItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5185586835439095401
 GameObject:
   m_ObjectHideFlags: 0
