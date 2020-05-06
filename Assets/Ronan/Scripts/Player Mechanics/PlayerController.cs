@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public string PlayerName;
     public CharacterStats GameStats;
     public PlayerSettings Settings;
+    public PlayerHUDController HUDController;
 }
 
 [Serializable]

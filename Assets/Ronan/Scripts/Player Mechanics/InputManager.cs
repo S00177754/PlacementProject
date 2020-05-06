@@ -4,23 +4,26 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
+
 [RequireComponent(typeof(PlayerInput))]
 public class InputManager : MonoBehaviour
 {
     private GameStateController gameStateController;
     private PlayerInput playerInput;
-
+    public ButtonStates buttonStates;
     public GameObject SelectedOnRegained;
+
 
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
+        buttonStates = new ButtonStates();
         gameStateController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>();
     }
 
     private void Update()
     {
-       
+        Debug.Log(buttonStates.WestBtnState);
     }
 
     public void SwitchToMap(string map)
@@ -40,9 +43,11 @@ public class InputManager : MonoBehaviour
 
     //PLAYER 
 
+        //Refactor for button states! Will need a state for each action however
+
     public void OnMove(InputAction.CallbackContext context)
     {
-
+        
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -80,6 +85,24 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            if(buttonStates.WestBtnState == WestButtonState.PickupItem)
+            {
+                //Execute collection code
+                GetComponent<InventoryManager>().PickUpItem();
+            }
+            else if(buttonStates.WestBtnState == WestButtonState.Default)
+            {
+                if (!GetComponent<PlayerAttack>().WeaponSheathed)
+                    GetComponent<PlayerAttack>().WeaponSheathed = true;
+            }
+
+        }
+    }
+
     //UI
 
     public void OnResume(InputAction.CallbackContext context)
@@ -100,4 +123,46 @@ public class InputManager : MonoBehaviour
         }
     }
 
+}
+
+
+public enum NorthButtonState { Default }
+public enum EastButtonState { Default }
+public enum SouthButtonState { Default }
+public enum WestButtonState { Default, PickupItem }
+
+public class ButtonStates
+{
+    public NorthButtonState NorthBtnState;
+    public EastButtonState EastBtnState;
+    public SouthButtonState SouthBtnState;
+    public WestButtonState WestBtnState;
+
+    public ButtonStates()
+    {
+        NorthBtnState = NorthButtonState.Default;
+        EastBtnState = EastButtonState.Default;
+        SouthBtnState = SouthButtonState.Default;
+        WestBtnState = WestButtonState.Default;
+    }
+
+    public void SetState(NorthButtonState state)
+    {
+        NorthBtnState = state;
+    }
+
+    public void SetState(EastButtonState state)
+    {
+        EastBtnState = state;
+    }
+
+    public void SetState(SouthButtonState state)
+    {
+        SouthBtnState = state;
+    }
+
+    public void SetState(WestButtonState state)
+    {
+        WestBtnState = state;
+    }
 }
