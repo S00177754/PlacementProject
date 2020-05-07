@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8da1608c6aecb41a5a46f40e53fea4, type: 3}
   m_Name: TestingInventory
   m_EditorClassIdentifier: 
+  database: {fileID: 11400000, guid: be15572908c78fc449cddb3d460e9c91, type: 2}
   Collection:
-  - Item: {fileID: 11400000, guid: 301ed3bd06554074da10235dda3eff66, type: 2}
+  - ID: 0
+    Item: {fileID: 11400000, guid: 301ed3bd06554074da10235dda3eff66, type: 2}
     Amount: 3
-  - Item: {fileID: 11400000, guid: b362f62e90ceba647b2b72a8052a3fda, type: 2}
+  - ID: 1
+    Item: {fileID: 11400000, guid: b362f62e90ceba647b2b72a8052a3fda, type: 2}
     Amount: 1

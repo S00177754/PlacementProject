@@ -7,6 +7,11 @@ public class InventoryManager : MonoBehaviour
     public InventoryObj Inventory;
     private Collider ItemOnGround;
 
+    private void Start()
+    {
+       Inventory = Instantiate(Inventory); //Copy of object so i dont have to keep resetting values
+    }
+
     public void PickUpItem()
     {
         if (ItemOnGround != null)

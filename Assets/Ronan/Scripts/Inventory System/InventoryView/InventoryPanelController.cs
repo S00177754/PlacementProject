@@ -8,7 +8,7 @@ public class InventoryPanelController : MonoBehaviour
     [Header("Required")]
     public RectTransform ScrollViewContent;
     public GameObject ItemPanelPrefab;
-    public InventoryObj PlayerInventory;
+    public InventoryManager PlayerInventory;
 
     [Header("Item Sprites")] //Have Static sprites set for panel?
     public Sprite HPItemSprite;
@@ -27,10 +27,10 @@ public class InventoryPanelController : MonoBehaviour
     {
         ClearList();
 
-        for (int i = 0; i < PlayerInventory.Collection.Count; i++)
+        for (int i = 0; i < PlayerInventory.Inventory.Collection.Count; i++)
         {
             GameObject panel = Instantiate(ItemPanelPrefab, ScrollViewContent);
-            panel.GetComponent<InventoryItemPanel>().SetDetails(PlayerInventory.Collection[i], this);
+            panel.GetComponent<InventoryItemPanel>().SetDetails(PlayerInventory.Inventory.Collection[i], this);
         }
 
         if(ScrollViewContent.childCount > 0)

@@ -29,7 +29,7 @@ public class InventoryItemPanel : MonoBehaviour
         {
             if (Item.UseItem(GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer))
             {
-                InventoryPanel.PlayerInventory.RemoveItem(Item, 1);
+                InventoryPanel.PlayerInventory.Inventory.RemoveItem(Item, 1);
                 InventoryPanel.GenerateList();
 
                 //Animation call here
