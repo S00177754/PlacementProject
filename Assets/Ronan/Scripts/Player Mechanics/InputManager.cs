@@ -21,10 +21,7 @@ public class InputManager : MonoBehaviour
         gameStateController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>();
     }
 
-    private void Update()
-    {
-        Debug.Log(buttonStates.WestBtnState);
-    }
+
 
     public void SwitchToMap(string map)
     {

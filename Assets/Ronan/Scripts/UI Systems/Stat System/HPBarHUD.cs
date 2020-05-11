@@ -15,7 +15,7 @@ public class HPBarHUD : HUDValueSlider
 
     private void Update()
     {
-        SliderBar.value = (float)Player.GameStats.Health / (float)Player.GameStats.MaxHealth;
-        ValueText.text = Player.GameStats.Health.ToString();
+        SliderBar.value = (float)Player.Health / (float)Player.GameStats.MaxHealth;
+        ValueText.text = Player.Health.ToString();
     }
 }

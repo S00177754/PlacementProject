@@ -15,12 +15,12 @@ public class HealthPotionObj : ItemObj
 
     public override bool UseItem(PlayerController player)
     {
-        if(player.GameStats.Health < player.GameStats.MaxHealth)
+        if(player.Health < player.GameStats.MaxHealth)
         {
-            player.GameStats.Health += HealAmount;
+            player.Health += HealAmount;
 
-            if (player.GameStats.Health > player.GameStats.MaxHealth)
-                player.GameStats.Health = player.GameStats.MaxHealth;
+            if (player.Health > player.GameStats.MaxHealth)
+                player.Health = player.GameStats.MaxHealth;
 
             return true;
         }

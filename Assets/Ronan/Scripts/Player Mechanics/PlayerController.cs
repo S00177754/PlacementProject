@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     public CharacterStats GameStats;
     public PlayerSettings Settings;
     public PlayerHUDController HUDController;
+
+    public int Health = 100;
+    public int MP = 60;
 }
 
 [Serializable]
@@ -19,6 +22,8 @@ public class PlayerSettings
     public float CameraSensitivity = 2f;
 }
 
+public enum PlayerStatTypes { Strength, Dexterity, Magic, Vitality, Defence}
+
 [Serializable]
 public class CharacterStats
 {
@@ -26,7 +31,12 @@ public class CharacterStats
 
     [Header("Combat Stats")]
     public int MaxHealth = 100;
-    public int Health = 100;
     public int MaxMP = 60;
-    public int MP = 60;
+
+    public int StrengthStat = 5;
+    public int DexterityStat = 5;
+    public int MagicStat = 5;
+    public int VitalityStat = 5;
+    public int DefenceStat = 5;
+
 }

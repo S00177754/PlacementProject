@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum WeaponType { Sword }
+
 public class WeaponInfo : MonoBehaviour
 {
     public WeaponPostion PositioningDetails;
 
     public bool IsAttacking = false;
     public float DamageValue;
+    public WeaponType weaponType;
 
     public void Attack()
     {
