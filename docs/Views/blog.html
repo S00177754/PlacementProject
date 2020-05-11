@@ -99,6 +99,27 @@
               <!-- Blog Highlight Template-->
               <div class="tile is-child">
                 <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_3"></a>
+                  <p class="title">Player Inventory Development - #3</p>
+                  <p class="subtitle">Time to collect the world!</p>
+                  <p>
+                    I started work on our player inventory system this week and have completed the prototype version, it will be redfined and added to as development continues as need be. This proved to be quite an interesting task to take on as first we needed to decide how players would collect items, how do we want to store this data and how can we keep track of it in the game itself. To begin we decided to follow suit with games such final fantasy and monster hunter world where once over the item you can hit a button to interact with and pickup the item from the ground. To make the item more noticable during development I threw on a small particle generator to act as a beacon for the item, from here we moved onto the storage and class of the item. There are many ways to go about this but I decided to take the approach of using scriptable objects and saving them to json and loading them back to the inventory when necessary.
+                  </p>
+
+                  <p>To access the inventory screen, we would need to be able to pause the game so that was logically my next step. I designed a rough UI for both pause menu, setting menu and the inventory screen. This proved to be quite the task of making it so the player can use items, this involved making the item scriptable object into an abstract class to build more item types up. We ensured that we kept developing the game with the use of a controller in mind which led to a redesign of the input manager to allow us to have multiple interactions depending on the context of the players location or game state.</p>
+
+                  <p>For the next stage of development, I have begun a redesign of our attack system to allow for more variety in play style and as well to be more forgiving than the previous implementation we had which was a very small hitbox for the player to actually hit anything. This new system should be a great addition to the character and will probably take longer than originally thought as we need to also look into the animations of the game for blending attacking and running together so you dont have to keep stopping to attack. I plan on showing off another video of the character's progress in next week's blog post so be sure to check back next week to see how its going!</p>
+
+                  <p>
+                    By Ronan Cassidy - 10th of May 2020
+                  </p>
+                </article>
+              </div>
+
+              <br/>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
                   <a id="blog_post_2"></a>
                   <p class="title">Main Character Development - #2</p>
                   <p class="subtitle">The beginning of the adventure!</p>
