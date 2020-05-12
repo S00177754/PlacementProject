@@ -42,6 +42,7 @@ public class GameStateController : MonoBehaviour
         GameState current = gameState;
         gameState = previousGameState;
         previousGameState = current;
+        
 
         StateRefresh();
     }
@@ -61,6 +62,7 @@ public class GameStateController : MonoBehaviour
                 break;
 
             case GameState.Explore:
+                
                 ExploreRefresh();
                 break;
 
@@ -81,7 +83,7 @@ public class GameStateController : MonoBehaviour
     static private void MainMenuRefresh()
     {
         Time.timeScale = 1;
-        ChangeAllPlayerMapsTo("Player");
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>().ChangeAllPlayerMapsTo("Player");
         Instance.PlayerHUD.SetActive(false);
         PauseMenuClear();
     }
@@ -90,21 +92,21 @@ public class GameStateController : MonoBehaviour
     {
         Time.timeScale = 0;
         Instance.PauseMenu.GetComponent<PauseMenuController>().PauseGame();
-        ChangeAllPlayerMapsTo("UI");
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>().ChangeAllPlayerMapsTo("UI");
     }
 
     static private void ExploreRefresh()
     {
         Time.timeScale = 1;
-        ChangeAllPlayerMapsTo("Player");
         Instance.PlayerHUD.SetActive(true);
         PauseMenuClear();
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>().ChangeAllPlayerMapsTo("Player");
     }
 
     static private void PacifistRefresh()
     {
         Time.timeScale = 1;
-        ChangeAllPlayerMapsTo("Player");
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>().ChangeAllPlayerMapsTo("Player");
         Instance.PlayerHUD.SetActive(false);
         PauseMenuClear();
     }
@@ -112,7 +114,7 @@ public class GameStateController : MonoBehaviour
     static private void DrivingRefresh()
     {
         Time.timeScale = 1;
-        ChangeAllPlayerMapsTo("Player");
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>().ChangeAllPlayerMapsTo("Player");
         Instance.PlayerHUD.SetActive(false);
         PauseMenuClear();
     }
@@ -120,14 +122,14 @@ public class GameStateController : MonoBehaviour
     static private void GameOverRefresh()
     {
         Time.timeScale = 1;
-        ChangeAllPlayerMapsTo("Player");
         Instance.PlayerHUD.SetActive(false);
         PauseMenuClear();
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>().ChangeAllPlayerMapsTo("Player");
     }
 
-    static private void ChangeAllPlayerMapsTo(string map)
+    private void ChangeAllPlayerMapsTo(string map)
     {
-        Instance.GetComponent<GameManager>().MainPlayer.GetComponent<PlayerInput>().SwitchCurrentActionMap(map);
+        GetComponent<GameManager>().MainPlayer.GetComponent<PlayerInput>().SwitchCurrentActionMap(map);
 
     }
 

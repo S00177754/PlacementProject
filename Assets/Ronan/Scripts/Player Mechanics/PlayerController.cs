@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public CharacterStats GameStats;
     public PlayerSettings Settings;
     public PlayerHUDController HUDController;
+    public PauseMenuController PauseMenu;
 
     public int Health = 100;
     public int MP = 60;

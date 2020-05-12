@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
-
+using UnityEngine.InputSystem.Interactions;
 
 [RequireComponent(typeof(PlayerInput))]
 public class InputManager : MonoBehaviour
@@ -54,7 +53,33 @@ public class InputManager : MonoBehaviour
 
     public void OnPrimaryAttack(InputAction.CallbackContext context)
     {
+        if(buttonStates.EastBtnState == EastButtonState.Default)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    if (context.interaction is SlowTapInteraction || context.interaction is TapInteraction)
+                    {
+                        GetComponent<PlayerAttack>().Attack();
+                    }
+                    break;
 
+                case InputActionPhase.Started:
+                    if (context.interaction is SlowTapInteraction)
+                    {
+                        GetComponent<PlayerAttack>().Charge();
+                    }
+                    break;
+
+                case InputActionPhase.Canceled:
+                    GetComponent<PlayerAttack>().IsCharging = false;
+                    break;
+
+                default:
+                    print(context.phase);
+                    break;
+            }
+        }
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -76,8 +101,6 @@ public class InputManager : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            
-
             GameStateController.SetGameState(GameState.Paused);
         }
     }
@@ -115,9 +138,10 @@ public class InputManager : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            GameStateController.Instance.PauseMenu.PreviousMenu();
-
+            GetComponent<PlayerController>().PauseMenu.PreviousMenu();
+            
         }
+
     }
 
 }

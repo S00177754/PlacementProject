@@ -34,7 +34,11 @@ public class InventoryObj : ScriptableObject, ISerializationCallbackReceiver
     {
         for (int i = 0; i < Collection.Count; i++)
         {
-            Collection[i].Item = database.GetItem[Collection[i].ID];
+            ItemObj obj;
+            if(database.GetItem.TryGetValue(Collection[i].ID, out obj))
+            {
+                    Collection[i].Item = obj;
+            }
         }
     }
 
