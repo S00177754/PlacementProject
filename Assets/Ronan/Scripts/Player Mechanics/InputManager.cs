@@ -37,10 +37,9 @@ public class InputManager : MonoBehaviour
         UIHelper.SelectedObjectSet(SelectedOnRegained);
     }
 
+
+
     //PLAYER 
-
-        //Refactor for button states! Will need a state for each action however
-
     public void OnMove(InputAction.CallbackContext context)
     {
         
@@ -107,22 +106,50 @@ public class InputManager : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
-        {
-            if(buttonStates.WestBtnState == WestButtonState.PickupItem)
-            {
-                //Execute collection code
-                GetComponent<InventoryManager>().PickUpItem();
-            }
-            else if(buttonStates.WestBtnState == WestButtonState.Default)
-            {
-                if (!GetComponent<PlayerAttack>().WeaponSheathed)
-                {
-                    StartCoroutine(GetComponentInParent<PlayerAttack>().FreezeMovementFor(1.2f, true, false));
-                    GetComponent<PlayerAttack>().WeaponSheathed = true;
-                }
-            }
 
+        if (buttonStates.WestBtnState == WestButtonState.PickupItem)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    if (context.interaction is SlowTapInteraction || context.interaction is TapInteraction)
+                    {
+                        GetComponent<InventoryManager>().PickUpItem();
+                    }
+                    break;
+
+                case InputActionPhase.Started:
+                case InputActionPhase.Canceled:
+                default:
+                    break;
+            }
+        } //Pickup Item
+        else if (buttonStates.WestBtnState == WestButtonState.Default)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    if (context.interaction is TapInteraction)
+                    {
+                        GetComponent<PlayerMovement>().DodgeRoll();
+                    }
+                    break;
+
+                case InputActionPhase.Started:
+                    if (context.interaction is SlowTapInteraction)
+                    {
+                        if (!GetComponent<PlayerAttack>().WeaponSheathed)
+                        {
+                            StartCoroutine(GetComponentInParent<PlayerAttack>().FreezeMovementFor(1.2f, true, false));
+                            GetComponent<PlayerAttack>().WeaponSheathed = true;
+                        }
+                    }
+                    break;
+
+                case InputActionPhase.Canceled:
+                default:
+                    break;
+            }
         }
     }
 
@@ -149,11 +176,17 @@ public class InputManager : MonoBehaviour
 
 }
 
-
+//Right Hand Side X,A,B,Y
 public enum NorthButtonState { Default }
 public enum EastButtonState { Default }
 public enum SouthButtonState { Default }
 public enum WestButtonState { Default, PickupItem }
+
+
+public enum LeftShoulderState { Default }
+public enum RightShoulderState { Default }
+public enum LeftTriggerState { Default }
+public enum RightTriggerState { Default }
 
 public class ButtonStates
 {
@@ -162,31 +195,58 @@ public class ButtonStates
     public SouthButtonState SouthBtnState;
     public WestButtonState WestBtnState;
 
+    public LeftShoulderState LeftShdState;
+    public RightShoulderState RightShdState;
+    public LeftTriggerState LeftTrgState;
+    public RightTriggerState RightTrgState;
+
     public ButtonStates()
     {
         NorthBtnState = NorthButtonState.Default;
         EastBtnState = EastButtonState.Default;
         SouthBtnState = SouthButtonState.Default;
         WestBtnState = WestButtonState.Default;
+        RightTrgState = RightTriggerState.Default;
+        LeftTrgState = LeftTriggerState.Default;
+        RightShdState = RightShoulderState.Default;
+        LeftShdState = LeftShoulderState.Default;
+           
     }
 
+    #region SetState Method
     public void SetState(NorthButtonState state)
     {
         NorthBtnState = state;
     }
-
     public void SetState(EastButtonState state)
     {
         EastBtnState = state;
     }
-
     public void SetState(SouthButtonState state)
     {
         SouthBtnState = state;
     }
-
     public void SetState(WestButtonState state)
     {
         WestBtnState = state;
     }
+
+    public void SetState(RightShoulderState state)
+    {
+        RightShdState = state;
+    }
+    public void SetState(LeftShoulderState state)
+    {
+        LeftShdState = state;
+    }
+    public void SetState(RightTriggerState state)
+    {
+        RightTrgState = state;
+    }
+    public void SetState(LeftTriggerState state)
+    {
+        LeftTrgState = state;
+    }
+    #endregion
+
 }

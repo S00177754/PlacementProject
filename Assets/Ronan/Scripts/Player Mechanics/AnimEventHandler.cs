@@ -20,4 +20,5 @@ public class AnimEventHandler : MonoBehaviour
     {
         GetComponentInParent<PlayerAnimator>().Animator.ResetTrigger("Attack");
     }
+
 }

@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     
     public bool IsJumping = false;
     public bool IsFalling = false;
+    public bool IsRolling = false;
     [HideInInspector]
     public bool IsMoving = false;
 
@@ -121,9 +122,18 @@ public class PlayerMovement : MonoBehaviour
                 {
                     Animator.SetSpeed(0);
                 }
+                if (IsRolling)
+                {
+                    RollMovement();
+                }
                 return;
             }
 
+            if (IsRolling)
+            {
+                RollMovement();
+                return;
+            }
 
             //Scale speed so framerate doesn't affect it
             var scaledMoveSpeed = movementSpeed * Time.deltaTime;
@@ -135,27 +145,28 @@ public class PlayerMovement : MonoBehaviour
 
             float curSpeedX = scaledMoveSpeed * direction.y;
             float curSpeedY = scaledMoveSpeed * direction.x;
+
             moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
             //Player model rotation so they are facing the correct position
             PlayerModel.rotation = Quaternion.Slerp(PlayerModel.rotation, Quaternion.LookRotation(moveDirection), 0.15F);
-            
-            if(Animator != null && IsGrounded)
+
+            if (Animator != null && IsGrounded)
             {
 
-                if(movementSpeed == WalkSpeed)
+                if (movementSpeed == WalkSpeed)
                 {
                     Animator.SetSpeed(0.5f);
                 }
 
-                if(movementSpeed == SprintSpeed)
+                if (movementSpeed == SprintSpeed)
                 {
                     Animator.SetSpeed(1);
                 }
 
                 if (movementSpeed == CrouchSpeed)
-                {   
-                    if(moveDirection.magnitude <= 0.015)
+                {
+                    if (moveDirection.magnitude <= 0.015)
                     {
                         Animator.SetSpeed(0.25f);
                     }
@@ -218,6 +229,39 @@ public class PlayerMovement : MonoBehaviour
     {
         FreezeMovement = movement;
         FreezeCamera = camera;
+    }
+
+    public void DodgeRoll()
+    {
+        if (IsGrounded && !IsClimbing && !GetComponent<PlayerAttack>().IsAttacking && !GetComponent<PlayerAttack>().IsCharging)
+        {
+            movementSpeed = WalkSpeed;
+            IsRolling = true;
+            IsMoving = true;
+            GetComponent<PlayerController>().IsInvincible = true;
+            Animator.SetTrigger("DodgeRoll");
+            StartCoroutine(DodgeIFrames(1.5f));
+        }
+
+    }
+
+    public void RollMovement()
+    {
+        var scaledMoveSpeed = 4f * Time.deltaTime;
+
+        //Calculations for moving the player relative to camera position
+        Vector3 forward = GetComponent<PlayerAnimator>().Animator.gameObject.transform.TransformDirection(Vector3.forward);
+        Vector3 right = GetComponent<PlayerAnimator>().Animator.gameObject.transform.TransformDirection(Vector3.right);
+
+        float curSpeedX = scaledMoveSpeed * 1;
+        float curSpeedY = scaledMoveSpeed * 0;
+
+        moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+
+        //Player model rotation so they are facing the correct position
+        PlayerModel.rotation = Quaternion.Slerp(PlayerModel.rotation, Quaternion.LookRotation(moveDirection), 0.15F);
+        if(IsGrounded)
+        Character.Move(moveDirection);
     }
 
     // ************** Input Action Methods **************
@@ -312,6 +356,16 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+
+    // Coroutines
+    public IEnumerator DodgeIFrames(float time)
+    {
+        yield return new WaitForSeconds(time);
+        GetComponent<PlayerController>().IsInvincible = false;
+        Animator.Animator.ResetTrigger("DodgeRoll");
+        IsRolling = false;
+        IsMoving = false;
+    }
 
     // ************** Debug **************
 }
