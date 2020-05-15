@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
@@ -10,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     // ************** Public Variables **************
     [Header("Character States")]
     public bool FreezeMovement = false;
+    public bool FreezeCamera = false;
     public bool IsGrounded = true;
     public bool IsCrouching = false;
     public bool IsClimbing = false;
@@ -70,22 +72,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if(GameStateController.gameState == GameState.Paused)
-        {
-            FreezeMovement = true;
-        }
-        else
-        {
-            FreezeMovement = false;
-        }
-
-       
-
         IsGrounded = Detect.OnGround();
 
         if(IsFalling && Detect.LandOnGroundCheck())
         {
-            Animator.SwitchTo(PlayerAnimation.Land);
+            Animator.SetTrigger("FallToLand");
         }
         if(!IsGrounded && velocity.y > 0)
         {
@@ -128,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (Animator != null && IsGrounded)
                 {
-                    Animator.SwitchTo(PlayerAnimation.Idle);
+                    Animator.SetSpeed(0);
                 }
                 return;
             }
@@ -151,22 +142,30 @@ public class PlayerMovement : MonoBehaviour
             
             if(Animator != null && IsGrounded)
             {
-                if(scaledMoveSpeed == 0)
+
+                if(movementSpeed == WalkSpeed)
                 {
-                    Animator.SwitchTo(PlayerAnimation.Idle);
+                    Animator.SetSpeed(0.5f);
                 }
-                else if(movementSpeed == WalkSpeed)
+
+                if(movementSpeed == SprintSpeed)
                 {
-                    Animator.SwitchTo(PlayerAnimation.Walk);
+                    Animator.SetSpeed(1);
                 }
-                else if(movementSpeed == SprintSpeed)
-                {
-                    Animator.SwitchTo(PlayerAnimation.Run);
+
+                if (movementSpeed == CrouchSpeed)
+                {   
+                    if(moveDirection.magnitude <= 0.015)
+                    {
+                        Animator.SetSpeed(0.25f);
+                    }
+                    else
+                    {
+                        Animator.SetSpeed(0.5f);
+                    }
+
                 }
-                else if (movementSpeed == CrouchSpeed)
-                {
-                    Animator.SwitchTo(PlayerAnimation.Walk);
-                }
+
             }
 
             //Moves position of Character
@@ -176,7 +175,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Look(Vector2 direction)
     {
-        if (!FreezeMovement)
+        if (!FreezeCamera)
         {
 
             rotation.y += direction.x * Controller.Settings.CameraSensitivity;
@@ -215,7 +214,11 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-
+    public void SetFreeze(bool movement, bool camera)
+    {
+        FreezeMovement = movement;
+        FreezeCamera = camera;
+    }
 
     // ************** Input Action Methods **************
 
@@ -238,6 +241,10 @@ public class PlayerMovement : MonoBehaviour
                 IsMoving = true;
             }
         }
+        else
+        {
+            input_Move = Vector2.zero;
+        }
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -255,10 +262,10 @@ public class PlayerMovement : MonoBehaviour
                     velocity.y = Mathf.Sqrt(JumpHeight * -2 * FallSpeed); //v = Square root of (h * -2 * g)
                     Character.Move(velocity * Time.deltaTime);
 
-                    if (Animator != null)
-                    {
-                        Animator.SwitchTo(PlayerAnimation.Jump);
-                    }
+                    //if (Animator != null)
+                    //{
+                    //    Animator.SwitchTo(PlayerAnimation.Jump);
+                    //}
                 }
                 break;
 

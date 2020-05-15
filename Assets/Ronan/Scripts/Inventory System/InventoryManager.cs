@@ -16,9 +16,13 @@ public class InventoryManager : MonoBehaviour
     {
         if (ItemOnGround != null)
         {
+            StartCoroutine(GetComponent<PlayerAttack>().FreezeMovementFor(1.9f, true, false));
+            GetComponent<PlayerAnimator>().SetTrigger("GatherItem");
+
             CollectableItem item = ItemOnGround.GetComponent<CollectableItem>();
             Inventory.AddItem(item.Item, 1);
             Destroy(ItemOnGround.gameObject);
+
             GetComponent<PlayerController>().HUDController.HideItemNotification();
             GetComponent<InputManager>().buttonStates.SetState(WestButtonState.Default);
             ItemOnGround = null;

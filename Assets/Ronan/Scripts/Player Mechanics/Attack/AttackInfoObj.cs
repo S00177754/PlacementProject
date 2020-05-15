@@ -10,7 +10,7 @@ public class AttackInfoObj : ScriptableObject
     [Header("Core Details")]
     public string AttackZoneName;
     public int DamageAmount;
-    //Define
+    public AttackAnimation Animation;
 
     [Header("Sphere Trigger Settings")]
     public float AttackRadius = -1f;

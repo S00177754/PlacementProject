@@ -117,7 +117,10 @@ public class InputManager : MonoBehaviour
             else if(buttonStates.WestBtnState == WestButtonState.Default)
             {
                 if (!GetComponent<PlayerAttack>().WeaponSheathed)
+                {
+                    StartCoroutine(GetComponentInParent<PlayerAttack>().FreezeMovementFor(1.2f, true, false));
                     GetComponent<PlayerAttack>().WeaponSheathed = true;
+                }
             }
 
         }

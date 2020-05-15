@@ -4,25 +4,32 @@ using UnityEngine;
 
 public class AttackDamageZone : MonoBehaviour
 {
+    public PlayerAttack player;
     public string ZoneName;
     private bool IsDealingDamage = false;
-    private int damageAmount = 1;
 
-    public void DealDamage(int damageValue)
+    public void SetPlayer(PlayerAttack playerAtk)
+    {
+        player = playerAtk;
+    }
+
+    public void Activate()
     {
         gameObject.SetActive(true);
-        damageAmount = damageValue;
         IsDealingDamage = true;
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (IsDealingDamage)
+        EnemyStatsScript enemy;
+        if(other.gameObject.TryGetComponent<EnemyStatsScript>(out enemy))
         {
-            IsDealingDamage = false;
-            gameObject.SetActive(false);
+            if(!player.EnemiesToDamage.Contains(enemy))
+            player.EnemiesToDamage.Add(enemy);
         }
     }
+
+    
 
 
 }
