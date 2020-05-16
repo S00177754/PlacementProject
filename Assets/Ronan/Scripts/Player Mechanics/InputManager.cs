@@ -42,11 +42,39 @@ public class InputManager : MonoBehaviour
     //PLAYER 
     public void OnMove(InputAction.CallbackContext context)
     {
-        
+        if (buttonStates.LeftJoystickState == LeftJoystickState.Default)
+        {
+            GetComponent<PlayerMovement>().InputMove(context.ReadValue<Vector2>());
+            
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                case InputActionPhase.Started:
+                    GetComponent<PlayerMovement>().IsMovingActive();
+                    break;
+
+                case InputActionPhase.Canceled:
+                        GetComponent<PlayerMovement>().IsMovingCancelled(); 
+                    break;
+
+                default:
+                    print(context.phase);
+                    break;
+            }
+
+            
+        }
     }
 
     public void OnLook(InputAction.CallbackContext context)
     {
+        if (buttonStates.RightJoystickState == RightJoystickState.Default)
+        {
+
+            GetComponent<PlayerMovement>().SetLook(context.ReadValue<Vector2>());
+            return;
+
+        }
 
     }
 
@@ -83,17 +111,81 @@ public class InputManager : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (buttonStates.SouthBtnState == SouthButtonState.Default)
+        {
 
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    GetComponent<PlayerMovement>().Jump();
+                    break;
+
+                case InputActionPhase.Started:
+                    break;
+
+                case InputActionPhase.Canceled:
+                    break;
+
+                default:
+                    print(context.phase);
+                    break;
+            }
+
+
+        }
     }
 
     public void OnSprint(InputAction.CallbackContext context)
     {
+        if (buttonStates.LeftJoystickState == LeftJoystickState.Default)
+        {
+
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    GetComponent<PlayerMovement>().SprintActivate();
+                    break;
+
+                case InputActionPhase.Started:
+                    break;
+
+                case InputActionPhase.Canceled:
+                    break;
+
+                default:
+                    print(context.phase);
+                    break;
+            }
+
+
+        }
 
     }
 
     public void OnCrouch(InputAction.CallbackContext context)
     {
+        if (buttonStates.RightJoystickState == RightJoystickState.Default)
+        {
 
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    GetComponent<PlayerMovement>().CrouchToggle();
+                    break;
+
+                case InputActionPhase.Started:
+                    break;
+
+                case InputActionPhase.Canceled:
+                    break;
+
+                default:
+                    print(context.phase);
+                    break;
+            }
+
+
+        }
     }
 
     public void OnPause(InputAction.CallbackContext context)
@@ -188,6 +280,9 @@ public enum RightShoulderState { Default }
 public enum LeftTriggerState { Default }
 public enum RightTriggerState { Default }
 
+public enum LeftJoystickState { Default }
+public enum RightJoystickState { Default }
+
 public class ButtonStates
 {
     public NorthButtonState NorthBtnState;
@@ -200,6 +295,9 @@ public class ButtonStates
     public LeftTriggerState LeftTrgState;
     public RightTriggerState RightTrgState;
 
+    public LeftJoystickState LeftJoystickState;
+    public RightJoystickState RightJoystickState;
+
     public ButtonStates()
     {
         NorthBtnState = NorthButtonState.Default;
@@ -210,6 +308,8 @@ public class ButtonStates
         LeftTrgState = LeftTriggerState.Default;
         RightShdState = RightShoulderState.Default;
         LeftShdState = LeftShoulderState.Default;
+        LeftJoystickState = LeftJoystickState.Default;
+        RightJoystickState = RightJoystickState.Default;
            
     }
 
@@ -246,6 +346,14 @@ public class ButtonStates
     public void SetState(LeftTriggerState state)
     {
         LeftTrgState = state;
+    }
+    public void SetState(LeftJoystickState state)
+    {
+        LeftJoystickState = state;
+    }
+    public void SetState(RightJoystickState state)
+    {
+        RightJoystickState = state;
     }
     #endregion
 

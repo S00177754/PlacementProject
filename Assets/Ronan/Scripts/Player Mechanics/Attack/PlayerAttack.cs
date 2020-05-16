@@ -18,8 +18,10 @@ public class PlayerAttack : MonoBehaviour
     public bool IsAttacking = false;
 
     public bool IsCharging = false;
+
+    //Not implemented yet, still undecided
     public float MaxChargeTime = 5f;
-    private float ChargeTimer = 0f;
+    //private float ChargeTimer = 0f;
 
     private bool CanCombo = false;
     public float ComboTimer = 0f;
@@ -47,22 +49,6 @@ public class PlayerAttack : MonoBehaviour
 
         ComboUpdate();
     }
-
-    #region Input Methods
-
-    public void OnSneak(InputAction.CallbackContext context)
-    {
-        if (!GetComponent<PlayerMovement>().FreezeMovement)
-        {
-            if (!WeaponSheathed)
-            {
-                WeaponSheathed = true;
-            }
-        }
-
-    }
-
-    #endregion
 
 
     #region Sheath Weapon Methods
@@ -209,6 +195,8 @@ public class PlayerAttack : MonoBehaviour
         }
 
     }
+
+    
 
     IEnumerator ApplyDamage(int damage)
     {

@@ -13,8 +13,9 @@ public class EquipmentManager : MonoBehaviour
     }
 
     //[Header("Accessories")]
-    //public Bauble AccessorySlotOne;
-    //public Bauble AccessorySlotTwo;
+    public BaubleObj AccessorySlotOne;
+    public BaubleObj AccessorySlotTwo; //Lock with ability tree
+    public BaubleObj AccessorySlotThree; //Lock with ability tree
 
     public void EquipWeapon(WeaponInfo weapon)
     {

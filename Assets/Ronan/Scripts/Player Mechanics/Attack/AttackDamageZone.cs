@@ -6,7 +6,6 @@ public class AttackDamageZone : MonoBehaviour
 {
     public PlayerAttack player;
     public string ZoneName;
-    private bool IsDealingDamage = false;
 
     public void SetPlayer(PlayerAttack playerAtk)
     {
@@ -16,7 +15,6 @@ public class AttackDamageZone : MonoBehaviour
     public void Activate()
     {
         gameObject.SetActive(true);
-        IsDealingDamage = true;
     }
 
     private void OnTriggerEnter(Collider other)
