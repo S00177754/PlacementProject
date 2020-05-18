@@ -14,7 +14,7 @@ public class ExpReward : QuestReward
 
 public class ItemReward : QuestReward
 {
-    ItemObj ItemReward;
+    ItemObj ItemRewarded;
 }
 
 
