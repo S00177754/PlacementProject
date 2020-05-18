@@ -100,6 +100,34 @@
               <div class="tile is-child">
                 <article class="tile is-child notification has-background-light has-text-black">
                   <a id="blog_post_3"></a>
+                  <p class="title">NPCs and Quest Development - #1</p>
+                  <p class="subtitle">What's in a Quest?</p>
+                  <p>
+                    This week and last, I have been generating ideas for a Quest Management System. This consists of an overall manager to check and set active Main Scenario Quests (MSQ) and Side quests. The quests themselves each have individual steps that combine to achieve your questing goals.  When thinking back to quests in the many games I’ve played over the years, and most notably Final Fantasy XIV Online, each step can have different types of goal. This might be talking to a specific NPC, collecting a target number of items, killing a few enemies, or some combination thereof.
+                  </p>
+
+                  <p>
+                    For this reason, I decided to abstract the QuestStep class, and allow for 4 child classes: Location, NPC, Quantity and Multi-Quantity. Each of these will have different behaviour, but each will share a description and isCompleted, and in much the same way Ronan abstracted the itemObj class, these will be scriptable objects to allow easy creation in the Unity editor when it comes time to piece the game together.
+                  </p>
+                  <p>
+                    This all came from thinking about how NPCs will talk, what they will say and when they will say it. A lovely flow chart gives the sense of how this will happen, mostly being contextualised by the current quest(s) the player has active at a given time. 
+                  </p>
+
+                  <p>
+                    Next week should see further implementation of the Quest system, and hopefully see some NPCs having a chat with the player. Watch this space!
+                  </p>
+
+                  <p>
+                    By Sam ColvilleRea - 15th of May 2020
+                  </p>
+                </article>
+              </div>
+            
+              </br>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_3"></a>
                   <p class="title">Player Inventory Development - #3</p>
                   <p class="subtitle">Time to collect the world!</p>
                   <p>
