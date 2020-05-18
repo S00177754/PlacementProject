@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Quest : MonoBehaviour
+[CreateAssetMenu(fileName = "Quest", menuName = "Quest System/Quest")]
+public class Quest : ScriptableObject 
 {
     public int ID;
     public string Name;

@@ -8,15 +8,7 @@ public class QuestManager : MonoBehaviour
     List<Quest> SideQuests;
     List<Quest> ActiveSides;
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
+    //List<ItemObj> Rewards;
 
     public void CheckNextQuest(){
 
