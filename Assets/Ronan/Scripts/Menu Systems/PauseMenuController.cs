@@ -8,6 +8,7 @@ public enum PauseMenuState { RootMenu, Inventory, Settings, Exit}
 public class PauseMenuController : MonoBehaviour
 {
     public PauseMenuState menuState;
+    public PauseMenuState previousState;
 
     [Header("Pause Menu State Objects")]
     public PauseSubMenu RootMenu;
@@ -49,13 +50,16 @@ public class PauseMenuController : MonoBehaviour
     //Menu State Code
     public void SetMenuState(PauseMenuState state)
     {
+        previousState = menuState;
         menuState = state;
-
         StateRefresh();
     }
 
     public void StateRefresh()
     {
+        if(previousState == PauseMenuState.Inventory)
+            Inventory.SubMenuObject.GetComponent<InventoryPanelController>().ClearList();
+
         switch (menuState)
         {
             case PauseMenuState.RootMenu:
@@ -85,7 +89,7 @@ public class PauseMenuController : MonoBehaviour
     {
         ActivateSingleMenu(PauseMenuState.Inventory);
 
-        //Use event system to set first obj for controller action
+        Inventory.SubMenuObject.GetComponent<InventoryPanelController>().GenerateList();
     }
 
     private void SettingsMenuState()
@@ -98,17 +102,19 @@ public class PauseMenuController : MonoBehaviour
         switch (menu)
         {
             case PauseMenuState.RootMenu:
-                RootMenu.SubMenuObject.SetActive(true);
                 Inventory.SubMenuObject.SetActive(false);
                 Settings.SubMenuObject.SetActive(false);
+                RootMenu.SubMenuObject.SetActive(true);
                 UIHelper.SelectedObjectSet(RootMenu.DefaultSelectedUIElement);
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer.GetComponent<InputManager>().SetSelecOnRegain(RootMenu.DefaultSelectedUIElement);
                 break;
 
             case PauseMenuState.Inventory:
                 RootMenu.SubMenuObject.SetActive(false);
-                Inventory.SubMenuObject.SetActive(true);
                 Settings.SubMenuObject.SetActive(false);
+                Inventory.SubMenuObject.SetActive(true);
                 UIHelper.SelectedObjectSet(Inventory.DefaultSelectedUIElement);
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer.GetComponent<InputManager>().SetSelecOnRegain(Inventory.DefaultSelectedUIElement);
                 break;
 
             case PauseMenuState.Settings:
@@ -116,6 +122,7 @@ public class PauseMenuController : MonoBehaviour
                 Inventory.SubMenuObject.SetActive(false);
                 Settings.SubMenuObject.SetActive(true);
                 UIHelper.SelectedObjectSet(Settings.DefaultSelectedUIElement);
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer.GetComponent<InputManager>().SetSelecOnRegain(Settings.DefaultSelectedUIElement);
                 break;
         }
     }
@@ -129,7 +136,7 @@ public class PauseMenuController : MonoBehaviour
         {
             case PauseMenuState.RootMenu:
                 //Throwing issue for some strange reason? Button press to state change too long?
-                //GameStateController.ResumePreviousState();
+                GameStateController.ResumePreviousState();
                 //Could try calling a seperate event?
                 break;
 

@@ -2,20 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType {Weapon, Bauble, Ammo, Potion, KeyItem  }
-public enum InventorySection { Equipment, Potions, KeyItems }
+//Need to refactor item type to include all weapons
+public enum ItemType {Weapon, Potion, Bauble, KeyItem  }
 
 //Base item class
 public abstract class ItemObj : ScriptableObject
 {
     public string Name;
     public ItemType Type;
-    public InventorySection Section;
 
     [TextArea(10, 15)] //Came across on Unity forms
     public string Description;
     
-    public GameObject ItemPrefab;
+    public virtual bool UseItem(PlayerController player)
+    {
+        return false;
+    }
+
+    public virtual bool UseItem(PartyMember member)
+    {
+        return false;
+    }
 }
 
 

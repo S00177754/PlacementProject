@@ -6,8 +6,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public string PlayerName;
-    public PlayerStats GameStats;
+    public CharacterStats GameStats;
     public PlayerSettings Settings;
+    public PlayerHUDController HUDController;
+    public PauseMenuController PauseMenu;
+
+    public int Health = 100;
+    public int MP = 60;
+    public bool IsInvincible = false;
 }
 
 [Serializable]
@@ -18,14 +24,21 @@ public class PlayerSettings
     public float CameraSensitivity = 2f;
 }
 
+public enum PlayerStatTypes { Strength, Dexterity, Magic, Vitality, Defence}
+
 [Serializable]
-public class PlayerStats
+public class CharacterStats
 {
     public int Level;
 
     [Header("Combat Stats")]
     public int MaxHealth = 100;
-    public int Health = 100;
     public int MaxMP = 60;
-    public int MP = 60;
+
+    public int StrengthStat = 5;
+    public int DexterityStat = 5;
+    public int MagicStat = 5;
+    public int VitalityStat = 5;
+    public int DefenceStat = 5;
+
 }

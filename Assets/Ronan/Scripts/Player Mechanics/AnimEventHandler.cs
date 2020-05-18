@@ -6,11 +6,13 @@ public class AnimEventHandler : MonoBehaviour
 {
     public void SheatheWeapon()
     {
+        
         GetComponentInParent<PlayerAttack>().SheathWeapon();
     }
 
     public void UnSheatheWeapon()
     {
+        
         GetComponentInParent<PlayerAttack>().UnsheathWeapon();
     }
 
@@ -18,4 +20,5 @@ public class AnimEventHandler : MonoBehaviour
     {
         GetComponentInParent<PlayerAnimator>().Animator.ResetTrigger("Attack");
     }
+
 }

@@ -23,6 +23,22 @@ public class PlayerAnimator : MonoBehaviour
         Animator.SetBool("IsFalling", movement.IsFalling);
         Animator.SetBool("IsCrouching", movement.IsCrouching);
         Animator.SetBool("IsWeaponSheathed", attack.WeaponSheathed);
+        Animator.SetBool("IsCharging", attack.IsCharging);
+    }
+
+    public void SetSpeed(float speed)
+    {
+        Animator.SetFloat("Speed", speed);
+    }
+
+    public void SetTrigger(string triggerName)
+    {
+        Animator.SetTrigger(triggerName);
+    }
+
+    public void SetInteger(string name, int value)
+    {
+        Animator.SetInteger(name, value);
     }
 
 

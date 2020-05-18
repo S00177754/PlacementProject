@@ -13,7 +13,9 @@ public class GameStateController : MonoBehaviour
 
     static public GameState gameState;
     static public GameState previousGameState;
+
     public PauseMenuController PauseMenu;
+    public GameObject PlayerHUD;
 
 
     private void Start()
@@ -22,6 +24,10 @@ public class GameStateController : MonoBehaviour
         SetGameState(GameState.Explore);
     }
 
+    private void Update()
+    {
+       
+    }
 
     static public void SetGameState(GameState state)
     {
@@ -36,6 +42,7 @@ public class GameStateController : MonoBehaviour
         GameState current = gameState;
         gameState = previousGameState;
         previousGameState = current;
+        
 
         StateRefresh();
     }
@@ -75,8 +82,9 @@ public class GameStateController : MonoBehaviour
     static private void MainMenuRefresh()
     {
         Time.timeScale = 1;
-        ChangeAllPlayerMapsTo("Player");
-
+        Instance.GetComponent<GameManager>().MainPlayer.GetComponent<PlayerMovement>().SetFreeze(false, false) ;
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>().ChangeAllPlayerMapsTo("Player");
+        Instance.PlayerHUD.SetActive(false);
         PauseMenuClear();
     }
 
@@ -84,44 +92,50 @@ public class GameStateController : MonoBehaviour
     {
         Time.timeScale = 0;
         Instance.PauseMenu.GetComponent<PauseMenuController>().PauseGame();
-        ChangeAllPlayerMapsTo("UI");
+        Instance.GetComponent<GameManager>().MainPlayer.GetComponent<PlayerMovement>().SetFreeze(true, true);
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>().ChangeAllPlayerMapsTo("UI");
     }
 
     static private void ExploreRefresh()
     {
         Time.timeScale = 1;
-        ChangeAllPlayerMapsTo("Player");
-
+        Instance.PlayerHUD.SetActive(true);
+        Instance.GetComponent<GameManager>().MainPlayer.GetComponent<PlayerMovement>().SetFreeze(false,false);
         PauseMenuClear();
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>().ChangeAllPlayerMapsTo("Player");
     }
 
     static private void PacifistRefresh()
     {
         Time.timeScale = 1;
-        ChangeAllPlayerMapsTo("Player");
-
+        Instance.GetComponent<GameManager>().MainPlayer.GetComponent<PlayerMovement>().SetFreeze(false, false);
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>().ChangeAllPlayerMapsTo("Player");
+        Instance.PlayerHUD.SetActive(false);
         PauseMenuClear();
     }
 
     static private void DrivingRefresh()
     {
         Time.timeScale = 1;
-        ChangeAllPlayerMapsTo("Player");
-
+        Instance.GetComponent<GameManager>().MainPlayer.GetComponent<PlayerMovement>().SetFreeze(false, false);
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>().ChangeAllPlayerMapsTo("Player");
+        Instance.PlayerHUD.SetActive(false);
         PauseMenuClear();
     }
 
     static private void GameOverRefresh()
     {
         Time.timeScale = 1;
-        ChangeAllPlayerMapsTo("Player");
-
+        Instance.PlayerHUD.SetActive(false);
         PauseMenuClear();
+        Instance.GetComponent<GameManager>().MainPlayer.GetComponent<PlayerMovement>().SetFreeze(true, true);
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>().ChangeAllPlayerMapsTo("Player");
     }
 
-    static private void ChangeAllPlayerMapsTo(string map)
+    private void ChangeAllPlayerMapsTo(string map)
     {
-        Instance.GetComponent<GameManager>().Players.ForEach(p => p.GetComponent<PlayerInput>().SwitchCurrentActionMap(map));
+        GetComponent<GameManager>().MainPlayer.GetComponent<PlayerInput>().SwitchCurrentActionMap(map);
+
     }
 
     static private void PauseMenuClear()
