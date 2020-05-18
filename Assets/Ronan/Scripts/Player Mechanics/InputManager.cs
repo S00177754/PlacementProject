@@ -245,6 +245,33 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    public void OnLeftShoulder(InputAction.CallbackContext context)
+    {
+        if (buttonStates.LeftShdState == LeftShoulderState.Default)
+        {
+
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    break;
+
+                case InputActionPhase.Started:
+                    GetComponent<TargetManager>().LockOnTarget();
+                    break;
+
+                case InputActionPhase.Canceled:
+                    GetComponent<TargetManager>().UnlockOnTarget();
+                    break;
+
+                default:
+                    print(context.phase);
+                    break;
+            }
+
+
+        }
+    }
+
     //UI
 
     public void OnResume(InputAction.CallbackContext context)

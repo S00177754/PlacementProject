@@ -8,14 +8,57 @@ public class TargetableObjectFinder : MonoBehaviour
     public LayerMask EntityLayer;
     public TargetManager Manager;
 
+    private void Start()
+    {
+        GetComponent<SphereCollider>().radius = Radius;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.layer == EntityLayer)
         {
-            TargetableObject obj;
-            if(other.TryGetComponent(out obj))
+            if (other.GetComponent<Renderer>().IsVisibleFrom(Camera.main))
             {
-                Manager.AddTarget(obj);
+
+                TargetableObject obj;
+                if (other.TryGetComponent(out obj))
+                {
+                    if (!Manager.Contains(obj))
+                    {
+                        Manager.AddTarget(obj);
+                    }
+                }
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.layer == EntityLayer)
+        {
+            TargetableObject obj;
+
+            if (other.GetComponent<Renderer>().IsVisibleFrom(Camera.main))
+            {
+                if (other.TryGetComponent(out obj))
+                {
+                    if (!Manager.Contains(obj))
+                    {
+                        Manager.AddTarget(obj);
+                    }
+
+                }
+            }
+            else
+            {
+                if (other.TryGetComponent(out obj))
+                {
+                    if (Manager.Contains(obj))
+                    {
+                        Manager.RemoveTarget(obj);
+                    }
+
+                }
             }
         }
     }
@@ -27,7 +70,11 @@ public class TargetableObjectFinder : MonoBehaviour
             TargetableObject obj;
             if (other.TryGetComponent(out obj))
             {
-                Manager.RemoveTarget(obj);
+                if (Manager.Contains(obj))
+                {
+                    Manager.RemoveTarget(obj);
+                }
+
             }
         }
     }

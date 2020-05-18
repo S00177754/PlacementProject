@@ -7,7 +7,6 @@ public class TargettingController : MonoBehaviour
 {
     public TargetableObject LockOnObject;
     public bool IsOnScreen = false; 
-    public bool IsLockedOn = false; 
     public Camera playerCamera;
 
     [Header("Target Sprites")]
@@ -69,7 +68,6 @@ public class TargettingController : MonoBehaviour
     public void SetLockedTarget(TargetableObject objectLockOn)
     {
         LockOnObject = objectLockOn;
-        IsLockedOn = true;
         TargetIcon.sprite = LockedOntoTarget;
         TargetIcon.color = SetTargetAlpha(1);
     }
@@ -77,7 +75,6 @@ public class TargettingController : MonoBehaviour
     public void SetTargetNull()
     {
         LockOnObject = null;
-        IsLockedOn = false;
         TargetIcon.color = SetTargetAlpha(0);
     }
 

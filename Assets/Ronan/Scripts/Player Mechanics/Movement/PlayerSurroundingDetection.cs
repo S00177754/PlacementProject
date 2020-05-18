@@ -9,7 +9,6 @@ public class PlayerSurroundingDetection : MonoBehaviour
     public LayerMask Layer;
     public float GroundRangeCheck = 0.4f;
     public float FallToLandDistance = 0.3f;
-    public SphereCollider sphere;
 
     public bool OnGround()
     {

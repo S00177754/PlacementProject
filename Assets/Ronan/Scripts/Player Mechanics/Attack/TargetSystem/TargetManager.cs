@@ -5,12 +5,37 @@ using UnityEngine;
 public class TargetManager : MonoBehaviour
 {
     public TargettingController TargetUIController;
+    public TargetableObjectFinder TargetFinder;
     public List<TargetableObject> TargetsInRange;
+    public TargetableObject LockedOnTarget;
+    public bool IsLockedOn = false;
+
+    private void Update()
+    {
+        if(TargetsInRange.Count > 0 && !IsLockedOn)
+        {
+            SetClosestTargetAsPossible();
+        }
+        else if (IsLockedOn)
+        {
+            TargetUIController.SetLockedTarget(FindNearestTarget());
+        }
+    }
 
     public void AddTarget(TargetableObject newTarget)
     {
         TargetsInRange.Add(newTarget);
         SetClosestTargetAsPossible();
+    }
+
+    public bool Contains(TargetableObject newTarget)
+    {
+        if (TargetsInRange.Contains(newTarget))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public void RemoveTarget(TargetableObject newTarget)
@@ -22,6 +47,16 @@ public class TargetManager : MonoBehaviour
     public void SetClosestTargetAsPossible()
     {
         TargetUIController.SetPossibleTarget(FindNearestTarget());
+    }
+
+    public void LockOnTarget()
+    {
+        IsLockedOn = true;
+    }
+
+    public void UnlockOnTarget()
+    {
+        IsLockedOn = false;
     }
 
     /// <summary>

@@ -68,6 +68,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Tap,SlowTap"
+                },
+                {
+                    "name": "LeftShoulder",
+                    "type": "Button",
+                    "id": "019a0e8e-9207-4cb5-8e42-f46ba7e23d28",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
                 }
             ],
             "bindings": [
@@ -332,6 +340,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6967cc21-0478-4830-a643-30bfc0dfe845",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "LeftShoulder",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
