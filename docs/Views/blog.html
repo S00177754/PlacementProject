@@ -99,6 +99,36 @@
               <!-- Blog Highlight Template-->
               <div class="tile is-child">
                 <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_5"></a>
+                  <p class="title">Player Attack Overhaul - #5</p>
+                  <p class="subtitle">We're back and ready to throwdown!</p>
+                  <p>
+                    This weeks blog post from myself was delayed by a couple of days because I wanted to finish up overhauling our players attack system, the previous system I had implimented meant that the player could only use the provided sword and the animations for it were sloppy not to mention that all the player could do was a simple slash. This new system allows for the creation of new weapons with ease in the Unity editor itself and all thats needed are a model and any specific weapon animations, this new system will also allow for us to quickly change out the player's weapon for a variety of other weapons, instantly increasing the players oppurtunities to find a play style that suits them to a tee. Another nice little change to the attack system is that the player can now dodge roll and will have invincibility frames while rolling to allow them to dodge enemy attacks, I hope to smoothen out the transitions from player states to each other nearer the end of development but for the time being it works for testing purposes.
+                  </p>
+
+                  <p >
+                    <video width="320" height="240" controls class="center">
+                      <source src="../Videos/NewAttacksystem.mp4"" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                  </p>
+
+                  <p>There has also been a lot more going on then just the attack overhaul however, after working on more functionality for the attack, I realised it was time to setup an input manager to work in tandem with Unity's latest input system to allow for our controls to change their functionality depending on the context of the player's situation. For example when a player is standing over an item, the Square button on a PS4 dualshock becomes pickup item rather than a dodge roll, each button has a context system to allow us to further expand on the possibilities of what the player can do. The new input manager also allows us to bind multiple actions to a key, for example a quick tap of the Square button will allow the player to dodge roll but if they hold the button for a second then they will sheath their weapon.</p>
+
+                  <p>As I stated in my previous post I had planned to fix up the players animations and make them much smoother as their was some instances of the players feet sliding all over the ground when they attacked as can be seen in the previous video, it took a few days but after diving into the animation tools in Unity, I was able to start piecing together our animation system together and make it much neater and modular than it had been before. I was also able to smooth out some transitions and prevent the player's feet from sliding wildly across the floor, some other changes were made in regards to the player's actual animations such as the landing animation and a few other small bits and pieces.</p>
+
+                  <p>Moving forward, I plan to work on the ability tree for the player and also to give the inventory system a minor overhaul and that should finish up the basis of the player mechanics for the being. Make sure to check back next weekend for another update on Project Crescent!</p>
+
+                  <p>
+                    By Ronan Cassidy - 19th of May 2020
+                  </p>
+                </article>
+              </div>
+
+              <br/>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
                   <a id="blog_post_4"></a>
                   <p class="title">NPCs and Quest Development - #4</p>
                   <p class="subtitle">What's in a Quest?</p>
