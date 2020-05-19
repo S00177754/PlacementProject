@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-    [SerializeField]
     Queue<Quest> MainScenarioQuests;
-    [SerializeField]
     List<Quest> SideQuests;
     [SerializeField]
     List<Quest> ActiveSides;
@@ -15,10 +13,17 @@ public class QuestManager : MonoBehaviour
 
     public void MoveToNextStepMSQ(Quest moveOn){
         if(moveOn.isComplete && moveOn.isActive){
-
+            
         }
     }
 
+    public void LoadMSQ(){
+        //read in quests from JSON?
+    }
+
+    public void LoadSideQuests(){
+        //read from JSON?
+    }
     public void CheckNextQuest(){
 
     }
@@ -30,4 +35,9 @@ public class QuestManager : MonoBehaviour
     public void MarkAsComplete(Quest setComplete){
         setComplete.isComplete = true;
     }
+}
+
+public class jsonWriter
+{
+    
 }

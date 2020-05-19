@@ -13,15 +13,20 @@ public class NPC : ScriptableObject
     [SerializeField]
     string DefaultSpeach;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    public List<string> CheckQuestDialogue(){
+
+        List<string> myDialogue = new List<string>();
+        //Refer to QuestManager to get active quests
+        //if active quest has NPC, check name/id with self
+        //if valid selection
+        //run quesry on DialogueManager MasterList
+        //check activequest step name with name of dialogue option
+        //set Dialogue to dialoge returned from query
         
+        //defalut to DefaultSpeach
+
+        //return dialogue
+        return myDialogue;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
