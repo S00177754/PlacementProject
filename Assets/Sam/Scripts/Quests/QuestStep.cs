@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "QuestStep", menuName = "~/Documents/GitHub/PlacementProject/Assets/Sam/Scripts/Quests/QuestStep.cs/QuestStep", order = 0)]
+[CreateAssetMenu(fileName = "QuestStep", menuName = "Quest System/QuestStep", order = 0)]
 public class QuestStep : ScriptableObject {
     
     protected int ID;
     [SerializeField]
     protected string Description;
-    protected bool isComplete;
+    public bool isComplete;
 }
 
 [CreateAssetMenu(fileName = "LocationQuestStep", menuName = "Quest System/QuestStep")]
@@ -16,6 +16,8 @@ public class LocationQuestStep : QuestStep
 {
     //Assign to empty
     Vector3 StepLocation;
+    [SerializeField]
+    float TriggerRange;
 
     private void OnTriggerEnter(Collider other) {
         //
