@@ -71,7 +71,7 @@ public class InputManager : MonoBehaviour
         if (buttonStates.RightJoystickState == RightJoystickState.Default)
         {
 
-            GetComponent<PlayerMovement>().SetLook(context.ReadValue<Vector2>());
+            GetComponent<PlayerMovement>().InputLook(context.ReadValue<Vector2>());
             return;
 
         }
@@ -85,7 +85,7 @@ public class InputManager : MonoBehaviour
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
-                    if (context.interaction is SlowTapInteraction || context.interaction is TapInteraction)
+                    if ( context.interaction is TapInteraction)
                     {
                         GetComponent<PlayerAttack>().Attack();
                     }

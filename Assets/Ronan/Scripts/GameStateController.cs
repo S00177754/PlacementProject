@@ -24,11 +24,6 @@ public class GameStateController : MonoBehaviour
         SetGameState(GameState.Explore);
     }
 
-    private void Update()
-    {
-       
-    }
-
     static public void SetGameState(GameState state)
     {
         previousGameState = gameState;

@@ -15,12 +15,7 @@ public class TargetableObjectFinder : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == EntityLayer)
-        {
-            if (other.GetComponent<Renderer>().IsVisibleFrom(Camera.main))
-            {
-
-                TargetableObject obj;
+            TargetableObject obj;
                 if (other.TryGetComponent(out obj))
                 {
                     if (!Manager.Contains(obj))
@@ -28,54 +23,33 @@ public class TargetableObjectFinder : MonoBehaviour
                         Manager.AddTarget(obj);
                     }
                 }
-            }
-        }
+            
+        
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.layer == EntityLayer)
+        TargetableObject obj;
+        if (other.TryGetComponent(out obj))
         {
-            TargetableObject obj;
-
-            if (other.GetComponent<Renderer>().IsVisibleFrom(Camera.main))
+            if (!Manager.Contains(obj))
             {
-                if (other.TryGetComponent(out obj))
-                {
-                    if (!Manager.Contains(obj))
-                    {
-                        Manager.AddTarget(obj);
-                    }
-
-                }
+                Manager.AddTarget(obj);
             }
-            else
-            {
-                if (other.TryGetComponent(out obj))
-                {
-                    if (Manager.Contains(obj))
-                    {
-                        Manager.RemoveTarget(obj);
-                    }
 
-                }
-            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == EntityLayer)
+        TargetableObject obj;
+        if (other.TryGetComponent(out obj))
         {
-            TargetableObject obj;
-            if (other.TryGetComponent(out obj))
+            if (Manager.Contains(obj))
             {
-                if (Manager.Contains(obj))
-                {
-                    Manager.RemoveTarget(obj);
-                }
-
+                Manager.RemoveTarget(obj);
             }
+
         }
     }
 }
