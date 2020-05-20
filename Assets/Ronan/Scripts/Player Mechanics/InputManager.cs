@@ -70,8 +70,15 @@ public class InputManager : MonoBehaviour
     {
         if (buttonStates.RightJoystickState == RightJoystickState.Default)
         {
-
-            GetComponent<PlayerMovement>().InputLook(context.ReadValue<Vector2>());
+            if(GetComponent<PlayerController>().HUDController.IsItemwheelActive() == true)
+            {
+                GetComponent<PlayerController>().HUDController.ItemWheel.SetInputAxis(context.ReadValue<Vector2>());
+                GetComponent<PlayerMovement>().InputLook(Vector2.zero);
+            }
+            else
+            {
+                GetComponent<PlayerMovement>().InputLook(context.ReadValue<Vector2>());
+            }
             return;
 
         }
@@ -272,6 +279,33 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    public void OnRightShoulder(InputAction.CallbackContext context)
+    {
+        if (buttonStates.RightShdState == RightShoulderState.Default)
+        {
+
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    break;
+
+                case InputActionPhase.Started:
+                    GetComponent<PlayerController>().HUDController.ShowItemWheel(true);
+                    break;
+
+                case InputActionPhase.Canceled:
+                    GetComponent<PlayerController>().HUDController.ShowItemWheel(false);
+                    break;
+
+                default:
+                    print(context.phase);
+                    break;
+            }
+
+
+        }
+    }
+
     //UI
 
     public void OnResume(InputAction.CallbackContext context)
@@ -304,6 +338,7 @@ public enum WestButtonState { Default, PickupItem }
 
 public enum LeftShoulderState { Default }
 public enum RightShoulderState { Default }
+
 public enum LeftTriggerState { Default }
 public enum RightTriggerState { Default }
 

@@ -10,6 +10,7 @@ public abstract class ItemObj : ScriptableObject
 {
     public string Name;
     public ItemType Type;
+    public Sprite ItemIcon;
 
     [TextArea(10, 15)] //Came across on Unity forms
     public string Description;

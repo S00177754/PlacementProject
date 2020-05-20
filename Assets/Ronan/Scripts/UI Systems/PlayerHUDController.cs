@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerHUDController : MonoBehaviour
 {
     public ItemNotificationController ItemPanel;
+    public NotificationController NotificationController;
+    public RadialMenuController ItemWheel;
 
     private void Start()
     {
@@ -20,5 +22,21 @@ public class PlayerHUDController : MonoBehaviour
     public void HideItemNotification()
     {
         ItemPanel.gameObject.SetActive(false);
+    }
+
+    public void SendItemNotification(string message, Sprite sprite, Color color)
+    {
+        NotificationController.SendNotification(message, sprite, color);
+    }
+
+    public bool IsItemwheelActive()
+    {
+        return ItemWheel.gameObject.activeSelf;
+    }
+
+    public void ShowItemWheel(bool value)
+    {
+        ItemWheel.gameObject.SetActive(value);
+        ItemWheel.SetInputAxis(Vector2.zero);
     }
 }

@@ -12,7 +12,7 @@ public class NotificationElement : MonoBehaviour
 
     private void Start()
     {
-        Invoke("Destroy", 5);
+        Invoke("Destroy", 2);
     }
 
     public void SetNotification(string text, Sprite icon, Color panelColor)

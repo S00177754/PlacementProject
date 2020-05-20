@@ -23,6 +23,7 @@ public class InventoryManager : MonoBehaviour
             Inventory.AddItem(item.Item, 1);
             Destroy(ItemOnGround.gameObject);
 
+            GetComponent<PlayerController>().HUDController.SendItemNotification(ItemOnGround.GetComponent<CollectableItem>().Item.Name,null,Color.blue);
             GetComponent<PlayerController>().HUDController.HideItemNotification();
             GetComponent<InputManager>().buttonStates.SetState(WestButtonState.Default);
             ItemOnGround = null;
