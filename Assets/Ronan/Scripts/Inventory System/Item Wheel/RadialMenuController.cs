@@ -9,20 +9,23 @@ public class RadialMenuController : MonoBehaviour
     public RadialInfoPanel InfoPanel;
 
     [Tooltip("Start from top segment and add in order of clockwise.")]
-    public List<RadialItemSection> Sections;
+    public List<RadialMenuSection> Sections;
+
+    public bool IsActive = false;
 
     private Vector2 input_axis;
+    protected Vector2 lastPos;
+    protected int segmentNum = -1;
 
-    private void Update()
+    protected void Update()
     {
-        if(gameObject.activeSelf)
+        if (IsActive)
         {
             if (input_axis != Vector2.zero)
             {
-                int segmentNum = CheckActiveSegment();
+                segmentNum = CheckActiveSegment(input_axis);
                 if (segmentNum != 0)
                 {
-                    //Debug.Log(string.Concat("Segment: ", segmentNum));
                     Sections[segmentNum - 1].HighlightSection(Color.blue);
                     ResetAllHighlightsExcept(segmentNum - 1);
                 }
@@ -36,6 +39,7 @@ public class RadialMenuController : MonoBehaviour
 
     public void SetInputAxis(Vector2 input)
     {
+        if(IsActive)
         input_axis = input;
     }
 
@@ -43,7 +47,7 @@ public class RadialMenuController : MonoBehaviour
     {
         for (int i = 0; i < Sections.Count; i++)
         {
-            if(i != segment)
+            if (i != segment)
             {
                 //Debug.Log(string.Concat("Unhighlight: ", segment));
                 Sections[i].ResetHighlight();
@@ -51,23 +55,28 @@ public class RadialMenuController : MonoBehaviour
         }
     }
 
+    public virtual void UseMenuAction()
+    {
+
+    }
+
     //Math bois
-    private double DistanceFromCircleOrigin(Vector2 origin, Vector2 point)
+    protected double DistanceFromCircleOrigin(Vector2 origin, Vector2 point)
     {
         return Math.Sqrt(Math.Pow((point.x - origin.x), 2) + Math.Pow((point.y - origin.y), 2));
     }
 
-    private bool IsAxisInCircle(Vector2 axis, Vector2 origin, float radius)
+    protected bool IsAxisInCircle(Vector2 axis, Vector2 origin, float radius)
     {
         return DistanceFromCircleOrigin(origin, axis) < radius;
     }
 
-    private float AngleCheck(Vector2 boundaryOne)
+    protected float AngleCheck(Vector2 boundaryOne)
     {
         return Vector2.Angle(boundaryOne, input_axis);
     }
 
-    private bool SegmentCheck(Vector2 startPoint, Vector2 endPoint)
+    protected bool SegmentCheck(Vector2 startPoint, Vector2 endPoint)
     {
         if (AngleCheck(startPoint) < 45 && AngleCheck(endPoint) < 45)
         {
@@ -77,7 +86,7 @@ public class RadialMenuController : MonoBehaviour
         return false;
     }
 
-    private bool IsAxisInSegment(int segment)
+    protected bool IsAxisInSegment(int segment)
     {
         switch (segment)
         {
@@ -85,10 +94,10 @@ public class RadialMenuController : MonoBehaviour
                 return SegmentCheck(new Vector2(-0.5f, 1), new Vector2(0.5f, 1));
 
             case 2:
-                return SegmentCheck(new Vector2(0.5f, 1), new Vector2(1,0.5f));
+                return SegmentCheck(new Vector2(0.5f, 1), new Vector2(1, 0.5f));
 
             case 3:
-                return SegmentCheck(new Vector2(1,0.5f), new Vector2(1,-0.5f));
+                return SegmentCheck(new Vector2(1, 0.5f), new Vector2(1, -0.5f));
 
             case 4:
                 return SegmentCheck(new Vector2(1, -0.5f), new Vector2(0.5f, -1));
@@ -97,7 +106,7 @@ public class RadialMenuController : MonoBehaviour
                 return SegmentCheck(new Vector2(0.5f, -1), new Vector2(-0.5f, -1));
 
             case 6:
-                return SegmentCheck(new Vector2(-0.5f, -1), new Vector2(-1,-0.5f));
+                return SegmentCheck(new Vector2(-0.5f, -1), new Vector2(-1, -0.5f));
 
             case 7:
                 return SegmentCheck(new Vector2(-1, -0.5f), new Vector2(-1, 0.5f));
@@ -110,14 +119,41 @@ public class RadialMenuController : MonoBehaviour
         }
     }
 
-    private int CheckActiveSegment()
+    protected int CheckActiveSegment(Vector2 input)
     {
         for (int i = 1; i <= 8; i++)
         {
-            if (IsAxisInSegment(i) && !IsAxisInCircle(input_axis,Vector2.zero,1))
+            if (IsAxisInSegment(i) && !IsAxisInCircle(input, Vector2.zero, 0.4f))
                 return i;
         }
 
         return 0;
+    }
+
+    //Disable Logic
+    public void Startup() //Need to add cooldown to activating menu
+    {
+        segmentNum = -1;
+        IsActive = true;
+        SetInputAxis(Vector2.zero);
+    }
+
+    public void CloseMenu()
+    {
+        SetInputAxis(Vector2.zero);
+        IsActive = false;
+        if(segmentNum >= 1)
+        {
+            UseMenuAction();
+        }
+        segmentNum = -1;
+        StartCoroutine(DisableAfter(0.2f));
+    }
+
+    public IEnumerator DisableAfter(float time)
+    {
+        yield return new WaitForSeconds(time);
+        gameObject.SetActive(false);
+       
     }
 }

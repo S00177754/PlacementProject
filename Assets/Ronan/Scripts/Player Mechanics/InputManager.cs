@@ -290,11 +290,36 @@ public class InputManager : MonoBehaviour
                     break;
 
                 case InputActionPhase.Started:
-                    GetComponent<PlayerController>().HUDController.ShowItemWheel(true);
+                    GetComponent<PlayerController>().HUDController.ActivateRadialMenu();
                     break;
 
                 case InputActionPhase.Canceled:
-                    GetComponent<PlayerController>().HUDController.ShowItemWheel(false);
+                    GetComponent<PlayerController>().HUDController.CloseRadialMenu();
+                    break;
+
+                default:
+                    print(context.phase);
+                    break;
+            }
+
+
+        }
+    }
+
+    public void OnRightTrigger(InputAction.CallbackContext context)
+    {
+        if (buttonStates.RightTrgState == RightTriggerState.Default)
+        {
+
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    break;
+
+                case InputActionPhase.Started:
+                    break;
+
+                case InputActionPhase.Canceled:
                     break;
 
                 default:
