@@ -100,6 +100,32 @@
               <div class="tile is-child">
                 <article class="tile is-child notification has-background-light has-text-black">
                   <a id="blog_post_6"></a>
+                  <p class="title">What's in a Quest? More importantly, How do you show that?</p>
+                  <p class="subtitle">The item wheel goes round and round!</p>
+                  <p>
+                    Having gotten to grips with the quest system, with different types of quest and rewards, I looked this week to start building a UI that would display this information. 
+                  </p>
+                  With our game containing both Main Scenario Quests (MSQs) and Side quests, it felt natural to split the UI in this format. A lot of games will use a tab system to do this, but Unity, unfortunately, does not have a built in tab system. This means we need to make our own.
+                  <p>
+                    At first, I looked at buttons the player could click and that would switch which panel was active in the canvas, but if we wanted to use this elsewhere, it wouldn’t be very scalable and would involve a lot of finicky selecting which things were which and what pages should go where. 
+                  </p>
+                  <p>
+                    So, I then looked to creating a tab system that could be used across the game with as little modification as needed. The principle is thus; using the IPointer event handling, Enter, exit and Selected, we can define our own actions within these. When the mouse hovers over a simple text box, the colour will change, and again if selected. 
+                  </p>
+                  <p>
+                    This will, of course, need amended for the controller input, most commonly the higher shoulder buttons allow the player to shuffle through the tabs. (i.e. R1/L1 for PlayStation and RB/LB for XBox/PC controllers).
+                  </p>
+                  <p>
+                    By Sam ColvilleRea - 24th of May 2020
+                  </p>
+                </article>
+              </div>
+
+              <br/>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_6"></a>
                   <p class="title">Player Inventory Overhaul - #6</p>
                   <p class="subtitle">The item wheel goes round and round!</p>
                   <p>
