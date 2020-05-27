@@ -9,8 +9,7 @@ public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
     public TabGroup tabGroup;
 
     public Text tabUIText;
-    public bool tabSelected;
-
+    public Canvas MyCanvas;
 
     public void OnPointerClick(PointerEventData eventData){
         tabGroup.OnTabSelected(this);
@@ -23,7 +22,7 @@ public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
     public void OnPointerExit(PointerEventData eventData){
         tabGroup.OnTabExit(this);
     }
-
+ 
     void Start()
     {
         tabUIText = GetComponent<Text>();
