@@ -5,17 +5,24 @@ using UnityEngine.UI;
 
 public class RadialMenuSection : MonoBehaviour
 {
+    protected RadialMenuController Controller;
     public Image IconImage;
-    private Image PanelBackground;
-    private Color defaultColor;
+    protected Image PanelBackground;
+    protected Color defaultColor;
 
-    private void Start()
+    public virtual void Start()
     {
+        SetupComponents();
+    }
+
+    public virtual void SetupComponents()
+    {
+        Controller = GetComponentInParent<RadialMenuController>();
         PanelBackground = GetComponent<Image>();
         defaultColor = PanelBackground.color;
     }
 
-    public void HighlightSection(Color highlightColor)
+    public virtual void HighlightSection(Color highlightColor)
     {
         PanelBackground.color = highlightColor;
     }

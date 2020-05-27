@@ -9,6 +9,7 @@ public class InventoryPanelController : MonoBehaviour
     public RectTransform ScrollViewContent;
     public GameObject ItemPanelPrefab;
     public InventoryManager PlayerInventory;
+    public GameObject ItemPanelMenu;
 
     [Header("Item Sprites")] //Have Static sprites set for panel?
     public Sprite HPItemSprite;
@@ -21,6 +22,7 @@ public class InventoryPanelController : MonoBehaviour
         {
             Destroy(ScrollViewContent.GetChild(i).gameObject);
         }
+        ItemPanelMenu.SetActive(false);
     }
 
     public void GenerateList()

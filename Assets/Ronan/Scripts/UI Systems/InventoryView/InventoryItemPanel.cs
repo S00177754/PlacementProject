@@ -14,6 +14,7 @@ public class InventoryItemPanel : MonoBehaviour
     [Header("Item Scriptable Object")]
     public ItemObj Item;
     public InventoryPanelController InventoryPanel;
+    
 
     public void SetDetails(InventorySlot inventorySlot,InventoryPanelController inventoryPanel)
     {
@@ -25,18 +26,10 @@ public class InventoryItemPanel : MonoBehaviour
 
     public void UseInventoryItem()
     {
-        if(GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().Party.Count == 0)
-        {
-            if (Item.UseItem(GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer))
-            {
-                InventoryPanel.PlayerInventory.Inventory.RemoveItem(Item, 1);
-                InventoryPanel.GenerateList();
-
-                //Animation call here
-
-                GameStateController.ResumePreviousState();
-            }
-        }
+        InventoryPanel.ItemPanelMenu.SetActive(true);
+        InventoryPanel.ItemPanelMenu.transform.position = new Vector3(InventoryPanel.ItemPanelMenu.transform.position.x, transform.position.y, 0);
+        InventoryPanel.ItemPanelMenu.GetComponent<InventoryItemUsagePanel>().Activate(this);
+        InventoryPanel.ItemPanelMenu.GetComponent<InventoryItemUsagePanel>().FocusOn();
     }
 
     

@@ -8,6 +8,7 @@ public class PlayerHUDController : MonoBehaviour
     public NotificationController NotificationController;
 
     public ItemRadialMenuController ItemWheel;
+
     public float ItemMenuCooldown = 1f;
     //Add in cooldown so menu cant be spammed, then work on action usage
 
@@ -32,17 +33,12 @@ public class PlayerHUDController : MonoBehaviour
         NotificationController.SendNotification(message, sprite, color);
     }
 
-    public bool IsItemwheelActive()
-    {
-        return ItemWheel.IsActive;
-    }
-
-
-    public void ActivateRadialMenu()
+    public ItemRadialMenuController ActivateRadialMenu()
     {
         ItemWheel.gameObject.SetActive(true);
         Time.timeScale = 0.01f;
         ItemWheel.Startup();
+        return ItemWheel;
     }
 
     public void CloseRadialMenu()
@@ -51,5 +47,4 @@ public class PlayerHUDController : MonoBehaviour
         ItemWheel.CloseMenu();
     }
 
-    //Let go of button not working so confirm option using right trigger?
 }

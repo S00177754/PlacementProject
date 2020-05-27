@@ -6,7 +6,7 @@ using UnityEngine;
 public class RadialMenuController : MonoBehaviour
 {
     [Header("Radial Elements")]
-    public RadialInfoPanel InfoPanel;
+    public RadialInfoPanel InfoPanel;//Refactor to item because not all radial menus need a centre panel
 
     [Tooltip("Start from top segment and add in order of clockwise.")]
     public List<RadialMenuSection> Sections;
@@ -17,7 +17,7 @@ public class RadialMenuController : MonoBehaviour
     protected Vector2 lastPos;
     protected int segmentNum = -1;
 
-    protected void Update()
+    public virtual void Update()
     {
         if (IsActive)
         {
@@ -35,9 +35,11 @@ public class RadialMenuController : MonoBehaviour
                 ResetAllHighlightsExcept(-1);
             }
         }
+
+        
     }
 
-    public void SetInputAxis(Vector2 input)
+    public virtual void SetInputAxis(Vector2 input)
     {
         if(IsActive)
         input_axis = input;
@@ -131,14 +133,14 @@ public class RadialMenuController : MonoBehaviour
     }
 
     //Disable Logic
-    public void Startup() //Need to add cooldown to activating menu
+    public virtual void Startup() //Need to add cooldown to activating menu
     {
         segmentNum = -1;
         IsActive = true;
         SetInputAxis(Vector2.zero);
     }
 
-    public void CloseMenu()
+    public virtual void CloseMenu()
     {
         SetInputAxis(Vector2.zero);
         IsActive = false;
