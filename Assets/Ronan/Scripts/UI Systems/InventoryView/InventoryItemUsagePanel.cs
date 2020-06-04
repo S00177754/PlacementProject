@@ -24,8 +24,8 @@ public class InventoryItemUsagePanel : MonoBehaviour
 
                 if (ActivatedBy.Item.UseItem(GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer))
                 {
-                    ActivatedBy.InventoryPanel.PlayerInventory.Inventory.RemoveItem(ActivatedBy.Item, 1);
-                    ActivatedBy.InventoryPanel.GenerateList();
+                    ActivatedBy.InventoryPanel.TargetInventory.Inventory.RemoveItem(ActivatedBy.Item, 1);
+                    ActivatedBy.InventoryPanel.FilterList();
 
                     //Animation call here
                     ReturnFocus();
@@ -46,22 +46,43 @@ public class InventoryItemUsagePanel : MonoBehaviour
         }
     }
 
-    public void QuickWheel()
+    public void ActivateItemRadialSetter()
     {
-        UIHelper.SelectedObjectSet(null);
+        UIHelper.SelectedObjectSet(null); //Removes focus from item context menu
+
+        //Activation of radial setter
+        ActivatedBy.InventoryPanel.ShowRadialMenu();
         RadialSetter.gameObject.SetActive(true);
         RadialSetter.ItemToSet = ActivatedBy.Item;
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer.GetComponent<InputManager>().buttonStates.SetState(RightJoystickState.RadialMenu);
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer.GetComponent<InputManager>().buttonStates.SetState(SouthButtonState.RadialMenu);
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer.GetComponent<InputManager>().SetRadialMenu(RadialSetter, InputManager.RadialMenuState.ItemSetter);
-        (GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer.GetComponent<InputManager>().ActiveRadialMenu as ItemSettingRadialMenu).Activate(this);
-    }
 
+        InputManager inputPlayer = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer.GetComponent<InputManager>();
+
+        //Change over of input states in the input manager
+        inputPlayer.buttonStates.SetState(RightJoystickState.RadialMenu);
+        inputPlayer.buttonStates.SetState(SouthButtonState.RadialMenu);
+        inputPlayer.SetRadialMenu(RadialSetter, InputManager.RadialMenuState.ItemSetter);
+
+        //Setup of Radial Setter
+        (inputPlayer.ActiveRadialMenu as ItemSettingRadialMenu).SetInventoryItemUsagePanel(this);
+        (inputPlayer.ActiveRadialMenu as ItemSettingRadialMenu).Startup();
+    }  //Need to handle change back once used and ensure item is set correctly
+
+    public void CloseItemRadialSetter()
+    {
+        ReturnFocus();
+        ActivatedBy.InventoryPanel.ShowInventoryList();
+        RadialSetter.CloseMenu();
+
+        InputManager inputPlayer = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer.GetComponent<InputManager>();
+        inputPlayer.buttonStates.SetState(RightJoystickState.Default);
+        inputPlayer.buttonStates.SetState(SouthButtonState.Default);
+        inputPlayer.SetRadialMenu(null, InputManager.RadialMenuState.None);
+    }
 
     private void ReturnFocus()
     {
         UIHelper.SelectedObjectSet(ActivatedBy.gameObject);
-        RadialSetter.gameObject.SetActive(false);
+        //RadialSetter.gameObject.SetActive(false);
     }
 
     public void FocusOn()

@@ -5,18 +5,23 @@ using UnityEngine;
 
 public class RadialMenuController : MonoBehaviour
 {
-    [Header("Radial Elements")]
-    public RadialInfoPanel InfoPanel;//Refactor to item because not all radial menus need a centre panel
+    //*************** Public Variables ********************
+    public bool IsActive = false; //If IsActive is set to false then the segment checking logic will not run
+    [Range(0.1f, 0.9f)]
+    public float InputResistance = 0.1f;
+
+    [Header("Highlight Colors")]
+    public Color UnrestrictedHighlight;
+    public Color RestrictedHighlight;
 
     [Tooltip("Start from top segment and add in order of clockwise.")]
     public List<RadialMenuSection> Sections;
 
-    public bool IsActive = false;
-
+    //*************** Private Variables ******************
     private Vector2 input_axis;
-    protected Vector2 lastPos;
     protected int segmentNum = -1;
 
+    //**************** Monobehaviour Methods ******************
     public virtual void Update()
     {
         if (IsActive)
@@ -26,7 +31,7 @@ public class RadialMenuController : MonoBehaviour
                 segmentNum = CheckActiveSegment(input_axis);
                 if (segmentNum != 0)
                 {
-                    Sections[segmentNum - 1].HighlightSection(Color.blue);
+                    Sections[segmentNum - 1].HighlightSection(UnrestrictedHighlight,RestrictedHighlight);
                     ResetAllHighlightsExcept(segmentNum - 1);
                 }
             }
@@ -39,30 +44,13 @@ public class RadialMenuController : MonoBehaviour
         
     }
 
-    public virtual void SetInputAxis(Vector2 input)
+    //**************** Radial Input & Calculation ********************
+    public virtual void Input(Vector2 input)
     {
-        if(IsActive)
-        input_axis = input;
+        if (IsActive)
+            input_axis = input;
     }
 
-    public void ResetAllHighlightsExcept(int segment)
-    {
-        for (int i = 0; i < Sections.Count; i++)
-        {
-            if (i != segment)
-            {
-                //Debug.Log(string.Concat("Unhighlight: ", segment));
-                Sections[i].ResetHighlight();
-            }
-        }
-    }
-
-    public virtual void UseMenuAction()
-    {
-
-    }
-
-    //Math bois
     protected double DistanceFromCircleOrigin(Vector2 origin, Vector2 point)
     {
         return Math.Sqrt(Math.Pow((point.x - origin.x), 2) + Math.Pow((point.y - origin.y), 2));
@@ -125,31 +113,54 @@ public class RadialMenuController : MonoBehaviour
     {
         for (int i = 1; i <= 8; i++)
         {
-            if (IsAxisInSegment(i) && !IsAxisInCircle(input, Vector2.zero, 0.4f))
+            if (IsAxisInSegment(i) && !IsAxisInCircle(input, Vector2.zero, InputResistance))
                 return i;
         }
 
         return 0;
     }
 
-    //Disable Logic
+
+
+    //**************** Graphical Methods *********************
+    public void ResetAllHighlightsExcept(int segment)
+    {
+        for (int i = 0; i < Sections.Count; i++)
+        {
+            if (i != segment)
+            {
+                Sections[i].ResetHighlight();
+            }
+        }
+    }
+
+
+
+    //**************** Functionality Methods ****************
+    public virtual void UseSectionAction()
+    {
+
+    }
+
+    //**************** Initialisation & Close Methods *********************
     public virtual void Startup() //Need to add cooldown to activating menu
     {
         segmentNum = -1;
         IsActive = true;
-        SetInputAxis(Vector2.zero);
+        Input(Vector2.zero);
     }
 
     public virtual void CloseMenu()
     {
-        SetInputAxis(Vector2.zero);
+        Input(Vector2.zero);
         IsActive = false;
         if(segmentNum >= 1)
         {
-            UseMenuAction();
+            UseSectionAction();
         }
         segmentNum = -1;
-        StartCoroutine(DisableAfter(0.2f));
+        gameObject.SetActive(false);
+        //StartCoroutine(DisableAfter(0.2f));
     }
 
     public IEnumerator DisableAfter(float time)

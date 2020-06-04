@@ -36,4 +36,22 @@ public class HealthPotionObj : ItemObj
         return false;
     }
 
+    public override string GetItemDetailText()
+    {
+        string description = string.Concat("Heals ", HealAmount, " HP to ");
+
+        if (AffectParty)
+        {
+            description = string.Concat(description,"the whole party.");
+        }
+        else
+        {
+            description = string.Concat(description, "the player.");
+        }
+
+        description = string.Concat(description, "\n\n",Description);
+
+        return description;
+    }
+
 }

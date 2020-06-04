@@ -5,16 +5,21 @@ using UnityEngine.UI;
 
 public class RadialMenuSection : MonoBehaviour
 {
-    protected RadialMenuController Controller;
+    //*************** Public Variables ********************
     public Image IconImage;
+
+    //*************** Private Variables ******************
     protected Image PanelBackground;
     protected Color defaultColor;
+    protected RadialMenuController Controller;
 
+    //**************** Monobehaviour Methods ******************
     public virtual void Start()
     {
         SetupComponents();
     }
 
+    //**************** Initialisation & Close Methods *********************
     public virtual void SetupComponents()
     {
         Controller = GetComponentInParent<RadialMenuController>();
@@ -22,14 +27,22 @@ public class RadialMenuSection : MonoBehaviour
         defaultColor = PanelBackground.color;
     }
 
-    public virtual void HighlightSection(Color highlightColor)
+    //**************** Graphical Methods *********************
+    public virtual void HighlightSection(Color unrestricted,Color restricted)
     {
-        PanelBackground.color = highlightColor;
+        PanelBackground.color = unrestricted;
     }
 
     public void ResetHighlight()
     {
         if (PanelBackground != null)
             PanelBackground.color = defaultColor;
+    }
+
+    protected void SetIconAlpha(float alpha)
+    {
+        Color color = IconImage.color;
+        color.a = alpha;
+        IconImage.color = color;
     }
 }

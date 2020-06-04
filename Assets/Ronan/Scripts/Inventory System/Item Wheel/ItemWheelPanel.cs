@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class RadialInfoPanel : MonoBehaviour
+public class ItemWheelPanel : MonoBehaviour
 {
     public TMP_Text ItemNameField;
     public TMP_Text ItemDescriptionField;

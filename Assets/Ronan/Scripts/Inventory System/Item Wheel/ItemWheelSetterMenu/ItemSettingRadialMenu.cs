@@ -4,44 +4,25 @@ using UnityEngine;
 
 public class ItemSettingRadialMenu : RadialMenuController
 {
+    //*************** Public Variables ********************
     public ItemObj ItemToSet;
     public ItemRadialMenuController ItemRadialMenu;
     public InventoryItemUsagePanel ActivatedBy;
 
+    //**************** Monobehaviour Methods ******************
     public override void Update()
     {
         base.Update();
     }
 
-    public override void CloseMenu()
+    //**************** Radial Input & Calculation ********************
+    public override void Input(Vector2 input)
     {
-        base.CloseMenu();
+        base.Input(input);
     }
 
-    public override void SetInputAxis(Vector2 input)
-    {
-        base.SetInputAxis(input);
-    }
-
-    public override void Startup()
-    {
-        base.Startup();
-    }
-
-    public void Activate(InventoryItemUsagePanel itemUsagePanel)
-    {
-        ActivatedBy = itemUsagePanel;
-    }
-
-    public void PopulateWheel()
-    {
-        foreach (var item in ItemRadialMenu.ItemsToPopulate)
-        {
-            (Sections[item.Key - 1] as ItemSetterRadialSection).SetupRadialSection(item.Value);
-        }
-    }
-
-    public override void UseMenuAction()
+    //**************** Functionality Methods ****************
+    public override void UseSectionAction()
     {
         if (ItemRadialMenu.ItemsToPopulate.ContainsKey(segmentNum))
         {
@@ -52,8 +33,36 @@ public class ItemSettingRadialMenu : RadialMenuController
             ItemRadialMenu.ItemsToPopulate.Add(segmentNum, ItemToSet);
         }
         ItemToSet = null;
-        base.UseMenuAction();
     }
+
+    public void SetInventoryItemUsagePanel(InventoryItemUsagePanel itemUsagePanel)
+    {
+        ActivatedBy = itemUsagePanel;
+    }
+
+    private void PopulateWheel()
+    {
+        foreach (var item in ItemRadialMenu.ItemsToPopulate)
+        {
+            (Sections[item.Key - 1] as ItemSetterRadialSection).SetupRadialSection(item.Value);
+        }
+    }
+
+    //**************** Initialisation & Close Methods *********************
+    public override void Startup()
+    {
+        base.Startup();
+
+        PopulateWheel();
+    }
+
+    public override void CloseMenu()
+    {
+        base.CloseMenu();
+    }
+
+
+   
 
  
 }

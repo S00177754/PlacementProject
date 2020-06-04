@@ -91,7 +91,7 @@ public class InputManager : MonoBehaviour
         }
         else if(buttonStates.RightJoystickState == RightJoystickState.RadialMenu)
         {
-            ActiveRadialMenu.SetInputAxis(context.ReadValue<Vector2>());
+            ActiveRadialMenu.Input(context.ReadValue<Vector2>());
             GetComponent<PlayerMovement>().InputLook(Vector2.zero);
         }
 
@@ -305,10 +305,8 @@ public class InputManager : MonoBehaviour
                 case InputActionPhase.Started:
                     if (radialMenuState == RadialMenuState.None)
                     {
-                        //ActiveRadialMenu = GetComponent<PlayerController>().HUDController.ActivateRadialMenu();
                         SetRadialMenu(GetComponent<PlayerController>().HUDController.ActivateRadialMenu(), RadialMenuState.ItemWheel);
                         buttonStates.RightJoystickState = RightJoystickState.RadialMenu;
-                        //buttonStates.SouthBtnState = SouthButtonState.RadialMenu;
                     }
                     break;
 
@@ -317,8 +315,6 @@ public class InputManager : MonoBehaviour
                     {
                         GetComponent<PlayerController>().HUDController.CloseRadialMenu();
                         buttonStates.RightJoystickState = RightJoystickState.Default;
-                        //buttonStates.SouthBtnState = SouthButtonState.Default;
-                        //radialMenuState = RadialMenuState.None;
                         SetRadialMenu(null, RadialMenuState.None);
                     }
                     break;
@@ -384,8 +380,7 @@ public class InputManager : MonoBehaviour
         {
             if(radialMenuState == RadialMenuState.ItemSetter)
             {
-                (ActiveRadialMenu as ItemSettingRadialMenu) .Startup();
-                (ActiveRadialMenu as ItemSettingRadialMenu).SetInputAxis(context.ReadValue<Vector2>());
+                (ActiveRadialMenu as ItemSettingRadialMenu).Input(context.ReadValue<Vector2>());
             }
             GetComponent<PlayerMovement>().InputLook(Vector2.zero);
         }
@@ -401,7 +396,7 @@ public class InputManager : MonoBehaviour
                 case InputActionPhase.Performed:
                     if (radialMenuState != RadialMenuState.ItemWheel)
                     {
-                        ActiveRadialMenu.UseMenuAction();
+                        (ActiveRadialMenu as ItemSettingRadialMenu).ActivatedBy.CloseItemRadialSetter();
                         buttonStates.SetState(SouthButtonState.Default);
                         radialMenuState = RadialMenuState.None;
                     }
@@ -438,6 +433,11 @@ public enum RightTriggerState { Default }
 public enum LeftJoystickState { Default }
 public enum RightJoystickState { Default, RadialMenu }
 
+public enum DPadUp { Default }
+public enum DPadDown { Default }
+public enum DPadLeft { Default, InventoryMenu }
+public enum DPadRight { Default, InventoryMenu }
+
 public class ButtonStates
 {
     public NorthButtonState NorthBtnState;
@@ -453,6 +453,11 @@ public class ButtonStates
     public LeftJoystickState LeftJoystickState;
     public RightJoystickState RightJoystickState;
 
+    public DPadUp UpDpadState;
+    public DPadDown DownDpadState;
+    public DPadLeft LeftDpadState;
+    public DPadRight RightDpadState;
+
     public ButtonStates()
     {
         NorthBtnState = NorthButtonState.Default;
@@ -465,7 +470,11 @@ public class ButtonStates
         LeftShdState = LeftShoulderState.Default;
         LeftJoystickState = LeftJoystickState.Default;
         RightJoystickState = RightJoystickState.Default;
-           
+
+        UpDpadState = DPadUp.Default;
+        DownDpadState = DPadDown.Default;
+        LeftDpadState = DPadLeft.Default;
+        RightDpadState = DPadRight.Default;
     }
 
     #region SetState Method
@@ -510,6 +519,24 @@ public class ButtonStates
     {
         RightJoystickState = state;
     }
+
+    public void SetState(DPadUp state)
+    {
+        UpDpadState = state;
+    }
+    public void SetState(DPadDown state)
+    {
+        DownDpadState = state;
+    }
+    public void SetState(DPadLeft state)
+    {
+        LeftDpadState = state;
+    }
+    public void SetState(DPadRight state)
+    {
+        RightDpadState = state;
+    }
+
     #endregion
 
 }

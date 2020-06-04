@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public enum PauseMenuState { RootMenu, Inventory, Settings, Exit}
@@ -9,6 +10,7 @@ public class PauseMenuController : MonoBehaviour
 {
     public PauseMenuState menuState;
     public PauseMenuState previousState;
+    public TMP_Text Clock;
 
     [Header("Pause Menu State Objects")]
     public PauseSubMenu RootMenu;
@@ -18,6 +20,11 @@ public class PauseMenuController : MonoBehaviour
     private void Start()
     {
         gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        Clock.text = DateTime.Now.ToShortTimeString();
     }
 
     public void PauseGame()
@@ -58,7 +65,7 @@ public class PauseMenuController : MonoBehaviour
     public void StateRefresh()
     {
         if(previousState == PauseMenuState.Inventory)
-            Inventory.SubMenuObject.GetComponent<InventoryPanelController>().ClearList();
+            Inventory.SubMenuObject.GetComponent<InventorySystemController>().ClearList();
 
         switch (menuState)
         {
@@ -89,7 +96,9 @@ public class PauseMenuController : MonoBehaviour
     {
         ActivateSingleMenu(PauseMenuState.Inventory);
 
-        Inventory.SubMenuObject.GetComponent<InventoryPanelController>().GenerateList();
+       // Inventory.SubMenuObject.GetComponent<InventoryPanelController>().GenerateList();
+        Inventory.SubMenuObject.GetComponent<InventorySystemController>().FilterList();
+        Inventory.SubMenuObject.GetComponent<InventorySystemController>().ShowInventoryList();
     }
 
     private void SettingsMenuState()
@@ -113,7 +122,7 @@ public class PauseMenuController : MonoBehaviour
                 RootMenu.SubMenuObject.SetActive(false);
                 Settings.SubMenuObject.SetActive(false);
                 Inventory.SubMenuObject.SetActive(true);
-                UIHelper.SelectedObjectSet(Inventory.DefaultSelectedUIElement);
+                //UIHelper.SelectedObjectSet(Inventory.DefaultSelectedUIElement);
                 GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer.GetComponent<InputManager>().SetSelecOnRegain(Inventory.DefaultSelectedUIElement);
                 break;
 
