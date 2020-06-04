@@ -7,7 +7,7 @@ public class EnemyTrackerComponent : MonoBehaviour
     public SphereCollider TriggerZone;
     public float TrackingRadius = 5f;
     public bool IsTracking = false;
-    private GameObject trackedObject;
+    public GameObject trackedObject;
 
     private void Start()
     {
