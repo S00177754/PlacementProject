@@ -5,10 +5,30 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Weapon Object", menuName = "Inventory System/Item/Weapon")]
 public class WeaponObj : ItemObj
 {
-    public int AttackPower;
+    public GameObject WeaponPrefab;
 
     public void Awake()
     {
         Type = ItemType.Weapon;
+    }
+
+    public override bool UseItem(PlayerController player)
+    {
+        if (player.GetComponent<EquipmentManager>().ActiveWeapon != WeaponPrefab.GetComponent<WeaponInfo>())
+        {
+            player.GetComponent<EquipmentManager>().EquipWeapon(WeaponPrefab);
+        }
+        else
+        {
+            player.GetComponent<EquipmentManager>().UnEquipWeapon();
+        }
+
+        return true;
+    }
+
+    public override bool UseItem(PartyMember member)
+    {
+        base.UseItem(member);
+        return false;
     }
 }

@@ -20,8 +20,8 @@ public class PlayerAttack : MonoBehaviour
     public bool IsCharging = false;
 
     //Not implemented yet, still undecided
-    public float MaxChargeTime = 5f;
-    //private float ChargeTimer = 0f;
+    public float MaxChargeTime = 3f;
+    private float ChargeTimer = 0f;
 
     private bool CanCombo = false;
     public float ComboTimer = 0f;
@@ -46,7 +46,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-
+        ChargeUpdate();
         ComboUpdate();
     }
 
@@ -117,6 +117,24 @@ public class PlayerAttack : MonoBehaviour
             ComboTimer = 0f;
             comboCounter = 0;
             ComboAttackIndex = 0;
+        }
+    }
+
+    private void ChargeUpdate()
+    {
+        if (IsCharging)
+        {
+            ChargeTimer += Time.deltaTime;
+        }
+        else
+        {
+            ChargeTimer = 0;
+        }
+
+        if(ChargeTimer >= MaxChargeTime)
+        {
+            Attack();
+            ChargeTimer = 0;
         }
     }
 

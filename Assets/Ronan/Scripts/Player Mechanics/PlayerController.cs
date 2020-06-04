@@ -14,6 +14,11 @@ public class PlayerController : MonoBehaviour
     public int Health = 100;
     public int MP = 60;
     public bool IsInvincible = false;
+
+    private void Start()
+    {
+        //Cursor.lockState = CursorLockMode.Confined;
+    }
 }
 
 [Serializable]

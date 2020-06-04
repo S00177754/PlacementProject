@@ -17,9 +17,26 @@ public class EquipmentManager : MonoBehaviour
     public BaubleObj AccessorySlotTwo; //Lock with ability tree
     public BaubleObj AccessorySlotThree; //Lock with ability tree
 
-    public void EquipWeapon(WeaponInfo weapon)
+    public void EquipWeapon(GameObject weaponPrefab)
     {
-        ActiveWeapon = weapon;
+        WeaponInfo wi;
+
+        if (!weaponPrefab.TryGetComponent<WeaponInfo>(out wi))
+        {
+            Debug.LogError("GameObject does not have a WeaponInfo component.");
+        }
+        else
+        {
+            GameObject go = Instantiate(weaponPrefab);
+            ActiveWeapon = go.GetComponent<WeaponInfo>();
+            GetComponent<PlayerAttack>().WeaponSheathed = true;
+            GetComponent<PlayerAttack>().SheathWeapon();
+        }
+    }
+
+    public void UnEquipWeapon()
+    {
+        ActiveWeapon = null;
     }
 
     public WeaponAttackDetailsObj GetAttackDetails()

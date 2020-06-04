@@ -30,6 +30,19 @@ public class InventoryObj : ScriptableObject, ISerializationCallbackReceiver
         Collection.Add(new InventorySlot(database.GetId[item],item, amount));
     }
 
+    public int GetItemRemainingAmount(ItemObj item)
+    {
+        InventorySlot slot = Collection.Where(i => i.Item == item).SingleOrDefault();
+
+        if (slot != null)
+        {
+            return slot.Amount;
+        }
+
+        return 0;
+
+    }
+
     public void OnAfterDeserialize()
     {
         for (int i = 0; i < Collection.Count; i++)

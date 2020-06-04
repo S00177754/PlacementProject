@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class InventoryItemPanel : MonoBehaviour
+public class InventoryItemPanel : MonoBehaviour, ISelectHandler
 {
     [Header("UI Elements")]
-    public Image SpriteIcon;
+    //public Image SpriteIcon;
     public TMP_Text ItemName;
     public TMP_Text AmountDisplay;
 
     [Header("Item Scriptable Object")]
     public ItemObj Item;
-    public InventoryPanelController InventoryPanel;
+    public InventorySystemController InventoryPanel;
 
-    public void SetDetails(InventorySlot inventorySlot,InventoryPanelController inventoryPanel)
+    
+
+    public void SetDetails(InventorySlot inventorySlot,InventorySystemController inventoryPanel)
     {
         Item = inventorySlot.Item;
         AmountDisplay.text = "X " + inventorySlot.Amount;
@@ -25,19 +28,20 @@ public class InventoryItemPanel : MonoBehaviour
 
     public void UseInventoryItem()
     {
-        if(GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().Party.Count == 0)
-        {
-            if (Item.UseItem(GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer))
-            {
-                InventoryPanel.PlayerInventory.Inventory.RemoveItem(Item, 1);
-                InventoryPanel.GenerateList();
-
-                //Animation call here
-
-                GameStateController.ResumePreviousState();
-            }
-        }
+        InventoryPanel.ItemListActive = false;
+        InventoryPanel.ItemUsageMenu.SetActive(true);
+        InventoryPanel.ItemUsageMenu.transform.position = new Vector3(InventoryPanel.ItemUsageMenu.transform.position.x, transform.position.y, 0);
+        InventoryPanel.ItemUsageMenu.GetComponent<InventoryItemUsagePanel>().Activate(this);
+        InventoryPanel.ItemUsageMenu.GetComponent<InventoryItemUsagePanel>().FocusOn();
     }
 
-    
+
+    public void OnSelect(BaseEventData eventData)
+    {
+        Debug.Log("Selected");
+        InventoryPanel.DescriptionPanel.SetName(Item.Name);
+        InventoryPanel.DescriptionPanel.SetDescription(Item.GetItemDetailText());
+    }
+
+   
 }

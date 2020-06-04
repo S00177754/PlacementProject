@@ -39,7 +39,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform CameraParent; //Transform of the object which the camera is a parent of, used for rotation of camera around player
     public float LookYLimit = 60f; //Vertical look limits for player camera to move
     public bool FreezeCamera = false; //Boolean to control the freezing of camera rotation, used mainly for pause screen
-
+    public bool IsCameraFocusedOn = false;
+    public Transform FocusPosition;
 
     [Header("Model Refrences")]
     public PlayerAnimator Animator; //Access to animator component on child object so we can trigger relevant animations or adjust animation variables
@@ -55,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerSurroundingDetection Detect; //Reference to detecting script which has OnGround check implimented
 
     private Vector2 input_Move; //Direction for movement provided from the input manager
+    private Vector2 input_Look; //Direction for movement provided from the input manager
     private Vector3 velocity; //Used for velocity and gravity calculations, also used for setting of is jumping and is falling booleans
 
     private float movementSpeed = 5f; //Used for speed calulations and set with the speed variables above
@@ -80,6 +82,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (FreezeMovement)
+        {
+            input_Move = Vector2.zero;
+        }
+
         IsGrounded = Detect.OnGround();
 
         if(IsFalling && Detect.LandOnGroundCheck())
@@ -103,9 +110,25 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+
         ResetVelocity();
 
         Move(input_Move);
+        if (IsCameraFocusedOn)
+        {
+            Quaternion modelRotation = PlayerModel.rotation; //Rotation of model
+            //transform.LookAt(FocusPosition.transform);
+            var lookPos = FocusPosition.transform.position - transform.position;
+            lookPos.y = 0;
+            var rotation = Quaternion.LookRotation(lookPos);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 360);
+            PlayerModel.rotation = modelRotation;
+            input_Look = Vector2.zero;
+        }
+        else
+        {
+            Look(input_Look);
+        }
         Gravity();
     }
 
@@ -283,6 +306,26 @@ public class PlayerMovement : MonoBehaviour
         FreezeMovement = movement;
         FreezeCamera = camera;
     }
+    public void SetFreezeCam(bool camera)
+    {
+        FreezeCamera = camera;
+    }
+
+
+
+    public void LockOntoObject(Transform transform)
+    {
+        IsCameraFocusedOn = true;
+        FocusPosition = transform;
+        SetFreezeCam(true);
+    }
+
+    public void UnlockFromObject()
+    {
+        IsCameraFocusedOn = false;
+        FocusPosition = null;
+        SetFreezeCam(false);
+    }
 
     // ************** Input Action Methods **************
 
@@ -300,22 +343,25 @@ public class PlayerMovement : MonoBehaviour
         IsMoving = true;
     }
 
-    public void SetLook(Vector2 direction)
-    {
-        Look(direction);
-    }
 
-    public void InputMove(Vector2 direction)
+    public void InputLook(Vector2 direction)
     {
-        if (FreezeMovement)
+        
+        if (FreezeCamera)
         {
-            input_Move = Vector2.zero;
+            input_Look = Vector2.zero;
             return;
         }
         else
         {
-            input_Move = direction;
+            input_Look = direction;
         }
+
+    }
+
+    public void InputMove(Vector2 direction)
+    {
+            input_Move = direction;
     }
 
     public void Jump()

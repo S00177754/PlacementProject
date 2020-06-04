@@ -12,11 +12,15 @@ public class InputManager : MonoBehaviour
     public ButtonStates buttonStates;
     public GameObject SelectedOnRegained;
 
+    public RadialMenuController ActiveRadialMenu;
+    public enum RadialMenuState {None, ItemWheel, ItemSetter}
+    public RadialMenuState radialMenuState;
 
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
         buttonStates = new ButtonStates();
+        radialMenuState = RadialMenuState.None;
         gameStateController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>();
     }
 
@@ -35,6 +39,19 @@ public class InputManager : MonoBehaviour
     public void OnRegain()
     {
         UIHelper.SelectedObjectSet(SelectedOnRegained);
+    }
+
+    public void SetRadialMenu(RadialMenuController activeRadial, RadialMenuState radialState)
+    {
+        ActiveRadialMenu = activeRadial;
+        radialMenuState = radialState;
+    }
+
+    public void CloseRadialMenu()
+    {
+        if(ActiveRadialMenu != null)
+        ActiveRadialMenu.gameObject.SetActive(false);
+        SetRadialMenu(null, RadialMenuState.None);
     }
 
 
@@ -70,10 +87,12 @@ public class InputManager : MonoBehaviour
     {
         if (buttonStates.RightJoystickState == RightJoystickState.Default)
         {
-
-            GetComponent<PlayerMovement>().SetLook(context.ReadValue<Vector2>());
-            return;
-
+            GetComponent<PlayerMovement>().InputLook(context.ReadValue<Vector2>());
+        }
+        else if(buttonStates.RightJoystickState == RightJoystickState.RadialMenu)
+        {
+            ActiveRadialMenu.Input(context.ReadValue<Vector2>());
+            GetComponent<PlayerMovement>().InputLook(Vector2.zero);
         }
 
     }
@@ -85,7 +104,7 @@ public class InputManager : MonoBehaviour
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
-                    if (context.interaction is SlowTapInteraction || context.interaction is TapInteraction)
+                    if ( context.interaction is TapInteraction)
                     {
                         GetComponent<PlayerAttack>().Attack();
                     }
@@ -133,6 +152,7 @@ public class InputManager : MonoBehaviour
 
 
         }
+        
     }
 
     public void OnSprint(InputAction.CallbackContext context)
@@ -272,6 +292,67 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    public void OnRightShoulder(InputAction.CallbackContext context)
+    {
+        if (buttonStates.RightShdState == RightShoulderState.Default)
+        {
+
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    break;
+
+                case InputActionPhase.Started:
+                    if (radialMenuState == RadialMenuState.None)
+                    {
+                        SetRadialMenu(GetComponent<PlayerController>().HUDController.ActivateRadialMenu(), RadialMenuState.ItemWheel);
+                        buttonStates.RightJoystickState = RightJoystickState.RadialMenu;
+                    }
+                    break;
+
+                case InputActionPhase.Canceled:
+                    if (radialMenuState == RadialMenuState.ItemWheel)
+                    {
+                        GetComponent<PlayerController>().HUDController.CloseRadialMenu();
+                        buttonStates.RightJoystickState = RightJoystickState.Default;
+                        SetRadialMenu(null, RadialMenuState.None);
+                    }
+                    break;
+
+                default:
+                    print(context.phase);
+                    break;
+            }
+
+
+        }
+    }
+
+    public void OnRightTrigger(InputAction.CallbackContext context)
+    {
+        if (buttonStates.RightTrgState == RightTriggerState.Default)
+        {
+
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    break;
+
+                case InputActionPhase.Started:
+                    break;
+
+                case InputActionPhase.Canceled:
+                    break;
+
+                default:
+                    print(context.phase);
+                    break;
+            }
+
+
+        }
+    }
+
     //UI
 
     public void OnResume(InputAction.CallbackContext context)
@@ -293,22 +374,69 @@ public class InputManager : MonoBehaviour
 
     }
 
+    public void OnRightJoystickUI(InputAction.CallbackContext context)
+    {
+        if (buttonStates.RightJoystickState == RightJoystickState.RadialMenu)
+        {
+            if(radialMenuState == RadialMenuState.ItemSetter)
+            {
+                (ActiveRadialMenu as ItemSettingRadialMenu).Input(context.ReadValue<Vector2>());
+            }
+            GetComponent<PlayerMovement>().InputLook(Vector2.zero);
+        }
+
+    }
+
+    public void OnSubmit(InputAction.CallbackContext context)
+    {
+        if (buttonStates.SouthBtnState == SouthButtonState.RadialMenu)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    if (radialMenuState != RadialMenuState.ItemWheel)
+                    {
+                        (ActiveRadialMenu as ItemSettingRadialMenu).ActivatedBy.CloseItemRadialSetter();
+                        buttonStates.SetState(SouthButtonState.Default);
+                        radialMenuState = RadialMenuState.None;
+                    }
+                    break;
+
+                case InputActionPhase.Started:
+                    break;
+
+                case InputActionPhase.Canceled:
+                    break;
+
+                default:
+                    print(context.phase);
+                    break;
+            }
+        }
+    }
+
 }
 
 //Right Hand Side X,A,B,Y
 public enum NorthButtonState { Default }
 public enum EastButtonState { Default }
-public enum SouthButtonState { Default }
+public enum SouthButtonState { Default, RadialMenu }
 public enum WestButtonState { Default, PickupItem }
 
 
 public enum LeftShoulderState { Default }
 public enum RightShoulderState { Default }
+
 public enum LeftTriggerState { Default }
 public enum RightTriggerState { Default }
 
 public enum LeftJoystickState { Default }
-public enum RightJoystickState { Default }
+public enum RightJoystickState { Default, RadialMenu }
+
+public enum DPadUp { Default }
+public enum DPadDown { Default }
+public enum DPadLeft { Default, InventoryMenu }
+public enum DPadRight { Default, InventoryMenu }
 
 public class ButtonStates
 {
@@ -325,6 +453,11 @@ public class ButtonStates
     public LeftJoystickState LeftJoystickState;
     public RightJoystickState RightJoystickState;
 
+    public DPadUp UpDpadState;
+    public DPadDown DownDpadState;
+    public DPadLeft LeftDpadState;
+    public DPadRight RightDpadState;
+
     public ButtonStates()
     {
         NorthBtnState = NorthButtonState.Default;
@@ -337,7 +470,11 @@ public class ButtonStates
         LeftShdState = LeftShoulderState.Default;
         LeftJoystickState = LeftJoystickState.Default;
         RightJoystickState = RightJoystickState.Default;
-           
+
+        UpDpadState = DPadUp.Default;
+        DownDpadState = DPadDown.Default;
+        LeftDpadState = DPadLeft.Default;
+        RightDpadState = DPadRight.Default;
     }
 
     #region SetState Method
@@ -382,6 +519,24 @@ public class ButtonStates
     {
         RightJoystickState = state;
     }
+
+    public void SetState(DPadUp state)
+    {
+        UpDpadState = state;
+    }
+    public void SetState(DPadDown state)
+    {
+        DownDpadState = state;
+    }
+    public void SetState(DPadLeft state)
+    {
+        LeftDpadState = state;
+    }
+    public void SetState(DPadRight state)
+    {
+        RightDpadState = state;
+    }
+
     #endregion
 
 }

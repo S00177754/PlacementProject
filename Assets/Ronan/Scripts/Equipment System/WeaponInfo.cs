@@ -9,7 +9,6 @@ public class WeaponInfo : MonoBehaviour
 {
     public WeaponPostion PositioningDetails;
 
-    public float DamageValue;
     public WeaponType weaponType;
     public WeaponAttackDetailsObj AttackDetails;
 
