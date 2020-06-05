@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,6 +48,13 @@ public class EnemyTrackerComponent : MonoBehaviour
         {
             return Vector3.zero;
         }
+
+      
+    }
+
+    public float GetDistanceToTrackedObject()
+    {
+        return Vector3.Distance(transform.position, trackedObject.transform.position); ;
     }
 
 }
