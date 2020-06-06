@@ -13,8 +13,12 @@ public class EnemyBehaviour : MonoBehaviour
     public float AttackCooldown = 2f;
     protected float CooldownTimer = 0f;
 
+    public float PatrolSpeed = 2f;
+    public float ChaseSpeed = 4f;
+
     public List<EnemyPathNode> EnemyPath;
     public EnemyPathNode NextEnemyNode;
+    protected bool NeedsRecalculation = false;
 
     protected virtual void Start()
     {
@@ -58,6 +62,8 @@ public class EnemyBehaviour : MonoBehaviour
         return Tracker.GetDistanceToTrackedObject() <= AttackRange;
     }
 
+
+
     public void GetFullPath()
     {
         EnemyPath.Add(NextEnemyNode);
@@ -72,5 +78,23 @@ public class EnemyBehaviour : MonoBehaviour
             AddNextNode(node.NextNode);
         }
 
+    }
+
+    public void RecalculatePath()
+    {
+        EnemyPathNode nearestNode = EnemyPath[0];
+        float distanceToNode = Vector3.Distance(transform.position, nearestNode.transform.position);
+
+        foreach (EnemyPathNode node in EnemyPath)
+        {
+            if(Vector3.Distance(transform.position, node.transform.position) <= distanceToNode)
+            {
+                nearestNode = node;
+                distanceToNode = Vector3.Distance(transform.position, node.transform.position);
+            }
+        }
+
+        NextEnemyNode = nearestNode;
+        NeedsRecalculation = false;
     }
 }

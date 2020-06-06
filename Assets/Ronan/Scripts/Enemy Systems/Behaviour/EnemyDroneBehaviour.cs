@@ -6,9 +6,6 @@ public class EnemyDroneBehaviour : EnemyBehaviour
 {
     public float HoverDistance = 1f;
     public float DescentSpeed = 1f;
-    public float HorizontalSpeed = 3f;
-
-    
 
     protected override void Start()
     {
@@ -28,6 +25,7 @@ public class EnemyDroneBehaviour : EnemyBehaviour
 
         if (Tracker.IsTracking)
         {
+            NeedsRecalculation = true;
             
             if (IsInAttackRange())
             {
@@ -35,13 +33,18 @@ public class EnemyDroneBehaviour : EnemyBehaviour
             }
             else
             {
-                transform.position = Vector3.MoveTowards(transform.position, Tracker.trackedObject.transform.position, HorizontalSpeed * Time.deltaTime) ;
+                transform.position = Vector3.MoveTowards(transform.position, Tracker.trackedObject.transform.position, ChaseSpeed * Time.deltaTime) ;
             }
 
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, NextEnemyNode.transform.position, HorizontalSpeed * Time.deltaTime);
+            if (NeedsRecalculation)
+            {
+                RecalculatePath();
+            }
+
+            transform.position = Vector3.MoveTowards(transform.position, NextEnemyNode.transform.position, PatrolSpeed * Time.deltaTime);
         }
     }
 

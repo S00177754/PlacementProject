@@ -19,7 +19,8 @@ public class EnemyMeleeBehaviour : EnemyBehaviour
     private void Update()
     {
         if (Tracker.IsTracking)
-        { 
+        {
+            NeedsRecalculation = true;
             CooldownTimer += Time.deltaTime;
 
             if(IsInAttackRange())
@@ -34,11 +35,19 @@ public class EnemyMeleeBehaviour : EnemyBehaviour
             else
             {
                 IsCooldowned();
-                MoveTo(Tracker.trackedObject.transform.position);
+                //MoveTo(Tracker.trackedObject.transform.position);
+                transform.position = Vector3.MoveTowards(transform.position, Tracker.trackedObject.transform.position, ChaseSpeed * Time.deltaTime);
             }
         }
         else
         {
+            if (NeedsRecalculation)
+            {
+                RecalculatePath();
+            }
+
+            transform.position = Vector3.MoveTowards(transform.position, NextEnemyNode.transform.position, PatrolSpeed * Time.deltaTime);
+
             CooldownTimer = 0f;
         }
     }
