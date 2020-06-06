@@ -99,9 +99,30 @@
               <!-- Blog Highlight Template-->
               <div class="tile is-child">
                 <article class="tile is-child notification has-background-light has-text-black">
-                  <a id="blog_post_6"></a>
-                  <p class="title">What's in a Quest? More importantly, How do you show that?</p>
-                  <p class="subtitle">The item wheel goes round and round!</p>
+                  <a id="blog_post_8"></a>
+                  <p class="title">Inventory & Enemies - #8</p>
+                  <p>
+                     As I forgot to post to this blog last week, I've got quite a bit of work to talk about so lets start off with the inventory system work. I revised the pause screen/ inventory screen and updated the UI to be something more akin to what will be in the final game rather than a number of gray panels layered on top of each other. This addition of UI design did help me lay out the flow of the UI for the player inventory much better than before and impliment a sorting system to the inventory screen. In addition to this I reworked the item wheels as there was quote a few issues that came to light in the redesign, shown below are images of the reworked UI system. Another feature now present in the inventory system is the description pnael which displays on the right hand screen when an item is hovered over, the displayed text is retrieved from the item via a virtual method to dynamically fill out the description based on what the item does and things such as health restroed, etc.
+                  </p>
+                  <img src="../Images/InventoryUI.png" class="center" alt="Inventory UI"/>
+                  <img src="../Images/RadialSetterMenuUI.png" class="center" alt="Inventory UI"/>
+                  <p>
+                    From here, I moved onto the development of enemies, starting with their basic behaviour. Over the past few days I have developed several different behaviour patterns for the various enemies, these include a stationary turret, a ground enemy with melee combat, a ground enemy with ranged combat as well as a flying enemy. Each enemy type with the exception of the stationary turret has the ability to follow a designated path until they are within range of the player, once in range they will start following the player at a faster speed until they lose track of the player. They will then return to the nearest point on the path and continue their "patrol" until they come across the player again.
+                  </p>
+                  <img src="../Images/enemyDevelopment.png" class="center" width="320" height="240" alt="Inventory UI"/>
+                  <p>
+                    As I was beginning development on the enemy behaviours I thought it would make more sense to change the terrain from a basic testing area to be more like an actual open world since this is where the enemies will actually be performing their various actions and attacks. Taking time to quickly whip up a new terrain certainly helped me during development as I encountered several bugs which would have gone unnoticed in the previous testing area. In regards to the next steps of development, I plan to further develop the AI for the enmies and hope to begin adding in some basic animations in the week to come and if time allows perhaps begin on some bosses. 
+                  </p>
+                  <p>
+                    By Ronan Cassidy - 6th of June 2020
+                  </p>
+                </article>
+              </div>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_7"></a>
+                  <p class="title">What's in a Quest? More importantly, How do you show that? - #7</p>
                   <p>
                     Having gotten to grips with the quest system, with different types of quest and rewards, I looked this week to start building a UI that would display this information. 
                   </p>
