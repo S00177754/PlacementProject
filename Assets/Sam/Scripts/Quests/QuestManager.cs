@@ -10,6 +10,7 @@ public class QuestManager : MonoBehaviour
     List<Quest> ActiveSides;
 
     List<QuestReward> Rewards;
+    //Checking new setup on Desktop
 
     public void MoveToNextStepMSQ(Quest moveOn){
         if(moveOn.isComplete && moveOn.isActive){
