@@ -5,8 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyRangedBehaviour : EnemyBehaviour
 {
-    private NavMeshAgent Navigator;
-
     [Header("Projectile")]
     public GameObject ProjectilePrefab;
     public Transform BulletSpawnPoint;
@@ -26,7 +24,6 @@ public class EnemyRangedBehaviour : EnemyBehaviour
             NeedsRecalculation = true;
             CooldownTimer += Time.deltaTime;
 
-            //gameObject.transform.LookAt(Tracker.trackedObject.transform);
             RotateTo(Tracker.trackedObject);
 
             if (IsInAttackRange())
@@ -41,7 +38,9 @@ public class EnemyRangedBehaviour : EnemyBehaviour
             else
             {
                 IsCooldowned();
-                transform.position = Vector3.MoveTowards(transform.position, Tracker.trackedObject.transform.position, ChaseSpeed * Time.deltaTime);
+
+                MoveTo(Tracker.trackedObject.transform.position);
+                Navigator.speed = ChaseSpeed;
             }
         }
         else
@@ -54,8 +53,9 @@ public class EnemyRangedBehaviour : EnemyBehaviour
                     RecalculatePath();
                 }
 
-                RotateTo(NextEnemyNode.gameObject);
-                transform.position = Vector3.MoveTowards(transform.position, NextEnemyNode.transform.position, PatrolSpeed * Time.deltaTime);
+                //RotateTo(NextEnemyNode.gameObject);
+                MoveTo(NextEnemyNode.gameObject.transform.position);
+                Navigator.speed = PatrolSpeed;
 
                 CooldownTimer = 0f;
             }
@@ -70,18 +70,6 @@ public class EnemyRangedBehaviour : EnemyBehaviour
             rb.velocity = (Tracker.trackedObject.transform.position - BulletSpawnPoint.position).normalized * ProjectileVelocity;
             rb.GetComponent<ProjectileBehaviour>().DamageValue = DamageAmount;
         }
-    }
-
-    private void MoveTo(Vector3 position)
-    {
-        Navigator.isStopped = false;
-        Navigator.SetDestination(position);
-    }
-
-    private void StopMovement()
-    {
-        Navigator.isStopped = true;
-
     }
 
     public void RotateTo(GameObject go)

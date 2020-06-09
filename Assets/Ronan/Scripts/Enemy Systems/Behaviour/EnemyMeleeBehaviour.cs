@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyMeleeBehaviour : EnemyBehaviour
 {
     [Header("External Components")]
-    private NavMeshAgent Navigator;
+    
     public GameObject AttackZone;
 
     protected override void Start()
@@ -35,8 +35,9 @@ public class EnemyMeleeBehaviour : EnemyBehaviour
             else
             {
                 IsCooldowned();
-                //MoveTo(Tracker.trackedObject.transform.position);
-                transform.position = Vector3.MoveTowards(transform.position, Tracker.trackedObject.transform.position, ChaseSpeed * Time.deltaTime);
+
+                MoveTo(Tracker.trackedObject.transform.position);
+                Navigator.speed = ChaseSpeed;
             }
         }
         else
@@ -46,7 +47,8 @@ public class EnemyMeleeBehaviour : EnemyBehaviour
                 RecalculatePath();
             }
 
-            transform.position = Vector3.MoveTowards(transform.position, NextEnemyNode.transform.position, PatrolSpeed * Time.deltaTime);
+            MoveTo(NextEnemyNode.transform.position);
+            Navigator.speed = PatrolSpeed;
 
             CooldownTimer = 0f;
         }
@@ -61,17 +63,9 @@ public class EnemyMeleeBehaviour : EnemyBehaviour
         }
     }
 
-    private void MoveTo(Vector3 position)
-    {
-        Navigator.isStopped = false;
-        Navigator.SetDestination(position);
-    }
+   
 
-    private void StopMovement()
-    {
-        Navigator.isStopped = true;
-
-    }
+ 
 
 
 }

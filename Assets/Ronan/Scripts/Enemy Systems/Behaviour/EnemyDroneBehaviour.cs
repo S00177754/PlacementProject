@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyDroneBehaviour : EnemyBehaviour
 {
@@ -9,20 +10,12 @@ public class EnemyDroneBehaviour : EnemyBehaviour
 
     protected override void Start()
     {
+        Navigator = GetComponent<NavMeshAgent>();
         base.Start();
     }
 
     private void Update()
     {
-        if(CheckDistanceToGround() >= HoverDistance + (HoverDistance / 10))
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y - (DescentSpeed * Time.deltaTime), transform.position.z);
-        }
-        else if (CheckDistanceToGround() < HoverDistance - (HoverDistance / 10))
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y + (DescentSpeed * Time.deltaTime), transform.position.z);
-        }
-
         if (Tracker.IsTracking)
         {
             NeedsRecalculation = true;
@@ -33,7 +26,8 @@ public class EnemyDroneBehaviour : EnemyBehaviour
             }
             else
             {
-                transform.position = Vector3.MoveTowards(transform.position, Tracker.trackedObject.transform.position, ChaseSpeed * Time.deltaTime) ;
+                MoveTo(Tracker.trackedObject.transform.position);
+                Navigator.speed = ChaseSpeed;
             }
 
         }
@@ -44,7 +38,9 @@ public class EnemyDroneBehaviour : EnemyBehaviour
                 RecalculatePath();
             }
 
-            transform.position = Vector3.MoveTowards(transform.position, NextEnemyNode.transform.position, PatrolSpeed * Time.deltaTime);
+            //transform.position = Vector3.MoveTowards(transform.position, NextEnemyNode.transform.position, PatrolSpeed * Time.deltaTime);
+            MoveTo(NextEnemyNode.transform.position);
+            Navigator.speed = PatrolSpeed;
         }
     }
 

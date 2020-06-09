@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(EnemyTrackerComponent))]
 public class EnemyBehaviour : MonoBehaviour
 {
+    protected NavMeshAgent Navigator;
     protected EnemyTrackerComponent Tracker;
 
     [Header("Enemy Details")]
@@ -19,6 +21,7 @@ public class EnemyBehaviour : MonoBehaviour
     public List<EnemyPathNode> EnemyPath;
     public EnemyPathNode NextEnemyNode;
     protected bool NeedsRecalculation = false;
+
 
     protected virtual void Start()
     {
@@ -64,6 +67,8 @@ public class EnemyBehaviour : MonoBehaviour
 
 
 
+    //******* Pathfinding *********
+
     public void GetFullPath()
     {
         EnemyPath.Add(NextEnemyNode);
@@ -96,5 +101,17 @@ public class EnemyBehaviour : MonoBehaviour
 
         NextEnemyNode = nearestNode;
         NeedsRecalculation = false;
+    }
+
+    protected void MoveTo(Vector3 position)
+    {
+        Navigator.isStopped = false;
+        Navigator.SetDestination(position);
+    }
+
+    protected void StopMovement()
+    {
+        Navigator.isStopped = true;
+
     }
 }
