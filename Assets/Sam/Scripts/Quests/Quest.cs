@@ -10,13 +10,13 @@ public class Quest : ScriptableObject
     public string Description;
     public bool isActive;
     public bool isComplete;
-    
-    NPC QuestGiver;
-    NPC QuestReturn;
-    Queue<QuestStep> CompletedSteps;
-    Queue<QuestStep> Steps;
-    QuestStep ActiveStep;
-    QuestStep NextStep;
+
+    public NPC QuestGiver;
+    public NPC QuestReturn;
+    public Queue<QuestStep> CompletedSteps;
+    public Queue<QuestStep> Steps;
+    public QuestStep ActiveStep;
+    public QuestStep NextStep;
 
     public void GoToNextStep(){
         if(ActiveStep.isComplete){

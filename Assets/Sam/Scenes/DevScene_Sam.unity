@@ -455,10 +455,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tabButtons: []
   currentlySelected: {fileID: 0}
-  tabIdle: {r: 0, g: 0, b: 0, a: 0}
-  tabHover: {r: 0, g: 0.39607844, b: 1, a: 0}
-  tabActive: {r: 0, g: 1, b: 0, a: 0}
   tabCanveses: []
+  tabIdle: {r: 0, g: 0, b: 0, a: 1}
+  tabHover: {r: 0, g: 0.39607844, b: 1, a: 1}
+  tabActive: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1001 &648500138
 PrefabInstance:
   m_ObjectHideFlags: 0

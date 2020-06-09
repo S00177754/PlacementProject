@@ -10,6 +10,7 @@ public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
 
     public Text tabUIText;
     public Canvas MyCanvas;
+    public bool isSelected;
 
     public void OnPointerClick(PointerEventData eventData){
         tabGroup.OnTabSelected(this);
@@ -27,6 +28,7 @@ public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
     {
         tabUIText = GetComponent<Text>();
         tabGroup.Subscribe(this);
+        isSelected = false;
     }
 
     void Update()

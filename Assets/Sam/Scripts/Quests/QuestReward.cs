@@ -9,7 +9,7 @@ public class QuestReward
 
 public class ExpReward : QuestReward
 {
-    float ExpAmount;
+    public float ExpAmount;
 
     //Allows exp to be added from another script without having access to 
     //ExpAmount

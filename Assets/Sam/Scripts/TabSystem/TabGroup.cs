@@ -14,9 +14,9 @@ public class TabGroup : MonoBehaviour
 
 
     void Start(){
-        tabIdle = new Color(0,0,0,0);
-        tabHover = new Color(0,111,255,0);
-        tabActive = new Color(0,255,0,0);
+        tabIdle = new Color(0,0,0,1);
+        tabHover = new Color(0,111,255,1);
+        tabActive = new Color(0,255,0,1);
     }
 
     public void Subscribe(TabButton tabButton){
@@ -31,8 +31,8 @@ public class TabGroup : MonoBehaviour
     }
 
     public void OnTabEnter(TabButton tabButton){
-        //ResetTabs();
-        if(currentlySelected == null || tabButton != currentlySelected)
+        ResetTabs();
+        if(!tabButton.isSelected)
             tabButton.tabUIText.color = tabHover;
     }
 
@@ -42,14 +42,17 @@ public class TabGroup : MonoBehaviour
     }
 
     public void OnTabSelected(TabButton tabButton){
-        currentlySelected = tabButton;
-        //ResetTabs();
+        foreach (TabButton button in tabButtons)
+        {
+            button.isSelected = !button.isSelected;
+        }
+        ResetTabs();
         tabButton.tabUIText.color = tabActive;
     }
 
     void ResetTabs(){
         foreach(TabButton button in tabButtons){
-            if(currentlySelected != null && button == currentlySelected)
+            if(button.isSelected)
             {
                 continue;
             }
