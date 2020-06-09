@@ -8,10 +8,10 @@ public class NPC : ScriptableObject
     int ID;
     [SerializeField]
     public string Name;
-    string Description;
-    Vector3 Location;
+    public string Description;
+    public Vector3 Location;
     [SerializeField]
-    string DefaultSpeach;
+    public string DefaultSpeach;
 
     public List<string> CheckQuestDialogue(){
 
