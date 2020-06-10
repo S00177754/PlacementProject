@@ -13,10 +13,9 @@ public class PlayerAttack : MonoBehaviour
     public EquipmentAttachController AttachPoints;
 
     [Header("Attack Details")]
-    public GameObject AttackZones;
     public float ComboTimeAllowance = 1f;
     public bool IsAttacking = false;
-
+    public bool SlamAttack = false;
     public bool IsCharging = false;
 
     //Not implemented yet, still undecided
@@ -35,7 +34,8 @@ public class PlayerAttack : MonoBehaviour
     [HideInInspector]
     public int ComboAttackCount = 0;
 
-    private Dictionary<string, AttackDamageZone> Zones = new Dictionary<string, AttackDamageZone>();
+    public AttackZoneManager ZoneManager;
+    
     
     [HideInInspector]
     public List<EnemyStatsScript> EnemiesToDamage = new List<EnemyStatsScript>();
@@ -43,7 +43,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {
-        GetAllAttackPatterns();
+        ZoneManager.GetAllAttackPatterns();
         SheathWeapon();
        
     }
@@ -53,6 +53,11 @@ public class PlayerAttack : MonoBehaviour
         ChargeUpdate();
         ComboUpdate();
         AttackCooldown();
+
+        if (!GetComponent<PlayerMovement>().IsFalling)
+        {
+            SlamAttack = false;
+        }
     }
 
 
@@ -72,34 +77,19 @@ public class PlayerAttack : MonoBehaviour
 
     #endregion
 
-    private void GetAllAttackPatterns()
-    {
-        AttackDamageZone[] components = AttackZones.GetComponentsInChildren<AttackDamageZone>(true);
-        for (int i = 0; i < components.Length; i++)
-        {
-            Zones.Add(components[i].ZoneName, components[i]);
-            components[i].SetPlayer(this);
-        }
-    }
+ 
 
     public void DisableAllAttackPatterns()
     {
-        foreach (KeyValuePair<string, AttackDamageZone> item in Zones)
-        {
-            item.Value.gameObject.SetActive(false);
-        }
-
+        ZoneManager.DisableZones();
     }
 
     private void ActivateAttackZone(AttackInfoObj attackInfo)
     {
         DisableAllAttackPatterns();
 
-        AttackDamageZone zone;
-        if(Zones.TryGetValue(attackInfo.AttackZoneName, out zone))
-        {
-            zone.Activate();
-        }
+        ZoneManager.ActivateZone(attackInfo.AttackZoneName);
+
     }
 
     private void ComboUpdate()
@@ -171,9 +161,9 @@ public class PlayerAttack : MonoBehaviour
                 ActiveAttack = Equipment.GetAttackDetails().PrimaryAtackPattern[ComboAttackIndex];
 
                 //Animation stuff bro
-                DealDamage(ActiveAttack.DamageAmount);
                 //StartCoroutine(ApplyDamage(ActiveAttack.DamageAmount));
                 ActivateAttackZone(ActiveAttack);
+                DealDamage(ActiveAttack.DamageAmount);
                 AttackCooldownTimer = CooldownTimer;
                 //IsAttacking = false;
 
@@ -193,6 +183,12 @@ public class PlayerAttack : MonoBehaviour
             }
 
 
+        }
+        else if(!IsAttacking && !GetComponent<PlayerMovement>().IsCrouching && !GetComponent<PlayerMovement>().IsJumping && GetComponent<PlayerMovement>().IsFalling)
+        {
+            IsAttacking = true;
+            SlamAttack = true;
+            ActiveAttack = Equipment.GetAttackDetails().SlamAttack;
         }
 
         #region old code
@@ -267,11 +263,10 @@ public class PlayerAttack : MonoBehaviour
             ChargeTimer = duration;
             if (duration >= ActiveAttack.AttackCharge)
             {
-                print("TEST");
                 //Animation stuff bro
-                DealDamage(ActiveAttack.DamageAmount);
                 //StartCoroutine(ApplyDamage(ActiveAttack.DamageAmount));
                 ActivateAttackZone(ActiveAttack);
+                DealDamage(ActiveAttack.DamageAmount);
                 AttackCooldownTimer = CooldownTimer;
                 IsCharging = false;
                 ChargeTimer = 0;
@@ -280,25 +275,34 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    public void AttackSlam()
+    {
+        if(ActiveAttack != null)
+        {
+            IsAttacking = true;
+            ActivateAttackZone(ActiveAttack);
+            DealDamage(ActiveAttack.DamageAmount);
+        }
+    }
+
 
     public void DealDamage(int dmg)
     {
-        EnemiesToDamage.ForEach(e => e.ApplyDamage(dmg));
-        EnemiesToDamage.Clear();
-        DisableAllAttackPatterns();
+        //EnemiesToDamage.ForEach(e => e.ApplyDamage(dmg));
+        //EnemiesToDamage.Clear();
+
+        //DisableAllAttackPatterns();
+        StartCoroutine(ApplyDamage(dmg));
+        ActiveAttack = null;
     }
     
 
     IEnumerator ApplyDamage(int damage)
     {
-        GetComponent<PlayerMovement>().SetFreeze(true, false);
-        //yield return new WaitForSeconds(1.7f);
+        yield return new WaitForSeconds(0.2f);
         EnemiesToDamage.ForEach(e => e.ApplyDamage(damage));
         EnemiesToDamage.Clear();
         DisableAllAttackPatterns();
-        GetComponent<PlayerMovement>().SetFreeze(false, false);
-        yield return new WaitForSeconds(0.2f);
-        //IsAttacking = false;
     }
 
     public IEnumerator FreezeMovementFor(float time, bool movement, bool camera)

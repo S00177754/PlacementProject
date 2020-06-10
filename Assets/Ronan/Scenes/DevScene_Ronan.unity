@@ -8439,14 +8439,15 @@ MonoBehaviour:
     BackAttachPoint: {fileID: 688020824}
     LeftHipAttachPoint: {fileID: 106090897}
     RightHipAttachPoint: {fileID: 666989804}
-  AttackZones: {fileID: 2022773944}
   ComboTimeAllowance: 2
   IsAttacking: 0
+  SlamAttack: 0
   IsCharging: 0
   ComboTimer: 0
   comboCounter: 0
   CooldownTimer: 3
   ComboAttackCount: 0
+  ZoneManager: {fileID: 2022773946}
   EnemiesToDamage: []
 --- !u!114 &1259964543
 MonoBehaviour:
@@ -11522,6 +11523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2022773945}
+  - component: {fileID: 2022773946}
   m_Layer: 8
   m_Name: AttackZones
   m_TagString: Untagged
@@ -11548,6 +11550,19 @@ Transform:
   m_Father: {fileID: 4492581464409478614}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2022773946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022773944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8e7d8517c5b4d48a02ba0045d94abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 1259964542}
 --- !u!1 &2038739697
 GameObject:
   m_ObjectHideFlags: 0
@@ -13536,7 +13551,7 @@ PrefabInstance:
     - target: {fileID: 2524591331209567221, guid: c0ba2d63b8c3be647a8fc34bc63615bf,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 299.99997
+      value: 0.000045776367
       objectReference: {fileID: 0}
     - target: {fileID: 2524591331671239238, guid: c0ba2d63b8c3be647a8fc34bc63615bf,
         type: 3}
