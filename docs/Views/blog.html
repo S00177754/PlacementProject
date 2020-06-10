@@ -58,7 +58,7 @@
             Dev Blog
           </a>
     
-          <a class="navbar-item">
+          <a href="comingsoon.html" class="navbar-item">
             Download
           </a>
     
@@ -99,6 +99,188 @@
               <!-- Blog Highlight Template-->
               <div class="tile is-child">
                 <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_8"></a>
+                  <p class="title">Inventory & Enemies - #8</p>
+                  <p>
+                     As I forgot to post to this blog last week, I've got quite a bit of work to talk about so lets start off with the inventory system work. I revised the pause screen/ inventory screen and updated the UI to be something more akin to what will be in the final game rather than a number of gray panels layered on top of each other. This addition of UI design did help me lay out the flow of the UI for the player inventory much better than before and impliment a sorting system to the inventory screen. In addition to this I reworked the item wheels as there was quote a few issues that came to light in the redesign, shown below are images of the reworked UI system. Another feature now present in the inventory system is the description pnael which displays on the right hand screen when an item is hovered over, the displayed text is retrieved from the item via a virtual method to dynamically fill out the description based on what the item does and things such as health restroed, etc.
+                  </p>
+                  <img src="../Images/InventoryUI.png" class="center" alt="Inventory UI"/>
+                  <img src="../Images/RadialSetterMenuUI.png" class="center" alt="Inventory UI"/>
+                  <p>
+                    From here, I moved onto the development of enemies, starting with their basic behaviour. Over the past few days I have developed several different behaviour patterns for the various enemies, these include a stationary turret, a ground enemy with melee combat, a ground enemy with ranged combat as well as a flying enemy. Each enemy type with the exception of the stationary turret has the ability to follow a designated path until they are within range of the player, once in range they will start following the player at a faster speed until they lose track of the player. They will then return to the nearest point on the path and continue their "patrol" until they come across the player again.
+                  </p>
+                  <img src="../Images/enemyDevelopment.png" class="center" width="320" height="240" alt="Inventory UI"/>
+                  <p>
+                    As I was beginning development on the enemy behaviours I thought it would make more sense to change the terrain from a basic testing area to be more like an actual open world since this is where the enemies will actually be performing their various actions and attacks. Taking time to quickly whip up a new terrain certainly helped me during development as I encountered several bugs which would have gone unnoticed in the previous testing area. In regards to the next steps of development, I plan to further develop the AI for the enmies and hope to begin adding in some basic animations in the week to come and if time allows perhaps begin on some bosses. 
+                  </p>
+                  <p>
+                    By Ronan Cassidy - 6th of June 2020
+                  </p>
+                </article>
+              </div>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_7"></a>
+                  <p class="title">What's in a Quest? More importantly, How do you show that? - #7</p>
+                  <p>
+                    Having gotten to grips with the quest system, with different types of quest and rewards, I looked this week to start building a UI that would display this information. 
+                  </p>
+                  With our game containing both Main Scenario Quests (MSQs) and Side quests, it felt natural to split the UI in this format. A lot of games will use a tab system to do this, but Unity, unfortunately, does not have a built in tab system. This means we need to make our own.
+                  <p>
+                    At first, I looked at buttons the player could click and that would switch which panel was active in the canvas, but if we wanted to use this elsewhere, it wouldn’t be very scalable and would involve a lot of finicky selecting which things were which and what pages should go where. 
+                  </p>
+                  <p>
+                    So, I then looked to creating a tab system that could be used across the game with as little modification as needed. The principle is thus; using the IPointer event handling, Enter, exit and Selected, we can define our own actions within these. When the mouse hovers over a simple text box, the colour will change, and again if selected. 
+                  </p>
+                  <p>
+                    This will, of course, need amended for the controller input, most commonly the higher shoulder buttons allow the player to shuffle through the tabs. (i.e. R1/L1 for PlayStation and RB/LB for XBox/PC controllers).
+                  </p>
+                  <p>
+                    By Sam ColvilleRea - 24th of May 2020
+                  </p>
+                </article>
+              </div>
+
+              <br/>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_6"></a>
+                  <p class="title">Player Inventory Overhaul - #6</p>
+                  <p class="subtitle">The item wheel goes round and round!</p>
+                  <p>
+                    Continuing on from last weeks post (technically earlier this week), I've moved onto giving the inventory/equipment system an overhaul as it doesn't have the functionality needed for the ability tree to be implimented completely. I also wanted to add in an item wheel to allow the player to quickly use items during battle without having to pause the game mid-battle, my item wheel system instead slows down time to let the player to pick the item they need while still keeping in the flow of the battle. The next step of action is to redo the inventory screen to allow the player to set items on the item wheel to specific slots and also sort out the item types in the inventory, currently all items are just in a simple list, instead I hope to have them broken into sections which the player can cycle through using the shoulder buttons. To accomplish this task I will use the button state system I've mentioned in a previous dev post to let the player cycle, the menus will be broken down into consumables, weapons and baubles (accessories) and may be expanded in the future.
+                  </p>
+                  <p>
+                    Due to the last post only being a few days ago, I don't have much else to add in this development post as I'm trying to get back to posting on Fridays and Saturdays. Next weekends blog post should have more work mentioned it as well as a few screenshots to demonstrate the various inventory overhauls. Make sure to check back next weekend!
+                  </p>
+
+                  <p>
+                    By Ronan Cassidy - 23rd of May 2020
+                  </p>
+                </article>
+              </div>
+
+              <br/>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_5"></a>
+                  <p class="title">Player Attack Overhaul - #5</p>
+                  <p class="subtitle">We're back and ready to throwdown!</p>
+                  <p>
+                    This weeks blog post from myself was delayed by a couple of days because I wanted to finish up overhauling our players attack system, the previous system I had implimented meant that the player could only use the provided sword and the animations for it were sloppy not to mention that all the player could do was a simple slash. This new system allows for the creation of new weapons with ease in the Unity editor itself and all thats needed are a model and any specific weapon animations, this new system will also allow for us to quickly change out the player's weapon for a variety of other weapons, instantly increasing the players oppurtunities to find a play style that suits them to a tee. Another nice little change to the attack system is that the player can now dodge roll and will have invincibility frames while rolling to allow them to dodge enemy attacks, I hope to smoothen out the transitions from player states to each other nearer the end of development but for the time being it works for testing purposes.
+                  </p>
+
+                  <p >
+                    <video width="320" height="240" controls class="center">
+                      <source src="../Videos/NewAttacksystem.mp4"" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                  </p>
+
+                  <p>There has also been a lot more going on then just the attack overhaul however, after working on more functionality for the attack, I realised it was time to setup an input manager to work in tandem with Unity's latest input system to allow for our controls to change their functionality depending on the context of the player's situation. For example when a player is standing over an item, the Square button on a PS4 dualshock becomes pickup item rather than a dodge roll, each button has a context system to allow us to further expand on the possibilities of what the player can do. The new input manager also allows us to bind multiple actions to a key, for example a quick tap of the Square button will allow the player to dodge roll but if they hold the button for a second then they will sheath their weapon.</p>
+
+                  <p>As I stated in my previous post I had planned to fix up the players animations and make them much smoother as their was some instances of the players feet sliding all over the ground when they attacked as can be seen in the previous video, it took a few days but after diving into the animation tools in Unity, I was able to start piecing together our animation system together and make it much neater and modular than it had been before. I was also able to smooth out some transitions and prevent the player's feet from sliding wildly across the floor, some other changes were made in regards to the player's actual animations such as the landing animation and a few other small bits and pieces.</p>
+
+                  <p>Moving forward, I plan to work on the ability tree for the player and also to give the inventory system a minor overhaul and that should finish up the basis of the player mechanics for the being. Make sure to check back next weekend for another update on Project Crescent!</p>
+
+                  <p>
+                    By Ronan Cassidy - 19th of May 2020
+                  </p>
+                </article>
+              </div>
+
+              <br/>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_4"></a>
+                  <p class="title">NPCs and Quest Development - #4</p>
+                  <p class="subtitle">What's in a Quest?</p>
+                  <p>
+                    This week and last, I have been generating ideas for a Quest Management System. This consists of an overall manager to check and set active Main Scenario Quests (MSQ) and Side quests. The quests themselves each have individual steps that combine to achieve your questing goals.  When thinking back to quests in the many games I’ve played over the years, and most notably Final Fantasy XIV Online, each step can have different types of goal. This might be talking to a specific NPC, collecting a target number of items, killing a few enemies, or some combination thereof.
+                  </p>
+
+                  <p>
+                    For this reason, I decided to abstract the QuestStep class, and allow for 4 child classes: Location, NPC, Quantity and Multi-Quantity. Each of these will have different behaviour, but each will share a description and isCompleted, and in much the same way Ronan abstracted the itemObj class, these will be scriptable objects to allow easy creation in the Unity editor when it comes time to piece the game together.
+                  </p>
+                  <p>
+                    This all came from thinking about how NPCs will talk, what they will say and when they will say it. A lovely flow chart gives the sense of how this will happen, mostly being contextualised by the current quest(s) the player has active at a given time. 
+                  </p>
+
+                  <p>
+                    Next week should see further implementation of the Quest system, and hopefully see some NPCs having a chat with the player. Watch this space!
+                  </p>
+
+                  <p>
+                    By Sam ColvilleRea - 15th of May 2020
+                  </p>
+                </article>
+              </div>
+            
+              </br>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_3"></a>
+                  <p class="title">Player Inventory Development - #3</p>
+                  <p class="subtitle">Time to collect the world!</p>
+                  <p>
+                    I started work on our player inventory system this week and have completed the prototype version, it will be redfined and added to as development continues as need be. This proved to be quite an interesting task to take on as first we needed to decide how players would collect items, how do we want to store this data and how can we keep track of it in the game itself. To begin we decided to follow suit with games such final fantasy and monster hunter world where once over the item you can hit a button to interact with and pickup the item from the ground. To make the item more noticable during development I threw on a small particle generator to act as a beacon for the item, from here we moved onto the storage and class of the item. There are many ways to go about this but I decided to take the approach of using scriptable objects and saving them to json and loading them back to the inventory when necessary.
+                  </p>
+
+                  <p>To access the inventory screen, we would need to be able to pause the game so that was logically my next step. I designed a rough UI for both pause menu, setting menu and the inventory screen. This proved to be quite the task of making it so the player can use items, this involved making the item scriptable object into an abstract class to build more item types up. We ensured that we kept developing the game with the use of a controller in mind which led to a redesign of the input manager to allow us to have multiple interactions depending on the context of the players location or game state.</p>
+
+                  <p>For the next stage of development, I have begun a redesign of our attack system to allow for more variety in play style and as well to be more forgiving than the previous implementation we had which was a very small hitbox for the player to actually hit anything. This new system should be a great addition to the character and will probably take longer than originally thought as we need to also look into the animations of the game for blending attacking and running together so you dont have to keep stopping to attack. I plan on showing off another video of the character's progress in next week's blog post so be sure to check back next week to see how its going!</p>
+
+                  <p>
+                    By Ronan Cassidy - 10th of May 2020
+                  </p>
+                </article>
+              </div>
+
+              <br/>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_2"></a>
+                  <p class="title">Main Character Development - #2</p>
+                  <p class="subtitle">The beginning of the adventure!</p>
+                  <p>
+                    This week I've been mainly focusing on the development of the main character prototype, this encompasses components such as movement, animation, attacking and sensing. We've decided to use Unity's newest Input system in Unity 2019.3 which is a preview package and while there has been a bit of a learning curve to using it, it does remind me of the SteamVR 2.0 action system which I have used in a previous project. This event driven system is great for a action, adventure game as when the button is hit we can map it to call a particular method, however I can see a few issues down the line we may have but my remedy to this is to create an input manager that should solve any issues.
+                  </p>
+
+                  <p >
+                    <video width="320" height="240" controls class="center">
+                      <source src="../Videos/characterControllerV1.mp4"" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                  </p>
+                  
+                  <p>As you can see from the video above, I've got the basics for movement completed, this includes, walking, running, crouching as well as the same actions while having a weapon equipped and active. I will admit that I was thinking about checking for the ground under the player in a rather complex way when there was a much simpler way that was more than suitable for the job, it took about a day and a half of development time from me but I've leanred from it. The next step after this was to setup the animation controller as I planned to use unity's animation events alongside my attack script for sheathing and unsheathing your sword.</p>
+
+                  <p>
+                    The coup de grâce of the the new Input System in Unity 2019.3 however is the ability to properly map button input for controllers in a simple way that allows you to use multiple control schemes from the very start of development. For instance, I've been using a PS4 dualshock for testing and debugging as well as swapping to mouse and keyboard if I want to see how it handles the swapping of controls and in the past week, I've learned quite a few little tricks in Unity that I wasn't aware of before such as animation events, attaching gameobjects to another object through the use of SetParent() without it causing strange scaling issues.
+                  </p>
+
+                                    
+                  <p>
+                    The next step on the road to our fully complete main character protoype is the development of an inventory and equipment system which I already have begun on, so check in next week to see further progress and hopefully the completed main character prototype!
+                  </p>
+
+                  <p>
+                    By Ronan Cassidy - 1st of May 2020
+                  </p>
+                </article>
+              </div>
+
+              <br/>
+              
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_1"></a>
                   <p class="title">Rising of The Crescent Moon - #1</p>
                   <p class="subtitle">Welcome to the development blog for Project Crescent!</p>
                   <p>

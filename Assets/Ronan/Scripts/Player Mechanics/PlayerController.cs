@@ -19,6 +19,11 @@ public class PlayerController : MonoBehaviour
     {
         //Cursor.lockState = CursorLockMode.Confined;
     }
+
+    public void ApplyDamage(int amount)
+    {
+        Health -= amount;
+    }
 }
 
 [Serializable]

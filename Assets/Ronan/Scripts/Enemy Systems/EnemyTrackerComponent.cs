@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +9,10 @@ public class EnemyTrackerComponent : MonoBehaviour
     public SphereCollider TriggerZone;
     public float TrackingRadius = 5f;
     public bool IsTracking = false;
-    private GameObject trackedObject;
+    public GameObject trackedObject;
+
+
+    public EnemyViewCone ViewCone;
 
     private void Start()
     {
@@ -16,13 +21,31 @@ public class EnemyTrackerComponent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerController player;
-
-        if(other.gameObject.TryGetComponent<PlayerController>(out player))
+        if (!other.isTrigger)
         {
-            IsTracking = true;
-            trackedObject = player.gameObject;
-            Debug.Log(string.Concat("Is Now Tracking: ",player));
+
+            PlayerController player;
+
+            if (other.gameObject.TryGetComponent<PlayerController>(out player) && HasLineOfSight(other))
+            {
+                IsTracking = true;
+                trackedObject = player.gameObject;
+                Debug.Log(string.Concat("Is Now Tracking: ", player));
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (!other.isTrigger && !IsTracking)
+        {
+            PlayerController player;
+
+            if (other.gameObject.TryGetComponent<PlayerController>(out player) && HasLineOfSight( other))
+            {
+                IsTracking = true;
+                trackedObject = player.gameObject;
+            }
         }
     }
 
@@ -46,6 +69,34 @@ public class EnemyTrackerComponent : MonoBehaviour
         {
             return Vector3.zero;
         }
+
+      
     }
 
+    public float GetDistanceToTrackedObject()
+    {
+        return Vector3.Distance(transform.position, trackedObject.transform.position); ;
+    }
+
+    public bool HasLineOfSight(Collider other)
+    {
+        if (ViewCone.IsPlayerInZone)
+        {
+            Ray lineOfSightRay = new Ray(transform.position, (other.transform.position - transform.position).normalized);
+
+            RaycastHit hitResult;
+            bool HasHit = Physics.Raycast(lineOfSightRay, out hitResult, Mathf.Infinity);
+
+            if (HasHit)
+            {
+                if (hitResult.collider.gameObject == other.gameObject)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 }
+
