@@ -20,14 +20,16 @@ public class PlayerAttack : MonoBehaviour
     public bool IsCharging = false;
 
     //Not implemented yet, still undecided
-    public float MaxChargeTime = 3f;
     private float ChargeTimer = 0f;
 
     private bool CanCombo = false;
     public float ComboTimer = 0f;
     public int comboCounter = 0;
     private int ComboAttackIndex = 0;
+
     private float AttackCooldownTimer = 0f;
+    public float CooldownTimer = 0f;
+
     private AttackInfoObj ActiveAttack;
 
     [HideInInspector]
@@ -172,7 +174,7 @@ public class PlayerAttack : MonoBehaviour
                 DealDamage(ActiveAttack.DamageAmount);
                 //StartCoroutine(ApplyDamage(ActiveAttack.DamageAmount));
                 ActivateAttackZone(ActiveAttack);
-                AttackCooldownTimer = ActiveAttack.AttackCooldown;
+                AttackCooldownTimer = CooldownTimer;
                 //IsAttacking = false;
 
                 ComboAttackIndex++;
@@ -257,17 +259,20 @@ public class PlayerAttack : MonoBehaviour
         #endregion
     }
 
-    public void ChargeAttack()
+    public void ChargeAttack(float duration)
     {
         if (ActiveAttack != null && IsCharging)
         {
-            if (ChargeTimer >= ActiveAttack.AttackCharge)
+            IsAttacking = true;
+            ChargeTimer = duration;
+            if (duration >= ActiveAttack.AttackCharge)
             {
+                print("TEST");
                 //Animation stuff bro
                 DealDamage(ActiveAttack.DamageAmount);
                 //StartCoroutine(ApplyDamage(ActiveAttack.DamageAmount));
                 ActivateAttackZone(ActiveAttack);
-                AttackCooldownTimer = ActiveAttack.AttackCooldown;
+                AttackCooldownTimer = CooldownTimer;
                 IsCharging = false;
                 ChargeTimer = 0;
                 ComboTimer = 0f;
@@ -301,5 +306,22 @@ public class PlayerAttack : MonoBehaviour
         GetComponent<PlayerMovement>().SetFreeze(movement, camera);
         yield return new WaitForSeconds(time);
         GetComponent<PlayerMovement>().SetFreeze(false, false);
+    }
+
+    public float GetCooldownAmount()
+    {
+        //Debug.Log("Cooldown: "+ AttackCooldownTimer / CooldownTimer);
+        return AttackCooldownTimer / CooldownTimer;
+    }
+
+    public float GetChargeAmount()
+    {
+        if(ActiveAttack != null)
+        {
+            //print("Charge: " + (ChargeTimer / ActiveAttack.AttackCharge));
+            return ChargeTimer / ActiveAttack.AttackCharge;
+        }
+
+        return 0;
     }
 }

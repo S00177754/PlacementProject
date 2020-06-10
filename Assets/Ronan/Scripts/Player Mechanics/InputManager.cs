@@ -106,21 +106,28 @@ public class InputManager : MonoBehaviour
                 case InputActionPhase.Performed:
                     if ( context.interaction is TapInteraction)
                     {
+
                         GetComponent<PlayerAttack>().Attack();
                     }
+                    else if(context.interaction is SlowTapInteraction)
+                    {
+                        GetComponent<PlayerAttack>().ChargeAttack((float)context.duration);
+                        
+                    }
+                    GetComponent<PlayerAttack>().IsCharging = false;
                     break;
 
                 case InputActionPhase.Started:
                     if (context.interaction is SlowTapInteraction)
                     {
                         GetComponent<PlayerAttack>().Charge();
+                       
                     }
                     break;
 
                 case InputActionPhase.Canceled:
-                    GetComponent<PlayerAttack>().ChargeAttack();
-                    GetComponent<PlayerAttack>().IsCharging = false;
-                    break;
+                        GetComponent<PlayerAttack>().IsCharging = false;
+                        break;
 
                 default:
                     print(context.phase);
