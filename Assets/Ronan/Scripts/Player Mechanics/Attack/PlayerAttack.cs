@@ -27,6 +27,8 @@ public class PlayerAttack : MonoBehaviour
     public float ComboTimer = 0f;
     public int comboCounter = 0;
     private int ComboAttackIndex = 0;
+    private float AttackCooldownTimer = 0f;
+    private AttackInfoObj ActiveAttack;
 
     [HideInInspector]
     public int ComboAttackCount = 0;
@@ -48,6 +50,7 @@ public class PlayerAttack : MonoBehaviour
     {
         ChargeUpdate();
         ComboUpdate();
+        AttackCooldown();
     }
 
 
@@ -130,63 +133,48 @@ public class PlayerAttack : MonoBehaviour
         {
             ChargeTimer = 0;
         }
+    }
 
-        if(ChargeTimer >= MaxChargeTime)
+    private void AttackCooldown()
+    {
+        if(AttackCooldownTimer > 0)
         {
-            Attack();
-            ChargeTimer = 0;
+            AttackCooldownTimer -= Time.deltaTime;
+        }
+        else
+        {
+            IsAttacking = false;
         }
     }
 
     public void Charge()
     {
-        if (!WeaponSheathed)
+        if (!IsAttacking)
         {
             comboCounter = 0;
             ComboTimer = 0f;
             IsCharging = true;
-            GetComponent<PlayerMovement>().SetFreeze(true, false);
+            ActiveAttack = Equipment.GetAttackDetails().ChargeAttack;
         }
     }
 
     public void Attack()
     {
-        if (!IsAttacking && !WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching && !GetComponent<PlayerMovement>().IsJumping && !GetComponent<PlayerMovement>().IsFalling) 
+        if (!IsAttacking && !GetComponent<PlayerMovement>().IsCrouching && !GetComponent<PlayerMovement>().IsJumping && !GetComponent<PlayerMovement>().IsFalling)
         {
             IsAttacking = true;
 
-            if (IsCharging)
+            if (!IsCharging)
             {
-                GetComponent<PlayerMovement>().SetFreeze(false, false);
-                AttackInfoObj attackInfo = Equipment.GetAttackDetails().ChargeAttack;
-                ActivateAttackZone(attackInfo);
+                ActiveAttack = Equipment.GetAttackDetails().PrimaryAtackPattern[ComboAttackIndex];
 
-                if (!WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching)
-                {
-                    
-                    GetComponent<PlayerAnimator>().SetTrigger("ChargeAttack");
-                    GetComponent<PlayerAnimator>().SetInteger("AttackAnimation", (int)Equipment.GetAttackDetails().ChargeAttack.Animation);
-                }
+                //Animation stuff bro
+                DealDamage(ActiveAttack.DamageAmount);
+                //StartCoroutine(ApplyDamage(ActiveAttack.DamageAmount));
+                ActivateAttackZone(ActiveAttack);
+                AttackCooldownTimer = ActiveAttack.AttackCooldown;
+                //IsAttacking = false;
 
-                StartCoroutine(ApplyDamage(attackInfo.DamageAmount));
-
-                IsCharging = false;
-                ComboAttackIndex = 0;
-            }
-            else
-            {
-                AttackInfoObj attackInfo = Equipment.GetAttackDetails().PrimaryAtackPattern[ComboAttackIndex];
-                ActivateAttackZone(attackInfo);
-
-                if (!WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching)
-                {
-                    GetComponent<PlayerAnimator>().SetTrigger("Attack");
-                    GetComponent<PlayerAnimator>().SetInteger("AttackAnimation", (int)Equipment.GetAttackDetails().PrimaryAtackPattern[ComboAttackIndex].Animation);
-                }
-
-                
-
-                //Debug.Log(attackInfo);
                 ComboAttackIndex++;
                 if (ComboAttackIndex >= ComboAttackCount)
                 {
@@ -195,37 +183,117 @@ public class PlayerAttack : MonoBehaviour
 
                 comboCounter++;
                 CanCombo = true;
-
-                StartCoroutine(ApplyDamage(attackInfo.DamageAmount));
-                
-
-            }
                 ComboTimer = 0f;
+            }
+            else
+            {
+                IsAttacking = false;
+            }
 
 
-            
         }
 
-        if (WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching && !GetComponent<PlayerMovement>().IsJumping && !GetComponent<PlayerMovement>().IsFalling)
-        {
-            StartCoroutine(GetComponentInParent<PlayerAttack>().FreezeMovementFor(1.2f, true, false));
-            WeaponSheathed = false;
-        }
+        #region old code
+        //if (!IsAttacking && !WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching && !GetComponent<PlayerMovement>().IsJumping && !GetComponent<PlayerMovement>().IsFalling) 
+        //{
+        //    IsAttacking = true;
 
+        //    if (IsCharging)
+        //    {
+        //        GetComponent<PlayerMovement>().SetFreeze(false, false);
+        //        AttackInfoObj attackInfo = Equipment.GetAttackDetails().ChargeAttack;
+        //        ActivateAttackZone(attackInfo);
+
+        //        if (!WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching)
+        //        {
+
+        //            GetComponent<PlayerAnimator>().SetTrigger("ChargeAttack");
+        //            GetComponent<PlayerAnimator>().SetInteger("AttackAnimation", (int)Equipment.GetAttackDetails().ChargeAttack.Animation);
+        //        }
+
+        //        StartCoroutine(ApplyDamage(attackInfo.DamageAmount));
+
+        //        IsCharging = false;
+        //        ComboAttackIndex = 0;
+        //    }
+        //    else
+        //    {
+        //        AttackInfoObj attackInfo = Equipment.GetAttackDetails().PrimaryAtackPattern[ComboAttackIndex];
+        //        ActivateAttackZone(attackInfo);
+
+        //        if (!WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching)
+        //        {
+        //            GetComponent<PlayerAnimator>().SetTrigger("Attack");
+        //            GetComponent<PlayerAnimator>().SetInteger("AttackAnimation", (int)Equipment.GetAttackDetails().PrimaryAtackPattern[ComboAttackIndex].Animation);
+        //        }
+
+
+
+        //        //Debug.Log(attackInfo);
+        //        ComboAttackIndex++;
+        //        if (ComboAttackIndex >= ComboAttackCount)
+        //        {
+        //            ComboAttackIndex = 0;
+        //        }
+
+        //        comboCounter++;
+        //        CanCombo = true;
+
+        //        StartCoroutine(ApplyDamage(attackInfo.DamageAmount));
+
+
+        //    }
+        //        ComboTimer = 0f;
+
+
+
+        //}
+
+        //if (WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching && !GetComponent<PlayerMovement>().IsJumping && !GetComponent<PlayerMovement>().IsFalling)
+        //{
+        //    StartCoroutine(GetComponentInParent<PlayerAttack>().FreezeMovementFor(1.2f, true, false));
+        //    WeaponSheathed = false;
+        //}
+        #endregion
     }
 
+    public void ChargeAttack()
+    {
+        if (ActiveAttack != null && IsCharging)
+        {
+            if (ChargeTimer >= ActiveAttack.AttackCharge)
+            {
+                //Animation stuff bro
+                DealDamage(ActiveAttack.DamageAmount);
+                //StartCoroutine(ApplyDamage(ActiveAttack.DamageAmount));
+                ActivateAttackZone(ActiveAttack);
+                AttackCooldownTimer = ActiveAttack.AttackCooldown;
+                IsCharging = false;
+                ChargeTimer = 0;
+                ComboTimer = 0f;
+            }
+        }
+    }
+
+
+    public void DealDamage(int dmg)
+    {
+        EnemiesToDamage.ForEach(e => e.ApplyDamage(dmg));
+        EnemiesToDamage.Clear();
+        DisableAllAttackPatterns();
+    }
     
 
     IEnumerator ApplyDamage(int damage)
     {
         GetComponent<PlayerMovement>().SetFreeze(true, false);
-        yield return new WaitForSeconds(1.7f);
+        //yield return new WaitForSeconds(1.7f);
         EnemiesToDamage.ForEach(e => e.ApplyDamage(damage));
         EnemiesToDamage.Clear();
         DisableAllAttackPatterns();
         GetComponent<PlayerMovement>().SetFreeze(false, false);
         yield return new WaitForSeconds(0.2f);
-        IsAttacking = false;
+        //IsAttacking = false;
     }
 
     public IEnumerator FreezeMovementFor(float time, bool movement, bool camera)

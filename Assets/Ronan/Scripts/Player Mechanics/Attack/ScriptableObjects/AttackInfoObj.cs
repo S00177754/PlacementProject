@@ -12,6 +12,10 @@ public class AttackInfoObj : ScriptableObject
     public int DamageAmount;
     public AttackAnimation Animation;
 
+    [Header("Timing")]
+    public float AttackCooldown = 2f; 
+    public float AttackCharge = 2f; 
+
     [Header("Sphere Trigger Settings")]
     public float AttackRadius = -1f;
 }
