@@ -58,6 +58,22 @@ public class PlayerAttack : MonoBehaviour
         {
             SlamAttack = false;
         }
+        else
+        {
+            if (GetComponent<PlayerSurroundingDetection>().LandOnGroundCheck() && SlamAttack)
+            {
+                print("Slam DUNK");
+                ActiveAttack = Equipment.GetAttackDetails().SlamAttack;
+
+                //Animation stuff bro
+                ActivateAttackZone(ActiveAttack);
+                DealDamage(ActiveAttack.DamageAmount);
+                AttackCooldownTimer = CooldownTimer;
+                comboCounter++;
+                CanCombo = true;
+                ComboTimer = 0f;
+            }
+        }
     }
 
 
