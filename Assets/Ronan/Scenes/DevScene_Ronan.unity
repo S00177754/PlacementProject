@@ -8258,6 +8258,7 @@ GameObject:
   - component: {fileID: 1259964543}
   - component: {fileID: 1259964544}
   - component: {fileID: 1259964545}
+  - component: {fileID: 1259964546}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -8771,6 +8772,22 @@ MonoBehaviour:
   TargetsInRange: []
   LockedOnTarget: {fileID: 0}
   IsLockedOn: 0
+--- !u!114 &1259964546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259964533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6997df407263ca74d88513ae1f2456df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MeleeTree:
+    RootNode: {fileID: 11400000, guid: b33c19e157f57464c9ed327a4ea01135, type: 2}
+  MagicTree:
+    RootNode: {fileID: 0}
 --- !u!1 &1268124909
 GameObject:
   m_ObjectHideFlags: 0
@@ -13982,7 +13999,7 @@ PrefabInstance:
     - target: {fileID: 2524591331209567221, guid: c0ba2d63b8c3be647a8fc34bc63615bf,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 300
+      value: 299.99997
       objectReference: {fileID: 0}
     - target: {fileID: 2524591331671239238, guid: c0ba2d63b8c3be647a8fc34bc63615bf,
         type: 3}

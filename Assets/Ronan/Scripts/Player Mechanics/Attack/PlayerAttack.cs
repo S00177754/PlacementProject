@@ -35,6 +35,7 @@ public class PlayerAttack : MonoBehaviour
     public int ComboAttackCount = 0;
 
     public AttackZoneManager ZoneManager;
+    private AbilityTreeManager AbilityTree;
     
     
     [HideInInspector]
@@ -43,6 +44,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {
+        AbilityTree = GetComponent<AbilityTreeManager>();
         ZoneManager.GetAllAttackPatterns();
         SheathWeapon();
        
@@ -304,10 +306,9 @@ public class PlayerAttack : MonoBehaviour
 
     public void DealDamage(int dmg)
     {
-        //EnemiesToDamage.ForEach(e => e.ApplyDamage(dmg));
-        //EnemiesToDamage.Clear();
-
-        //DisableAllAttackPatterns();
+        Debug.Log("Before Ability Tree: " + dmg);
+        dmg += AbilityTree.GetAttackBonus();
+        Debug.Log("After Ability Tree: " + dmg);
         StartCoroutine(ApplyDamage(dmg));
         ActiveAttack = null;
     }
