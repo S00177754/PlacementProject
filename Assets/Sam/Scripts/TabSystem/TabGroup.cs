@@ -8,15 +8,15 @@ public class TabGroup : MonoBehaviour
     public List<TabButton> tabButtons;
     public TabButton currentlySelected; 
     public List<Canvas> tabCanveses;
-    public Color tabIdle;
-    public Color tabHover;
-    public Color tabActive;
+    public Color tabIdleColor;
+    public Color tabHoverColor;
+    public Color tabActiveColor;
 
 
     void Start(){
-        tabIdle = new Color(0,0,0,1);
-        tabHover = new Color(0,111,255,1);
-        tabActive = new Color(0,255,0,1);
+        tabIdleColor = new Color(0,0,0,1);
+        tabHoverColor = new Color(0,111,255,1);
+        tabActiveColor = new Color(0,255,0,1);
     }
 
     public void Subscribe(TabButton tabButton){
@@ -31,32 +31,66 @@ public class TabGroup : MonoBehaviour
     }
 
     public void OnTabEnter(TabButton tabButton){
-        ResetTabs();
-        if(!tabButton.isSelected)
-            tabButton.tabUIText.color = tabHover;
+        if (tabButton.isSelected)
+            tabButton.tabUIText.color = tabActiveColor;
+        else
+            tabButton.tabUIText.color = tabHoverColor;
+
+        //ResetTabs();
+        //if(!tabButton.isSelected)
+        //    tabButton.tabUIText.color = tabHover;
     }
 
     public void OnTabExit(TabButton tabButton){
-        tabButton.tabUIText.color = tabIdle;
+        if (tabButton.isSelected)
+            tabButton.tabUIText.color = tabActiveColor;
+        else
+            tabButton.tabUIText.color = tabIdleColor;
+        //tabButton.tabUIText.color = tabIdle;
         //ResetTabs();
     }
 
-    public void OnTabSelected(TabButton tabButton){
+    public void OnTabSelected(TabButton tButton){
+        ResetTabs();
+        tButton.isSelected = !tButton.isSelected;
+
         foreach (TabButton button in tabButtons)
         {
-            button.isSelected = !button.isSelected;
+            if (button.isSelected)
+                button.tabUIText.color = tabActiveColor;
         }
-        ResetTabs();
-        tabButton.tabUIText.color = tabActive;
+
+        //foreach (TabButton button in tabButtons)
+        //{
+        //    button.isSelected = !button.isSelected;
+        //}
+        //tabButton.tabUIText.color = tabActive;
+        //ResetTabs();
     }
 
     void ResetTabs(){
-        foreach(TabButton button in tabButtons){
-            if(button.isSelected)
-            {
-                continue;
-            }
-            button.tabUIText.color = tabIdle;
+        foreach (TabButton button in tabButtons)
+        {
+            button.isSelected = false;
+        }
+        SetColors();
+        //foreach(TabButton button in tabButtons){
+        //    if(button.isSelected)
+        //    {
+        //        continue;
+        //    }
+        //    button.tabUIText.color = tabIdleColor;
+        //}
+    }
+
+    void SetColors()
+    {
+        foreach (TabButton button in tabButtons)
+        {
+            if (button.isSelected)
+                button.tabUIText.color = tabActiveColor;
+            else
+                button.tabUIText.color = tabIdleColor;
         }
     }
 }
