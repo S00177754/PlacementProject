@@ -12,6 +12,8 @@ public class InputManager : MonoBehaviour
     public ButtonStates buttonStates;
     public GameObject SelectedOnRegained;
 
+    public SimpleCarController carDebug;
+
     public RadialMenuController ActiveRadialMenu;
     public enum RadialMenuState {None, ItemWheel, ItemSetter}
     public RadialMenuState radialMenuState;
@@ -62,6 +64,7 @@ public class InputManager : MonoBehaviour
         if (buttonStates.LeftJoystickState == LeftJoystickState.Default)
         {
             GetComponent<PlayerMovement>().InputMove(context.ReadValue<Vector2>());
+            carDebug.Input(context.ReadValue<Vector2>());
             
             switch (context.phase)
             {
