@@ -8,6 +8,7 @@ public class TabGroup : MonoBehaviour
     public List<TabButton> tabButtons;
     public TabButton currentlySelected; 
     public List<Canvas> tabCanveses;
+    public Canvas activePage;
     public Color tabIdleColor;
     public Color tabHoverColor;
     public Color tabActiveColor;
@@ -17,6 +18,13 @@ public class TabGroup : MonoBehaviour
         tabIdleColor = new Color(0,0,0,1);
         tabHoverColor = new Color(0,111,255,1);
         tabActiveColor = new Color(0,255,0,1);
+    }
+
+    private void Update()
+    {
+        
+
+
     }
 
     public void Subscribe(TabButton tabButton){
@@ -53,12 +61,14 @@ public class TabGroup : MonoBehaviour
     public void OnTabSelected(TabButton tButton){
         ResetTabs();
         tButton.isSelected = !tButton.isSelected;
+        activePage = tButton.MyCanvas;
 
         foreach (TabButton button in tabButtons)
         {
             if (button.isSelected)
                 button.tabUIText.color = tabActiveColor;
         }
+        SwitchCanvas();
 
         //foreach (TabButton button in tabButtons)
         //{
@@ -92,5 +102,14 @@ public class TabGroup : MonoBehaviour
             else
                 button.tabUIText.color = tabIdleColor;
         }
+    }
+
+    void SwitchCanvas()
+    {
+        foreach (Canvas page in tabCanveses)
+        {
+            page.enabled = false;
+        }
+        activePage.enabled = true;
     }
 }

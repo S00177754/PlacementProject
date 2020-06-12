@@ -29,6 +29,7 @@ public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
         tabUIText = GetComponent<Text>();
         tabGroup.Subscribe(this);
         isSelected = false;
+        MyCanvas.enabled = false;
     }
 
     void Update()
