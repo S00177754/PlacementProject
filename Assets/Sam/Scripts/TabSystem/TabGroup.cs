@@ -20,13 +20,6 @@ public class TabGroup : MonoBehaviour
         tabActiveColor = new Color(0,255,0,1);
     }
 
-    private void Update()
-    {
-        
-
-
-    }
-
     public void Subscribe(TabButton tabButton){
         if(tabButtons == null){
             tabButtons = new List<TabButton>();
@@ -44,9 +37,6 @@ public class TabGroup : MonoBehaviour
         else
             tabButton.tabUIText.color = tabHoverColor;
 
-        //ResetTabs();
-        //if(!tabButton.isSelected)
-        //    tabButton.tabUIText.color = tabHover;
     }
 
     public void OnTabExit(TabButton tabButton){
@@ -54,8 +44,6 @@ public class TabGroup : MonoBehaviour
             tabButton.tabUIText.color = tabActiveColor;
         else
             tabButton.tabUIText.color = tabIdleColor;
-        //tabButton.tabUIText.color = tabIdle;
-        //ResetTabs();
     }
 
     public void OnTabSelected(TabButton tButton){
@@ -70,12 +58,6 @@ public class TabGroup : MonoBehaviour
         }
         SwitchCanvas();
 
-        //foreach (TabButton button in tabButtons)
-        //{
-        //    button.isSelected = !button.isSelected;
-        //}
-        //tabButton.tabUIText.color = tabActive;
-        //ResetTabs();
     }
 
     void ResetTabs(){
@@ -84,13 +66,7 @@ public class TabGroup : MonoBehaviour
             button.isSelected = false;
         }
         SetColors();
-        //foreach(TabButton button in tabButtons){
-        //    if(button.isSelected)
-        //    {
-        //        continue;
-        //    }
-        //    button.tabUIText.color = tabIdleColor;
-        //}
+
     }
 
     void SetColors()
