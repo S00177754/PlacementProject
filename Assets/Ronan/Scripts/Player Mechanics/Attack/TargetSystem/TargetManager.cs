@@ -105,17 +105,20 @@ public class TargetManager : MonoBehaviour
         if (TargetsInRange.Count > 0)
         {
             int index = 0;
-            float nearest = Vector3.Distance(transform.position, TargetsInRange[0].transform.position);
+            //float nearest = Vector3.Distance(transform.position, TargetsInRange[0].transform.position);
+            float nearest = -1;
 
             for (int i = 0; i < TargetsInRange.Count; i++)
             {   
-
-                float distCheck = Vector3.Distance(transform.position, TargetsInRange[i].transform.position);
-
-                if(distCheck < nearest)
+                if(TargetsInRange[i] != null)
                 {
-                    nearest = distCheck;
-                    index = i;
+                    float distCheck = Vector3.Distance(transform.position, TargetsInRange[i].transform.position);
+
+                    if(distCheck < nearest || nearest == -1)
+                    {
+                        nearest = distCheck;
+                        index = i;
+                    }
                 }
             }
 
