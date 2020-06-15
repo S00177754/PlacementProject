@@ -14,7 +14,7 @@ public class WeaponObj : ItemObj
 
     public override bool UseItem(PlayerController player)
     {
-        if (player.GetComponent<EquipmentManager>().ActiveWeapon != WeaponPrefab.GetComponent<WeaponInfo>())
+        if (player.GetComponent<EquipmentManager>().Loadout.EquippedWeapon != WeaponPrefab.GetComponent<WeaponInfo>())
         {
             player.GetComponent<EquipmentManager>().EquipWeapon(WeaponPrefab);
         }

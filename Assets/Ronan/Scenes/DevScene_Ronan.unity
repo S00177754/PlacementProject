@@ -8631,9 +8631,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerName: 
   GameStats:
-    Level: 0
-    MaxHealth: 100
-    MaxMP: 60
+    Experience: 0
+    SkillPoints: 0
+    AbilityPoints: 0
     StrengthStat: 5
     DexterityStat: 5
     MagicStat: 5
@@ -8646,6 +8646,8 @@ MonoBehaviour:
   PauseMenu: {fileID: 1712801840}
   Health: 40
   MP: 60
+  MaxHealth: 100
+  MaxMP: 60
   IsInvincible: 0
 --- !u!114 &1259964539
 MonoBehaviour:
@@ -8738,10 +8740,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e54a9dda7d55ba40b1d3f9fdd9fb1ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActiveWeapon: {fileID: 473255669}
-  AccessorySlotOne: {fileID: 0}
-  AccessorySlotTwo: {fileID: 0}
-  AccessorySlotThree: {fileID: 0}
+  Loadout:
+    EquippedWeapon: {fileID: 473255669}
+    AccessorySlotOne: {fileID: 0}
+    AccessorySlotTwo: {fileID: 0}
+    AccessorySlotThree: {fileID: 0}
 --- !u!114 &1259964544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8787,6 +8790,8 @@ MonoBehaviour:
   MeleeTree:
     RootNode: {fileID: 11400000, guid: b33c19e157f57464c9ed327a4ea01135, type: 2}
   MagicTree:
+    RootNode: {fileID: 0}
+  RangedTree:
     RootNode: {fileID: 0}
 --- !u!1 &1268124909
 GameObject:
@@ -9130,7 +9135,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1383127723
 GameObject:
@@ -13999,7 +14004,7 @@ PrefabInstance:
     - target: {fileID: 2524591331209567221, guid: c0ba2d63b8c3be647a8fc34bc63615bf,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 299.99997
+      value: 0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 2524591331671239238, guid: c0ba2d63b8c3be647a8fc34bc63615bf,
         type: 3}

@@ -12,5 +12,5 @@ public class MagicAbilityNode : AbilityTreeNode
     [Header("Magic Details")]
     public MagicNodeType NodeType;
     public int HealthBonus = 0;
-    public float MagicBonus = 0f;
+    public int MagicBonus = 0;
 }

@@ -98,14 +98,14 @@ public class MagicAbilityTree
         return healthBonus;
     }
 
-    public float GetMagicBoost()
+    public int GetMagicBoost()
     {
         return CalculateMagicBonus(RootNode);
     }
 
-    private float CalculateMagicBonus(MagicAbilityNode node)
+    private int CalculateMagicBonus(MagicAbilityNode node)
     {
-        float magicBonus = 0;
+        int magicBonus = 0;
 
         if (node.NodeUnlocked)
             magicBonus += node.MagicBonus;
@@ -116,5 +116,73 @@ public class MagicAbilityTree
         }
 
         return magicBonus;
+    }
+}
+
+[Serializable]
+public class RangedAbilityTree
+{
+    public RangedAbilityNode RootNode;
+
+    public int GetHealthBoost()
+    {
+        return CalculateHealthBonus(RootNode);
+    }
+
+    private int CalculateHealthBonus(RangedAbilityNode node)
+    {
+        int healthBonus = 0;
+
+        if (node.NodeUnlocked)
+            healthBonus += node.HealthBonus;
+
+        foreach (RangedAbilityNode child in node.NextNodes)
+        {
+            healthBonus += CalculateHealthBonus(child);
+        }
+
+        return healthBonus;
+    }
+
+    public int GetAttackBoost()
+    {
+        return CalculateAttackBonus(RootNode);
+    }
+
+    private int CalculateAttackBonus(RangedAbilityNode node)
+    {
+        int attackBonus = 0;
+
+        if (node.NodeUnlocked)
+            attackBonus += node.AttackBonus;
+
+        foreach (RangedAbilityNode child in node.NextNodes)
+        {
+            attackBonus += CalculateAttackBonus(child);
+        }
+
+        return attackBonus;
+    }
+
+    public int GetUnlockedCombos()
+    {
+        return CalculateComboCount(RootNode);
+    }
+
+    private int CalculateComboCount(RangedAbilityNode node)
+    {
+        int comboCount = 0;
+
+        if (node.NodeType == RangedNodeType.ComboUnlock && node.NodeUnlocked)
+        {
+            comboCount = 1;
+        }
+
+        foreach (RangedAbilityNode child in node.NextNodes)
+        {
+            comboCount += CalculateComboCount(child);
+        }
+
+        return comboCount;
     }
 }
