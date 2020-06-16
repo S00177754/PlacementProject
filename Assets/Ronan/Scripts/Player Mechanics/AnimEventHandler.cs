@@ -7,13 +7,13 @@ public class AnimEventHandler : MonoBehaviour
     public void SheatheWeapon()
     {
         
-        GetComponentInParent<PlayerAttack>().SheathWeapon();
+        //GetComponentInParent<PlayerAttack>().SheathWeapon();
     }
 
     public void UnSheatheWeapon()
     {
         
-        GetComponentInParent<PlayerAttack>().UnsheathWeapon();
+        //GetComponentInParent<PlayerAttack>().UnsheathWeapon();
     }
 
     public void ResetAttackTrigger()

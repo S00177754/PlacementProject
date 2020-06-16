@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyDroneBehaviour : EnemyBehaviour
 {
+    
     public float HoverDistance = 1f;
     public float DescentSpeed = 1f;
 

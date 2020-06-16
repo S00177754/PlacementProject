@@ -1,21 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
 {
-    [Header("Weapon")]
-    public WeaponInfo ActiveWeapon;
+    public EquipmentLoadout Loadout;
 
     private void Start()
     {
         GetComponent<PlayerAttack>().ComboAttackCount = GetAttackDetails().PrimaryAtackPattern.Count;
     }
 
-    //[Header("Accessories")]
-    public BaubleObj AccessorySlotOne;
-    public BaubleObj AccessorySlotTwo; //Lock with ability tree
-    public BaubleObj AccessorySlotThree; //Lock with ability tree
 
     public void EquipWeapon(GameObject weaponPrefab)
     {
@@ -28,25 +24,55 @@ public class EquipmentManager : MonoBehaviour
         else
         {
             GameObject go = Instantiate(weaponPrefab);
-            ActiveWeapon = go.GetComponent<WeaponInfo>();
+            Loadout.EquippedWeapon = go.GetComponent<WeaponInfo>();
             GetComponent<PlayerAttack>().WeaponSheathed = true;
-            GetComponent<PlayerAttack>().SheathWeapon();
+            go.SetActive(false);
         }
     }
 
     public void UnEquipWeapon()
     {
-        ActiveWeapon = null;
+        Loadout.EquippedWeapon = null;
     }
 
     public WeaponAttackDetailsObj GetAttackDetails()
     {
-        if (ActiveWeapon != null)
+        if (Loadout.EquippedWeapon != null)
         {
-            return ActiveWeapon.AttackDetails;
+            return Loadout.EquippedWeapon.AttackDetails;
         }
         else return null;
 
     }
 
+}
+
+[Serializable]
+public class EquipmentLoadout
+{
+    public WeaponInfo EquippedWeapon;
+
+    public BaubleObj AccessorySlotOne;
+    public BaubleObj AccessorySlotTwo; //Lock with ability tree
+    public BaubleObj AccessorySlotThree; //Lock with ability tree
+
+    public float GetAttackBonus()
+    {
+        return AccessorySlotOne.GetAttackBonus() + AccessorySlotTwo.GetAttackBonus() + AccessorySlotThree.GetAttackBonus();
+    }
+
+    public float GetDefenseBonus()
+    {
+        return AccessorySlotOne.GetDefenseBonus() + AccessorySlotTwo.GetDefenseBonus() + AccessorySlotThree.GetDefenseBonus();
+    }
+
+    public float GetHealthBonus()
+    {
+        return AccessorySlotOne.GetHealthBonus() + AccessorySlotTwo.GetHealthBonus() + AccessorySlotThree.GetHealthBonus();
+    }
+
+    public float GetMPBonus()
+    {
+        return AccessorySlotOne.GetMPBonus() + AccessorySlotTwo.GetMPBonus() + AccessorySlotThree.GetMPBonus();
+    }
 }

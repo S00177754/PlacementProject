@@ -12,6 +12,8 @@ public class InputManager : MonoBehaviour
     public ButtonStates buttonStates;
     public GameObject SelectedOnRegained;
 
+    public SimpleCarController carDebug;
+
     public RadialMenuController ActiveRadialMenu;
     public enum RadialMenuState {None, ItemWheel, ItemSetter}
     public RadialMenuState radialMenuState;
@@ -62,6 +64,7 @@ public class InputManager : MonoBehaviour
         if (buttonStates.LeftJoystickState == LeftJoystickState.Default)
         {
             GetComponent<PlayerMovement>().InputMove(context.ReadValue<Vector2>());
+            carDebug.Input(context.ReadValue<Vector2>());
             
             switch (context.phase)
             {
@@ -106,20 +109,28 @@ public class InputManager : MonoBehaviour
                 case InputActionPhase.Performed:
                     if ( context.interaction is TapInteraction)
                     {
+
                         GetComponent<PlayerAttack>().Attack();
                     }
+                    else if(context.interaction is SlowTapInteraction)
+                    {
+                        GetComponent<PlayerAttack>().ChargeAttack((float)context.duration);
+                        
+                    }
+                    GetComponent<PlayerAttack>().IsCharging = false;
                     break;
 
                 case InputActionPhase.Started:
                     if (context.interaction is SlowTapInteraction)
                     {
                         GetComponent<PlayerAttack>().Charge();
+                       
                     }
                     break;
 
                 case InputActionPhase.Canceled:
-                    GetComponent<PlayerAttack>().IsCharging = false;
-                    break;
+                        GetComponent<PlayerAttack>().IsCharging = false;
+                        break;
 
                 default:
                     print(context.phase);
