@@ -14,4 +14,24 @@ public class BaubleObj : ItemObj
     {
         Type = ItemType.Bauble;
     }
+
+    public float GetAttackBonus()
+    {
+        return AttackBonus;
+    }
+
+    public float GetDefenseBonus()
+    {
+        return DefenseBonus;
+    }
+
+    public float GetHealthBonus()
+    {
+        return MaxHealthBonus;
+    }
+
+    public float GetMPBonus()
+    {
+        return MaxMPBonus;
+    }
 }

@@ -252,7 +252,6 @@ public class PlayerAttack : MonoBehaviour
                 ActivateAttackZone(ActiveAttack);
                 DealMeleeDamage(ActiveAttack.DamageAmount);
                 AttackCooldownTimer = CooldownTimer;
-                //IsAttacking = false;
 
                 ComboAttackIndex++;
                 int abilityLimit = AbilityTree.GetMeleeComboLimit();

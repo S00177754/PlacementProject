@@ -20,7 +20,15 @@ public class GameStateController : MonoBehaviour
 
     private void Start()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(this);
+        }
+
         SetGameState(GameState.Explore);
     }
 

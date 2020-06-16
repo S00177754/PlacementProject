@@ -8,6 +8,7 @@ public class EnemyBehaviour : MonoBehaviour
 {
     protected NavMeshAgent Navigator;
     protected EnemyTrackerComponent Tracker;
+    public PathUserID PathID;
 
     [Header("Enemy Details")]
     public float AttackRange = 1f;

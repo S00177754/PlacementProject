@@ -55,4 +55,24 @@ public class EquipmentLoadout
     public BaubleObj AccessorySlotOne;
     public BaubleObj AccessorySlotTwo; //Lock with ability tree
     public BaubleObj AccessorySlotThree; //Lock with ability tree
+
+    public float GetAttackBonus()
+    {
+        return AccessorySlotOne.GetAttackBonus() + AccessorySlotTwo.GetAttackBonus() + AccessorySlotThree.GetAttackBonus();
+    }
+
+    public float GetDefenseBonus()
+    {
+        return AccessorySlotOne.GetDefenseBonus() + AccessorySlotTwo.GetDefenseBonus() + AccessorySlotThree.GetDefenseBonus();
+    }
+
+    public float GetHealthBonus()
+    {
+        return AccessorySlotOne.GetHealthBonus() + AccessorySlotTwo.GetHealthBonus() + AccessorySlotThree.GetHealthBonus();
+    }
+
+    public float GetMPBonus()
+    {
+        return AccessorySlotOne.GetMPBonus() + AccessorySlotTwo.GetMPBonus() + AccessorySlotThree.GetMPBonus();
+    }
 }
