@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: MSQ1S1
   m_EditorClassIdentifier: Assembly-CSharp::NPCQuestStep
-  Description: 
-  isComplete: 0
-  TargetNPC: {fileID: 0}
+  Description: Step 1 in the quest
+  isComplete: 1
+  TargetNPC: {fileID: 11400000, guid: f398a0f1be43bea4ca2cf3893e7aafe8, type: 2}
