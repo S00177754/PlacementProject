@@ -9,8 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca7e3920ae57c48d9acc6e3fc545c3a2, type: 3}
-  m_Name: MSQOne_Step2
+  m_Script: {fileID: 11500000, guid: 0d71134897bbdfe40bb437f0e4677860, type: 3}
+  m_Name: Bauble Object
   m_EditorClassIdentifier: 
-  Description: Collect this many things
-  isComplete: 0
+  Name: 
+  Type: 2
+  Description: 
+  AttackBonus: 0
+  DefenseBonus: 0
+  MaxHealthBonus: 0
+  MaxMPBonus: 0

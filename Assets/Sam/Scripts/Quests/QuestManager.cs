@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "QuestManager", menuName = "Quest System/Quest")]
+[CreateAssetMenu(fileName = "QuestManager", menuName = "Quest System/QuestManager")]
 public class QuestManager : ScriptableObject
 {
     [SerializeField]
-    Queue<Quest> MainScenarioQuests;
+    List<Quest> MainScenarioQuests;
     [SerializeField]
     List<Quest> SideQuests;
     [SerializeField]
