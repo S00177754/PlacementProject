@@ -7,6 +7,8 @@ public class QuestSelection : MonoBehaviour, IPointerEnterHandler, IPointerClick
 {
     public void OnPointerClick(PointerEventData eventData)
     {
+        //Switch active panel to show current quest details
+
         throw new System.NotImplementedException();
     }
 

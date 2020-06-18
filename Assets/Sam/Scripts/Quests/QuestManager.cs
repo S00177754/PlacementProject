@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestManager : MonoBehaviour
+[CreateAssetMenu(fileName = "QuestManager", menuName = "Quest System/Quest")]
+public class QuestManager : ScriptableObject
 {
+    [SerializeField]
     Queue<Quest> MainScenarioQuests;
+    [SerializeField]
     List<Quest> SideQuests;
     [SerializeField]
     List<Quest> ActiveSides;
-
+    [SerializeField]
     List<QuestReward> Rewards;
-    //Checking new setup on Desktop
 
     public void MoveToNextStepMSQ(Quest moveOn){
         if(moveOn.isComplete && moveOn.isActive){
@@ -38,7 +40,3 @@ public class QuestManager : MonoBehaviour
     }
 }
 
-public class jsonWriter
-{
-    
-}
