@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad88e7aa6168e284f81c0030466895b4, type: 3}
+  m_Name: Map Grid Object
+  m_EditorClassIdentifier: 
+  cells:
+  - {fileID: 11400000, guid: 53eb0790b6eca1945b7703e1397fe21b, type: 2}
+  - {fileID: 11400000, guid: d86ab112f93833040812230a6ded03e1, type: 2}
+  cellSize: 1000
