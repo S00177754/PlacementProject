@@ -99,6 +99,24 @@
               <!-- Blog Highlight Template-->
               <div class="tile is-child">
                 <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_9"></a>
+                  <p class="title">Enemy AI and Attack Cooldowns - #9</p>
+                  <p>
+                     To further add to the enemy AI which I mention previously, I implimented a view "cone" for the enemies to use as their field of vision. The enemy will only start attacking/following the player once the player crosses their field of view, the enemy will continue to pursue the player until they leave the specified range and then they will return to their patrol path.
+                  </p>           
+                  <p>I then returned to the player attack system as it felt slugish and not enjoyable from a player perspective, to counter this issue I have removed the animation lock based combat and instead implimented a cooldown based system similar to that in a hack and slash game. Having seperated the attack logic from the animations, I then reimplimented the charge attack to function correctly with cooldowns. WHile I was implimenting the cooldown based attack, I decided it would make sense to allow the player to do a slam attack which will be possible if the player jumps in the air and hits the attack button. Once they reach the ground it will trigger the attack causing damage in the specified attack zone based on the weapon detail object I have mentioned before.</p>      
+                  <p> With the addition of this new cooldown based system, I needed to reimpliment the ability trees due to a strange corruption of the scriptable objects, this was not a huge problem however as I was able to quickly rectify the issue and impliment a further tree for ranged attacks and start on the magic ability tree. As the new ability trees are implimented, I have also been implimenting them into the players attack script, at the time of writing the player can used ranged and melee weapons to battle enemies. </p>
+                  <p>To change things up for a little bit and refresh my mind from working on the attack system, I took a look into developing a vehicle system for the player to quickly travel throughout the open world. As it is something I have never taken a look into in the past, I read a few unity articles and documentation on wheel colliders and how to construct a simple vehicle, from here I implimneted it so that it would simply slot into the input manager when it is complete. There is still quite a bit of work to put into the system but at least the foundation for it is there.</p>
+                  <p>Looking ahead, I hope to have the magic system implimeneted by the end of the week and continue work on the saving and loading of game data. I have begun the implimentation of this but it is quite a lengthy process due to the many small details which need to be taken into consideration such as saving the locations of nearby enemies so the player doesnt save and reload to try and escape a dire situation, the main saving logic is there but I need tot take into accound the saving and loading of these many other objects.</p>
+                  <p>
+                    By Ronan Cassidy - 15th of June 2020
+                  </p>
+                </article>
+              </div>
+              <br/>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
                   <a id="blog_post_8"></a>
                   <p class="title">Inventory & Enemies - #8</p>
                   <p>
@@ -118,6 +136,7 @@
                   </p>
                 </article>
               </div>
+<br/>
 
               <div class="tile is-child">
                 <article class="tile is-child notification has-background-light has-text-black">
