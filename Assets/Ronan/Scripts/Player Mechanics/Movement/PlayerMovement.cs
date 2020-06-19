@@ -114,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
         ResetVelocity();
 
         Move(input_Move);
-        if (IsCameraFocusedOn)
+        if (IsCameraFocusedOn && FocusPosition != null)
         {
             Quaternion modelRotation = PlayerModel.rotation; //Rotation of model
             //transform.LookAt(FocusPosition.transform);

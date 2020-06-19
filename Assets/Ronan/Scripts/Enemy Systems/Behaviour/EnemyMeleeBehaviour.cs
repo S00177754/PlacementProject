@@ -40,7 +40,7 @@ public class EnemyMeleeBehaviour : EnemyBehaviour
                 Navigator.speed = ChaseSpeed;
             }
         }
-        else
+        else if(NextEnemyNode != null)
         {
             if (NeedsRecalculation)
             {

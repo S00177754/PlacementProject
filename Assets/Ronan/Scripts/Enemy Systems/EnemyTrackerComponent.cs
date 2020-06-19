@@ -30,7 +30,7 @@ public class EnemyTrackerComponent : MonoBehaviour
             {
                 IsTracking = true;
                 trackedObject = player.gameObject;
-                Debug.Log(string.Concat("Is Now Tracking: ", player));
+                //Debug.Log(string.Concat("Is Now Tracking: ", player));
             }
         }
     }
@@ -55,7 +55,7 @@ public class EnemyTrackerComponent : MonoBehaviour
         {
             IsTracking = false;
             trackedObject = null;
-            Debug.Log(string.Concat("Stopped Tracking"));
+            //Debug.Log(string.Concat("Stopped Tracking"));
         }
     }
 

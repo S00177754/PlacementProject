@@ -43,7 +43,7 @@ public class EnemyRangedBehaviour : EnemyBehaviour
                 Navigator.speed = ChaseSpeed;
             }
         }
-        else
+        else if (NextEnemyNode != null)
         {
             if (NextEnemyNode != null)
             {

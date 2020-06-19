@@ -6,10 +6,14 @@ using UnityEngine.AI;
 [RequireComponent(typeof(EnemyTrackerComponent))]
 public class EnemyBehaviour : MonoBehaviour
 {
+    public static int EnemyCount = 0;
+
     protected NavMeshAgent Navigator;
     protected EnemyTrackerComponent Tracker;
 
+
     [Header("Enemy Details")]
+    public string SpawnerID;
     public float AttackRange = 1f;
     public int DamageAmount = 1;
     public float AttackCooldown = 2f;
@@ -25,10 +29,16 @@ public class EnemyBehaviour : MonoBehaviour
 
     protected virtual void Start()
     {
+        EnemyCount++;
         Tracker = GetComponent<EnemyTrackerComponent>();
 
         if(NextEnemyNode != null)
         GetFullPath();
+    }
+
+    private void OnDestroy()
+    {
+        EnemyCount--;
     }
 
     public bool HasLineOfSight()
@@ -71,6 +81,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void GetFullPath()
     {
+        EnemyPath.Clear();
         EnemyPath.Add(NextEnemyNode);
         AddNextNode(NextEnemyNode);   
     }
