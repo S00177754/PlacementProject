@@ -37,7 +37,7 @@ public class EnemyMeleeBehaviour : EnemyBehaviour
                 IsCooldowned();
 
                 MoveTo(Tracker.trackedObject.transform.position);
-                Navigator.speed = ChaseSpeed;
+                Navigator.speed = Stats.Info.ChaseSpeed;
             }
         }
         else if(NextEnemyNode != null)
@@ -48,7 +48,7 @@ public class EnemyMeleeBehaviour : EnemyBehaviour
             }
 
             MoveTo(NextEnemyNode.transform.position);
-            Navigator.speed = PatrolSpeed;
+            Navigator.speed = Stats.Info.PatrolSpeed;
 
             CooldownTimer = 0f;
         }
@@ -59,7 +59,7 @@ public class EnemyMeleeBehaviour : EnemyBehaviour
         if(AttackZone != null)
         {
             AttackZone.SetActive(true);
-            AttackZone.GetComponent<EnemyDamageZone>().SetDamageAmount(DamageAmount);
+            AttackZone.GetComponent<EnemyDamageZone>().SetDamageAmount(Stats.Info.Attack);
         }
     }
 

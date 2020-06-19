@@ -10,17 +10,10 @@ public class EnemyBehaviour : MonoBehaviour
 
     protected NavMeshAgent Navigator;
     protected EnemyTrackerComponent Tracker;
-
+    protected EnemyStatsScript Stats;
 
     [Header("Enemy Details")]
-    public string SpawnerID;
-    public float AttackRange = 1f;
-    public int DamageAmount = 1;
-    public float AttackCooldown = 2f;
     protected float CooldownTimer = 0f;
-
-    public float PatrolSpeed = 2f;
-    public float ChaseSpeed = 4f;
 
     public List<EnemyPathNode> EnemyPath;
     public EnemyPathNode NextEnemyNode;
@@ -61,7 +54,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public bool IsCooldowned()
     {
-        if (CooldownTimer >= AttackCooldown)
+        if (CooldownTimer >= Stats.Info.AttackCooldown)
         {
             CooldownTimer = 0f;
             return true;
@@ -72,7 +65,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public bool IsInAttackRange()
     {
-        return Tracker.GetDistanceToTrackedObject() <= AttackRange;
+        return Tracker.GetDistanceToTrackedObject() <= Stats.Info.AttackRange;
     }
 
 

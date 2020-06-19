@@ -53,7 +53,7 @@ public class EnemyTurretBehaviour : EnemyBehaviour
         {
             Rigidbody rb = Instantiate(ProjectilePrefab, BulletSpawnPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.velocity = (Tracker.trackedObject.transform.position - BulletSpawnPoint.position).normalized * ProjectileVelocity;
-            rb.GetComponent<ProjectileBehaviour>().DamageValue = DamageAmount;
+            rb.GetComponent<ProjectileBehaviour>().DamageValue = Stats.Info.Attack;
         }
     }
 

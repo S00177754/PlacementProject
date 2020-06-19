@@ -164,8 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3960288a21c7ea94781693013919d3a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Info: {fileID: 11400000, guid: 17797bb7a5d4e5745ae76faae395bcef, type: 2}
   Health: 20
-  MaxHealth: 20
 --- !u!114 &7065919070369343344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,8 +180,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TriggerZone: {fileID: 7065919070369343346}
   TrackingRadius: 20
-  ViewAngle: 90
-  RestrictToView: 1
   IsTracking: 0
   trackedObject: {fileID: 0}
   ViewCone: {fileID: 8960661049383068362}
@@ -197,11 +195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e21aa20702b2b4480df23637099d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackRange: 3
-  DamageAmount: 1
-  AttackCooldown: 2
-  PatrolSpeed: 3
-  ChaseSpeed: 6
   EnemyPath: []
   NextEnemyNode: {fileID: 0}
   HoverDistance: 2.5

@@ -28,7 +28,7 @@ public class EnemyDroneBehaviour : EnemyBehaviour
             else
             {
                 MoveTo(Tracker.trackedObject.transform.position);
-                Navigator.speed = ChaseSpeed;
+                Navigator.speed = Stats.Info.ChaseSpeed;
             }
 
         }
@@ -41,7 +41,7 @@ public class EnemyDroneBehaviour : EnemyBehaviour
 
             //transform.position = Vector3.MoveTowards(transform.position, NextEnemyNode.transform.position, PatrolSpeed * Time.deltaTime);
             MoveTo(NextEnemyNode.transform.position);
-            Navigator.speed = PatrolSpeed;
+            Navigator.speed = Stats.Info.PatrolSpeed;
         }
     }
 

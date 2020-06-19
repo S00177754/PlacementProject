@@ -40,7 +40,7 @@ public class EnemyRangedBehaviour : EnemyBehaviour
                 IsCooldowned();
 
                 MoveTo(Tracker.trackedObject.transform.position);
-                Navigator.speed = ChaseSpeed;
+                Navigator.speed = Stats.Info.ChaseSpeed;
             }
         }
         else if (NextEnemyNode != null)
@@ -55,7 +55,7 @@ public class EnemyRangedBehaviour : EnemyBehaviour
 
                 //RotateTo(NextEnemyNode.gameObject);
                 MoveTo(NextEnemyNode.gameObject.transform.position);
-                Navigator.speed = PatrolSpeed;
+                Navigator.speed = Stats.Info.PatrolSpeed;
 
                 CooldownTimer = 0f;
             }
@@ -68,7 +68,7 @@ public class EnemyRangedBehaviour : EnemyBehaviour
         {
             Rigidbody rb = Instantiate(ProjectilePrefab, BulletSpawnPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.velocity = (Tracker.trackedObject.transform.position - BulletSpawnPoint.position).normalized * ProjectileVelocity;
-            rb.GetComponent<ProjectileBehaviour>().DamageValue = DamageAmount;
+            rb.GetComponent<ProjectileBehaviour>().DamageValue = Stats.Info.Attack;
         }
     }
 
@@ -82,8 +82,11 @@ public class EnemyRangedBehaviour : EnemyBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, AttackRange);
+        if (Stats != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, Stats.Info.AttackRange);
+        }
     }
 
 }
