@@ -22,11 +22,21 @@ public class EnemyBehaviour : MonoBehaviour
 
     protected virtual void Start()
     {
+
         EnemyCount++;
+        Stats = GetComponent<EnemyStatsScript>();
         Tracker = GetComponent<EnemyTrackerComponent>();
 
         if(NextEnemyNode != null)
         GetFullPath();
+    }
+
+    protected virtual void Update()
+    {
+        if(Vector3.Distance(PlayerController.Instance.transform.position,transform.position) > PlayerSettings.EnemyDespawnRange)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnDestroy()

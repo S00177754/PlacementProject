@@ -8,6 +8,11 @@ public class EnemyStatsScript : MonoBehaviour
     public int Health = 20;
     //public int MaxHealth = 20;
 
+    private void Start()
+    {
+        Health = Info.Health;
+    }
+
     public void ApplyDamage(int value)
     {
         Health -= value;

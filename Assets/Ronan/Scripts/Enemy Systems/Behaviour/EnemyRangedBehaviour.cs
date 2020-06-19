@@ -17,7 +17,7 @@ public class EnemyRangedBehaviour : EnemyBehaviour
 
     }
 
-    private void Update()
+    protected override void Update()
     {
         if (Tracker.IsTracking)
         {
@@ -60,6 +60,8 @@ public class EnemyRangedBehaviour : EnemyBehaviour
                 CooldownTimer = 0f;
             }
         }
+
+        base.Update();
     }
 
     public void FireProjectile()

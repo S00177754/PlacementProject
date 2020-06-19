@@ -25,7 +25,7 @@ public class EnemyTurretBehaviour : EnemyBehaviour
         base.Start();
     }
 
-    private void Update()
+    protected override void Update()
     {
         if (Tracker.IsTracking)
         {
@@ -45,6 +45,8 @@ public class EnemyTurretBehaviour : EnemyBehaviour
         {
             CooldownTimer = 0f;
         }
+
+        base.Update();
     }
 
     public void FireProjectile()

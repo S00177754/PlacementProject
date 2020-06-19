@@ -15,7 +15,7 @@ public class EnemyDroneBehaviour : EnemyBehaviour
         base.Start();
     }
 
-    private void Update()
+    protected override void Update()
     {
         if (Tracker.IsTracking)
         {
@@ -43,6 +43,8 @@ public class EnemyDroneBehaviour : EnemyBehaviour
             MoveTo(NextEnemyNode.transform.position);
             Navigator.speed = Stats.Info.PatrolSpeed;
         }
+
+        base.Update();
     }
 
     public float CheckDistanceToGround()

@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour
 [Serializable]
 public class PlayerSettings
 {
+    public static float EnemyDespawnRange = 150f;
+
     [Header("Camera Settings")]
     public bool InvertYAxis = true;
     public float CameraSensitivity = 2f;

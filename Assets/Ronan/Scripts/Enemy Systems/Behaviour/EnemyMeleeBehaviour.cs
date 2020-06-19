@@ -16,7 +16,7 @@ public class EnemyMeleeBehaviour : EnemyBehaviour
         
     }
 
-    private void Update()
+    protected override void Update()
     {
         if (Tracker.IsTracking)
         {
@@ -52,6 +52,8 @@ public class EnemyMeleeBehaviour : EnemyBehaviour
 
             CooldownTimer = 0f;
         }
+
+        base.Update();
     }
 
     private void Attack()
