@@ -32,7 +32,7 @@ public class EnemyDroneBehaviour : EnemyBehaviour
             }
 
         }
-        else
+        else if (NextEnemyNode != null)
         {
             if (NeedsRecalculation)
             {

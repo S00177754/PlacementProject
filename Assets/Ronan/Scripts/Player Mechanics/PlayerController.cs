@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    static public PlayerController Instance;
+
     public string PlayerName;
     public CharacterStats GameStats;
     public PlayerSettings Settings;
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         //Cursor.lockState = CursorLockMode.Confined;
+        Instance = this;
     }
 
     public void ApplyDamage(int amount)
