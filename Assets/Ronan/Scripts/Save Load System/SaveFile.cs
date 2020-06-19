@@ -9,4 +9,7 @@ public class SaveFile
     public string PlayerName;
     public string PlayerLevel;
     public InventoryObj Inventory;
+    public List<GameObject> NearbyEnemies;
 }
+
+

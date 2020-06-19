@@ -64,7 +64,7 @@ public class InputManager : MonoBehaviour
         if (buttonStates.LeftJoystickState == LeftJoystickState.Default)
         {
             GetComponent<PlayerMovement>().InputMove(context.ReadValue<Vector2>());
-            carDebug.Input(context.ReadValue<Vector2>());
+            //carDebug.Input(context.ReadValue<Vector2>());
             
             switch (context.phase)
             {

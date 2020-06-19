@@ -25,7 +25,7 @@ public class EnemyTurretBehaviour : EnemyBehaviour
         base.Start();
     }
 
-    private void Update()
+    protected override void Update()
     {
         if (Tracker.IsTracking)
         {
@@ -45,6 +45,8 @@ public class EnemyTurretBehaviour : EnemyBehaviour
         {
             CooldownTimer = 0f;
         }
+
+        base.Update();
     }
 
     public void FireProjectile()
@@ -53,7 +55,7 @@ public class EnemyTurretBehaviour : EnemyBehaviour
         {
             Rigidbody rb = Instantiate(ProjectilePrefab, BulletSpawnPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.velocity = (Tracker.trackedObject.transform.position - BulletSpawnPoint.position).normalized * ProjectileVelocity;
-            rb.GetComponent<ProjectileBehaviour>().DamageValue = DamageAmount;
+            rb.GetComponent<ProjectileBehaviour>().DamageValue = Stats.Info.Attack;
         }
     }
 
