@@ -230,7 +230,7 @@ public class InputManager : MonoBehaviour
     public void OnInteract(InputAction.CallbackContext context)
     {
 
-        if (buttonStates.WestBtnState == WestButtonState.PickupItem)
+        if (buttonStates.WestBtnState == WestButtonState.PickupItem) //Change To Switch, more efficient
         {
             switch (context.phase)
             {
@@ -269,6 +269,23 @@ public class InputManager : MonoBehaviour
                     }
                     break;
 
+                case InputActionPhase.Canceled:
+                default:
+                    break;
+            }
+        }
+        else if (buttonStates.WestBtnState == WestButtonState.TravelPoint)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    if (context.interaction is SlowTapInteraction || context.interaction is TapInteraction)
+                    {
+                        Debug.Log("Activate teleport Stone");
+                    }
+                    break;
+
+                case InputActionPhase.Started:
                 case InputActionPhase.Canceled:
                 default:
                     break;
@@ -432,7 +449,7 @@ public class InputManager : MonoBehaviour
 public enum NorthButtonState { Default }
 public enum EastButtonState { Default }
 public enum SouthButtonState { Default, RadialMenu }
-public enum WestButtonState { Default, PickupItem }
+public enum WestButtonState { Default, PickupItem, TravelPoint }
 
 
 public enum LeftShoulderState { Default }

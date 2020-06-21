@@ -23,13 +23,14 @@ public class InventoryManager : MonoBehaviour
             Inventory.AddItem(item.Item, 1);
             Destroy(ItemOnGround.gameObject);
 
-            GetComponent<PlayerController>().HUDController.SendItemNotification(ItemOnGround.GetComponent<CollectableItem>().Item.Name,null,Color.blue);
+            GetComponent<PlayerController>().HUDController.SendNotification(ItemOnGround.GetComponent<CollectableItem>().Item.Name,null,Color.blue);
             GetComponent<PlayerController>().HUDController.HideItemNotification();
             GetComponent<InputManager>().buttonStates.SetState(WestButtonState.Default);
             ItemOnGround = null;
         }
     }
-
+     
+    //Move to interaction manager script
     private void OnTriggerEnter(Collider other)
     {
         if (other != null)
@@ -39,6 +40,11 @@ public class InventoryManager : MonoBehaviour
                 GetComponent<PlayerController>().HUDController.SetupItemNotification(other.GetComponent<CollectableItem>().Item.Name);
                 GetComponent<InputManager>().buttonStates.SetState(WestButtonState.PickupItem);
                 ItemOnGround = other;
+            }
+            else if(other.tag == "TravelPoint")
+            {
+                GetComponent<PlayerController>().HUDController.SetupNotification("Activate fast travel");
+                GetComponent<InputManager>().buttonStates.SetState(WestButtonState.TravelPoint);
             }
         }
     }
