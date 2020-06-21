@@ -30,37 +30,12 @@ public class InventoryManager : MonoBehaviour
         }
     }
      
-    //Move to interaction manager script
-    private void OnTriggerEnter(Collider other)
+    public void SetItemOnGround(Collider other)
     {
-        if (other != null)
-        {
-            if (other.tag == "Pickup")
-            {
-                GetComponent<PlayerController>().HUDController.SetupItemNotification(other.GetComponent<CollectableItem>().Item.Name);
-                GetComponent<InputManager>().buttonStates.SetState(WestButtonState.PickupItem);
-                ItemOnGround = other;
-            }
-            else if(other.tag == "TravelPoint")
-            {
-                GetComponent<PlayerController>().HUDController.SetupNotification("Activate fast travel");
-                GetComponent<InputManager>().buttonStates.SetState(WestButtonState.TravelPoint);
-            }
-        }
+        ItemOnGround = other;
     }
 
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other != null)
-        {
-            if (other.tag == "Pickup")
-            {
-                GetComponent<PlayerController>().HUDController.HideItemNotification();
-                GetComponent<InputManager>().buttonStates.SetState(WestButtonState.Default);
-                ItemOnGround = null;
-            }
-        }
-    }
+    
 
 }

@@ -28,10 +28,6 @@ public class TravelPoint : MonoBehaviour
         {
             TeleportUnlocked = true;
         }
-        else
-        {
-            //Show UI for teleportation List
-        }
     }
 
     private void UnlockTeleportPoint()
@@ -39,7 +35,7 @@ public class TravelPoint : MonoBehaviour
         TeleportUnlocked = true;
     }
 
-    private void TeleportTo(string locationName,GameObject obj)
+    static public void TeleportTo(string locationName,GameObject obj)
     {
         if (FastTravelPoints.ContainsKey(locationName))
         {

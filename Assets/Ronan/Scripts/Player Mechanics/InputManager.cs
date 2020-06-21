@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -61,11 +62,10 @@ public class InputManager : MonoBehaviour
     //PLAYER 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (buttonStates.LeftJoystickState == LeftJoystickState.Default)
+        switch(buttonStates.LeftJoystickState)
         {
+            case LeftJoystickState.Default:
             GetComponent<PlayerMovement>().InputMove(context.ReadValue<Vector2>());
-            //carDebug.Input(context.ReadValue<Vector2>());
-            
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
@@ -81,29 +81,37 @@ public class InputManager : MonoBehaviour
                     print(context.phase);
                     break;
             }
+                break;
 
-            
+            default:
+                break;
         }
     }
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        if (buttonStates.RightJoystickState == RightJoystickState.Default)
+        switch(buttonStates.RightJoystickState)
         {
+            case RightJoystickState.Default:
             GetComponent<PlayerMovement>().InputLook(context.ReadValue<Vector2>());
-        }
-        else if(buttonStates.RightJoystickState == RightJoystickState.RadialMenu)
-        {
+                break;
+
+            case RightJoystickState.RadialMenu:
             ActiveRadialMenu.Input(context.ReadValue<Vector2>());
             GetComponent<PlayerMovement>().InputLook(Vector2.zero);
+                break;
+
+            default:
+                break;
         }
 
     }
 
     public void OnPrimaryAttack(InputAction.CallbackContext context)
     {
-        if(buttonStates.EastBtnState == EastButtonState.Default)
+        switch(buttonStates.EastBtnState)
         {
+            case EastButtonState.Default:
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
@@ -136,14 +144,18 @@ public class InputManager : MonoBehaviour
                     print(context.phase);
                     break;
             }
+                break;
+
+            default:
+                break;
         }
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (buttonStates.SouthBtnState == SouthButtonState.Default)
+        switch(buttonStates.SouthBtnState)
         {
-
+            case SouthButtonState.Default:
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
@@ -160,17 +172,18 @@ public class InputManager : MonoBehaviour
                     print(context.phase);
                     break;
             }
+                break;
 
-
-        }
-        
+            default:
+                break;
+        }       
     }
 
     public void OnSprint(InputAction.CallbackContext context)
     {
-        if (buttonStates.LeftJoystickState == LeftJoystickState.Default)
+        switch(buttonStates.LeftJoystickState)
         {
-
+            case LeftJoystickState.Default:
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
@@ -187,17 +200,19 @@ public class InputManager : MonoBehaviour
                     print(context.phase);
                     break;
             }
+                break;
 
-
+            default:
+                break;
         }
 
     }
 
     public void OnCrouch(InputAction.CallbackContext context)
     {
-        if (buttonStates.RightJoystickState == RightJoystickState.Default)
+        switch(buttonStates.RightJoystickState)
         {
-
+            case RightJoystickState.Default:
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
@@ -214,24 +229,31 @@ public class InputManager : MonoBehaviour
                     print(context.phase);
                     break;
             }
+                break;
 
-
+            default:
+                break;
         }
     }
 
     public void OnPause(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        switch(context.phase)
         {
+            case InputActionPhase.Performed:
             GameStateController.SetGameState(GameState.Paused);
+                break;
+
+            default:
+                break;
         }
     }
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-
-        if (buttonStates.WestBtnState == WestButtonState.PickupItem) //Change To Switch, more efficient
+        switch(buttonStates.WestBtnState) //Change To Switch, more efficient
         {
+            case WestButtonState.PickupItem:
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
@@ -246,9 +268,9 @@ public class InputManager : MonoBehaviour
                 default:
                     break;
             }
-        } //Pickup Item
-        else if (buttonStates.WestBtnState == WestButtonState.Default)
-        {
+                break;
+
+            case WestButtonState.Default:
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
@@ -273,9 +295,9 @@ public class InputManager : MonoBehaviour
                 default:
                     break;
             }
-        }
-        else if (buttonStates.WestBtnState == WestButtonState.TravelPoint)
-        {
+                break;
+
+            case WestButtonState.TravelPoint:
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
@@ -290,14 +312,18 @@ public class InputManager : MonoBehaviour
                 default:
                     break;
             }
+                break;
+
+            default:
+                break;
         }
     }
 
     public void OnLeftShoulder(InputAction.CallbackContext context)
     {
-        if (buttonStates.LeftShdState == LeftShoulderState.Default)
+        switch(buttonStates.LeftShdState)
         {
-
+            case LeftShoulderState.Default:
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
@@ -315,16 +341,18 @@ public class InputManager : MonoBehaviour
                     print(context.phase);
                     break;
             }
+                break;
 
-
+            default:
+                break;
         }
     }
 
     public void OnRightShoulder(InputAction.CallbackContext context)
     {
-        if (buttonStates.RightShdState == RightShoulderState.Default)
+        switch(buttonStates.RightShdState)
         {
-
+            case RightShoulderState.Default:
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
@@ -351,16 +379,18 @@ public class InputManager : MonoBehaviour
                     print(context.phase);
                     break;
             }
+                break;
 
-
+            default:
+            break;
         }
     }
 
     public void OnRightTrigger(InputAction.CallbackContext context)
     {
-        if (buttonStates.RightTrgState == RightTriggerState.Default)
+        switch(buttonStates.RightTrgState)
         {
-
+            case RightTriggerState.Default:
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
@@ -376,8 +406,10 @@ public class InputManager : MonoBehaviour
                     print(context.phase);
                     break;
             }
+                break;
 
-
+            default:
+                break;
         }
     }
 
@@ -385,40 +417,60 @@ public class InputManager : MonoBehaviour
 
     public void OnResume(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Performed)
+        switch(context.phase)
         {
+            case InputActionPhase.Performed:
             GameStateController.ResumePreviousState();
+                break;
+
+            default:
+                break;
             
         }
     }
 
     public void OnCancel(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        switch(context.phase)
         {
+            case InputActionPhase.Performed:
             GetComponent<PlayerController>().PauseMenu.PreviousMenu();
-            
+                break;
+
+            default:
+                break;
         }
 
     }
 
     public void OnRightJoystickUI(InputAction.CallbackContext context)
     {
-        if (buttonStates.RightJoystickState == RightJoystickState.RadialMenu)
+        switch(buttonStates.RightJoystickState)
         {
-            if(radialMenuState == RadialMenuState.ItemSetter)
+            case RightJoystickState.RadialMenu:
+            switch(radialMenuState)
             {
+                case RadialMenuState.ItemSetter:
                 (ActiveRadialMenu as ItemSettingRadialMenu).Input(context.ReadValue<Vector2>());
+                    break;
+
+                default:
+                    break;
             }
             GetComponent<PlayerMovement>().InputLook(Vector2.zero);
+                break;
+
+            default:
+                break;
         }
 
     }
 
     public void OnSubmit(InputAction.CallbackContext context)
     {
-        if (buttonStates.SouthBtnState == SouthButtonState.RadialMenu)
+        switch(buttonStates.SouthBtnState)
         {
+            case SouthButtonState.RadialMenu:
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
@@ -440,6 +492,10 @@ public class InputManager : MonoBehaviour
                     print(context.phase);
                     break;
             }
+                break;
+
+            default:
+                break;
         }
     }
 
