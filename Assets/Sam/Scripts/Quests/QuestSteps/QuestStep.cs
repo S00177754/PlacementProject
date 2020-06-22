@@ -11,24 +11,3 @@ public class QuestStep : ScriptableObject {
     protected string Description;
     public bool isComplete;
 }
-
-//public class LocationQuestStep : QuestStep
-//{
-   
-//}
-
-//public class NPCQuestStep : QuestStep
-//{
-    
-//}
-
-//public class QuantityQuestStep : QuestStep
-//{
-    
-//}
-
-
-//public class MultiQuantityQuestStep : QuestStep
-//{
-    
-//}
