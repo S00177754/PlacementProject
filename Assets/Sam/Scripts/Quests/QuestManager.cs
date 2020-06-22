@@ -7,12 +7,40 @@ public class QuestManager : ScriptableObject
 {
     [SerializeField]
     List<Quest> MainScenarioQuests;
+
+    public Quest ActiveMain;
+
     [SerializeField]
     List<Quest> SideQuests;
-    [SerializeField]
-    List<Quest> ActiveSides;
+
+    public List<Quest> ActiveSides;
+    public List<Quest> CompletedSides;
+
     [SerializeField]
     List<QuestReward> Rewards;
+
+    void Start()
+    {
+        //Check next MSQ
+        //If 
+        foreach (Quest main in MainScenarioQuests)
+        {
+            if (!main.isComplete)
+            {
+                ActiveMain = main;
+            }
+            else
+                continue;
+        }
+
+        foreach (Quest side in SideQuests)
+        {
+            if (side.isActive)
+                ActiveSides.Add(side);
+            else if (side.isComplete)
+                CompletedSides.Add(side);
+        }
+    }
 
     public void MoveToNextStepMSQ(Quest moveOn){
         if(moveOn.isComplete && moveOn.isActive){
@@ -21,11 +49,11 @@ public class QuestManager : ScriptableObject
     }
 
     public void LoadMSQ(){
-        //read in quests from JSON?
+
     }
 
     public void LoadSideQuests(){
-        //read from JSON?
+
     }
     public void CheckNextQuest(){
 

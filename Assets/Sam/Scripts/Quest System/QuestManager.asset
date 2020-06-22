@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfe18b2149e74dd28b2c4976d87a4d8, type: 3}
   m_Name: QuestManager
   m_EditorClassIdentifier: 
-  MainScenarioQuests: []
+  MainScenarioQuests:
+  - {fileID: 11400000, guid: 14ec31d2fea74ad4cb1b238648e1bb74, type: 2}
+  ActiveMain: {fileID: 0}
   SideQuests: []
   ActiveSides: []
+  CompletedSides: []
