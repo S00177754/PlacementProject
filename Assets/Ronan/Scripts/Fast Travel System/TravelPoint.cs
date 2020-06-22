@@ -35,21 +35,15 @@ public class TravelPoint : MonoBehaviour
         TeleportUnlocked = true;
     }
 
-    static public void TeleportTo(string locationName,GameObject obj)
+    static public void TeleportTo(string locationName)
     {
         if (FastTravelPoints.ContainsKey(locationName))
         {
             TravelPoint point = FastTravelPoints[locationName];
 
-            if (point.TeleportUnlocked)
-            {
-                obj.transform.position = point.TeleportationPoint.position;
-            }
-            else
-            {
-                Debug.Log(string.Concat("Travel point: ",point.LocationName," is not yet unlocked."));
-            }
-
+            PlayerController.Instance.GetComponent<CharacterController>().enabled = false;
+            PlayerController.Instance.transform.SetPositionAndRotation(point.TeleportationPoint.position,point.TeleportationPoint.rotation);
+            PlayerController.Instance.GetComponent<CharacterController>().enabled = true;
         }
         else
         {

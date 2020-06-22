@@ -8,6 +8,8 @@ public enum PauseMenuState { RootMenu, Inventory, Settings, AbilityTree, FastTra
 
 public class PauseMenuController : MonoBehaviour
 {
+    static public PauseMenuController Instance;
+
     public PauseMenuState menuState;
     public PauseMenuState previousState;
     public TMP_Text Clock;
@@ -21,6 +23,15 @@ public class PauseMenuController : MonoBehaviour
 
     private void Start()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(this);
+        }
+
         gameObject.SetActive(false);
     }
 
@@ -31,14 +42,9 @@ public class PauseMenuController : MonoBehaviour
 
     public void PauseGame()
     {
-        gameObject.SetActive(true);
         SetMenuState(PauseMenuState.RootMenu);
     }
 
-    public void HideMenu()
-    {
-        gameObject.SetActive(false);
-    }
 
     //Buttons
     public void ResumeGameButton()
@@ -65,6 +71,8 @@ public class PauseMenuController : MonoBehaviour
     {
         SetMenuState(PauseMenuState.FastTravel);
     }
+
+
 
     //Menu State Code
     public void SetMenuState(PauseMenuState state)
@@ -134,7 +142,12 @@ public class PauseMenuController : MonoBehaviour
     private void FastTravelMenuState()
     {
         ActivateSingleMenu(PauseMenuState.FastTravel);
+
+        FastTravel.SubMenuObject.GetComponent<FastTravelMenuController>().GenerateList();
     }
+
+
+
 
     public void ActivateSingleMenu(PauseMenuState menu)
     {
@@ -186,7 +199,7 @@ public class PauseMenuController : MonoBehaviour
                 AbilityTree.SubMenuObject.SetActive(false);
                 FastTravel.SubMenuObject.SetActive(true);
                 Settings.SubMenuObject.SetActive(false);
-                UIHelper.SelectedObjectSet(FastTravel.DefaultSelectedUIElement);
+                //UIHelper.SelectedObjectSet(FastTravel.DefaultSelectedUIElement);
                 GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer.GetComponent<InputManager>().SetSelecOnRegain(FastTravel.DefaultSelectedUIElement);
                 break;
         }
@@ -214,11 +227,11 @@ public class PauseMenuController : MonoBehaviour
                 break;
 
             case PauseMenuState.AbilityTree:
-                SetMenuState(PauseMenuState.AbilityTree);
+                SetMenuState(PauseMenuState.RootMenu);
                 break;
 
             case PauseMenuState.FastTravel:
-                SetMenuState(PauseMenuState.FastTravel);
+                SetMenuState(PauseMenuState.RootMenu);
                 break;
 
             default:

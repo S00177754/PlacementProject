@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     public bool IsInvincible = false;
 
-    private void Start()
+    private void Awake()
     {
         //Cursor.lockState = CursorLockMode.Confined;
         Instance = this;
