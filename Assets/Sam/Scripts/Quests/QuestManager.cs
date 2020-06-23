@@ -7,11 +7,11 @@ public class QuestManager : ScriptableObject
 {
     [SerializeField]
     List<Quest> MainScenarioQuests;
-
+    public List<Quest> FoundMSQuests;
     public Quest ActiveMain;
 
     [SerializeField]
-    List<Quest> SideQuests;
+    public List<Quest> SideQuests;
 
     public List<Quest> ActiveSides;
     public List<Quest> CompletedSides;
@@ -22,15 +22,19 @@ public class QuestManager : ScriptableObject
     void Start()
     {
         //Check next MSQ
-        //If 
+        //If the quest is complete, quest is added to found list
         foreach (Quest main in MainScenarioQuests)
         {
-            if (!main.isComplete)
+            if (main.isComplete)
             {
-                ActiveMain = main;
+                FoundMSQuests.Add(main);
+                continue;
             }
             else
-                continue;
+            {
+                ActiveMain = main;
+                break;
+            }
         }
 
         foreach (Quest side in SideQuests)
