@@ -4,32 +4,31 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class QuestButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
+public class QuestButton : TabButton
 {
     public QuestSelection questGroup;
-
+    public Quest myQuest;
     public Text QuestNameText;
-    public Canvas MyCanvas;
-    public bool isSelected;
+    
 
-    public void OnPointerClick(PointerEventData eventData)
+    public new void OnPointerClick(PointerEventData eventData)
     {
         questGroup.OnQuestSelected(this);
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public new void OnPointerEnter(PointerEventData eventData)
     {
         questGroup.OnQuestEnter(this);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public new void OnPointerExit(PointerEventData eventData)
     {
         questGroup.OnQuestExit(this);
     }
 
     void Start()
     {
-        //QuestNameText = GetComponent<Text>();
+        QuestNameText = GetComponent<Text>();
         questGroup.Subscribe(this);
         isSelected = false;
         MyCanvas.enabled = false;

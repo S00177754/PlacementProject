@@ -3,31 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class QuestSelection : MonoBehaviour
+//Slight Inheritance from TabGroup, 
+//variables and methods used with additional functionality
+//but require ref to QuestButton, inheriting from TabButton
+public class QuestSelection : TabGroup
 {
+    QuestManager Manager;
+    public GameObject ScrollContent;
     public List<QuestButton> questButtons;
-    public TabButton currentlySelected;
-    public List<Canvas> tabCanveses;
-    public Canvas activePage;
-    public Color tabIdleColor;
-    public Color tabHoverColor;
-    public Color tabActiveColor;
 
-    public void OnQuestSelected(QuestButton questButton)
+    void Start()
     {
-        //Switch active panel to show current quest details
+        //Load cuttent Quest list
+        Manager = Resources.Load<QuestManager>("Sam/ScriptableObjects/QuestManager");
 
-        throw new System.NotImplementedException();
-    }
+        foreach (var item in Manager.FoundMSQuests)
+        {
+            GameObject next = Instantiate(ScrollContent);
 
-    public void OnQuestEnter(QuestButton questButton)
-    {
-        throw new System.NotImplementedException();
-    }
+        }
 
-    public void OnQuestExit(QuestButton questButton)
-    {
-        throw new System.NotImplementedException();
+        tabIdleColor = new Color(0, 0, 0, 1);
+        tabHoverColor = new Color(0, 111, 255, 1);
+        tabActiveColor = new Color(0, 255, 0, 1);
     }
 
     public void Subscribe(QuestButton questButton)
@@ -42,24 +40,22 @@ public class QuestSelection : MonoBehaviour
         tabCanveses.Add(questButton.MyCanvas);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void OnQuestSelected(QuestButton questButton)
     {
-        //Load cuttent Quest list
-        QuestManager Manager = Resources.Load<QuestManager>("Sam/ScriptableObjects/QuestManager");
+        //Assign colours
+        OnTabSelected(questButton);
 
-        //Manager.
-
-        tabIdleColor = new Color(0, 0, 0, 1);
-        tabHoverColor = new Color(0, 111, 255, 1);
-        tabActiveColor = new Color(0, 255, 0, 1);
+        //Update quest name
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnQuestEnter(QuestButton questButton)
     {
-        
+        OnTabEnter(questButton);
     }
 
-    
+    public void OnQuestExit(QuestButton questButton)
+    {
+        OnTabExit(questButton);
+    }
+
 }
