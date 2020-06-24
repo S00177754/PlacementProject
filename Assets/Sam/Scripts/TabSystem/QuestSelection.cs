@@ -10,7 +10,10 @@ using UnityEngine.UI;
 public class QuestSelection : TabGroup
 {
     QuestManager Manager;
+    [Header("Required")]
     public GameObject ScrollContent;
+    public RectTransform ScrollViewContent;
+    public GameObject QuestButtonPrefab;
     public Text QuestName;
     public List<QuestButton> questButtons;
 
@@ -21,7 +24,7 @@ public class QuestSelection : TabGroup
 
         foreach (var item in Manager.FoundMSQuests)
         {
-            GameObject next = Instantiate(ScrollContent);
+            GameObject next = Instantiate(ScrollContent); //Creates new Scrollview Content
             next.TryGetComponent<Text>(out QuestName);
             if (QuestName != null)
                 QuestName.text = item.Name;

@@ -28,7 +28,6 @@ public class QuestManager : ScriptableObject
             if (main.isComplete)
             {
                 FoundMSQuests.Add(main);
-                continue;
             }
             else
             {
