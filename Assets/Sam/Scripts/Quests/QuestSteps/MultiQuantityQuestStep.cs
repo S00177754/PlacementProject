@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MultiQuantQuestStep", menuName = "Quest System/MultiQuantQuestStep")]
 public class MultiQuantityQuestStep : QuestStep
 {
-    public List<ItemObj> TargetIDs;
+    public List<ItemObj> TargetIDs; //or names here?
     public List<int> TargetQuantities;
     public List<int> Counters;
 

@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LocationQuestStep", menuName = "Quest System/LocationQuestStep")]
 public class LocationQuestStep : QuestStep
 {
-
     //Assign to empty
     public Vector3 StepLocation;
     [SerializeField]

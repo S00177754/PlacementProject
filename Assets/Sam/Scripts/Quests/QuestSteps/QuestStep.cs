@@ -8,6 +8,7 @@ public class QuestStep : ScriptableObject {
     protected int ID;
     [SerializeField]
     [TextArea(10, 15)]
-    protected string Description;
+    public readonly string Description;
+    public readonly string Name; //Will likely be coded for creating quests
     public bool isComplete;
 }

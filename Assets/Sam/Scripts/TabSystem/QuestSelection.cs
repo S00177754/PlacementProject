@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class QuestSelection : TabGroup
 {
     QuestManager Manager;
+    
     [Header("Required")]
     public GameObject ScrollContent;
     public RectTransform ScrollViewContent;
@@ -17,11 +18,12 @@ public class QuestSelection : TabGroup
     public Text QuestName;
     public List<QuestButton> questButtons;
 
-    void Start()
+    void OnEnable()
     {
         //Load cuttent Quest list
-        Manager = Resources.Load<QuestManager>("Sam/ScriptableObjects/QuestManager");
-
+        Manager = Resources.Load<QuestManager>("ScriptableObjects/QuestManager");
+        if (Manager == null)
+            Debug.Log("Quest Manager Null");
         foreach (var item in Manager.FoundMSQuests)
         {
             GameObject next = Instantiate(ScrollContent); //Creates new Scrollview Content

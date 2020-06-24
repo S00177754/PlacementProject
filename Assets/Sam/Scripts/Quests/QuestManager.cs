@@ -21,6 +21,10 @@ public class QuestManager : ScriptableObject
 
     void Start()
     {
+        FoundMSQuests = new List<Quest>();
+        ActiveSides = new List<Quest>();
+        CompletedSides = new List<Quest>();
+
         //Check next MSQ
         //If the quest is complete, quest is added to found list
         foreach (Quest main in MainScenarioQuests)
