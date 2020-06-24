@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 //Slight Inheritance from TabGroup, 
 //variables and methods used with additional functionality
@@ -10,6 +11,7 @@ public class QuestSelection : TabGroup
 {
     QuestManager Manager;
     public GameObject ScrollContent;
+    public Text QuestName;
     public List<QuestButton> questButtons;
 
     void Start()
@@ -20,7 +22,9 @@ public class QuestSelection : TabGroup
         foreach (var item in Manager.FoundMSQuests)
         {
             GameObject next = Instantiate(ScrollContent);
-
+            next.TryGetComponent<Text>(out QuestName);
+            if (QuestName != null)
+                QuestName.text = item.Name;
         }
 
         tabIdleColor = new Color(0, 0, 0, 1);
