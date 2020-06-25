@@ -33,7 +33,7 @@ public class RadialItemSection : RadialMenuSection
 
         Item = obj;
         IconImage.sprite = obj.ItemIcon;
-        Amount = manager.Inventory.Collection.Where(x => x.Item == obj).Single().Amount;
+        Amount = manager.Inventory.Collection.Where(x => x.Item == obj).SingleOrDefault() == null ? 0: manager.Inventory.Collection.Where(x => x.Item == obj).SingleOrDefault().Amount;
     }
 
     public void UseItem(InventoryManager inventoryManager)

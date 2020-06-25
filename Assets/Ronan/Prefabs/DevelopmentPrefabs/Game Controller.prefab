@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8950533190122119913}
   - component: {fileID: 8950533190122119914}
   - component: {fileID: 8950533190122119912}
+  - component: {fileID: 2389680000860947468}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: GameController
@@ -60,3 +61,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PauseMenu: {fileID: 0}
   PlayerHUD: {fileID: 0}
+--- !u!114 &2389680000860947468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8950533190122119915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a9c375ab0bcf942a0c7ec54336d255, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainPlayer: {fileID: 0}
+  EnemyDatabase: {fileID: 0}
+  EnemySaveRange: 70
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 256

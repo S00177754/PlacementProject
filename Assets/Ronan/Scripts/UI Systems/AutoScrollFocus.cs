@@ -47,20 +47,19 @@ public class AutoScrollFocus : MonoBehaviour
         float below = currentScrollRectPosition + (SelectedContent.rect.height);
 
         // check if selected is out of bounds
+        float step = 0;
+
         if (selectedPosition > above)
         {
-            float step = selectedPosition - above;
-            float newY = currentScrollRectPosition + step;
-            float newNormalizedY = newY / contentHeightDifference;
-            ScrollViewRect.normalizedPosition = new Vector2(0, newNormalizedY);
+            step = selectedPosition - above;
         }
         else if (selectedPosition < below)
         {
-            float step = selectedPosition - below;
+            step = selectedPosition - below;
+        }
             float newY = currentScrollRectPosition + step;
             float newNormalizedY = newY / contentHeightDifference;
             ScrollViewRect.normalizedPosition =  new Vector2(0, newNormalizedY);
-        }
 
     }
 }

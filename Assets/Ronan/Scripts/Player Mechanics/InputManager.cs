@@ -19,6 +19,8 @@ public class InputManager : MonoBehaviour
     public enum RadialMenuState {None, ItemWheel, ItemSetter}
     public RadialMenuState radialMenuState;
 
+    private InventorySystemController Controller;
+
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -55,6 +57,11 @@ public class InputManager : MonoBehaviour
         if(ActiveRadialMenu != null)
         ActiveRadialMenu.gameObject.SetActive(false);
         SetRadialMenu(null, RadialMenuState.None);
+    }
+
+    public void SetInventorySystem(InventorySystemController controller)
+    {
+        Controller = controller;
     }
 
 
@@ -431,10 +438,31 @@ public class InputManager : MonoBehaviour
 
     public void OnCancel(InputAction.CallbackContext context)
     {
-        switch(context.phase)
+        switch (buttonStates.EastBtnState)
         {
-            case InputActionPhase.Performed:
-            GetComponent<PlayerController>().PauseMenu.PreviousMenu();
+
+            case EastButtonState.Default:
+                switch (context.phase)
+                {
+                    case InputActionPhase.Performed:
+                        GetComponent<PlayerController>().PauseMenu.PreviousMenu();
+                        break;
+
+                    default:
+                        break;
+                }
+                break;
+
+            case EastButtonState.ItemUsagePanel:
+                switch (context.phase)
+                {
+                    case InputActionPhase.Performed:
+                        InventoryItemUsagePanel.Instance.CloseUsagePanel();
+                        break;
+
+                    default:
+                        break;
+                }
                 break;
 
             default:
@@ -503,7 +531,7 @@ public class InputManager : MonoBehaviour
 
 //Right Hand Side X,A,B,Y
 public enum NorthButtonState { Default }
-public enum EastButtonState { Default }
+public enum EastButtonState { Default, ItemUsagePanel }
 public enum SouthButtonState { Default, RadialMenu }
 public enum WestButtonState { Default, PickupItem, TravelPoint }
 
@@ -519,8 +547,8 @@ public enum RightJoystickState { Default, RadialMenu }
 
 public enum DPadUp { Default }
 public enum DPadDown { Default }
-public enum DPadLeft { Default, InventoryMenu }
-public enum DPadRight { Default, InventoryMenu }
+public enum DPadLeft { Default}
+public enum DPadRight { Default}
 
 public class ButtonStates
 {
