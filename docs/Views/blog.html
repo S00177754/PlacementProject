@@ -97,6 +97,20 @@
               <!-- Blog Highlights -->
 
               <!-- Blog Highlight Template-->
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_10"></a>
+                  <p class="title">Saving & UI Updates - #11</p>
+                  <p>Over the course of the past two weeks, I've sunk a lot of time into exploring the various ways for us to save the nearby enemies and load them back in the same position without spawning duplicates of them. This lead to a lot of research around world streaming for open world games and the various methods to achieve this, after many attempts to develop a simple world streaming system, it became clear to me that it was not worth putting more time into the idea in regards to the time left for our project and that there was a less elegant but still valid method for saving the enemies. Part of this plan was to develop a simple enemy spawner that spawns an enemy every X seconds as long as the enemy cap is not reached, the enemies loaded back in are only within a certain range and if an enemy is Y meters away from the player then they will despawn, freeing up the ability for another enemy to be spawned. This was carried out in the first week as well as some adjustments to how the enemy is structured and minimised the amount of data that actually needs to be saved thus reducing the size of the save file and complexity of loading them back in.</p>
+                  <p>In the second week, I moved onto some much needed work in the Pause Menu UI which includes the Settings, Inventory, Fast Travel and Ability Tree. I started off looking at the inventory UI again fixing any small bugs and setting the navigation properties of the various elements so that players can use a controller to navigate the UI.This also meant that I took another look at my auto scroll function for Unity's scroll view which is needed for controller support, after some debugging and testing I was able to solve any issues and get the system working correctly with its various filters. I was able to reuse the autoscroll in the ability tree UI for the navigation of the down through the tree, it was also added into the settings menu for the resolution dropdown due to the amount of options there is. The settings menu is completely functioning and saves its values to PlayerPrefs as they are not game data but more so client application prefrences.  </p>
+                  <p>At this point of the project I would say we are behind schedule a bit but we're now at a point where we can start bringing the systems all together and move towards the design of both our models and the world. Moving on from this point there are various tasks that need to be done but taking into account of the minimum viable project, I feel it may be wise to get some assets done and the terrain for our world created, implimenting the various systems together as we piece together the mvp.</p>
+                  <p>
+                    By Ronan Cassidy - 27th of June 2020
+                  </p>
+                </article>
+              </div>
+              <br/>
               <div class="tile is-child">
                 <article class="tile is-child notification has-background-light has-text-black">
                   <a id="blog_post_10"></a>
