@@ -7,8 +7,8 @@ public class TabGroup : MonoBehaviour
 {
     public List<TabButton> tabButtons;
     public TabButton currentlySelected; 
-    public List<Canvas> tabCanveses;
-    public Canvas activePage;
+    public List<GameObject> tabPannels;
+    public GameObject activePage;
     public Color tabIdleColor;
     public Color tabHoverColor;
     public Color tabActiveColor;
@@ -23,11 +23,11 @@ public class TabGroup : MonoBehaviour
     public void Subscribe(TabButton tabButton){
         if(tabButtons == null){
             tabButtons = new List<TabButton>();
-            tabCanveses = new List<Canvas>();
+            tabPannels = new List<GameObject>();
         }
 
         tabButtons.Add(tabButton);
-        tabCanveses.Add(tabButton.MyCanvas);
+        tabPannels.Add(tabButton.MyPannel);
 
     }
 
@@ -49,7 +49,7 @@ public class TabGroup : MonoBehaviour
     public void OnTabSelected(TabButton tButton){
         ResetTabs();
         tButton.isSelected = !tButton.isSelected;
-        activePage = tButton.MyCanvas;
+        activePage = tButton.MyPannel;
 
         foreach (TabButton button in tabButtons)
         {
@@ -82,10 +82,10 @@ public class TabGroup : MonoBehaviour
 
     void SwitchCanvas()
     {
-        foreach (Canvas page in tabCanveses)
+        foreach (GameObject page in tabPannels)
         {
-            page.enabled = false;
+            page.SetActive(false);
         }
-        activePage.enabled = true;
+        activePage.SetActive(true);
     }
 }

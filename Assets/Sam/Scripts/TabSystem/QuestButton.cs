@@ -31,6 +31,6 @@ public class QuestButton : TabButton
         QuestNameText = GetComponent<Text>();
         questGroup.Subscribe(this);
         isSelected = false;
-        MyCanvas.enabled = false;
+        MyPannel.SetActive(false);
     }
 }

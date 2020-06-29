@@ -9,7 +9,7 @@ public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
     public TabGroup tabGroup;
 
     public Text tabUIText;
-    public Canvas MyCanvas;
+    public GameObject MyPannel;
     public bool isSelected;
 
     public void OnPointerClick(PointerEventData eventData){
@@ -29,7 +29,7 @@ public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
         tabUIText = GetComponent<Text>();
         tabGroup.Subscribe(this);
         isSelected = false;
-        MyCanvas.enabled = false;
+        MyPannel.SetActive(false);
     }
 
     void Update()

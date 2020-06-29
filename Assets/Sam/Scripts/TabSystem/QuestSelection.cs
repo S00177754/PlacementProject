@@ -11,14 +11,15 @@ public class QuestSelection : TabGroup
 {
     QuestManager Manager;
     
-    [Header("Required")]
-    public GameObject ScrollContent;
     public RectTransform ScrollViewContent;
     public GameObject QuestButtonPrefab;
     public Text QuestName;
     public List<QuestButton> questButtons;
 
-    void OnEnable()
+    [Header("Required")]
+    public GameObject ScrollContent;
+
+    void Start()
     {
         //Load cuttent Quest list
         Manager = Resources.Load<QuestManager>("ScriptableObjects/QuestManager");
@@ -30,6 +31,7 @@ public class QuestSelection : TabGroup
             next.TryGetComponent<Text>(out QuestName);
             if (QuestName != null)
                 QuestName.text = item.Name;
+            Debug.Log("Quest added: " + item.Name);
         }
 
         tabIdleColor = new Color(0, 0, 0, 1);
@@ -42,11 +44,11 @@ public class QuestSelection : TabGroup
         if (questButtons == null)
         {
             questButtons = new List<QuestButton>();
-            tabCanveses = new List<Canvas>();
+            tabPannels = new List<GameObject>();
         }
 
         questButtons.Add(questButton);
-        tabCanveses.Add(questButton.MyCanvas);
+        tabPannels.Add(questButton.MyPannel);
     }
 
     public void OnQuestSelected(QuestButton questButton)
