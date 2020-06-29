@@ -20,7 +20,7 @@ public class PlayerHUDController : MonoBehaviour
 
     private void Start()
     {
-        HideItemNotification();
+        //HideItemNotification();
     }
 
     private void Update()
@@ -43,11 +43,12 @@ public class PlayerHUDController : MonoBehaviour
 
     public void HideItemNotification()
     {
-        ItemPanel.gameObject.SetActive(false);
+        ItemPanel.Hide();
     }
 
     public void SendNotification(string message, Sprite sprite, Color color)
     {
+        NotificationController.gameObject.SetActive(true);
         NotificationController.SendNotification(message, sprite, color);
     }
 

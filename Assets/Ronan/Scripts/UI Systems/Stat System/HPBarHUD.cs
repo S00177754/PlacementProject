@@ -8,10 +8,6 @@ public class HPBarHUD : HUDValueSlider
     [Header("Player")]
     public PlayerController Player;
 
-    private void Start()
-    {
-        ValueNameText.text = "HP";
-    }
 
     private void Update()
     {
