@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b270b63efe202ba449ff3d03ebe337b0, type: 3}
-  m_Name: Simple Sword Slash
+  m_Name: Wideshot
   m_EditorClassIdentifier: 
-  AttackZoneName: ForwardShortRange
-  DamageAmount: 5
-  Animation: 8
-  AttackCooldown: 1.2
+  AttackZoneName: 
+  DamageAmount: 4
+  Animation: 0
   AttackCharge: 2
-  AttackRadius: 0
+  AttackRadius: -1

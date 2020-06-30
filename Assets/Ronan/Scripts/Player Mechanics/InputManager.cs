@@ -13,8 +13,6 @@ public class InputManager : MonoBehaviour
     public ButtonStates buttonStates;
     public GameObject SelectedOnRegained;
 
-    public SimpleCarController carDebug;
-
     public RadialMenuController ActiveRadialMenu;
     public enum RadialMenuState {None, ItemWheel, ItemSetter}
     public RadialMenuState radialMenuState;

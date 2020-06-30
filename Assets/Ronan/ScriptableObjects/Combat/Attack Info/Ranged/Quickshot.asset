@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b270b63efe202ba449ff3d03ebe337b0, type: 3}
-  m_Name: Wide Slash
+  m_Name: Quickshot
   m_EditorClassIdentifier: 
-  AttackZoneName: ForwardShortRangeWide
-  DamageAmount: 6
-  Animation: 7
-  AttackCooldown: 1.2
+  AttackZoneName: 
+  DamageAmount: 2
+  Animation: 1
   AttackCharge: 2
-  AttackRadius: 0
+  AttackRadius: -1

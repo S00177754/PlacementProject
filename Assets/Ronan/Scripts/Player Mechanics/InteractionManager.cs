@@ -18,8 +18,15 @@ public class InteractionManager : MonoBehaviour
                     break;
 
                 case "TravelPoint":
-                    GetComponent<PlayerController>().HUDController.SetupNotification("Activate fast travel");
-                    GetComponent<InputManager>().buttonStates.SetState(WestButtonState.TravelPoint);
+                    TravelPoint travelPoint;
+                    if (other.TryGetComponent(out travelPoint))
+                    {
+                        if (!travelPoint.TeleportUnlocked)
+                        {
+                            GetComponent<PlayerController>().HUDController.SetupNotification(travelPoint.LocationName);
+                            GetComponent<InputManager>().buttonStates.SetState(WestButtonState.TravelPoint);
+                        }
+                    }
                     break;
 
                 default:
