@@ -9,9 +9,19 @@ public class TravelPoint : MonoBehaviour
     public string LocationName;
     public bool TeleportUnlocked = false;
     public Transform TeleportationPoint;
+    public GameObject Particles;
 
     private void Start()
     {
+        if (!TeleportUnlocked)
+        {
+            Particles.SetActive(false);
+        }
+        else
+        {
+            Particles.SetActive(true);
+        }
+
         if (!FastTravelPoints.ContainsKey(LocationName))
         {
             FastTravelPoints.Add(LocationName, this);
@@ -27,6 +37,7 @@ public class TravelPoint : MonoBehaviour
         if (!TeleportUnlocked)
         {
             TeleportUnlocked = true;
+            Particles.SetActive(true);
         }
     }
 
