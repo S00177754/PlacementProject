@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class InventoryItemUsagePanel : MonoBehaviour
 {
+    static public InventoryItemUsagePanel Instance;
+
     public InventoryItemPanel ActivatedBy;
     public GameObject FirstButton;
     public ItemSettingRadialMenu RadialSetter;
 
+    private void Start()
+    {
+        Instance = this;
+    }
+
     public void Activate(InventoryItemPanel activatedBy)
     {
         ActivatedBy = activatedBy;
+        PlayerController.Instance.GetComponent<InputManager>().buttonStates.SetState(EastButtonState.ItemUsagePanel);
         UIHelper.SelectedObjectSet(this.gameObject);
     }
 
@@ -77,6 +85,13 @@ public class InventoryItemUsagePanel : MonoBehaviour
         inputPlayer.buttonStates.SetState(RightJoystickState.Default);
         inputPlayer.buttonStates.SetState(SouthButtonState.Default);
         inputPlayer.SetRadialMenu(null, InputManager.RadialMenuState.None);
+    }
+
+    public void CloseUsagePanel()
+    {
+        ReturnFocus();
+        gameObject.SetActive(false);
+        PlayerController.Instance.GetComponent<InputManager>().buttonStates.SetState(EastButtonState.Default);
     }
 
     private void ReturnFocus()

@@ -38,7 +38,7 @@ public class InventoryItemPanel : MonoBehaviour, ISelectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
-        Debug.Log("Selected");
+        //Debug.Log("Selected");
         InventoryPanel.DescriptionPanel.SetName(Item.Name);
         InventoryPanel.DescriptionPanel.SetDescription(Item.GetItemDetailText());
     }

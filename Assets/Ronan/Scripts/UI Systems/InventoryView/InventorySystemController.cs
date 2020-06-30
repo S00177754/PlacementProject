@@ -26,8 +26,11 @@ public class InventorySystemController : MonoBehaviour
     public Sprite ActiveFilterDot;
     public Sprite InactiveFilterDot;
 
-    private ItemType ListFilter = ItemType.Potion;
+    public Button PreviousFilterButton;
+    public Button NextFilterButton;
 
+    private ItemType ListFilter = ItemType.Potion;
+    private int childAmount = 0;
 
 
     public void Initialize()
@@ -42,12 +45,14 @@ public class InventorySystemController : MonoBehaviour
         for (int i = 0; i < ListContent.childCount; i++)
         {
             Destroy(ListContent.GetChild(i).gameObject);
+            childAmount--;
         }
         ItemUsageMenu.SetActive(false);
     }
 
     public void FilterList()
     {
+        childAmount = ListContent.childCount;
         ClearList();
 
         for (int i = 0; i < TargetInventory.Inventory.Collection.Count; i++)
@@ -56,11 +61,68 @@ public class InventorySystemController : MonoBehaviour
             {
                 GameObject panel = Instantiate(ItemButtonPrefab, ListContent);
                 panel.GetComponent<InventoryItemPanel>().SetDetails(TargetInventory.Inventory.Collection[i], this);
+                childAmount++;
             }
         }
 
-        if (ListContent.childCount > 0)
+        
+
+        if (childAmount > 0)
+        {
+            for (int i = 0; i < childAmount; i++)
+            {
+                Button btn = ListContent.GetChild(i).GetComponent<Button>();
+
+                Navigation nav = new Navigation();
+                nav.mode = Navigation.Mode.Explicit;
+                nav.selectOnLeft = PreviousFilterButton;
+                nav.selectOnRight = NextFilterButton;
+
+                if (i - 1 >= 0)
+                    nav.selectOnUp = ListContent.GetChild(i - 1).GetComponent<Button>();
+
+                if(i + 1 < ListContent.childCount)
+                    nav.selectOnDown = ListContent.GetChild(i + 1).GetComponent<Button>();
+
+                btn.navigation = nav;
+            }
+
+            if (childAmount > 1)
+            {
+                Navigation navTop = new Navigation();
+                navTop.mode = Navigation.Mode.Explicit;
+                navTop.selectOnDown = ListContent.GetChild(1).gameObject.GetComponent<Button>();
+                navTop.selectOnLeft = PreviousFilterButton;
+                navTop.selectOnRight = NextFilterButton;
+                navTop.selectOnUp = NextFilterButton;
+                ListContent.GetChild(0).gameObject.GetComponent<Button>().navigation = navTop;
+
+                Navigation navBottom = new Navigation();
+                navBottom.mode = Navigation.Mode.Explicit;
+                navBottom.selectOnUp = ListContent.GetChild(childAmount - 2).gameObject.GetComponent<Button>();
+                navBottom.selectOnLeft = PreviousFilterButton;
+                navBottom.selectOnRight = NextFilterButton;
+                ListContent.GetChild(childAmount - 1).gameObject.GetComponent<Button>().navigation = navBottom;
+
+                Navigation navLeft = PreviousFilterButton.navigation;
+                navLeft.selectOnDown = ListContent.GetChild(0).gameObject.GetComponent<Button>();
+                PreviousFilterButton.navigation = navLeft;
+
+                Navigation navRight = NextFilterButton.navigation;
+                navRight.selectOnDown = ListContent.GetChild(0).gameObject.GetComponent<Button>();
+                NextFilterButton.navigation = navRight;
+            
+            
+            }
+
             UIHelper.SelectedObjectSet(ListContent.GetChild(0).gameObject);
+        }
+        else
+        {
+            UIHelper.SelectedObjectSet(NextFilterButton.gameObject);
+        }
+
+
         ItemListActive = true;
 
         UpdateFilterDots();

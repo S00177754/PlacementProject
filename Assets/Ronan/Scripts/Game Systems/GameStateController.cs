@@ -85,8 +85,8 @@ public class GameStateController : MonoBehaviour
     static private void MainMenuRefresh()
     {
         Time.timeScale = 1;
-        Instance.GetComponent<GameManager>().MainPlayer.GetComponent<PlayerMovement>().SetFreeze(false, false) ;
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>().ChangeAllPlayerMapsTo("Player");
+        PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(false, false);
+        Instance.ChangeAllPlayerMapsTo("Player");
         Instance.PlayerHUD.SetActive(false);
         PauseMenuClear();
     }
@@ -94,25 +94,26 @@ public class GameStateController : MonoBehaviour
     static private void PausedRefresh()
     {
         Time.timeScale = 0;
+        Instance.PauseMenu.GetComponent<PauseMenuController>().gameObject.SetActive(true);
         Instance.PauseMenu.GetComponent<PauseMenuController>().PauseGame();
-        Instance.GetComponent<GameManager>().MainPlayer.GetComponent<PlayerMovement>().SetFreeze(true, true);
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>().ChangeAllPlayerMapsTo("UI");
+        PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(true, true);
+        Instance.ChangeAllPlayerMapsTo("UI");
     }
 
     static private void ExploreRefresh()
     {
         Time.timeScale = 1;
         Instance.PlayerHUD.SetActive(true);
-        Instance.GetComponent<GameManager>().MainPlayer.GetComponent<PlayerMovement>().SetFreeze(false,false);
         PauseMenuClear();
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>().ChangeAllPlayerMapsTo("Player");
+        PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(false,false);
+        Instance.ChangeAllPlayerMapsTo("Player");
     }
 
     static private void PacifistRefresh()
     {
         Time.timeScale = 1;
-        Instance.GetComponent<GameManager>().MainPlayer.GetComponent<PlayerMovement>().SetFreeze(false, false);
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>().ChangeAllPlayerMapsTo("Player");
+        PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(false, false);
+        Instance.ChangeAllPlayerMapsTo("Player");
         Instance.PlayerHUD.SetActive(false);
         PauseMenuClear();
     }
@@ -120,8 +121,8 @@ public class GameStateController : MonoBehaviour
     static private void DrivingRefresh()
     {
         Time.timeScale = 1;
-        Instance.GetComponent<GameManager>().MainPlayer.GetComponent<PlayerMovement>().SetFreeze(false, false);
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>().ChangeAllPlayerMapsTo("Player");
+        PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(false, false);
+        Instance.ChangeAllPlayerMapsTo("Player");
         Instance.PlayerHUD.SetActive(false);
         PauseMenuClear();
     }
@@ -131,13 +132,13 @@ public class GameStateController : MonoBehaviour
         Time.timeScale = 1;
         Instance.PlayerHUD.SetActive(false);
         PauseMenuClear();
-        Instance.GetComponent<GameManager>().MainPlayer.GetComponent<PlayerMovement>().SetFreeze(true, true);
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>().ChangeAllPlayerMapsTo("Player");
+        PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(true, true);
+        Instance.ChangeAllPlayerMapsTo("Player");
     }
 
     private void ChangeAllPlayerMapsTo(string map)
     {
-        GetComponent<GameManager>().MainPlayer.GetComponent<PlayerInput>().SwitchCurrentActionMap(map);
+        PlayerController.Instance.GetComponent<PlayerInput>().SwitchCurrentActionMap(map);
 
     }
 
@@ -145,7 +146,7 @@ public class GameStateController : MonoBehaviour
     {
         if (previousGameState == GameState.Paused)
         {
-            Instance.PauseMenu.GetComponent<PauseMenuController>().HideMenu();
+            Instance.PauseMenu.GetComponent<PauseMenuController>().gameObject.SetActive(false);
         }
     }
 }

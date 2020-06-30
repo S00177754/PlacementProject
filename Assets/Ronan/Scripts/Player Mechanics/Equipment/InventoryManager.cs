@@ -23,38 +23,19 @@ public class InventoryManager : MonoBehaviour
             Inventory.AddItem(item.Item, 1);
             Destroy(ItemOnGround.gameObject);
 
-            GetComponent<PlayerController>().HUDController.SendItemNotification(ItemOnGround.GetComponent<CollectableItem>().Item.Name,null,Color.blue);
+            GetComponent<PlayerController>().HUDController.SendNotification(ItemOnGround.GetComponent<CollectableItem>().Item.Name,null,Color.blue);
             GetComponent<PlayerController>().HUDController.HideItemNotification();
             GetComponent<InputManager>().buttonStates.SetState(WestButtonState.Default);
             ItemOnGround = null;
         }
     }
-
-    private void OnTriggerEnter(Collider other)
+     
+    public void SetItemOnGround(Collider other)
     {
-        if (other != null)
-        {
-            if (other.tag == "Pickup")
-            {
-                GetComponent<PlayerController>().HUDController.SetupItemNotification(other.GetComponent<CollectableItem>().Item.Name);
-                GetComponent<InputManager>().buttonStates.SetState(WestButtonState.PickupItem);
-                ItemOnGround = other;
-            }
-        }
+        ItemOnGround = other;
     }
 
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other != null)
-        {
-            if (other.tag == "Pickup")
-            {
-                GetComponent<PlayerController>().HUDController.HideItemNotification();
-                GetComponent<InputManager>().buttonStates.SetState(WestButtonState.Default);
-                ItemOnGround = null;
-            }
-        }
-    }
+    
 
 }

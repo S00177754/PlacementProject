@@ -18,9 +18,7 @@ public class PlayerAttack : MonoBehaviour
     public bool SlamAttack = false;
     public bool IsCharging = false;
 
-    //Not implemented yet, still undecided
     private float ChargeTimer = 0f;
-
     private bool CanCombo = false;
     public float ComboTimer = 0f;
     public int comboCounter = 0;
@@ -46,9 +44,6 @@ public class PlayerAttack : MonoBehaviour
     {
         AbilityTree = GetComponent<AbilityTreeManager>();
         ZoneManager.GetAllAttackPatterns();
-        //SheathWeapon();
-        
-       
     }
 
     private void Update()
@@ -68,7 +63,6 @@ public class PlayerAttack : MonoBehaviour
                 print("Slam DUNK");
                 ActiveAttack = Equipment.GetAttackDetails().SlamAttack;
 
-                //Animation stuff bro
                 ActivateAttackZone(ActiveAttack);
                 DealMeleeDamage(ActiveAttack.DamageAmount);
                 AttackCooldownTimer = CooldownTimer;
@@ -79,9 +73,6 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-
- 
-
     public void DisableAllAttackPatterns()
     {
         ZoneManager.DisableZones();
@@ -90,9 +81,7 @@ public class PlayerAttack : MonoBehaviour
     private void ActivateAttackZone(AttackInfoObj attackInfo)
     {
         DisableAllAttackPatterns();
-
         ZoneManager.ActivateZone(attackInfo.AttackZoneName);
-
     }
 
     #region Data Updates
@@ -168,70 +157,6 @@ public class PlayerAttack : MonoBehaviour
                 RangedAttack();
                 break;
         }
-        
-
-        #region old code
-        //if (!IsAttacking && !WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching && !GetComponent<PlayerMovement>().IsJumping && !GetComponent<PlayerMovement>().IsFalling) 
-        //{
-        //    IsAttacking = true;
-
-        //    if (IsCharging)
-        //    {
-        //        GetComponent<PlayerMovement>().SetFreeze(false, false);
-        //        AttackInfoObj attackInfo = Equipment.GetAttackDetails().ChargeAttack;
-        //        ActivateAttackZone(attackInfo);
-
-        //        if (!WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching)
-        //        {
-
-        //            GetComponent<PlayerAnimator>().SetTrigger("ChargeAttack");
-        //            GetComponent<PlayerAnimator>().SetInteger("AttackAnimation", (int)Equipment.GetAttackDetails().ChargeAttack.Animation);
-        //        }
-
-        //        StartCoroutine(ApplyDamage(attackInfo.DamageAmount));
-
-        //        IsCharging = false;
-        //        ComboAttackIndex = 0;
-        //    }
-        //    else
-        //    {
-        //        AttackInfoObj attackInfo = Equipment.GetAttackDetails().PrimaryAtackPattern[ComboAttackIndex];
-        //        ActivateAttackZone(attackInfo);
-
-        //        if (!WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching)
-        //        {
-        //            GetComponent<PlayerAnimator>().SetTrigger("Attack");
-        //            GetComponent<PlayerAnimator>().SetInteger("AttackAnimation", (int)Equipment.GetAttackDetails().PrimaryAtackPattern[ComboAttackIndex].Animation);
-        //        }
-
-
-
-        //        //Debug.Log(attackInfo);
-        //        ComboAttackIndex++;
-        //        if (ComboAttackIndex >= ComboAttackCount)
-        //        {
-        //            ComboAttackIndex = 0;
-        //        }
-
-        //        comboCounter++;
-        //        CanCombo = true;
-
-        //        StartCoroutine(ApplyDamage(attackInfo.DamageAmount));
-
-
-        //    }
-        //        ComboTimer = 0f;
-
-
-
-        //}
-
-        //if (WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching && !GetComponent<PlayerMovement>().IsJumping && !GetComponent<PlayerMovement>().IsFalling)
-        //{
-        //    StartCoroutine(GetComponentInParent<PlayerAttack>().FreezeMovementFor(1.2f, true, false));
-        //    WeaponSheathed = false;
-        //}
-        #endregion
     }
 
     #endregion
@@ -248,7 +173,6 @@ public class PlayerAttack : MonoBehaviour
                 ActiveAttack = Equipment.GetAttackDetails().PrimaryAtackPattern[ComboAttackIndex];
 
                 //Animation stuff bro
-                //StartCoroutine(ApplyDamage(ActiveAttack.DamageAmount));
                 ActivateAttackZone(ActiveAttack);
                 DealMeleeDamage(ActiveAttack.DamageAmount);
                 AttackCooldownTimer = CooldownTimer;
@@ -282,7 +206,6 @@ public class PlayerAttack : MonoBehaviour
     private void MeleeCharge()
     {
         //Animation stuff bro
-        //StartCoroutine(ApplyDamage(ActiveAttack.DamageAmount));
         ActivateAttackZone(ActiveAttack);
         DealMeleeDamage(ActiveAttack.DamageAmount);
         AttackCooldownTimer = CooldownTimer;

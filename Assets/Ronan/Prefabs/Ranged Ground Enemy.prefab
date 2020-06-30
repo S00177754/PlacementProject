@@ -291,8 +291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3960288a21c7ea94781693013919d3a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Info: {fileID: 11400000, guid: 759fd7aa6cbc04f4c8222f964d2c651b, type: 2}
   Health: 20
-  MaxHealth: 20
 --- !u!114 &3861762299878803680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,11 +322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085e18a9d94f42149892bb82af8896b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackRange: 4
-  DamageAmount: 5
-  AttackCooldown: 4
-  PatrolSpeed: 2
-  ChaseSpeed: 4
   EnemyPath: []
   NextEnemyNode: {fileID: 0}
   ProjectilePrefab: {fileID: 2260653666290348421, guid: a928202bab4709e48b1f753dd61705cc,

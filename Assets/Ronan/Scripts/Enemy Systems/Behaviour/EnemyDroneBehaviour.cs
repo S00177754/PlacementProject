@@ -15,7 +15,7 @@ public class EnemyDroneBehaviour : EnemyBehaviour
         base.Start();
     }
 
-    private void Update()
+    protected override void Update()
     {
         if (Tracker.IsTracking)
         {
@@ -28,11 +28,11 @@ public class EnemyDroneBehaviour : EnemyBehaviour
             else
             {
                 MoveTo(Tracker.trackedObject.transform.position);
-                Navigator.speed = ChaseSpeed;
+                Navigator.speed = Stats.Info.ChaseSpeed;
             }
 
         }
-        else
+        else if (NextEnemyNode != null)
         {
             if (NeedsRecalculation)
             {
@@ -41,8 +41,10 @@ public class EnemyDroneBehaviour : EnemyBehaviour
 
             //transform.position = Vector3.MoveTowards(transform.position, NextEnemyNode.transform.position, PatrolSpeed * Time.deltaTime);
             MoveTo(NextEnemyNode.transform.position);
-            Navigator.speed = PatrolSpeed;
+            Navigator.speed = Stats.Info.PatrolSpeed;
         }
+
+        base.Update();
     }
 
     public float CheckDistanceToGround()

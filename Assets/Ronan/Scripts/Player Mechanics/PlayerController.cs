@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public string PlayerName;
+    static public PlayerController Instance;
     public CharacterStats GameStats;
     public PlayerSettings Settings;
+
+    [Header("External References")]
     public PlayerHUDController HUDController;
     public PauseMenuController PauseMenu;
 
+    [Header("Stats")]
     public int Health = 100;
     public int MP = 60;
     public int MaxHealth = 100;
@@ -18,9 +21,10 @@ public class PlayerController : MonoBehaviour
 
     public bool IsInvincible = false;
 
-    private void Start()
+    private void Awake()
     {
         //Cursor.lockState = CursorLockMode.Confined;
+        Instance = this;
     }
 
     public void ApplyDamage(int amount)
@@ -44,6 +48,8 @@ public class PlayerController : MonoBehaviour
 [Serializable]
 public class PlayerSettings
 {
+    public static float EnemyDespawnRange = 150f;
+
     [Header("Camera Settings")]
     public bool InvertYAxis = true;
     public float CameraSensitivity = 2f;
@@ -54,6 +60,8 @@ public enum PlayerStatTypes { Strength, Dexterity, Magic, Vitality, Defence}
 [Serializable]
 public class CharacterStats
 {
+    public string Name;
+
     public int Experience = 0;
     public int SkillPoints = 0;
     public int AbilityPoints = 0;
