@@ -34,7 +34,12 @@ public class QuestSelection : TabGroup
         else if (Manager.FoundMSQuests.Count > 0)
             Debug.Log(string.Format("FoundMSQuests contains {0} elements", Manager.FoundMSQuests.Count));
 
-        PopulateButtons();
+
+        if (CompareTag("Main Scenario"))
+            PopulateButtons(Manager.FoundMSQuests);
+        else if (CompareTag("SideQuest"))
+            PopulateButtons(Manager.ActiveSides);
+
 
 
         tabIdleColor = new Color(0, 0, 0, 1);
@@ -73,25 +78,24 @@ public class QuestSelection : TabGroup
         OnTabExit(questButton);
     }
 
-    public void PopulateButtons()
+    public void PopulateButtons(List<Quest> PopulationContent)
     {
-        if (tag.Equals("Main Scenario"))
+        foreach (Quest msquest in PopulationContent)
         {
-            foreach (var item in Manager.FoundMSQuests)
+            GameObject next = Instantiate(ScrollContent); //Creates new Scrollview Content
+            next.SetActive(true);
+
+            next.transform.SetParent(ScrollViewTransfrom.transform.parent, false);
+            QuestName = next.GetComponentInChildren<Text>();
+            if (QuestName != null)
             {
-                GameObject next = Instantiate(ScrollContent, ScrollViewTransfrom); //Creates new Scrollview Content
-                next.transform.SetParent(ScrollViewTransfrom, false);
-                QuestName = next.GetComponentInChildren<Text>();
-                if (QuestName != null)
-                {
-                    QuestName.text = item.Name;
-                    QuestName.color = Color.black;
-                    Debug.Log(QuestName);
-                    Debug.Log("Quest added: " + item.Name);
-                }
-                else
-                    Debug.Log("QuestName is null");
+                QuestName.text = msquest.Name;
+                QuestName.color = Color.black;
+                Debug.Log(QuestName);
+                Debug.Log("Quest added: " + msquest.Name);
             }
+            else
+                Debug.Log("QuestName is null");
         }
     }
 
