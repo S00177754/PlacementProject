@@ -10,11 +10,11 @@ using UnityEngine.UI;
 public class QuestSelection : TabGroup
 {
     QuestManager Manager;
-    
-    public RectTransform ScrollViewContent;
+
+    public List<QuestButton> questButtons;
+    public RectTransform ScrollViewTransfrom;
     public GameObject QuestButtonPrefab;
     public Text QuestName;
-    public List<QuestButton> questButtons;
 
     [Header("Required")]
     public GameObject ScrollContent;
@@ -34,17 +34,8 @@ public class QuestSelection : TabGroup
         else if (Manager.FoundMSQuests.Count > 0)
             Debug.Log(string.Format("FoundMSQuests contains {0} elements", Manager.FoundMSQuests.Count));
 
-        foreach (var item in Manager.FoundMSQuests)
-        {
-            GameObject next = Instantiate(ScrollContent); //Creates new Scrollview Content
-            next.TryGetComponent<Text>(out QuestName);
-            if (QuestName != null)
-            {
-                QuestName.text = item.Name;
-                Debug.Log(QuestName);
-            }
-            Debug.Log("Quest added: " + item.Name);
-        }
+        PopulateButtons();
+
 
         tabIdleColor = new Color(0, 0, 0, 1);
         tabHoverColor = new Color(0, 111, 255, 1);
@@ -58,6 +49,7 @@ public class QuestSelection : TabGroup
             questButtons = new List<QuestButton>();
             tabPannels = new List<GameObject>();
         }
+
 
         questButtons.Add(questButton);
         tabPannels.Add(questButton.MyPannel);
@@ -79,6 +71,28 @@ public class QuestSelection : TabGroup
     public void OnQuestExit(QuestButton questButton)
     {
         OnTabExit(questButton);
+    }
+
+    public void PopulateButtons()
+    {
+        if (tag.Equals("Main Scenario"))
+        {
+            foreach (var item in Manager.FoundMSQuests)
+            {
+                GameObject next = Instantiate(ScrollContent, ScrollViewTransfrom); //Creates new Scrollview Content
+                next.transform.SetParent(ScrollViewTransfrom, false);
+                QuestName = next.GetComponentInChildren<Text>();
+                if (QuestName != null)
+                {
+                    QuestName.text = item.Name;
+                    QuestName.color = Color.black;
+                    Debug.Log(QuestName);
+                    Debug.Log("Quest added: " + item.Name);
+                }
+                else
+                    Debug.Log("QuestName is null");
+            }
+        }
     }
 
 }

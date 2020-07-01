@@ -9,7 +9,8 @@ public class QuestButton : TabButton
     public QuestSelection questGroup;
     public Quest myQuest;
     public Text QuestNameText;
-    
+
+
 
     public new void OnPointerClick(PointerEventData eventData)
     {
@@ -32,5 +33,11 @@ public class QuestButton : TabButton
         questGroup.Subscribe(this);
         isSelected = false;
         MyPannel.SetActive(false);
+
+        
+        //else if(tag.Equals("Side Quest"))
+        //{
+        //    //Logic for side quests
+        //}
     }
 }
