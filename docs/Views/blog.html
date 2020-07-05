@@ -99,6 +99,21 @@
               <!-- Blog Highlight Template-->
               <div class="tile is-child">
                 <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_11"></a>
+                  <p class="title">What's in a Quest? Navigating UI - #11</p>
+                  <p>As previously mentioned, the quest system is starting to take shape. Over the past few weeks, I have been attemting to use the UI Tab System further, to impliment the UI to view current quests.</p>
+                  <p>Currently, a user can click and select a tab button to switch between Main Scenario quests and side quests. This produces a new pannel with relavent information. The next step is to create a similar system for the pannels so that the user can select a quest and see more detailed information, such as relevant items and/or locations, as well as a list of the previously completed steps in the quest.</p>
+                  <p>The trivky bit so far ahs been linking up the UI elements in each panel to the correct information in each quest, and furthermore, to have the quest list also act link the tab system used in selecting MSQ/Side quests.</p>
+                  <p>Scriptable objects have been very useful so for in this endeavour. They allow easy creation, naming and linking of quests as well as easy access to loading them as resources; allowing them to be read by the application any time the user wants to view this information. The next descision is wether to hold access to these in memory, or have the application load them as and when they are needed.</p>
+                  
+                    By Sam ColvilleRea - 27th of June 2020
+                  </p>
+                </article>
+              </div>
+            </br>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
                   <a id="blog_post_10"></a>
                   <p class="title">Saving & UI Updates - #10</p>
                   <p>Over the course of the past two weeks, I've sunk a lot of time into exploring the various ways for us to save the nearby enemies and load them back in the same position without spawning duplicates of them. This lead to a lot of research around world streaming for open world games and the various methods to achieve this, after many attempts to develop a simple world streaming system, it became clear to me that it was not worth putting more time into the idea in regards to the time left for our project and that there was a less elegant but still valid method for saving the enemies. Part of this plan was to develop a simple enemy spawner that spawns an enemy every X seconds as long as the enemy cap is not reached, the enemies loaded back in are only within a certain range and if an enemy is Y meters away from the player then they will despawn, freeing up the ability for another enemy to be spawned. This was carried out in the first week as well as some adjustments to how the enemy is structured and minimised the amount of data that actually needs to be saved thus reducing the size of the save file and complexity of loading them back in.</p>
