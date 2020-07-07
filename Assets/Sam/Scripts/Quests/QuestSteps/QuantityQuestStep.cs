@@ -5,6 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "QuantityQuestStep", menuName = "Quest System/QuantityQuestStep")]
 public class QuantityQuestStep : QuestStep
 {
+    [SerializeField]
+    public string Description;
+    [SerializeField]
+    public string Name;
+
     public int TargetID;
     public string TargetName;
     public int TargetQuantity;
@@ -20,15 +25,23 @@ public class QuantityQuestStep : QuestStep
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public override string GetName()
+    {
+        return Name;
+    }
+
+    public override string GetDescription()
+    {
+        return Description;
     }
 }

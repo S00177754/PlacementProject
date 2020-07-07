@@ -40,7 +40,7 @@ public class QuestDetailDisplay : MonoBehaviour
         CurrentQuest = currentQuest;
     }
 
-    void Start()
+    private void Start()
     {
         //QuestManager = 
         if (CurrentQuest != null)
@@ -59,25 +59,24 @@ public class QuestDetailDisplay : MonoBehaviour
                 //***********
                 Instantiate<GameObject>(StepListItemPrefab);            //NEEDS ATTENTION
                 //***********
-                if(StepListItemPrefab.TryGetComponent<Text>(out StepDescription))
+                if (StepListItemPrefab.TryGetComponent<Text>(out StepDescription))
                 {
-                    StepDescription.text = step.Description;
+                    StepDescription.text = step.GetDescription();
                     StepDescription.color = CompletedStepColor;
                 }
             }
 
             //Final instantiate for current step
             Instantiate(StepListItemPrefab);
-            if(StepListItemPrefab.TryGetComponent<Text>(out StepDescription))
+            if (StepListItemPrefab.TryGetComponent<Text>(out StepDescription))
             {
-                StepDescription.text = ActiveStep.Description;
+                StepDescription.text = ActiveStep.GetDescription();
                 StepDescription.color = ActiveStepColor;
             }
         }
         else
             Debug.Log("QuestDetailDisplay CurrentQuest is null");
     }
-
     void Update()
     {
         

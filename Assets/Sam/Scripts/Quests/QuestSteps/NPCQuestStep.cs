@@ -5,19 +5,31 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NPCQuestStep", menuName = "Quest System/NPCQuestStep")]
 public class NPCQuestStep : QuestStep
 {
+    [SerializeField]
+    public string Description;
+    [SerializeField]
+    public string Name;
     public NPC TargetNPC;
 
     //OnTalkTo Event Handle
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public override string GetName()
+    {
+        return Name;
+    }
+
+    public override string GetDescription()
+    {
+        return Description;
     }
 }

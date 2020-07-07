@@ -17,12 +17,13 @@ MonoBehaviour:
   Description: 'This is a test quest '
   isActive: 0
   isComplete: 0
+  isMainScenario: 1
   QuestGiver: {fileID: 11400000, guid: f398a0f1be43bea4ca2cf3893e7aafe8, type: 2}
   QuestReturn: {fileID: 11400000, guid: f398a0f1be43bea4ca2cf3893e7aafe8, type: 2}
   CompletedList: []
   StepsList:
-  - {fileID: 11400000, guid: 22b505a780cff3340829b7b486ae8b0e, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: d079a2dd57151614b887664a66c797c6, type: 2}
   - {fileID: 11400000, guid: 3933d65e2bfab9c42bf5e4ca9db91434, type: 2}
-  ActiveStep: {fileID: 0}
+  ActiveStep: {fileID: 11400000, guid: d079a2dd57151614b887664a66c797c6, type: 2}
   NextStep: {fileID: 0}

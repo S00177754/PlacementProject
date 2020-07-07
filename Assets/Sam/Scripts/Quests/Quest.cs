@@ -11,6 +11,8 @@ public class Quest : ScriptableObject
     public string Description;
     public bool isActive;
     public bool isComplete;
+    [SerializeField]
+    public bool isMainScenario;
 
     public NPC QuestGiver;
     public NPC QuestReturn;
@@ -27,7 +29,6 @@ public class Quest : ScriptableObject
             ActiveStep = Steps.Dequeue();
             NextStep = Steps.Peek();
         }
-
     }
 
 

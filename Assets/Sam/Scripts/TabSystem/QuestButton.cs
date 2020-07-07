@@ -4,40 +4,44 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class QuestButton : TabButton
+public class QuestButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
 {
     public QuestSelection questGroup;
     public Quest myQuest;
     public Text QuestNameText;
+    public bool isSelected;
+    public GameObject MyPannel;
 
 
-
-    public new void OnPointerClick(PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
         questGroup.OnQuestSelected(this);
     }
 
-    public new void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
     {
         questGroup.OnQuestEnter(this);
     }
 
-    public new void OnPointerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData eventData)
     {
         questGroup.OnQuestExit(this);
     }
 
     void Start()
     {
+        //QuestNameText = GetComponent<Text>();
+        //questGroup.Subscribe(this);
+        //isSelected = false;
+        //MyPannel.SetActive(false);
+    }
+
+    void OnEnable()
+    {
         QuestNameText = GetComponent<Text>();
         questGroup.Subscribe(this);
         isSelected = false;
         MyPannel.SetActive(false);
-
-        
-        //else if(tag.Equals("Side Quest"))
-        //{
-        //    //Logic for side quests
-        //}
     }
+
 }

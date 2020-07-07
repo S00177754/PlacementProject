@@ -6,9 +6,20 @@ using UnityEngine;
 public class QuestStep : ScriptableObject {
     
     protected int ID;
-    [SerializeField]
-    [TextArea(10, 15)]
-    public readonly string Description;
-    public readonly string Name; //Will likely be coded for creating quests
+    //[SerializeField]
+    //[TextArea(10, 15)]
+    //public readonly string Description;
+    //[SerializeField]
+    //public readonly string Name; 
     public bool isComplete;
+
+    public virtual string GetName()
+    {
+        return string.Empty;
+    }
+
+    public virtual string GetDescription()
+    {
+        return string.Empty;
+    }
 }

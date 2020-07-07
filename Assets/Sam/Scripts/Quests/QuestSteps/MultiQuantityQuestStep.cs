@@ -5,6 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MultiQuantQuestStep", menuName = "Quest System/MultiQuantQuestStep")]
 public class MultiQuantityQuestStep : QuestStep
 {
+    [SerializeField]
+    public string Description;
+    [SerializeField]
+    public string Name;
     public List<ItemObj> TargetIDs; //or names here?
     public List<int> TargetQuantities;
     public List<int> Counters;
@@ -15,15 +19,23 @@ public class MultiQuantityQuestStep : QuestStep
         Counters[index]++;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public override string GetName()
+    {
+        return Name;
+    }
+
+    public override string GetDescription()
+    {
+        return Description;
     }
 }

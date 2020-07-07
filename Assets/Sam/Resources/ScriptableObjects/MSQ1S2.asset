@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eccb8cd6467fa64591be871b61ad5c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 57f59014af5f16141b2d417857545965, type: 3}
   m_Name: MSQ1S2
   m_EditorClassIdentifier: 
-  Description: Collect 3 Bauble Objects
-  isComplete: 0
-  TargetID: 0
-  TargetName: GetMe
-  TargetQuantity: 3
-  counter: 0
+  isComplete: 1
+  Description: Collect These Items
+  Name: MSQ1S2
+  TargetIDs: []
+  TargetQuantities: 
+  Counters: 

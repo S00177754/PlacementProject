@@ -19,6 +19,9 @@ public class QuestManager : ScriptableObject
     [SerializeField]
     List<QuestReward> Rewards;
 
+    [SerializeField]
+    public Quest TrackedQuest;
+
     void Start()
     {
         FoundMSQuests = new List<Quest>();
