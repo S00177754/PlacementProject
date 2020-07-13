@@ -99,6 +99,66 @@
               <!-- Blog Highlight Template-->
               <div class="tile is-child">
                 <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_12"></a>
+                  <p class="title">Moving quests further - #13</p>
+                  <p>Now that the Quest UI is mostly complete, development has turned towars implementing and testing how quests are dealt with in gameplay</p>
+                  <p>This has started with using test quest objects. These are scriptable objects saved in the resources folder so that scripts can access their data, and the player can modify the data as they progress through the game.</p>
+                  <p>The Quest Manager has several methods that allow access and modifacation as the play completes a task. This needs further development to create events that will trigger these updates.</p>
+                  <p>Most simply, these can be triggers attached to gmaeobjects in the scene, but some are more complex, such as talking with an NPC or collecting a set number of items. This should be overcome by adding a refrence to the methods to certian objects' scripts.</p>
+                  <p>Finally, a small HUD was added that allows the player to see their current active quest. This can be set by the player within the quest UI and can be customised to be a Main Scenario quest or side quest. This may be altered further in development to show the current MSQ and a customised Side quest the player woulkd like to track. Some games allow the user to select multiple quests to track, which could also be an option in the game.</p>
+                  <p>
+                    By Sam ColvilleRea - 6th of July 2020
+                  </p>
+                </article>
+              </div>
+              <br/>
+
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_12"></a>
+                  <p class="title">UI, Fast Travel & The World Beyond - #12</p>
+                  <p>During the past week, I've been working on some much need UI and UX work in regards to the player HUD. I decided to streamline the helath and magic bars design using an icon to illustrate which is which and also included little ticks along each bar to represent approx. 10% intervals so a player can get a better idea of how much they have left. Another welcome addition ot eh player HUD is the addition of animation events to elements such as the popup box that actvates when near an interactable and also the notifcation bos that displays all the items a player just collected for a few seconds. The updates to these elements of the HUD also involved some updated graphics with a simplistic modern technical vibe to fit the narrative of the game.</p>
+                  <p>I revisted the fast travel system and tidied up the UI a bit as well as added a new model for the travel points with a particle effect that activates if the travel point has been unlocked to give players a visual representation that they have unlocked it without having to walk right up to it to see wether they can interact with it or not. Some general refactoring for some player components was also carried out and I begun work on implimenting a test gun weapon to ensure that the ranged player attack was still functioning as intended.</p>
+                  <p>The latter half of the week was spent sculpting the terrain, painting the textures onto it and creating various models to poulate the game world and make it feel less barren. This terrain development is still underway as there are many areas which need to be built up as well as the addition of water, trees and pathways. </p>
+                  <p>
+                    By Ronan Cassidy - 5th of July 2020
+                  </p>
+                </article>
+              </div>
+              <br/>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_11"></a>
+                  <p class="title">What's in a Quest? Navigating UI - #11</p>
+                  <p>As previously mentioned, the quest system is starting to take shape. Over the past few weeks, I have been attemting to use the UI Tab System further, to impliment the UI to view current quests.</p>
+                  <p>Currently, a user can click and select a tab button to switch between Main Scenario quests and side quests. This produces a new pannel with relavent information. The next step is to create a similar system for the pannels so that the user can select a quest and see more detailed information, such as relevant items and/or locations, as well as a list of the previously completed steps in the quest.</p>
+                  <p>The trivky bit so far ahs been linking up the UI elements in each panel to the correct information in each quest, and furthermore, to have the quest list also act link the tab system used in selecting MSQ/Side quests.</p>
+                  <p>Scriptable objects have been very useful so for in this endeavour. They allow easy creation, naming and linking of quests as well as easy access to loading them as resources; allowing them to be read by the application any time the user wants to view this information. The next descision is wether to hold access to these in memory, or have the application load them as and when they are needed.</p>
+                  
+                    By Sam ColvilleRea - 27th of June 2020
+                  </p>
+                </article>
+              </div>
+            </br>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_10"></a>
+                  <p class="title">Saving & UI Updates - #10</p>
+                  <p>Over the course of the past two weeks, I've sunk a lot of time into exploring the various ways for us to save the nearby enemies and load them back in the same position without spawning duplicates of them. This lead to a lot of research around world streaming for open world games and the various methods to achieve this, after many attempts to develop a simple world streaming system, it became clear to me that it was not worth putting more time into the idea in regards to the time left for our project and that there was a less elegant but still valid method for saving the enemies. Part of this plan was to develop a simple enemy spawner that spawns an enemy every X seconds as long as the enemy cap is not reached, the enemies loaded back in are only within a certain range and if an enemy is Y meters away from the player then they will despawn, freeing up the ability for another enemy to be spawned. This was carried out in the first week as well as some adjustments to how the enemy is structured and minimised the amount of data that actually needs to be saved thus reducing the size of the save file and complexity of loading them back in.</p>
+                  <p>In the second week, I moved onto some much needed work in the Pause Menu UI which includes the Settings, Inventory, Fast Travel and Ability Tree. I started off looking at the inventory UI again fixing any small bugs and setting the navigation properties of the various elements so that players can use a controller to navigate the UI.This also meant that I took another look at my auto scroll function for Unity's scroll view which is needed for controller support, after some debugging and testing I was able to solve any issues and get the system working correctly with its various filters. I was able to reuse the autoscroll in the ability tree UI for the navigation of the down through the tree, it was also added into the settings menu for the resolution dropdown due to the amount of options there is. The settings menu is completely functioning and saves its values to PlayerPrefs as they are not game data but more so client application prefrences.  </p>
+                  <p>At this point of the project I would say we are behind schedule a bit but we're now at a point where we can start bringing the systems all together and move towards the design of both our models and the world. Moving on from this point there are various tasks that need to be done but taking into account of the minimum viable project, I feel it may be wise to get some assets done and the terrain for our world created, implimenting the various systems together as we piece together the mvp.</p>
+                  <p>
+                    By Ronan Cassidy - 27th of June 2020
+                  </p>
+                </article>
+              </div>
+              <br/>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
                   <a id="blog_post_9"></a>
                   <p class="title">Enemy AI and Attack Cooldowns - #9</p>
                   <p>
