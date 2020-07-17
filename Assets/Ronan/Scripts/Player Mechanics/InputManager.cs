@@ -142,7 +142,7 @@ public class InputManager : MonoBehaviour
                     break;
 
                 case InputActionPhase.Canceled:
-                        GetComponent<PlayerAttack>().IsCharging = false;
+                        GetComponent<PlayerAttack>().CancelCharge();
                         break;
 
                 default:
