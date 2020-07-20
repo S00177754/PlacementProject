@@ -35,6 +35,57 @@ public class EquipmentManager : MonoBehaviour
         Loadout.EquippedWeapon = null;
     }
 
+
+    public void EquipAccessory(BaubleObj bauble,int accessorySlot)
+    {
+        //TODO: Ensure unequip is working
+
+        UnequipAccessory(accessorySlot);
+
+        switch (accessorySlot)
+        {
+            case 1:
+                Loadout.AccessorySlotOne = bauble;
+                break;
+
+            case 2:
+                Loadout.AccessorySlotTwo = bauble;
+                break;
+
+            case 3:
+                Loadout.AccessorySlotThree = bauble;
+                break;
+
+            default:
+                Debug.LogError("Invalid accesory slot selection.");
+                break;
+        }
+    }
+
+
+    public void UnequipAccessory(int accessorySlot)
+    {
+        switch (accessorySlot)
+        {
+            case 1:
+                Loadout.AccessorySlotOne = null;
+                break;
+
+            case 2:
+                Loadout.AccessorySlotTwo = null;
+                break;
+
+            case 3:
+                Loadout.AccessorySlotThree = null;
+                break;
+
+            default:
+                Debug.LogError("Invalid accesory slot selection.");
+                break;
+        }
+    }
+
+
     public WeaponAttackDetailsObj GetAttackDetails()
     {
         if (Loadout.EquippedWeapon != null)

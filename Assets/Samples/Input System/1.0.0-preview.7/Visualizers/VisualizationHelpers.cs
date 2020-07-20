@@ -138,8 +138,6 @@ namespace UnityEngine.InputSystem.Samples
             }
         }
 
-        ////TODO: allow asymmetric center (i.e. center not being a midpoint of rectangle)
-        ////TODO: enforce proper proportion between X and Y; it's confusing that X and Y can have different units yet have the same length
         public class Vector2Visualizer : ValueVisualizer<Vector2>
         {
             // Our value space extends radially from the center, i.e. we have
@@ -325,7 +323,7 @@ namespace UnityEngine.InputSystem.Samples
                             ? timeline.frameSamples[n].value
                             : timeline.timeSamples[n].value;
 
-                        ////TODO: respect limitsY
+                        
 
                         float y;
                         if (sample.isEmpty)
@@ -351,7 +349,7 @@ namespace UnityEngine.InputSystem.Samples
                         }
                         else if (plotType == PlotType.BarChart)
                         {
-                            ////TODO: make rectangles have a progressively stronger hue or saturation
+                           
                             var barRect = new Rect(pos.x, pos.y, timeUnitsPerPixel, y * limitsY.y * rect.height);
                             DrawRectangle(barRect, color);
                         }
@@ -526,7 +524,7 @@ namespace UnityEngine.InputSystem.Samples
                     throw new NotImplementedException();
             }
 
-            ////TODO: label limits
+          
 
             DrawLine(start, end, color, width);
             DrawLine(start - tickOffset, start + tickOffset, color, width);

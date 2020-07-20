@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,5 +31,16 @@ public class WeaponObj : ItemObj
     {
         base.UseItem(member);
         return false;
+    }
+
+    public override string GetItemDetailText()
+    {
+        WeaponInfo wi = WeaponPrefab.GetComponent<WeaponInfo>();
+
+        string description = string.Concat(Enum.GetName(typeof(WeaponType), wi.weaponType), " that deals ", Enum.GetName(typeof(AttackType), wi.attackType).ToLower(), " type damage.");
+
+        description = string.Concat(description, "\n\n", Description);
+
+        return description;
     }
 }
