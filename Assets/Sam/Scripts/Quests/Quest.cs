@@ -31,13 +31,14 @@ public class Quest : ScriptableObject
         }
     }
 
-
-    // Start is called before the first frame update
     void Start()
     {
         foreach (QuestStep step in StepsList)
         {
             Steps.Enqueue(step);
+            if(ActiveStep == null && !step.isComplete)
+                ActiveStep = step;
+
         }
     }
 
