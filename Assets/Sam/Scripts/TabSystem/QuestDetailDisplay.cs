@@ -8,11 +8,10 @@ using UnityEngine.UI;
 public class QuestDetailDisplay : MonoBehaviour
 {
     /**
-     * TODO
-     * Get questSteps
-     * Add questSteps to list
-     * add items in queststeps to scrollview items
-     * conditional formatting of complete and not complete
+     * TODO: Get questSteps
+     * TODO: Add questSteps to list
+     * TODO: add items in queststeps to scrollview items
+     * TODO: conditional formatting of complete and not complete
      * */
 
     QuestManager QuestManager;
