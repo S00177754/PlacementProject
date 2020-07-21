@@ -22,7 +22,7 @@ public class PlayerAnimator : MonoBehaviour
         Animator.SetBool("IsJumping", movement.IsJumping);
         Animator.SetBool("IsFalling", movement.IsFalling);
         Animator.SetBool("IsCrouching", movement.IsCrouching);
-        Animator.SetBool("IsWeaponSheathed", attack.WeaponSheathed);
+        //Animator.SetBool("IsWeaponSheathed", attack.WeaponSheathed);
         Animator.SetBool("IsCharging", attack.IsCharging);
     }
 

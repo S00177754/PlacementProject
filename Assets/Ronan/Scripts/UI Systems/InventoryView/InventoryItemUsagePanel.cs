@@ -84,6 +84,8 @@ public class InventoryItemUsagePanel : MonoBehaviour
         InputManager inputPlayer = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer.GetComponent<InputManager>();
         inputPlayer.buttonStates.SetState(RightJoystickState.Default);
         inputPlayer.buttonStates.SetState(SouthButtonState.Default);
+        inputPlayer.buttonStates.SetState(SouthButtonState.Default);
+        inputPlayer.buttonStates.SetState(EastButtonState.Default);
         inputPlayer.SetRadialMenu(null, InputManager.RadialMenuState.None);
     }
 

@@ -9,7 +9,9 @@ public class EquipmentManager : MonoBehaviour
 
     private void Start()
     {
+        HideWeapon();
         GetComponent<PlayerAttack>().ComboAttackCount = GetAttackDetails().PrimaryAtackPattern.Count;
+        GetComponent<PlayerAttack>().AttachPoints.AttatchTo(AttachPoint.RightHand, Loadout.EquippedWeapon);
     }
 
 
@@ -17,16 +19,18 @@ public class EquipmentManager : MonoBehaviour
     {
         WeaponInfo wi;
 
-        if (!weaponPrefab.TryGetComponent<WeaponInfo>(out wi))
+        if (!weaponPrefab.TryGetComponent(out wi))
         {
             Debug.LogError("GameObject does not have a WeaponInfo component.");
         }
         else
         {
+            Destroy(GetComponent<PlayerAttack>().Equipment.Loadout.EquippedWeapon.gameObject);
+
             GameObject go = Instantiate(weaponPrefab);
             Loadout.EquippedWeapon = go.GetComponent<WeaponInfo>();
-            GetComponent<PlayerAttack>().WeaponSheathed = true;
-            go.SetActive(false);
+            GetComponent<PlayerAttack>().AttachPoints.AttatchTo(AttachPoint.RightHand, Loadout.EquippedWeapon);
+            GetComponent<PlayerAttack>().ComboAttackCount = GetAttackDetails().PrimaryAtackPattern.Count;
         }
     }
 
@@ -94,6 +98,17 @@ public class EquipmentManager : MonoBehaviour
         }
         else return null;
 
+    }
+
+
+    public void ShowWeapon()
+    {
+        Loadout.EquippedWeapon.gameObject.GetComponentInChildren<MeshRenderer>().enabled = true;
+    }
+
+    public void HideWeapon()
+    {
+        Loadout.EquippedWeapon.gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
     }
 
 }

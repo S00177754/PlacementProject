@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class AnimEventHandler : MonoBehaviour
 {
-    public void SheatheWeapon()
+    public void ShowWeapon()
     {
         
-        //GetComponentInParent<PlayerAttack>().SheathWeapon();
+        GetComponentInParent<PlayerAttack>().Equipment.HideWeapon();
     }
 
-    public void UnSheatheWeapon()
+    public void HideWeapon()
     {
         
-        //GetComponentInParent<PlayerAttack>().UnsheathWeapon();
+        GetComponentInParent<PlayerAttack>().Equipment.ShowWeapon();
     }
 
     public void ResetAttackTrigger()

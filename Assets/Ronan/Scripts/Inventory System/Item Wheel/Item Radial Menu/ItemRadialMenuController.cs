@@ -43,6 +43,10 @@ public class ItemRadialMenuController : RadialMenuController
     {
         base.Startup();
 
+        InfoPanel.ItemNameField.text = "";
+        InfoPanel.ItemDescriptionField.text = "";
+        InfoPanel.ItemAmountField.text = "";
+
         PopulateWheel();
     }
 

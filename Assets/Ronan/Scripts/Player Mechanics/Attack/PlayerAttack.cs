@@ -8,7 +8,7 @@ public enum AttackAnimation { SwordOutwardSlash, ThrustSlash, Melee360, HighSpin
 public class PlayerAttack : MonoBehaviour
 {
     [Header("Equipment")]
-    public bool WeaponSheathed = true;
+    //public bool WeaponSheathed = true;
     public EquipmentManager Equipment;
     public EquipmentAttachController AttachPoints;
 
@@ -141,6 +141,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (!IsAttacking && !GetComponent<PlayerMovement>().IsCrouching)
         {
+            Equipment.ShowWeapon();
             GetComponent<PlayerAnimator>().Animator.ResetTrigger("CancelCharge");
             comboCounter = 0;
             ComboTimer = 0f;
@@ -155,10 +156,13 @@ public class PlayerAttack : MonoBehaviour
         IsCharging = false;
         GetComponent<PlayerAnimator>().SetInteger("AttackAnimation", -1);
         GetComponent<PlayerAnimator>().SetTrigger("CancelCharge");
+        Equipment.HideWeapon();
     }
 
     public void Attack()
     {
+        Equipment.ShowWeapon();
+
         switch (Equipment.Loadout.EquippedWeapon.attackType)
         {
             case AttackType.Melee:
@@ -213,6 +217,8 @@ public class PlayerAttack : MonoBehaviour
             SlamAttack = true;
             ActiveAttack = Equipment.GetAttackDetails().SlamAttack;
         }
+
+        
     }
 
     private void MeleeCharge()
@@ -225,6 +231,8 @@ public class PlayerAttack : MonoBehaviour
         GetComponent<PlayerAnimator>().SetBool("IsCharging", false);
         ChargeTimer = 0;
         ComboTimer = 0f;
+
+        
     }
     #endregion
 
@@ -273,6 +281,8 @@ public class PlayerAttack : MonoBehaviour
             SlamAttack = true;
             ActiveAttack = Equipment.GetAttackDetails().SlamAttack; //RocketJump?
         }
+
+        
     }
 
     private void RangedCharge()
@@ -294,6 +304,7 @@ public class PlayerAttack : MonoBehaviour
         {
             GetComponent<PlayerAnimator>().Animator.SetTrigger("CancelCharge");
         }
+
     }
 
 
@@ -323,6 +334,7 @@ public class PlayerAttack : MonoBehaviour
             ChargeTimer = duration;
             if (duration >= ActiveAttack.AttackCharge)
             {
+
                 switch (Equipment.Loadout.EquippedWeapon.attackType)
                 {
                     case AttackType.Melee:
@@ -388,6 +400,12 @@ public class PlayerAttack : MonoBehaviour
         GetComponent<PlayerMovement>().SetFreeze(movement, camera);
         yield return new WaitForSeconds(time);
         GetComponent<PlayerMovement>().SetFreeze(false, false);
+    }
+
+    IEnumerator HideWeaponIn(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Equipment.HideWeapon();
     }
 
     public float GetCooldownAmount()

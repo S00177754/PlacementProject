@@ -47,6 +47,7 @@ public class GameStateController : MonoBehaviour
         previousGameState = current;
         
 
+
         StateRefresh();
     }
 
@@ -105,8 +106,10 @@ public class GameStateController : MonoBehaviour
         Time.timeScale = 1;
         Instance.PlayerHUD.SetActive(true);
         PauseMenuClear();
+
         PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(false,false);
         Instance.ChangeAllPlayerMapsTo("Player");
+
     }
 
     static private void PacifistRefresh()
@@ -147,6 +150,10 @@ public class GameStateController : MonoBehaviour
         if (previousGameState == GameState.Paused)
         {
             Instance.PauseMenu.GetComponent<PauseMenuController>().gameObject.SetActive(false);
+            if (PlayerController.Instance != null)
+            {
+                PlayerController.Instance.GetComponent<InputManager>().buttonStates.SetState(EastButtonState.Default);
+            }
         }
     }
 }

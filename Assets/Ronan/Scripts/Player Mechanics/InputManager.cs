@@ -286,14 +286,7 @@ public class InputManager : MonoBehaviour
                     break;
 
                 case InputActionPhase.Started:
-                    if (context.interaction is SlowTapInteraction)
-                    {
-                        if (!GetComponent<PlayerAttack>().WeaponSheathed)
-                        {
-                            StartCoroutine(GetComponentInParent<PlayerAttack>().FreezeMovementFor(1.2f, true, false));
-                            GetComponent<PlayerAttack>().WeaponSheathed = true;
-                        }
-                    }
+                    
                     break;
 
                 case InputActionPhase.Canceled:
