@@ -18,16 +18,8 @@ public class NPCDialogueTrigger : MonoBehaviour
     {
         //activeDialogue = new Dialogue();
 
-        ActiveQuest = Resources.Load<QuestManager>("ScriptableObjects/QuestManager").ActiveMain;
-        if(ActiveQuest == null)
-        {
-            Debug.Log("ActiveQuest null in Start()");
-            ActiveQuest = Resources.Load<QuestManager>("ScriptableObjects/QuestManager").ActiveSides.First();
-            if(ActiveQuest == null)
-                Debug.Log("ActiveQuest null in Start() after side search");
-        }
+        CheckForQuest();
         CheckDialogue(ActiveQuest.Name);
-
         //****DEBUG****
         //Debug.Log(activeDialogue.name);
         //foreach (string scen in activeDialogue.scentances)
@@ -45,9 +37,9 @@ public class NPCDialogueTrigger : MonoBehaviour
     public void CheckDialogue(string convoName)
     {
         //****DEBUG****
-        Debug.Log(convoName);
+        //Debug.Log(convoName);
 
-
+        CheckForQuest();
         //Clear dialogue
         activeDialogue = new Dialogue();
 
@@ -62,15 +54,19 @@ public class NPCDialogueTrigger : MonoBehaviour
 
         if (activeDialogue.name == null)
             CheckDialogue("default");
-
-        //if (activeDialogue != null)
-        //    TriggerDialogue();
-        //else
-        //    Debug.Log("activeDialogue is null in NPCDTrigger");
     }
 
-    private void SetDefaultConvo()
+    private void CheckForQuest()
     {
+        ActiveQuest = Resources.Load<QuestManager>("ScriptableObjects/QuestManager").ActiveMain;
+        if (ActiveQuest == null)
+        {
+            Debug.Log("ActiveQuest null in Start()");
+            ActiveQuest = Resources.Load<QuestManager>("ScriptableObjects/QuestManager").ActiveSides.First();
+            if (ActiveQuest == null)
+                Debug.Log("ActiveQuest null in Start() after side search");
+        }
+        
     }
 
 }
