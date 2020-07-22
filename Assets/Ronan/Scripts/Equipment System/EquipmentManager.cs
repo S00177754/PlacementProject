@@ -111,6 +111,11 @@ public class EquipmentManager : MonoBehaviour
         Loadout.EquippedWeapon.gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
     }
 
+    public bool IsWeaponMeshActive()
+    {
+        return Loadout.EquippedWeapon.gameObject.GetComponentInChildren<MeshRenderer>().enabled;
+    }
+
 }
 
 [Serializable]

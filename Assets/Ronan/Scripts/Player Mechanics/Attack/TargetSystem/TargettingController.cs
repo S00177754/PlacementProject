@@ -41,20 +41,22 @@ public class TargettingController : MonoBehaviour
             }
 
             rect.position = targetPos;
+
+            if (IsOnScreen)
+            {
+                TargetIcon.color = SetTargetAlpha(1);
+            }
+            else
+            {
+                TargetIcon.color = SetTargetAlpha(0);
+            }
         }
         else
         {
             SetTargetNull();
         }
 
-        if (IsOnScreen)
-        {
-            TargetIcon.color = SetTargetAlpha(1);
-        }
-        else
-        {
-            TargetIcon.color = SetTargetAlpha(0);
-        }
+        
     }
 
     

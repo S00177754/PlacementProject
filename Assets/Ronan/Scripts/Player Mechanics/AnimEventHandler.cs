@@ -7,18 +7,18 @@ public class AnimEventHandler : MonoBehaviour
     public void ShowWeapon()
     {
         
-        GetComponentInParent<PlayerAttack>().Equipment.HideWeapon();
+        PlayerController.Instance.GetComponent<PlayerAttack>().Equipment.HideWeapon();
     }
 
     public void HideWeapon()
     {
-        
-        GetComponentInParent<PlayerAttack>().Equipment.ShowWeapon();
+
+        PlayerController.Instance.GetComponent<PlayerAttack>().Equipment.ShowWeapon();
     }
 
     public void ResetAttackTrigger()
     {
-        GetComponentInParent<PlayerAnimator>().Animator.ResetTrigger("Attack");
+        PlayerController.Instance.GetComponent<PlayerAnimator>().Animator.ResetTrigger("Attack");
     }
 
 }

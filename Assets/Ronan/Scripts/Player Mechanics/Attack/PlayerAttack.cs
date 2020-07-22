@@ -11,6 +11,7 @@ public class PlayerAttack : MonoBehaviour
     //public bool WeaponSheathed = true;
     public EquipmentManager Equipment;
     public EquipmentAttachController AttachPoints;
+    public Animator anim;
 
     [Header("Attack Details")]
     public float ComboTimeAllowance = 1f;
@@ -72,6 +73,13 @@ public class PlayerAttack : MonoBehaviour
                 CanCombo = true;
                 ComboTimer = 0f;
             }
+        }
+
+        anim.SetBool("WeaponVisible", Equipment.IsWeaponMeshActive());
+
+        if ((anim.GetCurrentAnimatorStateInfo(0).IsName("End Attack") || anim.GetCurrentAnimatorStateInfo(0).IsName("Jump") || anim.GetCurrentAnimatorStateInfo(0).IsName("Falling")) && anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+        {
+            Equipment.HideWeapon();
         }
     }
 
