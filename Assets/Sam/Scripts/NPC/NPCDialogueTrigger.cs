@@ -16,21 +16,37 @@ public class NPCDialogueTrigger : MonoBehaviour
 
     private void Start()
     {
+        //activeDialogue = new Dialogue();
+
         ActiveQuest = Resources.Load<QuestManager>("ScriptableObjects/QuestManager").ActiveMain;
         if(ActiveQuest == null)
+        {
+            Debug.Log("ActiveQuest null in Start()");
             ActiveQuest = Resources.Load<QuestManager>("ScriptableObjects/QuestManager").ActiveSides.First();
+            if(ActiveQuest == null)
+                Debug.Log("ActiveQuest null in Start() after side search");
+        }
         CheckDialogue(ActiveQuest.Name);
+
+        //****DEBUG****
+        //Debug.Log(activeDialogue.name);
+        //foreach (string scen in activeDialogue.scentances)
+        //{
+        //    Debug.Log(scen);
+        //}
     }
 
     public void TriggerDialogue()
     {
+        CheckDialogue(ActiveQuest.Name);
         FindObjectOfType<DialogueManager>().StartDialogue(activeDialogue);
     }
 
     public void CheckDialogue(string convoName)
     {
-
+        //****DEBUG****
         Debug.Log(convoName);
+
 
         //Clear dialogue
         activeDialogue = new Dialogue();
@@ -40,11 +56,12 @@ public class NPCDialogueTrigger : MonoBehaviour
         {
             if(dialogue.conversationName.Equals(convoName))
             {
-                activeDialogue = dialogue; 
+                activeDialogue = dialogue;
             }
         }
-        if (activeDialogue == null)
-            SetDefaultConvo();
+
+        if (activeDialogue.name == null)
+            CheckDialogue("default");
 
         //if (activeDialogue != null)
         //    TriggerDialogue();
@@ -54,7 +71,6 @@ public class NPCDialogueTrigger : MonoBehaviour
 
     private void SetDefaultConvo()
     {
-        activeDialogue = conversations.Where(d => d.conversationName.Equals("default")).FirstOrDefault();
     }
 
 }

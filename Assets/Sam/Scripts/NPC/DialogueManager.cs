@@ -20,7 +20,12 @@ public class DialogueManager : MonoBehaviour
     {
         if (dialogue == null)
             Debug.Log("dialogue is null in DiagManager");
-
+        else
+        {
+            Debug.Log(dialogue.name);
+            Debug.Log(dialogue.conversationName);
+            Debug.Log(dialogue.scentances);
+        }
 
         animator.SetBool("IsOpen", true);
         Debug.Log("Start Conversation with " + dialogue.name);

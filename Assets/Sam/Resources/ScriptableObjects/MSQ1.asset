@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: MSQ1
   m_EditorClassIdentifier: 
   ID: 0
-  Name: Main Quest 1
+  Name: Main Quest 12
   Description: 'This is a test quest '
   isActive: 0
   isComplete: 0
   isMainScenario: 1
-  QuestGiver: {fileID: 11400000, guid: f398a0f1be43bea4ca2cf3893e7aafe8, type: 2}
-  QuestReturn: {fileID: 11400000, guid: f398a0f1be43bea4ca2cf3893e7aafe8, type: 2}
+  QuestGiver: {fileID: 0}
+  QuestReturn: {fileID: 0}
   CompletedList: []
   StepsList:
   - {fileID: 11400000, guid: da84e95096d4d6749a47aa113fdb7b37, type: 2}
