@@ -18,6 +18,10 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        if (dialogue == null)
+            Debug.Log("dialogue is null in DiagManager");
+
+
         animator.SetBool("IsOpen", true);
         Debug.Log("Start Conversation with " + dialogue.name);
 

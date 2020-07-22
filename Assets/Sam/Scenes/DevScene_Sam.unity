@@ -1186,7 +1186,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.0498216}
   m_AnchorMax: {x: 0.16225743, y: 1}
-  m_AnchoredPosition: {x: 0.30963135, y: -1.2865028}
+  m_AnchoredPosition: {x: 0.30963135, y: -1.286499}
   m_SizeDelta: {x: 0.5484009, y: 3.4269257}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &627065922
@@ -1362,17 +1362,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 696dc3710f466ed489af0a0f801e27b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-    name: NPC 1
+  NPCName: NPC1
+  Description: Testing NPC
+  Location: {x: 0, y: 0, z: 0}
+  conversations:
+  - name: NPC1
+    conversationName: default
+    hasBeenSeen: 0
     scentances:
-    - "Hello World1 \nHow are you today?"
-    - This is a great converation don't you think?
-    - I have no idea what I'm doing, but this will take ages to fill out when I come
-      to be a real NPC in the game! I wonder how long I can make this to fill up
-      the text box. I will keep typing stuff to get an idea of how many characters
-      will fit in the Text box I have created and copy the text into a word document
-      to get a character count. I think this is far too much disalogue, but it should
-      be good for determining the maximum text allowed.
+    - Hello! Welcome to this town.
+    - Would you like a quest to do?
+    - I can also give you some story exposition!
+  - name: NPC1
+    conversationName: MSQ1S3
+    hasBeenSeen: 0
+    scentances:
+    - Oh! You have a quest!
+    - I need you to go here.
+    - Collect 5 items
+    - Bring them back to me!
+  activeDialogue:
+    name: 
+    conversationName: 
+    hasBeenSeen: 0
+    scentances: []
 --- !u!114 &698870226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2436,7 +2449,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.16225743, y: 0.0498216}
   m_AnchorMax: {x: 0.9917723, y: 0.5}
-  m_AnchoredPosition: {x: 1.946991, y: -1.7149887}
+  m_AnchoredPosition: {x: 1.946991, y: -1.7149811}
   m_SizeDelta: {x: 2.7262573, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1317473212

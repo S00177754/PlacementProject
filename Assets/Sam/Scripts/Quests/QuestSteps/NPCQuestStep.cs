@@ -9,7 +9,7 @@ public class NPCQuestStep : QuestStep
     public string Description;
     [SerializeField]
     public string Name;
-    public NPC TargetNPC;
+    public NPCDialogueTrigger TargetNPC;
 
     //OnTalkTo Event Handle
 

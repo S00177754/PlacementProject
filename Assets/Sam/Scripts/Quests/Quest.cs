@@ -14,8 +14,8 @@ public class Quest : ScriptableObject
     [SerializeField]
     public bool isMainScenario;
 
-    public NPC QuestGiver;
-    public NPC QuestReturn;
+    public NPCDialogueTrigger QuestGiver;
+    public NPCDialogueTrigger QuestReturn;
     public Queue<QuestStep> CompletedSteps;
     public List<QuestStep> CompletedList;
     public Queue<QuestStep> Steps;
