@@ -11,6 +11,7 @@ public class InventoryItemPanel : MonoBehaviour, ISelectHandler
     //public Image SpriteIcon;
     public TMP_Text ItemName;
     public TMP_Text AmountDisplay;
+    public Image EquipIcon;
 
     [Header("Item Scriptable Object")]
     public ItemObj Item;
@@ -24,6 +25,17 @@ public class InventoryItemPanel : MonoBehaviour, ISelectHandler
         AmountDisplay.text = "X " + inventorySlot.Amount;
         ItemName.text = Item.Name;
         InventoryPanel = inventoryPanel;
+
+        //TODO Check if item is equipped
+        if (PlayerController.Instance.GetComponent<EquipmentManager>().CheckLoadout(Item))
+        {
+            EquipIcon.enabled = true;
+        }
+        else
+        {
+            EquipIcon.enabled = false;
+        }
+
     }
 
     public void UseInventoryItem()

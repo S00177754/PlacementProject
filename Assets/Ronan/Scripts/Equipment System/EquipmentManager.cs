@@ -34,6 +34,27 @@ public class EquipmentManager : MonoBehaviour
         }
     }
 
+    public bool CheckLoadout(ItemObj item)
+    {
+        switch (item.Type)
+        {
+            case ItemType.Weapon:
+                if(Loadout.EquippedWeapon.AttackDetails == (item as WeaponObj).WeaponPrefab.GetComponent<WeaponInfo>().AttackDetails)
+                {
+                    return true;
+                }
+                break;
+
+            case ItemType.Bauble:
+                if (Loadout.AccessorySlotOne == (item as BaubleObj) || Loadout.AccessorySlotTwo == (item as BaubleObj) || Loadout.AccessorySlotThree == (item as BaubleObj) )
+                {
+                    return true;
+                }
+                break;                
+        }
+                return false;
+    }
+
     public void UnEquipWeapon()
     {
         Loadout.EquippedWeapon = null;
