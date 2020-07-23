@@ -36,5 +36,23 @@ public class MPPotionObj : ItemObj
         base.UseItem(member);
         return false;
     }
+
+    public override string GetItemDetailText()
+    {
+        string description = string.Concat("Restores ", RestoreAmount, " MP to ");
+
+        if (AffectParty)
+        {
+            description = string.Concat(description, "the whole party.");
+        }
+        else
+        {
+            description = string.Concat(description, "the player.");
+        }
+
+        description = string.Concat(description, "\n\n", Description);
+
+        return description;
+    }
 }
 

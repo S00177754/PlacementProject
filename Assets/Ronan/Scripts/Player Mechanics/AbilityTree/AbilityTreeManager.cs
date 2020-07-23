@@ -29,12 +29,20 @@ public class AbilityTreeManager : MonoBehaviour
 
     public int GetMeleeComboLimit()
     {
-        return MeleeTree.GetUnlockedCombos();
+        if (MeleeTree.RootNode != null)
+        {
+            return MeleeTree.GetUnlockedCombos();
+        }
+        return 1;
     }
 
     public int GetRangedComboLimit()
     {
-        return RangedTree.GetUnlockedCombos();
+        if(RangedTree.RootNode != null)
+        {
+            return RangedTree.GetUnlockedCombos();
+        }
+        return 1;
     }
 
     public int GetMagicBonus()
