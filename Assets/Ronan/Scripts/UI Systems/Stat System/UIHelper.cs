@@ -10,6 +10,5 @@ static public class UIHelper
         EventSystem es = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         es.SetSelectedGameObject(null);
         es.SetSelectedGameObject(defaultSelectedUI);
-        Debug.Log(defaultSelectedUI);
     }
 }

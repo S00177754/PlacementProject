@@ -8,10 +8,14 @@ public class HPBarHUD : HUDValueSlider
     [Header("Player")]
     public PlayerController Player;
 
+    private void Start()
+    {
+        ValueNameText.text = "HP";
+    }
 
     private void Update()
     {
-        SliderBar.value = (float)Player.Health / (float)Player.MaxHealth;
+        SliderBar.value = (float)Player.Health / (float)Player.GameStats.MaxHealth;
         ValueText.text = Player.Health.ToString();
     }
 }

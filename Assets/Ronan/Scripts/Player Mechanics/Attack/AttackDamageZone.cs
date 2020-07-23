@@ -12,6 +12,10 @@ public class AttackDamageZone : MonoBehaviour
         player = playerAtk;
     }
 
+    public void Activate()
+    {
+        gameObject.SetActive(true);
+    }
 
     private void OnTriggerEnter(Collider other)
     {

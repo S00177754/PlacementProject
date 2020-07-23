@@ -10,5 +10,4 @@ public class WeaponAttackDetailsObj : ScriptableObject
 
     public List<AttackInfoObj> PrimaryAtackPattern;
     public AttackInfoObj ChargeAttack;
-    public AttackInfoObj SlamAttack;
 }

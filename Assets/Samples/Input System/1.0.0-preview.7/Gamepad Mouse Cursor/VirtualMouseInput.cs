@@ -2,6 +2,16 @@ using System;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
 
+////TODO: respect cursor lock mode
+
+////TODO: investigate how driving the HW cursor behaves when FPS drops low
+////      (also, maybe we can add support where we turn the gamepad mouse on and off automatically based on whether the system mouse is used)
+
+////TODO: add support for acceleration
+
+////TODO: automatically scale mouse speed to resolution such that it stays constant regardless of resolution
+
+////TODO: make it work with PlayerInput such that it will automatically look up actions in the actual PlayerInput instance it is used with (based on the action IDs it has)
 
 ////REVIEW: should we default the SW cursor position to the center of the screen?
 

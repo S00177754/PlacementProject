@@ -7,7 +7,6 @@ public class TargetableObjectFinder : MonoBehaviour
     public float Radius = 5f;
     public LayerMask EntityLayer;
     public TargetManager Manager;
- 
 
     private void Start()
     {
@@ -16,7 +15,12 @@ public class TargetableObjectFinder : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-            TargetableObject obj;
+        if(other.gameObject.layer == EntityLayer)
+        {
+            if (other.GetComponent<Renderer>().IsVisibleFrom(Camera.main))
+            {
+
+                TargetableObject obj;
                 if (other.TryGetComponent(out obj))
                 {
                     if (!Manager.Contains(obj))
@@ -24,33 +28,54 @@ public class TargetableObjectFinder : MonoBehaviour
                         Manager.AddTarget(obj);
                     }
                 }
-            
-        
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        TargetableObject obj;
-        if (other.TryGetComponent(out obj))
+        if (other.gameObject.layer == EntityLayer)
         {
-            if (!Manager.Contains(obj))
-            {
-                Manager.AddTarget(obj);
-            }
+            TargetableObject obj;
 
+            if (other.GetComponent<Renderer>().IsVisibleFrom(Camera.main))
+            {
+                if (other.TryGetComponent(out obj))
+                {
+                    if (!Manager.Contains(obj))
+                    {
+                        Manager.AddTarget(obj);
+                    }
+
+                }
+            }
+            else
+            {
+                if (other.TryGetComponent(out obj))
+                {
+                    if (Manager.Contains(obj))
+                    {
+                        Manager.RemoveTarget(obj);
+                    }
+
+                }
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        TargetableObject obj;
-        if (other.TryGetComponent(out obj))
+        if (other.gameObject.layer == EntityLayer)
         {
-            if (Manager.Contains(obj))
+            TargetableObject obj;
+            if (other.TryGetComponent(out obj))
             {
-                Manager.RemoveTarget(obj);
-            }
+                if (Manager.Contains(obj))
+                {
+                    Manager.RemoveTarget(obj);
+                }
 
+            }
         }
     }
 }

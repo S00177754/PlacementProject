@@ -12,13 +12,13 @@ public class TargetManager : MonoBehaviour
 
     private void Update()
     {
-        if (!IsLockedOn)
+        if(TargetsInRange.Count > 0 && !IsLockedOn)
         {
             SetClosestTargetAsPossible();
         }
         else if (IsLockedOn)
         {
-            TargetUIController.SetLockedTarget(LockedOnTarget);
+            TargetUIController.SetLockedTarget(FindNearestTarget());
         }
     }
 
@@ -40,55 +40,24 @@ public class TargetManager : MonoBehaviour
 
     public void RemoveTarget(TargetableObject newTarget)
     {
-
         TargetsInRange.Remove(newTarget);
-        if(newTarget == LockedOnTarget)
-        {
-            IsLockedOn = false;
-            LockedOnTarget = null;
-        }
         SetClosestTargetAsPossible();
     }
 
-
     public void SetClosestTargetAsPossible()
     {
-        if (TargetsInRange.Count > 0)
-        {
-            TargetUIController.SetPossibleTarget(FindNearestTarget());
-        }
-        else
-        {
-            for (int i = 0; i < TargetsInRange.Count; i++)
-            {
-                if (TargetsInRange[i] == null)
-                    TargetsInRange.RemoveAt(i);
-            }
-
-            TargetUIController.SetTargetNull();
-            UnlockOnTarget();
-        }
+        TargetUIController.SetPossibleTarget(FindNearestTarget());
     }
-
 
     public void LockOnTarget()
     {
-        if(TargetsInRange.Count > 0)
-        {
-            IsLockedOn = true;
-            LockedOnTarget = FindNearestTarget();
-            GetComponent<PlayerMovement>().LockOntoObject(LockedOnTarget.transform);
-           
-        }
+        IsLockedOn = true;
     }
 
     public void UnlockOnTarget()
     {
         IsLockedOn = false;
-        LockedOnTarget = null;
-        GetComponent<PlayerMovement>().UnlockFromObject();
     }
-
 
     /// <summary>
     /// Calculates which target in range is the nearest to the player.
@@ -96,40 +65,28 @@ public class TargetManager : MonoBehaviour
     /// <returns>Returns the targetable object closest to the player.</returns>
     public TargetableObject FindNearestTarget()
     {
-        for (int i = 0; i < TargetsInRange.Count; i++)
+        if (TargetsInRange != null)
         {
-            if (TargetsInRange[i] == null)
-                TargetsInRange.RemoveAt(i);
-        }
+            if (TargetsInRange.Count <= 0)
+                return null;
 
-        if (TargetsInRange.Count > 0)
-        {
             int index = 0;
-            //float nearest = Vector3.Distance(transform.position, TargetsInRange[0].transform.position);
-            float nearest = -1;
+            float nearest = Vector3.Distance(transform.position, TargetsInRange[0].transform.position);
 
             for (int i = 0; i < TargetsInRange.Count; i++)
-            {   
-                if(TargetsInRange[i] != null)
-                {
-                    float distCheck = Vector3.Distance(transform.position, TargetsInRange[i].transform.position);
+            {
+                float distCheck = Vector3.Distance(transform.position, TargetsInRange[i].transform.position);
 
-                    if(distCheck < nearest || nearest == -1)
-                    {
-                        nearest = distCheck;
-                        index = i;
-                    }
+                if(distCheck > nearest)
+                {
+                    nearest = distCheck;
+                    index = i;
                 }
             }
 
             return TargetsInRange[index];
         }
-        else
-        {
-            TargetUIController.SetTargetNull();
-        }
 
-        UnlockOnTarget();
         return null;
     }
 }

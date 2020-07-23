@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class EnemyStatsScript : MonoBehaviour
 {
-    public EnemyInfo Info;
     public int Health = 20;
-
-    private void Start()
-    {
-        Health = Info.Health;
-    }
+    public int MaxHealth = 20;
 
     public void ApplyDamage(int value)
     {

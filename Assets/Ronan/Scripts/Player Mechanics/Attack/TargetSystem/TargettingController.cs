@@ -23,6 +23,8 @@ public class TargettingController : MonoBehaviour
     {
         rect = GetComponent<RectTransform>();
         TargetIcon = GetComponent<Image>();
+
+        SetLockedTarget(LockOnObject);
     }
 
     private void Update()
@@ -33,33 +35,22 @@ public class TargettingController : MonoBehaviour
 
             if(targetPos.z < 0)
             {
+                TargetIcon.color = SetTargetAlpha(0);
                 IsOnScreen = false;
             }
             else
             {
+                TargetIcon.color = SetTargetAlpha(1);
                 IsOnScreen = true;
             }
 
             rect.position = targetPos;
-
-            if (IsOnScreen)
-            {
-                TargetIcon.color = SetTargetAlpha(1);
-            }
-            else
-            {
-                TargetIcon.color = SetTargetAlpha(0);
-            }
         }
         else
         {
             SetTargetNull();
         }
-
-        
     }
-
-    
 
     public void SetPossibleTarget(TargetableObject objectLockOn)
     {
@@ -67,6 +58,7 @@ public class TargettingController : MonoBehaviour
         {
             LockOnObject = objectLockOn;
             TargetIcon.sprite = PossibleTarget;
+            TargetIcon.color = SetTargetAlpha(1);
             return;
         }
 
@@ -75,11 +67,9 @@ public class TargettingController : MonoBehaviour
 
     public void SetLockedTarget(TargetableObject objectLockOn)
     {
-        if (objectLockOn != null)
-        {
-            LockOnObject = objectLockOn;
-            TargetIcon.sprite = LockedOntoTarget;
-        }
+        LockOnObject = objectLockOn;
+        TargetIcon.sprite = LockedOntoTarget;
+        TargetIcon.color = SetTargetAlpha(1);
     }
 
     public void SetTargetNull()
@@ -94,6 +84,4 @@ public class TargettingController : MonoBehaviour
         color.a = alpha;
         return color;
     }
-
-    
 }

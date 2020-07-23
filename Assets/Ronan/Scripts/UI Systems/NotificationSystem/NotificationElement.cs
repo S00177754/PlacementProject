@@ -9,18 +9,16 @@ public class NotificationElement : MonoBehaviour
     public Image NotificationPanel;
     public Image NotificationIcon;
     public TMP_Text Text;
-    public Animator animator;
 
     private void Start()
     {
-        Invoke("Destroy", 2);
+        Invoke("Destroy", 5);
     }
 
-    public void SetNotification(string text, Sprite icon, Color panelColor, Animator animate)
+    public void SetNotification(string text, Sprite icon, Color panelColor)
     {
         Text.text = text;
         NotificationIcon.sprite = icon;
-        animator = animate;
 
         Color color = panelColor;
         color.a = 0.6f;
@@ -29,13 +27,6 @@ public class NotificationElement : MonoBehaviour
 
     private void Destroy()
     {
-        animator.SetTrigger("Hide");
-        StartCoroutine(DestroyIn(1.4f));
-    }
-
-    IEnumerator DestroyIn(float time)
-    {
-        yield return new WaitForSeconds(time);
         Destroy(gameObject);
     }
 

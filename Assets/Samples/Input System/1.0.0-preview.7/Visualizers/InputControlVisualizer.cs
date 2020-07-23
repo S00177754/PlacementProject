@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem.Layouts;
 using UnityEngine.InputSystem.LowLevel;
 
-
+////TODO: add way to plot values over time
 
 // Goal is to build this out into something that can visualize a large number of
 // aspects about an InputControl/InputDevice especially with an eye towards making
@@ -178,20 +178,20 @@ namespace UnityEngine.InputSystem.Samples
                     else if (valueType == typeof(float))
                         m_Visualizer = new VisualizationHelpers.ScalarVisualizer<float>(m_HistorySamples)
                         {
-                           
+                            ////TODO: pass actual min/max limits of control
                             limitMax = 1,
                             limitMin = 0
                         };
                     else if (valueType == typeof(int))
                         m_Visualizer = new VisualizationHelpers.ScalarVisualizer<int>(m_HistorySamples)
                         {
-                            
+                            ////TODO: pass actual min/max limits of control
                             limitMax = 1,
                             limitMin = 0
                         };
                     else
                     {
-                       
+                        ////TODO: generic visualizer
                     }
                     break;
                 }

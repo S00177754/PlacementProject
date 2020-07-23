@@ -25,4 +25,11 @@ public class PlayerSurroundingDetection : MonoBehaviour
 
         return false;
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(Bottom.position, FallToLandDistance);
+    }
+
 }

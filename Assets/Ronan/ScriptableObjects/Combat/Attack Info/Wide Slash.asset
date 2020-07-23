@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80d271f5c31ed7e4eab502435fabb7ab, type: 3}
-  m_Name: Minor Health Potion
+  m_Script: {fileID: 11500000, guid: b270b63efe202ba449ff3d03ebe337b0, type: 3}
+  m_Name: Wide Slash
   m_EditorClassIdentifier: 
-  Name: Minor Healing Potion
-  Type: 3
-  Description: A potion distilled by the local druid.
-  ItemPrefab: {fileID: 0}
-  HealAmount: 10
-  AffectParty: 1
+  AttackZoneName: ForwardShortRangeWide
+  DamageAmount: 6
+  Animation: 7
+  AttackRadius: 0
