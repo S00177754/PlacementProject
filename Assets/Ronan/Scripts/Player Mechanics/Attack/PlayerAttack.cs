@@ -3,35 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public enum AttackAnimation { SwordOutwardSlash, ThrustSlash, Melee360, HighSpin, JumpAttack, SpinDownSlash, SpinSwing, CrossSlash, BasicSlash}
+public enum AttackAnimation { SwordOutwardSlash, ThrustSlash, Melee360, HighSpin, JumpAttack, SpinDownSlash, SpinSwing, CrossSlash, BasicSlash,Shoot,ThrowSpell,DualCast,AOECast,AltDualCast }
 
 public class PlayerAttack : MonoBehaviour
 {
     [Header("Equipment")]
-    public bool WeaponSheathed = true;
+    //public bool WeaponSheathed = true;
     public EquipmentManager Equipment;
     public EquipmentAttachController AttachPoints;
+    public Animator anim;
 
     [Header("Attack Details")]
-    public GameObject AttackZones;
     public float ComboTimeAllowance = 1f;
     public bool IsAttacking = false;
-
+    public bool SlamAttack = false;
     public bool IsCharging = false;
 
-    //Not implemented yet, still undecided
-    public float MaxChargeTime = 5f;
-    //private float ChargeTimer = 0f;
-
+    private float ChargeTimer = 0f;
     private bool CanCombo = false;
     public float ComboTimer = 0f;
     public int comboCounter = 0;
     private int ComboAttackIndex = 0;
 
+    private float AttackCooldownTimer = 0f;
+    public float CooldownTimer = 0f;
+
+    private AttackInfoObj ActiveAttack;
+
     [HideInInspector]
     public int ComboAttackCount = 0;
 
-    private Dictionary<string, AttackDamageZone> Zones = new Dictionary<string, AttackDamageZone>();
+    public AttackZoneManager ZoneManager;
+    private AbilityTreeManager AbilityTree;
+    
     
     [HideInInspector]
     public List<EnemyStatsScript> EnemiesToDamage = new List<EnemyStatsScript>();
@@ -39,64 +43,58 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {
-        GetAllAttackPatterns();
-        SheathWeapon();
-       
+        AbilityTree = GetComponent<AbilityTreeManager>();
+        ZoneManager.GetAllAttackPatterns();
     }
 
     private void Update()
     {
-
+        ChargeUpdate();
         ComboUpdate();
-    }
+        AttackCooldown();
 
-
-    #region Sheath Weapon Methods
-
-    public void SheathWeapon()
-    {
-        
-        AttachPoints.AttatchTo(AttachPoint.LeftHip, Equipment.ActiveWeapon);
-    }
-
-    public void UnsheathWeapon()
-    {
-        
-        AttachPoints.AttatchTo(AttachPoint.RightHand, Equipment.ActiveWeapon);
-    }
-
-    #endregion
-
-    private void GetAllAttackPatterns()
-    {
-        AttackDamageZone[] components = AttackZones.GetComponentsInChildren<AttackDamageZone>(true);
-        for (int i = 0; i < components.Length; i++)
+        if (!GetComponent<PlayerMovement>().IsFalling)
         {
-            Zones.Add(components[i].ZoneName, components[i]);
-            components[i].SetPlayer(this);
+            SlamAttack = false;
+        }
+        else
+        {
+            GetComponent<PlayerAnimator>().Animator.ResetTrigger("ChargeAttack");
+
+            if (GetComponent<PlayerSurroundingDetection>().LandOnGroundCheck() && SlamAttack)
+            {
+                print("Slam DUNK");
+                ActiveAttack = Equipment.GetAttackDetails().SlamAttack;
+
+                ActivateAttackZone(ActiveAttack);
+                DealMeleeDamage(ActiveAttack.DamageAmount);
+                AttackCooldownTimer = CooldownTimer;
+                comboCounter++;
+                CanCombo = true;
+                ComboTimer = 0f;
+            }
+        }
+
+        anim.SetBool("WeaponVisible", Equipment.IsWeaponMeshActive());
+
+        if ((anim.GetCurrentAnimatorStateInfo(0).IsName("End Attack") || anim.GetCurrentAnimatorStateInfo(0).IsName("Jump") || anim.GetCurrentAnimatorStateInfo(0).IsName("Falling")) && anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+        {
+            Equipment.HideWeapon();
         }
     }
 
     public void DisableAllAttackPatterns()
     {
-        foreach (KeyValuePair<string, AttackDamageZone> item in Zones)
-        {
-            item.Value.gameObject.SetActive(false);
-        }
-
+        ZoneManager.DisableZones();
     }
 
     private void ActivateAttackZone(AttackInfoObj attackInfo)
     {
         DisableAllAttackPatterns();
-
-        AttackDamageZone zone;
-        if(Zones.TryGetValue(attackInfo.AttackZoneName, out zone))
-        {
-            zone.Activate();
-        }
+        ZoneManager.ActivateZone(attackInfo.AttackZoneName);
     }
 
+    #region Data Updates
     private void ComboUpdate()
     {
         if (!IsAttacking && !IsCharging)
@@ -120,94 +118,289 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    private void ChargeUpdate()
+    {
+        if (IsCharging)
+        {
+            ChargeTimer += Time.deltaTime;
+        }
+        else
+        {
+            ChargeTimer = 0;
+            
+        }
+    }
+
+    private void AttackCooldown()
+    {
+        if(AttackCooldownTimer > 0)
+        {
+            AttackCooldownTimer -= Time.deltaTime;
+        }
+        else
+        {
+            IsAttacking = false;
+        }
+    }
+    #endregion
+
+    #region Main Attack
     public void Charge()
     {
-        if (!WeaponSheathed)
+        if (!IsAttacking && !GetComponent<PlayerMovement>().IsCrouching)
         {
+            Equipment.ShowWeapon();
+            GetComponent<PlayerAnimator>().Animator.ResetTrigger("CancelCharge");
             comboCounter = 0;
             ComboTimer = 0f;
             IsCharging = true;
-            GetComponent<PlayerMovement>().SetFreeze(true, false);
+            GetComponent<PlayerAnimator>().SetBool("IsCharging",true);
+            ActiveAttack = Equipment.GetAttackDetails().ChargeAttack;
         }
+    }
+
+    public void CancelCharge()
+    {
+        IsCharging = false;
+        GetComponent<PlayerAnimator>().SetInteger("AttackAnimation", -1);
+        GetComponent<PlayerAnimator>().SetTrigger("CancelCharge");
+        Equipment.HideWeapon();
     }
 
     public void Attack()
     {
-        if (!IsAttacking && !WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching && !GetComponent<PlayerMovement>().IsJumping && !GetComponent<PlayerMovement>().IsFalling) 
+        Equipment.ShowWeapon();
+
+        switch (Equipment.Loadout.EquippedWeapon.attackType)
+        {
+            case AttackType.Melee:
+                MeleeAttack();
+                break;
+
+            case AttackType.Ranged:
+                RangedAttack();
+                break;
+        }
+    }
+
+    #endregion
+
+    #region Melee
+    private void MeleeAttack()
+    {
+        if (!IsAttacking && !GetComponent<PlayerMovement>().IsCrouching && !GetComponent<PlayerMovement>().IsJumping && !GetComponent<PlayerMovement>().IsFalling)
         {
             IsAttacking = true;
 
-            if (IsCharging)
+            if (!IsCharging)
             {
-                GetComponent<PlayerMovement>().SetFreeze(false, false);
-                AttackInfoObj attackInfo = Equipment.GetAttackDetails().ChargeAttack;
-                ActivateAttackZone(attackInfo);
+                ActiveAttack = Equipment.GetAttackDetails().PrimaryAtackPattern[ComboAttackIndex];
 
-                if (!WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching)
-                {
-                    
-                    GetComponent<PlayerAnimator>().SetTrigger("ChargeAttack");
-                    GetComponent<PlayerAnimator>().SetInteger("AttackAnimation", (int)Equipment.GetAttackDetails().ChargeAttack.Animation);
-                }
+                PlayAttackAnimation(false, (int)ActiveAttack.Animation);
+                ActivateAttackZone(ActiveAttack);
+                DealMeleeDamage(ActiveAttack.DamageAmount);
+                AttackCooldownTimer = CooldownTimer;
 
-                StartCoroutine(ApplyDamage(attackInfo.DamageAmount));
-
-                IsCharging = false;
-                ComboAttackIndex = 0;
-            }
-            else
-            {
-                AttackInfoObj attackInfo = Equipment.GetAttackDetails().PrimaryAtackPattern[ComboAttackIndex];
-                ActivateAttackZone(attackInfo);
-
-                if (!WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching)
-                {
-                    GetComponent<PlayerAnimator>().SetTrigger("Attack");
-                    GetComponent<PlayerAnimator>().SetInteger("AttackAnimation", (int)Equipment.GetAttackDetails().PrimaryAtackPattern[ComboAttackIndex].Animation);
-                }
-
-                
-
-                //Debug.Log(attackInfo);
                 ComboAttackIndex++;
-                if (ComboAttackIndex >= ComboAttackCount)
+                int abilityLimit = AbilityTree.GetMeleeComboLimit();
+                if (ComboAttackIndex >= ComboAttackCount || ComboAttackIndex >= (abilityLimit + 1))
                 {
                     ComboAttackIndex = 0;
                 }
 
                 comboCounter++;
                 CanCombo = true;
-
-                StartCoroutine(ApplyDamage(attackInfo.DamageAmount));
-                
-
-            }
                 ComboTimer = 0f;
+            }
+            else
+            {
+                IsAttacking = false;
+            }
 
 
-            
+        }
+        else if (!IsAttacking && !GetComponent<PlayerMovement>().IsCrouching && !GetComponent<PlayerMovement>().IsJumping && GetComponent<PlayerMovement>().IsFalling)
+        {
+            IsAttacking = true;
+            SlamAttack = true;
+            ActiveAttack = Equipment.GetAttackDetails().SlamAttack;
         }
 
-        if (WeaponSheathed && !GetComponent<PlayerMovement>().IsCrouching && !GetComponent<PlayerMovement>().IsJumping && !GetComponent<PlayerMovement>().IsFalling)
+        
+    }
+
+    private void MeleeCharge()
+    {
+        PlayAttackAnimation(true, (int)ActiveAttack.Animation);
+        ActivateAttackZone(ActiveAttack);
+        DealMeleeDamage(ActiveAttack.DamageAmount);
+        AttackCooldownTimer = CooldownTimer;
+        IsCharging = false;
+        GetComponent<PlayerAnimator>().SetBool("IsCharging", false);
+        ChargeTimer = 0;
+        ComboTimer = 0f;
+
+        
+    }
+    #endregion
+
+
+    #region Ranged
+
+    private void RangedAttack()
+    {
+        if (!IsAttacking && !GetComponent<PlayerMovement>().IsCrouching && !GetComponent<PlayerMovement>().IsJumping && !GetComponent<PlayerMovement>().IsFalling)
         {
-            StartCoroutine(GetComponentInParent<PlayerAttack>().FreezeMovementFor(1.2f, true, false));
-            WeaponSheathed = false;
+            IsAttacking = true;
+
+            if (!IsCharging && GetNearestEnemy() != null)
+            {
+                ActiveAttack = Equipment.GetAttackDetails().PrimaryAtackPattern[ComboAttackIndex];
+
+                PlayAttackAnimation(false, (int)ActiveAttack.Animation);
+                EnemiesToDamage.Clear();
+                EnemiesToDamage.Add(GetNearestEnemy());
+
+                DealRangedDamage(ActiveAttack.DamageAmount);
+                AttackCooldownTimer = CooldownTimer;
+
+                ComboAttackIndex++;
+                int abilityLimit = AbilityTree.GetRangedComboLimit();
+                if (ComboAttackIndex >= ComboAttackCount || ComboAttackIndex >= (abilityLimit + 1))
+                {
+                    ComboAttackIndex = 0;
+                }
+
+                comboCounter++;
+                CanCombo = true;
+                ComboTimer = 0f;
+            }
+            else
+            {
+                IsAttacking = false;
+                
+            }
+
+
+        }
+        else if (!IsAttacking && !GetComponent<PlayerMovement>().IsCrouching && !GetComponent<PlayerMovement>().IsJumping && GetComponent<PlayerMovement>().IsFalling)
+        {
+            IsAttacking = true;
+            SlamAttack = true;
+            ActiveAttack = Equipment.GetAttackDetails().SlamAttack; //RocketJump?
+        }
+
+        
+    }
+
+    private void RangedCharge()
+    {
+        if (GetNearestEnemy() != null)
+        {
+            PlayAttackAnimation(true, (int)ActiveAttack.Animation);
+            EnemiesToDamage.Clear();
+            EnemiesToDamage.Add(GetNearestEnemy());
+
+            DealRangedDamage(ActiveAttack.DamageAmount);
+            AttackCooldownTimer = CooldownTimer;
+            IsCharging = false;
+            GetComponent<PlayerAnimator>().SetBool("IsCharging", false);
+            ChargeTimer = 0;
+            ComboTimer = 0f;
+        }
+        else
+        {
+            GetComponent<PlayerAnimator>().Animator.SetTrigger("CancelCharge");
         }
 
     }
 
+
+    private EnemyStatsScript GetNearestEnemy()
+    {
+        TargetableObject to = GetComponent<TargetManager>().FindNearestTarget();
+        if (to != null)
+        {
+            return to.GetComponent<EnemyStatsScript>();
+        }
+        else return null;
+    }
+
+
+    #endregion
+
+    #region Magic
+
+
+    #endregion
+
+    public void ChargeAttack(float duration)
+    {
+        if (ActiveAttack != null && IsCharging)
+        {
+            IsAttacking = true;
+            ChargeTimer = duration;
+            if (duration >= ActiveAttack.AttackCharge)
+            {
+
+                switch (Equipment.Loadout.EquippedWeapon.attackType)
+                {
+                    case AttackType.Melee:
+                        MeleeCharge();
+                        break;
+
+                    case AttackType.Ranged:
+                        RangedCharge();
+                        break;
+                }
+            }
+        }
+    }
+
+    public void AttackSlam()
+    {
+        if(ActiveAttack != null)
+        {
+            IsAttacking = true;
+            ActivateAttackZone(ActiveAttack);
+            DealMeleeDamage(ActiveAttack.DamageAmount);
+        }
+    }
+
+
+    public void DealRangedDamage(int dmg)
+    {
+        if (AbilityTree.RangedTree.RootNode != null)
+        {
+            Debug.Log("Before Ability Tree: " + dmg);
+            dmg += AbilityTree.GetRangedBonus();
+            Debug.Log("After Ability Tree: " + dmg);
+        }
+
+        StartCoroutine(ApplyDamage(dmg));
+        ActiveAttack = null;
+    }
+
+    public void DealMeleeDamage(int dmg)
+    {
+        if (AbilityTree.MeleeTree.RootNode != null)
+        {
+            Debug.Log("Before Ability Tree: " + dmg);
+            dmg += AbilityTree.GetAttackBonus();
+            Debug.Log("After Ability Tree: " + dmg);
+        }
+
+        StartCoroutine(ApplyDamage(dmg));
+        ActiveAttack = null;
+    }
     
 
     IEnumerator ApplyDamage(int damage)
     {
-        GetComponent<PlayerMovement>().SetFreeze(true, false);
-        yield return new WaitForSeconds(1.7f);
+        yield return new WaitForSeconds(0.2f);
         EnemiesToDamage.ForEach(e => e.ApplyDamage(damage));
         EnemiesToDamage.Clear();
         DisableAllAttackPatterns();
-        GetComponent<PlayerMovement>().SetFreeze(false, false);
-        yield return new WaitForSeconds(0.2f);
-        IsAttacking = false;
     }
 
     public IEnumerator FreezeMovementFor(float time, bool movement, bool camera)
@@ -215,5 +408,37 @@ public class PlayerAttack : MonoBehaviour
         GetComponent<PlayerMovement>().SetFreeze(movement, camera);
         yield return new WaitForSeconds(time);
         GetComponent<PlayerMovement>().SetFreeze(false, false);
+    }
+
+    IEnumerator HideWeaponIn(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Equipment.HideWeapon();
+    }
+
+    public float GetCooldownAmount()
+    {
+        //Debug.Log("Cooldown: "+ AttackCooldownTimer / CooldownTimer);
+        return AttackCooldownTimer / CooldownTimer;
+    }
+
+    public float GetChargeAmount()
+    {
+        if(ActiveAttack != null)
+        {
+            //print("Charge: " + (ChargeTimer / ActiveAttack.AttackCharge));
+            return ChargeTimer / ActiveAttack.AttackCharge;
+        }
+
+        return 0;
+    }
+
+    public void PlayAttackAnimation(bool charged,int attackAnimation)
+    {
+        if (!GetComponent<PlayerMovement>().IsCrouching)
+        {
+            GetComponent<PlayerAnimator>().SetTrigger(charged == true ? "ChargeAttack" : "Attack");
+            GetComponent<PlayerAnimator>().SetInteger("AttackAnimation",attackAnimation);
+        }
     }
 }

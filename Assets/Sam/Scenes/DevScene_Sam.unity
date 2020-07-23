@@ -3599,6 +3599,111 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1342818154232209479, guid: 2b5fee7a27a58d649b7517ba97753573,
+    - target: {fileID: 6448648907922841944, guid: 467dfe89aa430f249b25264c4086feaa,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6448648907922841944, guid: 467dfe89aa430f249b25264c4086feaa,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6448648907922841944, guid: 467dfe89aa430f249b25264c4086feaa,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6448648907922841944, guid: 467dfe89aa430f249b25264c4086feaa,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7336368490443406094, guid: 467dfe89aa430f249b25264c4086feaa,
+        type: 3}
+      propertyPath: Settings.InvertYAxis
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7336368490443406094, guid: 467dfe89aa430f249b25264c4086feaa,
+        type: 3}
+      propertyPath: HUDController
+      value: 
+      objectReference: {fileID: 7658799713494484686}
+    - target: {fileID: 7336368490443406094, guid: 467dfe89aa430f249b25264c4086feaa,
+        type: 3}
+      propertyPath: PauseMenu
+      value: 
+      objectReference: {fileID: 1969124489}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 467dfe89aa430f249b25264c4086feaa, type: 3}
+--- !u!1001 &1844460250
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 840918778709003089, guid: 2f5aafc7eab89304ca98b3744b3c4f74,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840918778709003089, guid: 2f5aafc7eab89304ca98b3744b3c4f74,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840918778709003089, guid: 2f5aafc7eab89304ca98b3744b3c4f74,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840918778898300797, guid: 2f5aafc7eab89304ca98b3744b3c4f74,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840918778898300797, guid: 2f5aafc7eab89304ca98b3744b3c4f74,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840918779070733996, guid: 2f5aafc7eab89304ca98b3744b3c4f74,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840918779070733996, guid: 2f5aafc7eab89304ca98b3744b3c4f74,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840918779070733996, guid: 2f5aafc7eab89304ca98b3744b3c4f74,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840918779070733996, guid: 2f5aafc7eab89304ca98b3744b3c4f74,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840918779070733996, guid: 2f5aafc7eab89304ca98b3744b3c4f74,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840918779561160795, guid: 2f5aafc7eab89304ca98b3744b3c4f74,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840918779561160795, guid: 2f5aafc7eab89304ca98b3744b3c4f74,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840918779936520374, guid: 2f5aafc7eab89304ca98b3744b3c4f74,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

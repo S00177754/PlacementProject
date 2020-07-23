@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-////TODO: support ProcessEventsManually
-////TODO: add way to pick by player index
+
 
 // Some fields assigned through only through serialization.
 #pragma warning disable CS0649

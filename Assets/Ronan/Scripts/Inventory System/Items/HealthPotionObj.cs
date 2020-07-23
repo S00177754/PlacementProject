@@ -15,12 +15,12 @@ public class HealthPotionObj : ItemObj
 
     public override bool UseItem(PlayerController player)
     {
-        if(player.Health < player.GameStats.MaxHealth)
+        if(player.Health < player.MaxHealth)
         {
             player.Health += HealAmount;
 
-            if (player.Health > player.GameStats.MaxHealth)
-                player.Health = player.GameStats.MaxHealth;
+            if (player.Health > player.MaxHealth)
+                player.Health = player.MaxHealth;
 
             return true;
         }
@@ -34,6 +34,24 @@ public class HealthPotionObj : ItemObj
     {
         base.UseItem(member);
         return false;
+    }
+
+    public override string GetItemDetailText()
+    {
+        string description = string.Concat("Heals ", HealAmount, " HP to ");
+
+        if (AffectParty)
+        {
+            description = string.Concat(description,"the whole party.");
+        }
+        else
+        {
+            description = string.Concat(description, "the player.");
+        }
+
+        description = string.Concat(description, "\n\n",Description);
+
+        return description;
     }
 
 }
