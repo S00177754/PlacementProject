@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum WeaponType { Sword }
+public enum WeaponType { Sword, Gun}
+public enum AttackType { Melee, Ranged, Magic}
 
 public class WeaponInfo : MonoBehaviour
 {
     public WeaponPostion PositioningDetails;
 
-    public float DamageValue;
+    public AttackType attackType;
     public WeaponType weaponType;
     public WeaponAttackDetailsObj AttackDetails;
 

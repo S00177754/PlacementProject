@@ -22,7 +22,7 @@ public class PlayerAnimator : MonoBehaviour
         Animator.SetBool("IsJumping", movement.IsJumping);
         Animator.SetBool("IsFalling", movement.IsFalling);
         Animator.SetBool("IsCrouching", movement.IsCrouching);
-        Animator.SetBool("IsWeaponSheathed", attack.WeaponSheathed);
+        //Animator.SetBool("IsWeaponSheathed", attack.WeaponSheathed);
         Animator.SetBool("IsCharging", attack.IsCharging);
     }
 
@@ -41,42 +41,46 @@ public class PlayerAnimator : MonoBehaviour
         Animator.SetInteger(name, value);
     }
 
-
-    public void SwitchTo(PlayerAnimation animation)
+    public void SetBool(string name,bool value)
     {
-        switch (animation)
-        {
-            default:
-                break;
-
-            case PlayerAnimation.Idle:
-                Animator.SetFloat("Speed", 0);
-                break;
-
-            case PlayerAnimation.Walk:
-                Animator.SetFloat("Speed", 2);
-                break;
-
-            case PlayerAnimation.Run:
-                Animator.SetFloat("Speed", 6);
-                break;
-
-            //case PlayerAnimation.Jump:
-            //    Animator.SetBool("Jump",movement.IsJumping);
-            //    break;
-
-            //case PlayerAnimation.Fall:
-            //    Animator.SetFloat("Speed", 6);
-            //    break;
-
-            case PlayerAnimation.Land:
-                Animator.SetTrigger("FallToLand");
-                break;
-
-            case PlayerAnimation.Slash:
-                Animator.SetTrigger("Attack");
-                break;
-
-        }
+        Animator.SetBool(name, value);
     }
+
+    //public void SwitchTo(PlayerAnimation animation)
+    //{
+    //    switch (animation)
+    //    {
+    //        default:
+    //            break;
+
+    //        case PlayerAnimation.Idle:
+    //            Animator.SetFloat("Speed", 0);
+    //            break;
+
+    //        case PlayerAnimation.Walk:
+    //            Animator.SetFloat("Speed", 2);
+    //            break;
+
+    //        case PlayerAnimation.Run:
+    //            Animator.SetFloat("Speed", 6);
+    //            break;
+
+    //        //case PlayerAnimation.Jump:
+    //        //    Animator.SetBool("Jump",movement.IsJumping);
+    //        //    break;
+
+    //        //case PlayerAnimation.Fall:
+    //        //    Animator.SetFloat("Speed", 6);
+    //        //    break;
+
+    //        case PlayerAnimation.Land:
+    //            Animator.SetTrigger("FallToLand");
+    //            break;
+
+    //        case PlayerAnimation.Slash:
+    //            Animator.SetTrigger("Attack");
+    //            break;
+
+    //    }
+    //}
 }

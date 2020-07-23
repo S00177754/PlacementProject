@@ -9,4 +9,10 @@ public class KeyItemObj : ItemObj
     {
         Type = ItemType.KeyItem;
     }
+
+    public override string GetItemDetailText()
+    {
+
+        return Description;
+    }
 }

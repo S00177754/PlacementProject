@@ -7,14 +7,9 @@ public class MPBarHUD : HUDValueSlider
     [Header("Player")]
     public PlayerController Player;
 
-    private void Start()
-    {
-        ValueNameText.text = "MP";
-    }
-
     private void Update()
     {
-        SliderBar.value = (float)Player.MP / (float)Player.GameStats.MaxMP;
+        SliderBar.value = (float)Player.MP / (float)Player.MaxMP;
         ValueText.text = Player.MP.ToString();
     }
 }

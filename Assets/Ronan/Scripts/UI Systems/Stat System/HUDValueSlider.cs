@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class HUDValueSlider : MonoBehaviour
 {
     [Header("Elements")]
-    public TMP_Text ValueNameText;
     public Slider SliderBar;
     public TMP_Text ValueText;
 
