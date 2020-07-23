@@ -18,15 +18,17 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        if (dialogue == null)
-            Debug.Log("dialogue is null in DiagManager");
-        else
-        {
-            Debug.Log(dialogue.name);
-            Debug.Log(dialogue.conversationName);
-            Debug.Log(dialogue.scentances);
-        }
+        //****DEBUG****
+        //if (dialogue == null)
+        //    Debug.Log("dialogue is null in DiagManager");
+        //else
+        //{
+        //    Debug.Log(dialogue.name);
+        //    Debug.Log(dialogue.conversationName);
+        //    Debug.Log(dialogue.scentances);
+        //}
 
+        //Starts dialogue by showing dialogue panel and filling in name and first scentence
         animator.SetBool("IsOpen", true);
         Debug.Log("Start Conversation with " + dialogue.name);
 
@@ -43,19 +45,23 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextScentance()
     {
+        //As scentence Queue empties, EndDialogue is called to finish on screen
         if(scentences.Count == 0)
         {
             EndDialogue();
             return;
         }
 
+        //Allows panel to fill in next scentence if player clicks fast
         StopAllCoroutines();
         //dialoguetext.text = scentences.Dequeue();
+        //Begins typing scentence into screen
         StartCoroutine(TypeScentence(scentences.Dequeue()));
     }
 
     IEnumerator TypeScentence (string scentence)
     {
+        //Could set different delay for faster/slower text diaplay
         dialoguetext.text = "";
         foreach (char letter in scentence.ToCharArray())
         {
@@ -66,6 +72,7 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
+        //Resets animator to close dialogue box
         animator.SetBool("IsOpen", false);
         Debug.Log("End of conversation");
     }

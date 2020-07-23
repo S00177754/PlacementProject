@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NPCDialogueTrigger : MonoBehaviour
 {
@@ -16,8 +17,7 @@ public class NPCDialogueTrigger : MonoBehaviour
 
     private void Start()
     {
-        //activeDialogue = new Dialogue();
-
+        //Initiates to find active quest and finds current dialogue option for that
         CheckForQuest();
         CheckDialogue(ActiveQuest.Name);
         //****DEBUG****
@@ -30,35 +30,41 @@ public class NPCDialogueTrigger : MonoBehaviour
 
     public void TriggerDialogue()
     {
+        //Checks if dialogue has updated from quests then starts in Manager
         CheckDialogue(ActiveQuest.Name);
         FindObjectOfType<DialogueManager>().StartDialogue(activeDialogue);
     }
 
     public void CheckDialogue(string convoName)
     {
-        //****DEBUG****
-        //Debug.Log(convoName);
-
+        //Checks active quest then assigns dialogue 
+        //If no matching conversation has quest name, default dialogue is applied
         CheckForQuest();
         //Clear dialogue
         activeDialogue = new Dialogue();
 
-        //Use input to determine which dialoge to use
-        foreach (Dialogue dialogue in conversations)
+        //Will only search if NPC has multiple conversations
+        if (conversations.Count > 1)
         {
-            if(dialogue.conversationName.Equals(convoName))
+            foreach (Dialogue dialogue in conversations)
             {
-                activeDialogue = dialogue;
+                if (dialogue.conversationName.Equals(convoName))
+                {
+                    activeDialogue = dialogue;
+                }
             }
+            if (activeDialogue.name == null)
+                CheckDialogue("default");
         }
-
-        if (activeDialogue.name == null)
+        else
             CheckDialogue("default");
+
     }
 
     private void CheckForQuest()
     {
-        ActiveQuest = Resources.Load<QuestManager>("ScriptableObjects/QuestManager").ActiveMain;
+        //Checks Active Quest and finds conversation of same name.
+        //TODO: Will need to be step specific for returning to same NPC to turn in quest
         if (ActiveQuest == null)
         {
             Debug.Log("ActiveQuest null in Start()");

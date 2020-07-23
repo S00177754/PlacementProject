@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NPCQuestStep", menuName = "Quest System/NPCQuestStep")]
 public class NPCQuestStep : QuestStep
 {
+    //Quest step to talk to an NPC
     [SerializeField]
     public string Description;
     [SerializeField]
