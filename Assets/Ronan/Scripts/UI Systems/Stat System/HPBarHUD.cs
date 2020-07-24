@@ -5,13 +5,9 @@ using UnityEngine.UI;
 
 public class HPBarHUD : HUDValueSlider
 {
-    [Header("Player")]
-    public PlayerController Player;
-
-
     private void Update()
     {
-        SliderBar.value = (float)Player.Health / (float)Player.MaxHealth;
-        ValueText.text = Player.Health.ToString();
+        SliderBar.value = (float)PlayerController.Instance.Health / (float)PlayerController.Instance.MaxHealth;
+        ValueText.text = PlayerController.Instance.Health.ToString();
     }
 }

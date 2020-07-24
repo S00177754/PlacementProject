@@ -7,7 +7,6 @@ public class ItemRadialMenuController : RadialMenuController
     //*************** Public Variables ********************
     [Header("Radial Elements")]
     public ItemWheelPanel InfoPanel;//Refactor to item because not all radial menus need a centre panel
-    public InventoryManager InventoryManager;
     public Dictionary<int,ItemObj> ItemsToPopulate = new Dictionary<int, ItemObj>();
 
     //**************** Monobehaviour Methods ******************
@@ -25,15 +24,16 @@ public class ItemRadialMenuController : RadialMenuController
     //**************** Functionality Methods ****************
     public override void UseSectionAction()
     {
-        (Sections[segmentNum -1] as RadialItemSection).UseItem(InventoryManager);
+        (Sections[segmentNum -1] as RadialItemSection).UseItem(PlayerController.Instance.GetComponent<InventoryManager>());
         base.UseSectionAction();
+        
     }
 
     public void PopulateWheel()
     {
         foreach (var item in ItemsToPopulate)
         {
-            (Sections[item.Key - 1] as RadialItemSection).SetItem(item.Value,InventoryManager);
+            (Sections[item.Key - 1] as RadialItemSection).SetItem(item.Value, PlayerController.Instance.GetComponent<InventoryManager>());
             (Sections[item.Key - 1] as RadialItemSection).ItemRadialMenu = this;
         }
     }

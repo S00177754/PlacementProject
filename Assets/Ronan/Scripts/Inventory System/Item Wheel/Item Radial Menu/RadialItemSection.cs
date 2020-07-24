@@ -40,11 +40,11 @@ public class RadialItemSection : RadialMenuSection
     {
         if (GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().Party.Count == 0)
         {
-            if ((Controller as ItemRadialMenuController).InventoryManager.Inventory.GetItemRemainingAmount(Item) > 0)
+            if (PlayerController.Instance.GetComponent<InventoryManager>().Inventory.GetItemRemainingAmount(Item) > 0)
             {
                 if (Item.UseItem(GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer))
                 {
-                    inventoryManager.Inventory.RemoveItem(Item, 1);
+                    PlayerController.Instance.GetComponent<InventoryManager>().Inventory.RemoveItem(Item, 1);
                     //Animation
                 }
             }
@@ -72,7 +72,7 @@ public class RadialItemSection : RadialMenuSection
             GetComponentInParent<ItemRadialMenuController>().InfoPanel.SetInfoPanel("", "", 0);
         }
 
-        if((Controller as ItemRadialMenuController).InventoryManager.Inventory.GetItemRemainingAmount(Item) <= 0)
+        if(PlayerController.Instance.GetComponent<InventoryManager>().Inventory.GetItemRemainingAmount(Item) <= 0)
         {
             PanelBackground.color = restricted;
         }

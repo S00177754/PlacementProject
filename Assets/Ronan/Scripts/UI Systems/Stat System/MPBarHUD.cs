@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class MPBarHUD : HUDValueSlider
 {
-    [Header("Player")]
-    public PlayerController Player;
-
     private void Update()
     {
-        SliderBar.value = (float)Player.MP / (float)Player.MaxMP;
-        ValueText.text = Player.MP.ToString();
+        SliderBar.value = (float)PlayerController.Instance.MP / (float)PlayerController.Instance.MaxMP;
+        ValueText.text = PlayerController.Instance.MP.ToString();
     }
 }
