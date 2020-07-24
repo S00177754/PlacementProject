@@ -99,7 +99,35 @@
               <!-- Blog Highlight Template-->
               <div class="tile is-child">
                 <article class="tile is-child notification has-background-light has-text-black">
-                  <a id="blog_post_12"></a>
+                  <a id="blog_post_15"></a>
+                  <p class="title">Working Towards The Merge - #15</p>
+                  <p>After taking a week off to recover from some burnout due to working on the project non-stop for several weeks and weekends, I returned and we began to work towards merging our branches back into the master and combining our work to complete the minimum viable project. This task has involved various refactors and completition of features.</p>
+                  <p>In the space of the week, I was able to accomplish many goals and fully impliment various features. The first step of this work was to adjust our animation cycles to work correctly with our new model and take into account the redesign of the attack system a few weeks back as the player must no longer sheathe and unsheathe their weapon, this process was time intensive as it required the redesign of various state machines within the player animation component/tree. The key features are the ranged attack being completed alongside its ability tree as well as the ability to equip different weapons via the inventory menu. Other work was carried out such as applying a singleton design pattern to the player and various systems due to their nature in the game as we only need one instance of them at any given point.</p>
+                  <p>We did however run into some issues in regards to the merging of our branches due to an issue in one scene that we couldn't debug as after running diagnostics on it, the script should have been fine but Unity was throwing an exception at us. We resolved this issue by reverting and doing a manual merge for various files to avoid the situation cause by our automatic merge, this took a long time as it was an intensive merge to do manually.</p>
+                  <p>From this point, I evaluated what systems in the game could be simplified to make the merging of prefabs and systems down the line easier for the project, this led me to refactor various HUD elements and carry out hotfixes for some graphical issues that appeared.</p>
+                  <p>
+                    By Ronan Cassidy - 24th of July 2020
+                  </p>
+                </article>
+              </div>
+              <br/>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_14"></a>
+                  <p class="title">Model Creation - #14</p>
+                  <p>Originally this post was written on the 10th of July but due to some unknown reason, it didn't push the commit to the origin. So it is being reposted alongside another post.</p>
+                  <p>I spent the majority of this week working on 3D model creation of various structures for the desert section of our world, temples, ruins, etc. My asset creation also led to working on the main characters final model, this was quite difficult as it was the first time I had done any work on creating a humanoid organic character. Previously I had been working on mechanical humanoids such as robots and mechs so it was very strange to move to more oranic modelling and curves, to make things easier for me I decided to go with a chibi art style due to its simpler shapes.</p>
+                  <p>
+                    By Ronan Cassidy -  Posted: 24th of July 2020; Written: 10th of July 2020
+                  </p>
+                </article>
+              </div>
+              <br/>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_13"></a>
                   <p class="title">Moving quests further - #13</p>
                   <p>Now that the Quest UI is mostly complete, development has turned towars implementing and testing how quests are dealt with in gameplay</p>
                   <p>This has started with using test quest objects. These are scriptable objects saved in the resources folder so that scripts can access their data, and the player can modify the data as they progress through the game.</p>
