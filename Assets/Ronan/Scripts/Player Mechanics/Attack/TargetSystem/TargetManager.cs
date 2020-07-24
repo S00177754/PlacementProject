@@ -12,6 +12,9 @@ public class TargetManager : MonoBehaviour
 
     private void Update()
     {
+        if (TargetUIController == null)
+            return;
+
         if (!IsLockedOn)
         {
             SetClosestTargetAsPossible();
@@ -53,6 +56,9 @@ public class TargetManager : MonoBehaviour
 
     public void SetClosestTargetAsPossible()
     {
+        if (TargetUIController == null)
+            return;
+
         if (TargetsInRange.Count > 0)
         {
             TargetUIController.SetPossibleTarget(FindNearestTarget());
@@ -73,7 +79,10 @@ public class TargetManager : MonoBehaviour
 
     public void LockOnTarget()
     {
-        if(TargetsInRange.Count > 0)
+        if (TargetUIController == null)
+            return;
+
+        if (TargetsInRange.Count > 0)
         {
             IsLockedOn = true;
             LockedOnTarget = FindNearestTarget();
@@ -96,6 +105,9 @@ public class TargetManager : MonoBehaviour
     /// <returns>Returns the targetable object closest to the player.</returns>
     public TargetableObject FindNearestTarget()
     {
+        if (TargetUIController == null)
+            return null;
+
         for (int i = 0; i < TargetsInRange.Count; i++)
         {
             if (TargetsInRange[i] == null)

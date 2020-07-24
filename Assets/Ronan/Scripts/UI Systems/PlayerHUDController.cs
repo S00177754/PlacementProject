@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerHUDController : MonoBehaviour
 {
-    public PlayerController Player;
-
     public ItemNotificationController ItemPanel;
     public NotificationController NotificationController;
 
@@ -25,8 +23,11 @@ public class PlayerHUDController : MonoBehaviour
 
     private void Update()
     {
-        Cooldown.fillAmount = Player.GetComponent<PlayerAttack>().GetCooldownAmount();
-        Charge.fillAmount = Player.GetComponent<PlayerAttack>().GetChargeAmount();
+        if(PlayerController.Instance != null)
+        {
+            Cooldown.fillAmount = PlayerController.Instance.GetComponent<PlayerAttack>().GetCooldownAmount();
+            Charge.fillAmount = PlayerController.Instance.GetComponent<PlayerAttack>().GetChargeAmount();
+        }
     }
 
     public void SetupItemNotification(string itemName)
