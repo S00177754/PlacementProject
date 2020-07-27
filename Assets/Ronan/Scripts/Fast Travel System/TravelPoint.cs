@@ -61,4 +61,18 @@ public class TravelPoint : MonoBehaviour
             Debug.LogError(string.Concat("Fast Travel Point: ", locationName, " does not exist."));
         }
     }
+
+    static public Vector3 GetWorldPosition(string locationName)
+    {
+        if (FastTravelPoints.ContainsKey(locationName))
+        {
+            TravelPoint point = FastTravelPoints[locationName];
+            return point.transform.position;
+        }
+        else
+        {
+            Debug.LogError(string.Concat("Fast Travel Point: ", locationName, " does not exist."));
+            return new Vector3(-1,-1,-1);
+        }
+    }
 }

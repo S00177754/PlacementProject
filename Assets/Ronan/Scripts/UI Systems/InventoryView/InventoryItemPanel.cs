@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InventoryItemPanel : MonoBehaviour, ISelectHandler
+public class InventoryItemPanel : MonoBehaviour, ISelectHandler, IPointerEnterHandler
 {
     [Header("UI Elements")]
     //public Image SpriteIcon;
@@ -55,5 +55,9 @@ public class InventoryItemPanel : MonoBehaviour, ISelectHandler
         InventoryPanel.DescriptionPanel.SetDescription(Item.GetItemDetailText());
     }
 
-   
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        InventoryPanel.DescriptionPanel.SetName(Item.Name);
+        InventoryPanel.DescriptionPanel.SetDescription(Item.GetItemDetailText());
+    }
 }

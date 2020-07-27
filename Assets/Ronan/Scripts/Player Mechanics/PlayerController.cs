@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public int MaxHealth = 100;
     public int MaxMP = 60;
 
+    public int Money = 0;
+
     public bool IsInvincible = false;
 
     private void Awake()
@@ -32,7 +34,16 @@ public class PlayerController : MonoBehaviour
         Health -= amount;
     }
 
+    public bool TrySpendMoney(int amount)
+    {
+        if(Money >= amount)
+        {
+            Money -= amount;
+            return true;
+        }
 
+        return false;
+    }
 
     private void CalculateMaxHP()
     {

@@ -169,8 +169,6 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack()
     {
-        Equipment.ShowWeapon();
-
         switch (Equipment.Loadout.EquippedWeapon.attackType)
         {
             case AttackType.Melee:
@@ -190,6 +188,8 @@ public class PlayerAttack : MonoBehaviour
     {
         if (!IsAttacking && !GetComponent<PlayerMovement>().IsCrouching && !GetComponent<PlayerMovement>().IsJumping && !GetComponent<PlayerMovement>().IsFalling)
         {
+            Equipment.ShowWeapon();
+
             IsAttacking = true;
 
             if (!IsCharging)
@@ -251,6 +251,8 @@ public class PlayerAttack : MonoBehaviour
     {
         if (!IsAttacking && !GetComponent<PlayerMovement>().IsCrouching && !GetComponent<PlayerMovement>().IsJumping && !GetComponent<PlayerMovement>().IsFalling)
         {
+            Equipment.ShowWeapon();
+
             IsAttacking = true;
 
             if (!IsCharging && GetNearestEnemy() != null)
