@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
 {
     public TabGroup tabGroup;
 
-    public Text tabUIText;
+    public TMP_Text tabUIText;
     public GameObject MyPannel;
     public bool isSelected;
 
@@ -26,7 +27,7 @@ public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
  
     void Start()
     {
-        tabUIText = GetComponent<Text>();
+        tabUIText = GetComponent<TMP_Text>();
         tabGroup.Subscribe(this);
         isSelected = false;
         MyPannel.SetActive(false);

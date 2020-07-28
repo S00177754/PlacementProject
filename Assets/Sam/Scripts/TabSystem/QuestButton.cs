@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ public class QuestButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
 {
     public QuestSelection questGroup;
     public Quest myQuest;
-    public Text QuestNameText;
+    public TMP_Text QuestNameText;
     public bool isSelected;
     public GameObject MyPannel;
 
@@ -38,7 +39,7 @@ public class QuestButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
 
     void OnEnable()
     {
-        QuestNameText = GetComponent<Text>();
+        QuestNameText = GetComponent<TMP_Text>();
         questGroup.Subscribe(this);
         isSelected = false;
         MyPannel.SetActive(false);
