@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
     public Animator animator;
-    public Text nameText;
-    public Text dialoguetext;
+    public TMP_Text nameText;
+    public TMP_Text dialoguetext;
 
     private Queue<string> scentences;
 
