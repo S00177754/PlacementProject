@@ -21,4 +21,13 @@ public class EnemyInfo : ScriptableObject
     public float PatrolSpeed;
     public float ChaseSpeed;
 
+    [Header("Treasure Table")]
+    public List<TreasureTableLine> TreasureTable;
+}
+
+[Serializable]
+public class TreasureTableLine
+{
+    public ItemObj ItemDrop;
+    public int DropChancePercentage;
 }

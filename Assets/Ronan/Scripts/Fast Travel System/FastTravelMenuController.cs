@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +8,7 @@ public class FastTravelMenuController : MonoBehaviour
     public GameObject TravelPointList;
     public RectTransform Content;
     public GameObject ButtonPrefab;
+    public FastTravelMapViewer MapView;
 
     public void GenerateList()
     {
@@ -18,7 +19,7 @@ public class FastTravelMenuController : MonoBehaviour
             if (point.Value.TeleportUnlocked)
             {
                 GameObject button = Instantiate(ButtonPrefab, Content);
-                button.GetComponent<FastTravelButton>().SetInfo(point.Value.LocationName);
+                button.GetComponent<FastTravelButton>().SetInfo(point.Value.LocationName,MapView);
             }
         }
 
