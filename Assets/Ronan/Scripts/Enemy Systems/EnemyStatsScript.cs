@@ -19,7 +19,25 @@ public class EnemyStatsScript : MonoBehaviour
 
         if(Health <= 0)
         {
-            Destroy(gameObject);
+            StartCoroutine(DeathLogic());
         }
+    }
+
+    public IEnumerator DeathLogic()
+    {
+        //TODO Death animation
+
+        
+        RaycastHit hit;
+        Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, LayerMask.GetMask("Level Geometry"));
+        
+        //TODO Instantiate ground item at hit.point then get random item from treasue table
+        if(hit.collider.gameObject != null)
+        {
+
+        }
+
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
     }
 }
