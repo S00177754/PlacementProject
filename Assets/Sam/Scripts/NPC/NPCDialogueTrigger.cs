@@ -13,6 +13,7 @@ public class NPCDialogueTrigger : MonoBehaviour
     public List<Dialogue> conversations;
     public Dialogue activeDialogue;
 
+    [SerializeField]
     Quest ActiveQuest;
 
 
@@ -59,7 +60,7 @@ public class NPCDialogueTrigger : MonoBehaviour
                 CheckDialogue("default");
         }
         else
-            CheckDialogue("default");
+            activeDialogue = conversations[0];
 
     }
 
@@ -67,6 +68,8 @@ public class NPCDialogueTrigger : MonoBehaviour
     {
         //Checks Active Quest and finds conversation of same name.
         //TODO: Will need to be step specific for returning to same NPC to turn in quest
+        ActiveQuest = Resources.Load<QuestManager>("ScriptableObjects/QuestManager").ActiveMain;
+
         if (ActiveQuest == null)
         {
             Debug.Log("ActiveQuest null in Start()");
