@@ -15,6 +15,8 @@ public class NPCDialogueTrigger : MonoBehaviour
 
     Quest ActiveQuest;
 
+
+
     private void Start()
     {
         //Initiates to find active quest and finds current dialogue option for that
