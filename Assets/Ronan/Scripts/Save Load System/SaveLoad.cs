@@ -31,11 +31,13 @@ public class SaveLoad : MonoBehaviour
     private PlayerSaveData GetPlayerData()
     {
         PlayerSaveData data = new PlayerSaveData();
-        data.PlayerTransform = MainPlayer.transform;
+        data.PlayerPosition = MainPlayer.transform.position;
+        data.PlayerRotation = new Vector3(MainPlayer.transform.rotation.x, MainPlayer.transform.rotation.y,MainPlayer.transform.rotation.z);
         data.PlayerStats = MainPlayer.GameStats;
         //data.Settings = MainPlayer.Settings;
         data.Inventory = MainPlayer.GetComponent<InventoryManager>().Inventory;
-        data.Loadout = MainPlayer.GetComponent<EquipmentManager>().Loadout;
+        //data.Loadout = MainPlayer.GetComponent<EquipmentManager>().Loadout;
+        //TODO Redo the way items are saved and loaded back
         return data;
     }
 
@@ -90,11 +92,15 @@ public class ListWrapper<T>
 [Serializable]
 public class PlayerSaveData
 {
-    public Transform PlayerTransform;
+    public Vector3 PlayerPosition;
+    public Vector3 PlayerRotation;
     public CharacterStats PlayerStats;
     //public PlayerSettings Settings;
     public InventoryObj Inventory;
-    public EquipmentLoadout Loadout;
+    public WeaponObj EquippedWeapon;
+    public BaubleObj AccessoryOne;
+    public BaubleObj AccessoryTwo;
+    public BaubleObj AccessoryThree;
 }
 
 [Serializable]

@@ -1802,7 +1802,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TitleMenuController: {fileID: 420006761}
   StartingStats:
-    Name: 
+    Name: Test
     Experience: 0
     SkillPoints: 0
     AbilityPoints: 0
@@ -1811,7 +1811,8 @@ MonoBehaviour:
     MagicStat: 5
     VitalityStat: 5
     DefenceStat: 5
-  StartingWeapon: {fileID: 0}
+  StartingWeapon: {fileID: 11400000, guid: 9d324bc599625d746be40b17392e0f10, type: 2}
+  PlayerInventory: {fileID: 11400000, guid: 22dea3c22d0a6e64dbdeaa29f6874e42, type: 2}
   StartInventory: []
   StartPosition: {x: 0, y: 0, z: 0}
   StartRotation: {x: 0, y: 0, z: 0}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum MenuFileBtnMode { Overwrite, Load }
@@ -52,6 +53,8 @@ public class MenuSaveFileButton : MonoBehaviour
             default:
             case MenuFileBtnMode.Load:
                 //TODO: Load this -> SaveUtility.LoadFromSlot(SlotNumber); into our game Scene. Just send on the slot number?
+                GameManager.CurrentSaveSlot = SlotNumber;
+                SceneManager.LoadScene(1);
                 break;
 
         }

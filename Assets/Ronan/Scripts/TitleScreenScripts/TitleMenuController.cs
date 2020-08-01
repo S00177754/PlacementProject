@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum TitleMenuState { Root, NewGame, LoadGame, Settings}
 
@@ -103,7 +104,9 @@ public class TitleMenuController : MonoBehaviour
     public void ConfirmOverwrite()
     {
         //TODO: Transition to next scene and load slot file
-        //SaveManager.CreateNewGame(slot);
+        SaveManager.CreateNewGame(slot);
+        GameManager.CurrentSaveSlot = slot;
+        SceneManager.LoadScene(1);
         Debug.Log(string.Concat("I've overwritten slot ", slot));
     }
 

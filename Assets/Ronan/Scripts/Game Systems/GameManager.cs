@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public static int CurrentSaveSlot = 0;
 
     public PlayerController MainPlayer;
 

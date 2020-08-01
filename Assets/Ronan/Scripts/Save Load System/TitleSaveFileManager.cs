@@ -11,6 +11,7 @@ public class TitleSaveFileManager : MonoBehaviour
     [Header("New Game Data")]
     public CharacterStats StartingStats;
     public WeaponObj StartingWeapon;
+    public InventoryObj PlayerInventory;
     public List<ItemObj> StartInventory;
     public Vector3 StartPosition;
     public Vector3 StartRotation;
@@ -21,14 +22,14 @@ public class TitleSaveFileManager : MonoBehaviour
     {
         PlayerSaveData data = new PlayerSaveData();
 
-        data.Loadout.EquippedWeapon = StartingWeapon.WeaponPrefab.GetComponent<WeaponInfo>();
-        data.Inventory.AddItem(StartingWeapon, 1);
-        StartInventory.ForEach(x => data.Inventory.AddItem(x, 1));
+        data.EquippedWeapon = StartingWeapon;
+        PlayerInventory.Collection.Clear();
+        PlayerInventory.AddItem(StartingWeapon, 1);
+        StartInventory.ForEach(x => PlayerInventory.AddItem(x, 1));
 
         data.PlayerStats = StartingStats;
-
-        data.PlayerTransform.position = StartPosition;
-        data.PlayerTransform.eulerAngles = StartRotation;
+        data.PlayerPosition = StartPosition;
+        data.PlayerRotation = StartRotation;
         return data;
     }
 
