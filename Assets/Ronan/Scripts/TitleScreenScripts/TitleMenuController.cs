@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TitleMenuState { Root, NewGame, LoadGame, Settings}
+
 public class TitleMenuController : MonoBehaviour
 {
+    public GameObject RootMenu;
+    public GameObject SettingMenu;
+    public GameObject SlotMenu;
+    public GameObject OverwriteConfirmation;
+    public TitleSaveFileManager SaveManager;
+    private int slot = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        ReturnToMenu();
     }
 
     // Update is called once per frame
@@ -18,18 +27,28 @@ public class TitleMenuController : MonoBehaviour
 
     public void NewGame()
     {
-        //TODO Create new save file and load world
+        //TODO Show slot selection and set mode to overwrite
+        MenuSaveFileButton.Mode = MenuFileBtnMode.Overwrite;
+        ChangeToMenu(TitleMenuState.NewGame);
+        Debug.Log(string.Concat("NewGame - ",MenuSaveFileButton.Mode));
     }
 
     public void LoadGame()
     {
-        //TODO Show list of save files
+        //TODO Show slot selection and set mode to load
+        MenuSaveFileButton.Mode = MenuFileBtnMode.Load;
+        ChangeToMenu(TitleMenuState.LoadGame);
+        Debug.Log(string.Concat("Load - ",MenuSaveFileButton.Mode));
     }
 
     public void Settings()
     {
-        //TODO Show settings
-        //Can probably just grab them from the game scene
+        ChangeToMenu(TitleMenuState.Settings);
+    }
+
+    public void ReturnToMenu()
+    {
+        ChangeToMenu(TitleMenuState.Root);
     }
 
     public void Exit()
@@ -37,4 +56,60 @@ public class TitleMenuController : MonoBehaviour
         Application.Quit();
     }
 
+
+
+    private void ChangeToMenu(TitleMenuState state)
+    {
+        switch (state)
+        {
+            case TitleMenuState.Root:
+                RootMenu.SetActive(true);
+                SettingMenu.SetActive(false);
+                SlotMenu.SetActive(false);
+                OverwriteConfirmation.SetActive(false);
+                break;
+
+            case TitleMenuState.Settings:
+                RootMenu.SetActive(false);
+                SettingMenu.SetActive(true);
+                SlotMenu.SetActive(false);
+                OverwriteConfirmation.SetActive(false);
+                break;
+
+            case TitleMenuState.NewGame:
+                RootMenu.SetActive(false);
+                SettingMenu.SetActive(false);
+                SlotMenu.SetActive(true);
+                OverwriteConfirmation.SetActive(false);
+                break;
+
+            case TitleMenuState.LoadGame:
+                RootMenu.SetActive(false);
+                SettingMenu.SetActive(false);
+                SlotMenu.SetActive(true);
+                OverwriteConfirmation.SetActive(false);
+                break;
+        }
+    }
+
+
+
+    public void ShowConfirmBox(int slotNum)
+    {
+        OverwriteConfirmation.SetActive(true);
+        slot = slotNum;
+    }
+
+    public void ConfirmOverwrite()
+    {
+        //TODO: Transition to next scene and load slot file
+        //SaveManager.CreateNewGame(slot);
+        Debug.Log(string.Concat("I've overwritten slot ", slot));
+    }
+
+    public void CancelConfirmation()
+    {
+        OverwriteConfirmation.SetActive(false);
+        ReturnToMenu();
+    }
 }

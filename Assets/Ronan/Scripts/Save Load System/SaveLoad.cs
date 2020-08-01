@@ -7,13 +7,18 @@ using UnityEngine.SocialPlatforms;
 public class SaveLoad : MonoBehaviour
 {
     [Header("Data Grab Elements")]
-    public PlayerController MainPlayer;
+    public PlayerController MainPlayer; //Could replace with PlayerController.Instance thanks to the singleton pattern
     public EnemyDatabase EnemyDatabase;
     public float EnemySaveRange = 70f;
     public LayerMask EnemyLayer;
 
+    
+
     public void Save()
     {
+        SaveData saveData = new SaveData();
+        saveData.Player = GetPlayerData();
+        saveData.NearbyEnemies = GetNearbyEnemies();
 
     }
 
@@ -22,12 +27,13 @@ public class SaveLoad : MonoBehaviour
 
     }
 
+    #region Save Grab Logic
     private PlayerSaveData GetPlayerData()
     {
         PlayerSaveData data = new PlayerSaveData();
         data.PlayerTransform = MainPlayer.transform;
         data.PlayerStats = MainPlayer.GameStats;
-        data.Settings = MainPlayer.Settings;
+        //data.Settings = MainPlayer.Settings;
         data.Inventory = MainPlayer.GetComponent<InventoryManager>().Inventory;
         data.Loadout = MainPlayer.GetComponent<EquipmentManager>().Loadout;
         return data;
@@ -57,7 +63,15 @@ public class SaveLoad : MonoBehaviour
 
         return localEnemies;
     }
+
+    #endregion
+
+
+    
 }
+
+
+
 
 [Serializable]
 public class SaveData
@@ -78,7 +92,7 @@ public class PlayerSaveData
 {
     public Transform PlayerTransform;
     public CharacterStats PlayerStats;
-    public PlayerSettings Settings;
+    //public PlayerSettings Settings;
     public InventoryObj Inventory;
     public EquipmentLoadout Loadout;
 }
@@ -88,7 +102,7 @@ public class EnemySaveData
 {
     public Transform Transform;
     public int RemainingHealth;
-    public int InfoID;
+    public int InfoID; ///This ID matches up with enemy database, used to spawn correct enemy type back in
     
     
 }
