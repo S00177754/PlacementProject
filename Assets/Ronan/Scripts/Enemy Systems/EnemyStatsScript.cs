@@ -31,7 +31,7 @@ public class EnemyStatsScript : MonoBehaviour
         RaycastHit hit;
         Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, LayerMask.GetMask("Level Geometry"));
         
-        //TODO Instantiate ground item at hit.point then get random item from treasue table
+        //TODO: Instantiate ground item at hit.point then get random item from treasue table
         if(hit.collider.gameObject != null)
         {
 

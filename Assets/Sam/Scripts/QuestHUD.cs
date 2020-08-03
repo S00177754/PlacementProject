@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,9 +12,9 @@ public class QuestHUD : MonoBehaviour
     [SerializeField]
     Image questIcon;
     [SerializeField]
-    Text questName;
+    TMP_Text questName;
     [SerializeField]
-    Text questStep;
+    TMP_Text questStep;
     
     void Start()
     {

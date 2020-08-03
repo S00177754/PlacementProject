@@ -63,8 +63,6 @@ public class EquipmentManager : MonoBehaviour
 
     public void EquipAccessory(BaubleObj bauble,int accessorySlot)
     {
-        //TODO: Ensure unequip is working
-
         UnequipAccessory(accessorySlot);
 
         switch (accessorySlot)

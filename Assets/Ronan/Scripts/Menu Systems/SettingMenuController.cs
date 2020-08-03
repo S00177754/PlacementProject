@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class SettingMenuController : MonoBehaviour
 {
-    public PlayerController PlayerOne; //Temporary setup, need to check which player paused.
     public Toggle InvertYAxis;
 
     [Header("Graphical")]
@@ -102,7 +101,7 @@ public class SettingMenuController : MonoBehaviour
     public void OnToggleYAxisInvert(bool value)
     {
         Debug.Log("Y-Axis toggle: " + value);
-        PlayerOne.Settings.InvertYAxis = value;
+        //PlayerOne.Settings.InvertYAxis = value;
         PlayerPrefs.SetString("yaxis", value ? "true" : "false");
     }
 

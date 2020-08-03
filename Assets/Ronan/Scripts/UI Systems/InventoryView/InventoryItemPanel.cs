@@ -26,7 +26,6 @@ public class InventoryItemPanel : MonoBehaviour, ISelectHandler, IPointerEnterHa
         ItemName.text = Item.Name;
         InventoryPanel = inventoryPanel;
 
-        //TODO Check if item is equipped
         if (PlayerController.Instance.GetComponent<EquipmentManager>().CheckLoadout(Item))
         {
             EquipIcon.enabled = true;
