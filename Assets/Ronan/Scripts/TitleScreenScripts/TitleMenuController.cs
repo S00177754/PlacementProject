@@ -28,7 +28,6 @@ public class TitleMenuController : MonoBehaviour
 
     public void NewGame()
     {
-        //TODO Show slot selection and set mode to overwrite
         MenuSaveFileButton.Mode = MenuFileBtnMode.Overwrite;
         ChangeToMenu(TitleMenuState.NewGame);
         Debug.Log(string.Concat("NewGame - ",MenuSaveFileButton.Mode));
@@ -36,7 +35,6 @@ public class TitleMenuController : MonoBehaviour
 
     public void LoadGame()
     {
-        //TODO Show slot selection and set mode to load
         MenuSaveFileButton.Mode = MenuFileBtnMode.Load;
         ChangeToMenu(TitleMenuState.LoadGame);
         Debug.Log(string.Concat("Load - ",MenuSaveFileButton.Mode));
@@ -103,7 +101,6 @@ public class TitleMenuController : MonoBehaviour
 
     public void ConfirmOverwrite()
     {
-        //TODO: Transition to next scene and load slot file
         SaveManager.CreateNewGame(slot);
         GameManager.CurrentSaveSlot = slot;
         SceneManager.LoadScene(1);

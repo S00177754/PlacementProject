@@ -52,7 +52,6 @@ public class MenuSaveFileButton : MonoBehaviour
 
             default:
             case MenuFileBtnMode.Load:
-                //TODO: Load this -> SaveUtility.LoadFromSlot(SlotNumber); into our game Scene. Just send on the slot number?
                 GameManager.CurrentSaveSlot = SlotNumber;
                 SceneManager.LoadScene(1);
                 break;

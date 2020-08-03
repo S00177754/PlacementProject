@@ -22,17 +22,7 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
 
-        SaveData data;
-        if(SaveUtility.TryLoadFromSlot(CurrentSaveSlot,out data))
-        {
-            Debug.Log(data.Player);
-            PlayerController.Instance.transform.position = data.Player.PlayerPosition;
-            //TODO: Set loaded data to various objects
-        }
-        else
-        {
-            Debug.LogError("No Save File Detected");
-        }
+        LoadData();
 
         Party = new List<PartyMember>();
     }
@@ -41,5 +31,21 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Grab Save Data");
         return null;
+    }
+
+    public void LoadData()
+    {
+        SaveData data;
+        if (SaveUtility.TryLoadFromSlot(CurrentSaveSlot, out data))
+        {
+            Debug.Log(data.Player);
+            PlayerController.Instance.transform.position = data.Player.PlayerPosition;
+            PlayerController.Instance.transform.eulerAngles = data.Player.PlayerRotation;
+            //TODO: Set loaded data to various objects
+        }
+        else
+        {
+            Debug.LogError("No Save File Detected");
+        }
     }
 }

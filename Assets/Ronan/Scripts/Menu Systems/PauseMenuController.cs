@@ -25,6 +25,7 @@ public class PauseMenuController : MonoBehaviour
 
     [Header("Confirm Box")]
     public SaveConfirmController SaveConfirm;
+    public ReturnConfirmController ReturnConfirm;
 
     private void Start()
     {
@@ -37,6 +38,7 @@ public class PauseMenuController : MonoBehaviour
             Destroy(this);
         }
         SaveConfirm.gameObject.SetActive(false);
+        ReturnConfirm.gameObject.SetActive(false);
         gameObject.SetActive(false);
     }
 
@@ -50,47 +52,55 @@ public class PauseMenuController : MonoBehaviour
         SetMenuState(PauseMenuState.RootMenu);
     }
 
-
     //Buttons
     public void ResumeGameButton()
     {
-        GameStateController.ResumePreviousState();
+        if(!SaveConfirm.gameObject.activeSelf && !ReturnConfirm.gameObject.activeSelf)
+        {
+            GameStateController.ResumePreviousState();
+        }
     }
 
     public void InventoryButton()
     {
-        SetMenuState(PauseMenuState.Inventory);
+        if (!SaveConfirm.gameObject.activeSelf && !ReturnConfirm.gameObject.activeSelf)
+            SetMenuState(PauseMenuState.Inventory);
     }
 
     public void SettingsButton()
     {
-        SetMenuState(PauseMenuState.Settings);
+        if (!SaveConfirm.gameObject.activeSelf && !ReturnConfirm.gameObject.activeSelf)
+            SetMenuState(PauseMenuState.Settings);
     }
 
     public void AbilityTreeButton()
     {
-        SetMenuState(PauseMenuState.AbilityTree);
+        if (!SaveConfirm.gameObject.activeSelf && !ReturnConfirm.gameObject.activeSelf)
+            SetMenuState(PauseMenuState.AbilityTree);
     }
 
     public void FastTravelButton()
     {
-        SetMenuState(PauseMenuState.FastTravel);
+        if (!SaveConfirm.gameObject.activeSelf && !ReturnConfirm.gameObject.activeSelf)
+            SetMenuState(PauseMenuState.FastTravel);
     }
 
     public void QuestButton()
     {
-        SetMenuState(PauseMenuState.Quests);
+        if (!SaveConfirm.gameObject.activeSelf && !ReturnConfirm.gameObject.activeSelf)
+            SetMenuState(PauseMenuState.Quests);
     }
 
     public void SaveButton()
     {
-        SaveConfirm.gameObject.SetActive(true);
+        if (!SaveConfirm.gameObject.activeSelf && !ReturnConfirm.gameObject.activeSelf)
+            SaveConfirm.gameObject.SetActive(true);
     }
 
     public void ReturnToTitleButton()
     {
-        //TODO Show confirmation box
-        SceneManager.LoadScene(0);
+        if (!SaveConfirm.gameObject.activeSelf && !ReturnConfirm.gameObject.activeSelf)
+            ReturnConfirm.gameObject.SetActive(true);
     }
 
 

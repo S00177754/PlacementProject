@@ -37,6 +37,7 @@ public class SaveLoad : MonoBehaviour
         //data.Settings = MainPlayer.Settings;
         data.Inventory = MainPlayer.GetComponent<InventoryManager>().Inventory;
         //data.Loadout = MainPlayer.GetComponent<EquipmentManager>().Loadout;
+        //data.EquippedWeapon = MainPlayer.GetComponent<EquipmentManager>().Loadout.EquippedWeapon;
         //TODO Redo the way items are saved and loaded back
         return data;
     }
