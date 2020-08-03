@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum PauseMenuState { RootMenu, Inventory, Settings, AbilityTree, FastTravel, Quests, Exit}
 
@@ -22,6 +23,9 @@ public class PauseMenuController : MonoBehaviour
     public SubMenu FastTravel;
     public SubMenu Quests;
 
+    [Header("Confirm Box")]
+    public SaveConfirmController SaveConfirm;
+
     private void Start()
     {
         if (Instance == null)
@@ -32,7 +36,7 @@ public class PauseMenuController : MonoBehaviour
         {
             Destroy(this);
         }
-
+        SaveConfirm.gameObject.SetActive(false);
         gameObject.SetActive(false);
     }
 
@@ -76,6 +80,17 @@ public class PauseMenuController : MonoBehaviour
     public void QuestButton()
     {
         SetMenuState(PauseMenuState.Quests);
+    }
+
+    public void SaveButton()
+    {
+        SaveConfirm.gameObject.SetActive(true);
+    }
+
+    public void ReturnToTitleButton()
+    {
+        //TODO Show confirmation box
+        SceneManager.LoadScene(0);
     }
 
 

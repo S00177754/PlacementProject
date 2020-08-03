@@ -52,6 +52,12 @@ public static class SaveUtility
 {
     public static void SaveToSlot(SaveData data,int slot)
     {
+        if(data == null)
+        {
+            Debug.LogError("Save data is null.");
+            return;
+        }
+
         BinaryFormatter bf = new BinaryFormatter();
         string path = Application.persistentDataPath + $"/SaveDataFile_{slot}.crescent";
         FileStream fs = new FileStream(path, FileMode.Create);
@@ -63,21 +69,39 @@ public static class SaveUtility
     }
 
     public static SaveData LoadFromSlot(int slot)
+    {
+        string path = Application.persistentDataPath + $"/SaveDataFile_{slot}.crescent";
+        if (File.Exists(path))
         {
-            string path = Application.persistentDataPath + $"/SaveDataFile_{slot}.crescent";
-            if (File.Exists(path))
-            {
-                BinaryFormatter bf = new BinaryFormatter();
-                FileStream fs = new FileStream(path, FileMode.Open);
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fs = new FileStream(path, FileMode.Open);
 
-                string json = bf.Deserialize(fs) as string;
-                SaveData data = JsonUtility.FromJson(json, typeof(SaveData)) as SaveData;
-                return data;
-            }
-            else
-            {
-                Debug.LogError("Save file does not exist.");
-                return null;
-            }
+            string json = bf.Deserialize(fs) as string;
+            SaveData data = JsonUtility.FromJson(json, typeof(SaveData)) as SaveData;
+            return data;
         }
+        else
+        {
+            Debug.LogError("Save file does not exist.");
+            return null;
+        }
+    }
+
+    public static bool TryLoadFromSlot(int slot, out SaveData saveData)
+    {
+        string path = Application.persistentDataPath + $"/SaveDataFile_{slot}.crescent";
+        if (File.Exists(path))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fs = new FileStream(path, FileMode.Open);
+
+            string json = bf.Deserialize(fs) as string;
+            saveData = JsonUtility.FromJson(json, typeof(SaveData)) as SaveData;
+            return true;
+        }
+
+        Debug.Log("Save file does not exist.");
+        saveData = null;
+        return false;    
+    }
 }

@@ -22,6 +22,24 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
 
+        SaveData data;
+        if(SaveUtility.TryLoadFromSlot(CurrentSaveSlot,out data))
+        {
+            Debug.Log(data.Player);
+            PlayerController.Instance.transform.position = data.Player.PlayerPosition;
+            //TODO: Set loaded data to various objects
+        }
+        else
+        {
+            Debug.LogError("No Save File Detected");
+        }
+
         Party = new List<PartyMember>();
+    }
+
+    public SaveData GrabSaveData()
+    {
+        Debug.Log("Grab Save Data");
+        return null;
     }
 }
