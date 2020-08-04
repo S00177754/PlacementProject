@@ -29,6 +29,11 @@ public class QuestButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
         questGroup.OnQuestExit(this);
     }
 
+    public void ButtonClick()
+    {
+
+    }
+
     void Start()
     {
         //QuestNameText = GetComponent<Text>();
