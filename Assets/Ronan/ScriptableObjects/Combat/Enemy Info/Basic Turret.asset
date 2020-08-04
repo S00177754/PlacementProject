@@ -12,9 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c844638487243d4db08c7924b653332, type: 3}
   m_Name: Basic Turret
   m_EditorClassIdentifier: 
+  ID: 2
+  Prefab: {fileID: 0}
   Health: 20
   Attack: 2
   AttackRange: 25
   AttackCooldown: 2
   PatrolSpeed: 0
   ChaseSpeed: 0
+  TreasureTable:
+  - ItemDrop: {fileID: 11400000, guid: 8e796d8fd06104c4bb2586baf6207880, type: 2}
+    DropChancePercentage: 30
+  - ItemDrop: {fileID: 11400000, guid: 9cf39b674f89df54ab2e946565e2444c, type: 2}
+    DropChancePercentage: 30
+  - ItemDrop: {fileID: 11400000, guid: 790a5a2a8dd857e40996a17df9aa31b7, type: 2}
+    DropChancePercentage: 40
