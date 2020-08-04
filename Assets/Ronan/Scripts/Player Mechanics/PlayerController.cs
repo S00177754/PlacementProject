@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,7 +32,23 @@ public class PlayerController : MonoBehaviour
 
     public void ApplyDamage(int amount)
     {
-        Health -= amount;
+        if (Health > 0)
+        {
+            Health -= amount;
+
+            if (Health <= 0)
+            {
+                StartCoroutine(DeathLogic());
+            }
+        }
+    }
+
+    private IEnumerator DeathLogic()
+    {
+        //TODO Death animation
+        Debug.Log("Oh damn im deaded");
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(2);
     }
 
     public bool TrySpendMoney(int amount)
