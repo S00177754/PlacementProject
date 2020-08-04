@@ -14,12 +14,15 @@ public class DialogueManager : MonoBehaviour
     public TMP_Text dialoguetext;
 
     public NPCDialogueTrigger ActiveNPC;
+    GameStateController gameStateController;
 
     private Queue<string> scentences;
 
     void Start()
     {
         scentences = new Queue<string>();
+        gameStateController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>();
+
     }
 
     public void Subscribe(NPCDialogueTrigger addMe)
@@ -81,6 +84,7 @@ public class DialogueManager : MonoBehaviour
         //Resets animator to close dialogue box
         animator.SetBool("IsOpen", false);
         Debug.Log("End of conversation");
+        GameStateController.SetGameState(GameState.Explore);
     }
 
     public void SetActiveNPC(string name)

@@ -314,15 +314,12 @@ public class InputManager : MonoBehaviour
             case WestButtonState.NPCTalk:
                 switch (context.phase)
                 {
-                    case InputActionPhase.Disabled:
-                        break;
-                    case InputActionPhase.Waiting:
-                        break;
-                    case InputActionPhase.Started:
-                        break;
                     case InputActionPhase.Performed:
-                        FindObjectOfType<DialogueManager>().InteractButtonPress();
+                        GameStateController.SetGameState(GameState.Chatting);
                         break;
+                    case InputActionPhase.Disabled:
+                    case InputActionPhase.Waiting:
+                    case InputActionPhase.Started:
                     case InputActionPhase.Canceled:
                         break;
                 }

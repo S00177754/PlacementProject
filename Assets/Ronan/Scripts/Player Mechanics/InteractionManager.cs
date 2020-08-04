@@ -61,7 +61,9 @@ public class InteractionManager : MonoBehaviour
                     GetComponent<PlayerController>().HUDController.HideItemNotification();
                     GetComponent<InputManager>().buttonStates.SetState(WestButtonState.Default);
                     break;
-
+                case "NPC":
+                    GetComponent<InputManager>().buttonStates.SetState(WestButtonState.Default);
+                    break;
                 default:
                     break;
             }
