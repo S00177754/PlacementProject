@@ -1,18 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    static public Dictionary<string, NPCDialogueTrigger> NPCsWithConversations = new Dictionary<string, NPCDialogueTrigger>();
+    static public Dictionary<string, NPCDialogueTrigger> ChattyNPCs = new Dictionary<string, NPCDialogueTrigger>();
 
     public Animator animator;
     public TMP_Text nameText;
     public TMP_Text dialoguetext;
-    
 
+    public NPCDialogueTrigger ActiveNPC;
 
     private Queue<string> scentences;
 
@@ -23,7 +24,12 @@ public class DialogueManager : MonoBehaviour
 
     public void Subscribe(NPCDialogueTrigger addMe)
     {
-        NPCsWithConversations.Add(addMe.name, addMe);
+        ChattyNPCs.Add(addMe.name, addMe);
+    }
+
+    public void InteractButtonPress()
+    {
+        ActiveNPC.TriggerDialogue();
     }
 
     public void StartDialogue(Dialogue dialogue)
@@ -32,7 +38,7 @@ public class DialogueManager : MonoBehaviour
         animator.SetBool("IsOpen", true);
         Debug.Log("Start Conversation with " + dialogue.name);
 
-        nameText.text = dialogue.name;
+        nameText.text = ActiveNPC.name;
 
         scentences.Clear();
 
@@ -77,5 +83,8 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("End of conversation");
     }
 
-
+    public void SetActiveNPC(string name)
+    {
+        ActiveNPC = ChattyNPCs[name];
+    }
 }

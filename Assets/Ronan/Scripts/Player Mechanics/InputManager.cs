@@ -311,6 +311,22 @@ public class InputManager : MonoBehaviour
                     break;
             }
                 break;
+            case WestButtonState.NPCTalk:
+                switch (context.phase)
+                {
+                    case InputActionPhase.Disabled:
+                        break;
+                    case InputActionPhase.Waiting:
+                        break;
+                    case InputActionPhase.Started:
+                        break;
+                    case InputActionPhase.Performed:
+                        FindObjectOfType<DialogueManager>().InteractButtonPress();
+                        break;
+                    case InputActionPhase.Canceled:
+                        break;
+                }
+                break;
 
             default:
                 break;
@@ -524,7 +540,7 @@ public class InputManager : MonoBehaviour
 public enum NorthButtonState { Default }
 public enum EastButtonState { Default, ItemUsagePanel }
 public enum SouthButtonState { Default, RadialMenu }
-public enum WestButtonState { Default, PickupItem, TravelPoint }
+public enum WestButtonState { Default, PickupItem, TravelPoint, NPCTalk }
 
 
 public enum LeftShoulderState { Default }

@@ -2419,7 +2419,7 @@ GameObject:
   - component: {fileID: 1799878965}
   m_Layer: 0
   m_Name: NPC Test
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2551,6 +2551,7 @@ MonoBehaviour:
     conversationName: 
     hasBeenSeen: 0
     scentances: []
+  canTalk: 0
   DialogueManager: {fileID: 612082092}
   ActiveQuest: {fileID: 0}
 --- !u!135 &1799878965

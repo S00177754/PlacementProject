@@ -12,8 +12,7 @@ public class NPCDialogueTrigger : MonoBehaviour
     public Vector3 Location;
     public List<Dialogue> conversations;
     public Dialogue activeDialogue;
-    [SerializeField]
-    bool canTalk;
+    public bool canTalk;
     [SerializeField]
     DialogueManager DialogueManager;
     [SerializeField]
@@ -26,7 +25,12 @@ public class NPCDialogueTrigger : MonoBehaviour
         //Initiates to find active quest and finds current dialogue option for that
         CheckForQuest();
         CheckDialogue(ActiveQuest.Name);
-        canTalk = false;
+
+        if (conversations.Count > 0)
+            canTalk = true;
+        else
+            canTalk = false;
+
         //****DEBUG****
         //Debug.Log(activeDialogue.name);
         //foreach (string scen in activeDialogue.scentances)
@@ -35,7 +39,7 @@ public class NPCDialogueTrigger : MonoBehaviour
         //}
 
         //Conversation manager subscribe NPC to 'talkable'
-        DialogueManager.Subscribe(this);
+        FindObjectOfType<DialogueManager>().Subscribe(this);
     }
 
     public void TriggerDialogue()

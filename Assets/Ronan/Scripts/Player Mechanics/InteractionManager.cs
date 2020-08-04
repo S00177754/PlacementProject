@@ -28,7 +28,17 @@ public class InteractionManager : MonoBehaviour
                         }
                     }
                     break;
-
+                case "NPC":
+                    NPCDialogueTrigger ChattyNPC;
+                    if(other.TryGetComponent(out ChattyNPC))
+                    {
+                        if(ChattyNPC.canTalk)
+                        {
+                            GetComponent<InputManager>().buttonStates.SetState(WestButtonState.NPCTalk);
+                            FindObjectOfType<DialogueManager>().SetActiveNPC(ChattyNPC.name);
+                        }
+                    }
+                    break;
                 default:
                     break;
             }
