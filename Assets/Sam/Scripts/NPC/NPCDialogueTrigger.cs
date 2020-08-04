@@ -12,7 +12,10 @@ public class NPCDialogueTrigger : MonoBehaviour
     public Vector3 Location;
     public List<Dialogue> conversations;
     public Dialogue activeDialogue;
-
+    [SerializeField]
+    bool canTalk;
+    [SerializeField]
+    DialogueManager DialogueManager;
     [SerializeField]
     Quest ActiveQuest;
 
@@ -23,12 +26,16 @@ public class NPCDialogueTrigger : MonoBehaviour
         //Initiates to find active quest and finds current dialogue option for that
         CheckForQuest();
         CheckDialogue(ActiveQuest.Name);
+        canTalk = false;
         //****DEBUG****
         //Debug.Log(activeDialogue.name);
         //foreach (string scen in activeDialogue.scentances)
         //{
         //    Debug.Log(scen);
         //}
+
+        //Conversation manager subscribe NPC to 'talkable'
+        DialogueManager.Subscribe(this);
     }
 
     public void TriggerDialogue()
@@ -78,6 +85,16 @@ public class NPCDialogueTrigger : MonoBehaviour
                 Debug.Log("ActiveQuest null in Start() after side search");
         }
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        canTalk = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        canTalk = false;
     }
 
 }

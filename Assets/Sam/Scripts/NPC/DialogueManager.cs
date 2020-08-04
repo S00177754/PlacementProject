@@ -6,9 +6,13 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    static public Dictionary<string, NPCDialogueTrigger> NPCsWithConversations = new Dictionary<string, NPCDialogueTrigger>();
+
     public Animator animator;
     public TMP_Text nameText;
     public TMP_Text dialoguetext;
+    
+
 
     private Queue<string> scentences;
 
@@ -17,18 +21,13 @@ public class DialogueManager : MonoBehaviour
         scentences = new Queue<string>();
     }
 
+    public void Subscribe(NPCDialogueTrigger addMe)
+    {
+        NPCsWithConversations.Add(addMe.name, addMe);
+    }
+
     public void StartDialogue(Dialogue dialogue)
     {
-        //****DEBUG****
-        //if (dialogue == null)
-        //    Debug.Log("dialogue is null in DiagManager");
-        //else
-        //{
-        //    Debug.Log(dialogue.name);
-        //    Debug.Log(dialogue.conversationName);
-        //    Debug.Log(dialogue.scentances);
-        //}
-
         //Starts dialogue by showing dialogue panel and filling in name and first scentence
         animator.SetBool("IsOpen", true);
         Debug.Log("Start Conversation with " + dialogue.name);

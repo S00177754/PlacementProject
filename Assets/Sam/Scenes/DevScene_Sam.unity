@@ -2092,6 +2092,95 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1001 &1765874865
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2213757608874110938, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_Name
+      value: Moon Travel Point - Ruins
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213757608874110939, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: LocationName
+      value: Desert RuinsTP1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213757608874110939, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: TeleportUnlocked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 42.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 25.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7189674
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.69504386
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -91.939
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 34.998318
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 34.998318
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 758771e3e82084b46a1e36831bddf925, type: 3}
 --- !u!1 &1774612887
 GameObject:
   m_ObjectHideFlags: 0
@@ -2326,8 +2415,10 @@ GameObject:
   - component: {fileID: 1799878961}
   - component: {fileID: 1799878960}
   - component: {fileID: 1799878959}
+  - component: {fileID: 1799878964}
+  - component: {fileID: 1799878965}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: NPC Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2418,12 +2509,63 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799878958}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 48.56, y: 1.14, z: 12.849121}
+  m_LocalPosition: {x: 52.38, y: 1.14, z: 19.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1799878964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799878958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696dc3710f466ed489af0a0f801e27b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPCName: Testy McTestFace
+  Description: Testing NPC
+  Location: {x: 0, y: 0, z: 0}
+  conversations:
+  - name: default
+    conversationName: default
+    hasBeenSeen: 0
+    scentances:
+    - Oh hello! This is a test.
+    - Second scentance in the test. I hope it worked!
+  - name: MSQ1
+    conversationName: Main Quest 1
+    hasBeenSeen: 0
+    scentances:
+    - "You have a quest!\t"
+    - This conversation only appears if you have an active quest of the same name
+      os the conversation.
+    - Hopefully, this will only appear when Sam has changed the MSQ name to match
+      the conversation.
+  activeDialogue:
+    name: 
+    conversationName: 
+    hasBeenSeen: 0
+    scentances: []
+  DialogueManager: {fileID: 612082092}
+  ActiveQuest: {fileID: 0}
+--- !u!135 &1799878965
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799878958}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: -0.10397625, z: 0}
 --- !u!1 &1827361156 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 2ae29a90681c7ed45b08e6a4de310ed2,
@@ -3839,7 +3981,7 @@ MonoBehaviour:
     DefenceStat: 5
   Settings:
     InvertYAxis: 1
-    CameraSensitivity: 2
+    CameraSensitivity: 0.2
   HUDController: {fileID: 0}
   PauseMenu: {fileID: 0}
   Health: 40
