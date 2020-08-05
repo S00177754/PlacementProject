@@ -5,32 +5,32 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Bauble Object", menuName = "Inventory System/Item/Bauble")]
 public class BaubleObj : ItemObj
 {
-    public float AttackBonus;
-    public float DefenseBonus;
-    public float MaxHealthBonus;
-    public float MaxMPBonus;
+    public int AttackBonus;
+    public int DefenseBonus;
+    public int MaxHealthBonus;
+    public int MaxMPBonus;
 
     public void Awake()
     {
         Type = ItemType.Bauble;
     }
 
-    public float GetAttackBonus()
+    public int GetAttackBonus()
     {
         return AttackBonus;
     }
 
-    public float GetDefenseBonus()
+    public int GetDefenseBonus()
     {
         return DefenseBonus;
     }
 
-    public float GetHealthBonus()
+    public int GetHealthBonus()
     {
         return MaxHealthBonus;
     }
 
-    public float GetMPBonus()
+    public int GetMPBonus()
     {
         return MaxMPBonus;
     }

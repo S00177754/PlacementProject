@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     public int MaxHealth = 100;
     public int MaxMP = 60;
 
+    public int StartingMaxHealth = 100;
+    public int StartingMaxMP = 60;
+
     public int Money = 0;
 
     public bool IsInvincible = false;
@@ -28,6 +31,8 @@ public class PlayerController : MonoBehaviour
     {
         //Cursor.lockState = CursorLockMode.Confined;
         Instance = this;
+        CalculateMaxHP();
+        CalculateMaxMP(); 
     }
 
     public void ApplyDamage(int amount)
@@ -64,12 +69,24 @@ public class PlayerController : MonoBehaviour
 
     private void CalculateMaxHP()
     {
-        MaxHealth = 100 + GetComponent<AbilityTreeManager>().GetHealthBonus() + ((GameStats.VitalityStat - 5) * 5);
+        MaxHealth = StartingMaxHealth + GetComponent<AbilityTreeManager>().GetHealthBonus() + ((GameStats.VitalityStat - 5) * 5) + GetComponent<EquipmentManager>().Loadout.GetHealthBonus();
+
+        if(Health > MaxHealth)
+        {
+            Health = MaxHealth;
+        }
+
     }
 
     private void CalculateMaxMP()
     {
-        MaxMP = 100 + GetComponent<AbilityTreeManager>().GetMagicBonus() + ((GameStats.MagicStat - 5) * 5);
+        MaxMP = StartingMaxMP + GetComponent<AbilityTreeManager>().GetMagicBonus() + ((GameStats.MagicStat - 5) * 5) + GetComponent<EquipmentManager>().Loadout.GetMPBonus();
+
+        if (Health > MaxHealth)
+        {
+            Health = MaxHealth;
+        }
+
     }
 }
 
