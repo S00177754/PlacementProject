@@ -9,8 +9,15 @@ public class AbilityTreeNode : ScriptableObject
     public List<AbilityTreeNode> NextNodes;
 
     [Header("Node Details")]
+    public string IdName;
     public bool NodeUnlocked = false;
     public int AbilityPointCost;
+}
+
+public class AbilityNodeData
+{
+    public string IdName;
+    public bool Unlocked;
 }
 
 
