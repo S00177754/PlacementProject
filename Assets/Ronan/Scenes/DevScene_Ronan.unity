@@ -4076,7 +4076,18 @@ PrefabInstance:
     - target: {fileID: 4854577525965888833, guid: 0f614015ebe29d44dbfd8d3a4430a916,
         type: 3}
       propertyPath: GameStats.AbilityPoints
-      value: 27
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4854577525965888833, guid: 0f614015ebe29d44dbfd8d3a4430a916,
+        type: 3}
+      propertyPath: LevelGuide
+      value: 
+      objectReference: {fileID: 11400000, guid: 577b6c104c44b3444998798506dc65a2,
+        type: 2}
+    - target: {fileID: 4854577525965888833, guid: 0f614015ebe29d44dbfd8d3a4430a916,
+        type: 3}
+      propertyPath: GameStats.Name
+      value: Akira Kurusu
       objectReference: {fileID: 0}
     - target: {fileID: 4854577525965888834, guid: 0f614015ebe29d44dbfd8d3a4430a916,
         type: 3}

@@ -23,9 +23,10 @@ public class PauseMenuController : MonoBehaviour
     public SubMenu FastTravel;
     public SubMenu Quests;
 
-    [Header("Confirm Box")]
+    [Header("Additional Objects")]
     public SaveConfirmController SaveConfirm;
     public ReturnConfirmController ReturnConfirm;
+    public PlayerInfoPanelController InfoPanel;
 
     private void Start()
     {
@@ -198,6 +199,7 @@ public class PauseMenuController : MonoBehaviour
                 FastTravel.SubMenuObject.SetActive(false);
                 RootMenu.SubMenuObject.SetActive(true);
                 Quests.SubMenuObject.SetActive(false);
+                InfoPanel.Setup();
                 UIHelper.SelectedObjectSet(RootMenu.DefaultSelectedUIElement);
                 PlayerController.Instance.GetComponent<InputManager>().SetSelecOnRegain(RootMenu.DefaultSelectedUIElement);
                 break;

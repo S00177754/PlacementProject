@@ -14,4 +14,6 @@ public class LevelExpRequirement
 {
     public int Level;
     public int ExpRequired;
+    public int AbilityPoints;
+    public int SkillPoints;
 }

@@ -17,6 +17,7 @@ public class EnemyInfo : ScriptableObject
     public int Attack;
     public float AttackRange;
     public float AttackCooldown;
+    public int Experience;
 
     [Header("Speed")]
     public float PatrolSpeed;
