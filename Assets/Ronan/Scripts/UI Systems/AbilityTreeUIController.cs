@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class AbilityTreeUIController : MonoBehaviour
 {
@@ -14,11 +15,16 @@ public class AbilityTreeUIController : MonoBehaviour
     [Header("UI Components")]
     public TMP_Text FilterLabel;
     public TMP_Text AbilityDescription;
+    public static TMP_Text Description;
+
+    public GameObject LeftFilterButton;
+    public GameObject RightFilterButton;
 
     //TODO: Hook up UI to controller
 
     private void Start()
     {
+        Description = AbilityDescription;
         UpdateTreeView();
     }
 
@@ -52,6 +58,14 @@ public class AbilityTreeUIController : MonoBehaviour
         Trees[TreeIndex].TreeScrollView.SetActive(true);
         FilterLabel.text = Trees[TreeIndex].TreeLabel;
         UIHelper.SelectedObjectSet(Trees[TreeIndex].FirstNodeElement);
+
+        Navigation navL = LeftFilterButton.GetComponent<Button>().navigation;
+        navL.selectOnDown = Trees[TreeIndex].FirstNodeElement.GetComponent<Button>();
+        LeftFilterButton.GetComponent<Button>().navigation = navL;
+
+        Navigation navR = RightFilterButton.GetComponent<Button>().navigation;
+        navR.selectOnDown = Trees[TreeIndex].FirstNodeElement.GetComponent<Button>();
+        RightFilterButton.GetComponent<Button>().navigation = navR;
     }
 }
 

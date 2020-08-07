@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         //TODO Death animation
         Debug.Log("Oh damn im deaded");
         yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(2);
+        SceneManagerHelper.TransitionToScene(2);
     }
 
     public bool TrySpendMoney(int amount)

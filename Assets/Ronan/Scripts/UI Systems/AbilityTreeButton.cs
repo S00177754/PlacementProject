@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class AbilityTreeButton : MonoBehaviour
+public class AbilityTreeButton : MonoBehaviour, ISelectHandler, IPointerEnterHandler
 {
     public AbilityTreeNode AttatchedNode;
     public Color BaseColor;
@@ -16,14 +17,14 @@ public class AbilityTreeButton : MonoBehaviour
 
     public void PurchaseSkill()
     {
-        if(AttatchedNode.AbilityPointCost > PlayerController.Instance.GameStats.AbilityPoints || AttatchedNode.NodeUnlocked)
+        if(AttatchedNode.AbilityPointCost > PlayerController.Instance.GameStats.AbilityPoints || AttatchedNode.NodeUnlocked || AttatchedNode.PreviousNodesUnlocked() == false)
         {
             return;
         }
 
         PlayerController.Instance.GameStats.AbilityPoints -= AttatchedNode.AbilityPointCost;
         AttatchedNode.NodeUnlocked = true;
-
+        AbilityTreeUIController.Description.text = AttatchedNode.GetDescription();
         SetColor();
         Debug.Log(string.Concat("Remaining Ability Points: ", PlayerController.Instance.GameStats.AbilityPoints));
     }
@@ -31,5 +32,17 @@ public class AbilityTreeButton : MonoBehaviour
     private void SetColor()
     {
         GetComponent<Image>().color = AttatchedNode.NodeUnlocked == true ? UnlockedColor : BaseColor;
+    }
+
+
+
+    public void OnSelect(BaseEventData eventData)
+    {
+        AbilityTreeUIController.Description.text = AttatchedNode.GetDescription();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        AbilityTreeUIController.Description.text = AttatchedNode.GetDescription();
     }
 }
