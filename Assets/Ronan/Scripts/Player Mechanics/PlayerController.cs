@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Health > 0)
         {
-            Health -= amount;
+            Health -= (amount - (int)Math.Round((double) (GameStats.DefenceStat - 5) / 5) ); //Removes Damage being applied based on defense
 
             if (Health <= 0)
             {

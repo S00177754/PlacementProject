@@ -25,6 +25,7 @@ public class AbilityTreeButton : MonoBehaviour, ISelectHandler, IPointerEnterHan
         PlayerController.Instance.GameStats.AbilityPoints -= AttatchedNode.AbilityPointCost;
         AttatchedNode.NodeUnlocked = true;
         AbilityTreeUIController.Description.text = AttatchedNode.GetDescription();
+        AbilityTreeUIController.RemainingPoints.text = string.Concat("Remaining Ability Points: ", PlayerController.Instance.GameStats.AbilityPoints);
         SetColor();
         Debug.Log(string.Concat("Remaining Ability Points: ", PlayerController.Instance.GameStats.AbilityPoints));
     }

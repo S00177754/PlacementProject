@@ -15,7 +15,9 @@ public class AbilityTreeUIController : MonoBehaviour
     [Header("UI Components")]
     public TMP_Text FilterLabel;
     public TMP_Text AbilityDescription;
+    public TMP_Text AbilityPointsText;
     public static TMP_Text Description;
+    public static TMP_Text RemainingPoints;
 
     public GameObject LeftFilterButton;
     public GameObject RightFilterButton;
@@ -25,7 +27,13 @@ public class AbilityTreeUIController : MonoBehaviour
     private void Start()
     {
         Description = AbilityDescription;
+        RemainingPoints = AbilityPointsText;
         UpdateTreeView();
+    }
+
+    public void Setup()
+    {
+        AbilityPointsText.text = string.Concat("Remaining Ability Points: ", PlayerController.Instance.GameStats.AbilityPoints);
     }
 
     public void NextIndex()

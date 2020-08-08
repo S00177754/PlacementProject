@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum PauseMenuState { RootMenu, Inventory, Settings, AbilityTree, FastTravel, Quests, Exit}
+public enum PauseMenuState { RootMenu, Inventory, Settings, AbilityTree, FastTravel, Quests, StatsMenu, Exit}
 
 public class PauseMenuController : MonoBehaviour
 {
@@ -22,11 +22,11 @@ public class PauseMenuController : MonoBehaviour
     public SubMenu AbilityTree;
     public SubMenu FastTravel;
     public SubMenu Quests;
+    public SubMenu StatsMenu;
 
     [Header("Additional Objects")]
     public SaveConfirmController SaveConfirm;
     public ReturnConfirmController ReturnConfirm;
-    public PlayerInfoPanelController InfoPanel;
 
     private void Start()
     {
@@ -92,6 +92,12 @@ public class PauseMenuController : MonoBehaviour
             SetMenuState(PauseMenuState.Quests);
     }
 
+    public void StatsButton()
+    {
+        if (!SaveConfirm.gameObject.activeSelf && !ReturnConfirm.gameObject.activeSelf)
+            SetMenuState(PauseMenuState.StatsMenu);
+    }
+
     public void SaveButton()
     {
         if (!SaveConfirm.gameObject.activeSelf && !ReturnConfirm.gameObject.activeSelf)
@@ -145,6 +151,10 @@ public class PauseMenuController : MonoBehaviour
                 QuestMenuState();
                 break;
 
+            case PauseMenuState.StatsMenu:
+                StatsMenuState();
+                break;
+
             case PauseMenuState.Exit:
                 GameStateController.ResumePreviousState();
                 break;
@@ -187,6 +197,11 @@ public class PauseMenuController : MonoBehaviour
         ActivateSingleMenu(PauseMenuState.Quests);
     }
 
+    public void StatsMenuState()
+    {
+        ActivateSingleMenu(PauseMenuState.StatsMenu);
+    }
+
 
     public void ActivateSingleMenu(PauseMenuState menu)
     {
@@ -199,7 +214,7 @@ public class PauseMenuController : MonoBehaviour
                 FastTravel.SubMenuObject.SetActive(false);
                 RootMenu.SubMenuObject.SetActive(true);
                 Quests.SubMenuObject.SetActive(false);
-                InfoPanel.Setup();
+                StatsMenu.SubMenuObject.SetActive(false);
                 UIHelper.SelectedObjectSet(RootMenu.DefaultSelectedUIElement);
                 PlayerController.Instance.GetComponent<InputManager>().SetSelecOnRegain(RootMenu.DefaultSelectedUIElement);
                 break;
@@ -211,6 +226,8 @@ public class PauseMenuController : MonoBehaviour
                 FastTravel.SubMenuObject.SetActive(false);
                 Inventory.SubMenuObject.SetActive(true);
                 Quests.SubMenuObject.SetActive(false);
+                StatsMenu.SubMenuObject.SetActive(false);
+
                 //UIHelper.SelectedObjectSet(Inventory.DefaultSelectedUIElement);
                 PlayerController.Instance.GetComponent<InputManager>().SetSelecOnRegain(Inventory.DefaultSelectedUIElement);
                 break;
@@ -222,6 +239,8 @@ public class PauseMenuController : MonoBehaviour
                 FastTravel.SubMenuObject.SetActive(false);
                 Settings.SubMenuObject.SetActive(true);
                 Quests.SubMenuObject.SetActive(false);
+                StatsMenu.SubMenuObject.SetActive(false);
+
                 UIHelper.SelectedObjectSet(Settings.DefaultSelectedUIElement);
                 PlayerController.Instance.GetComponent<InputManager>().SetSelecOnRegain(Settings.DefaultSelectedUIElement);
                 break;
@@ -233,6 +252,8 @@ public class PauseMenuController : MonoBehaviour
                 FastTravel.SubMenuObject.SetActive(false);
                 Settings.SubMenuObject.SetActive(false);
                 Quests.SubMenuObject.SetActive(false);
+                StatsMenu.SubMenuObject.SetActive(false);
+                AbilityTree.SubMenuObject.GetComponent<AbilityTreeUIController>().Setup();
                 UIHelper.SelectedObjectSet(AbilityTree.DefaultSelectedUIElement);
                 PlayerController.Instance.GetComponent<InputManager>().SetSelecOnRegain(AbilityTree.DefaultSelectedUIElement);
                 break;
@@ -244,6 +265,7 @@ public class PauseMenuController : MonoBehaviour
                 FastTravel.SubMenuObject.SetActive(true);
                 Settings.SubMenuObject.SetActive(false);
                 Quests.SubMenuObject.SetActive(false);
+                StatsMenu.SubMenuObject.SetActive(false);
                 //UIHelper.SelectedObjectSet(FastTravel.DefaultSelectedUIElement);
                 PlayerController.Instance.GetComponent<InputManager>().SetSelecOnRegain(FastTravel.DefaultSelectedUIElement);
                 break;
@@ -253,8 +275,22 @@ public class PauseMenuController : MonoBehaviour
                 Inventory.SubMenuObject.SetActive(false);
                 AbilityTree.SubMenuObject.SetActive(false);
                 FastTravel.SubMenuObject.SetActive(false);
+                StatsMenu.SubMenuObject.SetActive(false);
                 Quests.SubMenuObject.SetActive(true);
                 Settings.SubMenuObject.SetActive(Quests.DefaultSelectedUIElement);
+                UIHelper.SelectedObjectSet(AbilityTree.DefaultSelectedUIElement);
+                PlayerController.Instance.GetComponent<InputManager>().SetSelecOnRegain(Quests.DefaultSelectedUIElement);
+                break;
+
+            case PauseMenuState.StatsMenu:
+                RootMenu.SubMenuObject.SetActive(false);
+                Inventory.SubMenuObject.SetActive(false);
+                AbilityTree.SubMenuObject.SetActive(false);
+                FastTravel.SubMenuObject.SetActive(false);
+                Quests.SubMenuObject.SetActive(false);
+                StatsMenu.SubMenuObject.SetActive(true);
+                Settings.SubMenuObject.SetActive(Quests.DefaultSelectedUIElement);
+                StatsMenu.SubMenuObject.GetComponent<SkillPointPanelController>().Setup();
                 UIHelper.SelectedObjectSet(AbilityTree.DefaultSelectedUIElement);
                 PlayerController.Instance.GetComponent<InputManager>().SetSelecOnRegain(Quests.DefaultSelectedUIElement);
                 break;
@@ -291,7 +327,11 @@ public class PauseMenuController : MonoBehaviour
                 break;
 
             case PauseMenuState.Quests:
-                SetMenuState(PauseMenuState.Quests);
+                SetMenuState(PauseMenuState.RootMenu);
+                break;
+            
+            case PauseMenuState.StatsMenu:
+                SetMenuState(PauseMenuState.RootMenu);
                 break;
 
             default:
