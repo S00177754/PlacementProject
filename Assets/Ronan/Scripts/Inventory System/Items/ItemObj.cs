@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Need to refactor item type to include all weapons
-public enum ItemType { Potion,Weapon,  Bauble, KeyItem  }
+public enum ItemType { Potion,Weapon,  Bauble, KeyItem, Treasure  }
 
 //Base item class
 public abstract class ItemObj : ScriptableObject
 {
+    public int ID;
     public string Name;
     public ItemType Type;
     public Sprite ItemIcon;

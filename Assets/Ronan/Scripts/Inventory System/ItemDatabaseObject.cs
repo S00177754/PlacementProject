@@ -22,7 +22,7 @@ public class ItemDatabaseObject : ScriptableObject, ISerializationCallbackReceiv
         {
             GetId.Add(Items[i], i);
             GetItem.Add(i, Items[i]);
-
+            Items[i].ID = i;
         }
     }
 

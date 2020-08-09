@@ -103,7 +103,7 @@ public class TitleMenuController : MonoBehaviour
     {
         SaveManager.CreateNewGame(slot);
         GameManager.CurrentSaveSlot = slot;
-        SceneManager.LoadScene(1);
+        SceneManagerHelper.TransitionToScene(1);
         Debug.Log(string.Concat("I've overwritten slot ", slot));
     }
 

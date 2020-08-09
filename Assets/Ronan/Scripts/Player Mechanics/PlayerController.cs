@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,12 +13,16 @@ public class PlayerController : MonoBehaviour
     [Header("External References")]
     public PlayerHUDController HUDController;
     public PauseMenuController PauseMenu;
+    public LevelExpScriptableObj LevelGuide;
 
     [Header("Stats")]
     public int Health = 100;
     public int MP = 60;
     public int MaxHealth = 100;
     public int MaxMP = 60;
+
+    public const int StartingMaxHealth = 100;
+    public const int StartingMaxMP = 60;
 
     public int Money = 0;
 
@@ -27,11 +32,29 @@ public class PlayerController : MonoBehaviour
     {
         //Cursor.lockState = CursorLockMode.Confined;
         Instance = this;
+        CalculateMaxHP();
+        CalculateMaxMP(); 
     }
 
     public void ApplyDamage(int amount)
     {
-        Health -= amount;
+        if (Health > 0)
+        {
+            Health -= (amount - (int)Math.Round((double) (GameStats.DefenceStat - 5) / 5) ); //Removes Damage being applied based on defense
+
+            if (Health <= 0)
+            {
+                StartCoroutine(DeathLogic());
+            }
+        }
+    }
+
+    private IEnumerator DeathLogic()
+    {
+        //TODO Death animation
+        Debug.Log("Oh damn im deaded");
+        yield return new WaitForSeconds(2);
+        SceneManagerHelper.TransitionToScene(2);
     }
 
     public bool TrySpendMoney(int amount)
@@ -47,12 +70,46 @@ public class PlayerController : MonoBehaviour
 
     private void CalculateMaxHP()
     {
-        MaxHealth = 100 + GetComponent<AbilityTreeManager>().GetHealthBonus() + ((GameStats.VitalityStat - 5) * 5);
+        MaxHealth = StartingMaxHealth + GetComponent<AbilityTreeManager>().GetHealthBonus() + ((GameStats.VitalityStat - 5) * 5) + GetComponent<EquipmentManager>().Loadout.GetHealthBonus();
+
+        if(Health > MaxHealth)
+        {
+            Health = MaxHealth;
+        }
+
     }
 
     private void CalculateMaxMP()
     {
-        MaxMP = 100 + GetComponent<AbilityTreeManager>().GetMagicBonus() + ((GameStats.MagicStat - 5) * 5);
+        MaxMP = StartingMaxMP + GetComponent<AbilityTreeManager>().GetMagicBonus() + ((GameStats.MagicStat - 5) * 5) + GetComponent<EquipmentManager>().Loadout.GetMPBonus();
+
+        if (Health > MaxHealth)
+        {
+            Health = MaxHealth;
+        }
+
+    }
+
+    public void AddExperience(int xp)
+    {
+        GameStats.Experience += xp;
+
+        for (int i = 0; i < LevelGuide.LevellingInfo.Count; i++)
+        {
+            if(GameStats.Experience >= LevelGuide.LevellingInfo[i].ExpRequired)
+            {
+
+                if(GameStats.Level != LevelGuide.LevellingInfo[i].Level)
+                {
+
+                    GameStats.Level = LevelGuide.LevellingInfo[i].Level;
+                    GameStats.AbilityPoints += LevelGuide.LevellingInfo[i].AbilityPoints;
+                    Debug.Log(string.Concat("Level: ",GameStats.Level,"  XP: ",GameStats.Experience,"  AP: ",GameStats.AbilityPoints));
+                    return;
+                }
+
+            }
+        }
     }
 }
 
@@ -71,8 +128,9 @@ public enum PlayerStatTypes { Strength, Dexterity, Magic, Vitality, Defence}
 [Serializable]
 public class CharacterStats
 {
-    public string Name;
+    public string Name = "Akira Kurusu";
 
+    public int Level = 1;
     public int Experience = 0;
     public int SkillPoints = 0;
     public int AbilityPoints = 0;

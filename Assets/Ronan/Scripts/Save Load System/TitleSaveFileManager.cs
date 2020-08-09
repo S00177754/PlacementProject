@@ -22,7 +22,7 @@ public class TitleSaveFileManager : MonoBehaviour
     {
         PlayerSaveData data = new PlayerSaveData();
 
-        data.EquippedWeapon = StartingWeapon;
+        data.EquippedWeaponID = StartingWeapon.ID;
         PlayerInventory.Collection.Clear();
         PlayerInventory.AddItem(StartingWeapon, 1);
         StartInventory.ForEach(x => PlayerInventory.AddItem(x, 1));

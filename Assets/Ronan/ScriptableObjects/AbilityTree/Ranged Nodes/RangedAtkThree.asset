@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de10802cd8b1c674bbf8cfdc500d9572, type: 3}
+  m_Name: RangedAtkThree
+  m_EditorClassIdentifier: 
+  PreRequirements:
+  - {fileID: 11400000, guid: e26670e5796b1e249ae7936eb40d2560, type: 2}
+  NextNodes:
+  - {fileID: 11400000, guid: cba25d70821474a48b274443abe95fdb, type: 2}
+  IdName: RangedAtkBoostOne
+  NodeUnlocked: 0
+  AbilityPointCost: 4
+  NodeType: 1
+  HealthBonus: 0
+  AttackBonus: 2
