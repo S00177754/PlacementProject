@@ -34,10 +34,6 @@ public class AbilityTreeNode : ScriptableObject
     }
 }
 
-public class AbilityNodeData
-{
-    public string IdName;
-    public bool Unlocked;
-}
+
 
 
