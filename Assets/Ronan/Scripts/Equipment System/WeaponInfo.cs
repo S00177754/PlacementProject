@@ -9,11 +9,10 @@ public enum AttackType { Melee, Ranged, Magic}
 public class WeaponInfo : MonoBehaviour
 {
     public WeaponPostion PositioningDetails;
-
+    public int ItemID;
     public AttackType attackType;
     public WeaponType weaponType;
     public WeaponAttackDetailsObj AttackDetails;
-
 }
 
 [Serializable]

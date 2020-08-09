@@ -15,7 +15,7 @@ public class EquipmentManager : MonoBehaviour
     }
 
 
-    public void EquipWeapon(GameObject weaponPrefab)
+    public void EquipWeapon(GameObject weaponPrefab,int ID)
     {
         WeaponInfo wi;
 
@@ -29,6 +29,7 @@ public class EquipmentManager : MonoBehaviour
 
             GameObject go = Instantiate(weaponPrefab);
             Loadout.EquippedWeapon = go.GetComponent<WeaponInfo>();
+            Loadout.EquippedWeapon.ItemID = ID;
             GetComponent<PlayerAttack>().AttachPoints.AttatchTo(AttachPoint.RightHand, Loadout.EquippedWeapon);
             GetComponent<PlayerAttack>().ComboAttackCount = GetAttackDetails().PrimaryAtackPattern.Count;
         }

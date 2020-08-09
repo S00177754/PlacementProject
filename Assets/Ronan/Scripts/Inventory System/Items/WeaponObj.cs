@@ -17,7 +17,7 @@ public class WeaponObj : ItemObj
     {
         if (player.GetComponent<EquipmentManager>().Loadout.EquippedWeapon != WeaponPrefab.GetComponent<WeaponInfo>())
         {
-            player.GetComponent<EquipmentManager>().EquipWeapon(WeaponPrefab);
+            player.GetComponent<EquipmentManager>().EquipWeapon(WeaponPrefab,ID);
         }
         else
         {
