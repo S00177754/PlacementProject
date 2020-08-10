@@ -111,6 +111,57 @@
                 </article>
               </div>
               <br/>
+              
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_16"></a>
+                  <p class="title">Increasing Project Velocity - #16</p>
+                  <p>Project velocity can play a key role in the development of any project as it represents the amount of work done over a period of time, due to many diffrent reasons project velocity can fall and cause delays in the project. Over the course of the past week, I have tried to greatly increase my work velocity as the project's due date draws nearer. I found that taking a day to reorganise myself and tidy up our Kanban board on Trello helped me refocus and assess what tasks needed to be prioritized and the route which I needed to take to accomplish the tasks ahead of me.</p>
+                  <p>Starting off with the Fast Travel system, I implimeneted a map view into the UI to illustrate to the player where they will be teleporting to when they hover over or select an fast travel point from the list menu. Currently the map view just shows a white square as the level layout is not fully complete so I haven't put the birds eye view of it into the UI yet as shown below. The UI changes proved not to be very difficult to implement thanks to Unity's UI system but in the background I was able to reuse some of the auto lock systems's UI code to move the red indicator on the map to where it is on the world map. I accomplished this through the use of a custom script that takes in both the dimensions of the game world and the UI map element and calculates the ratio's of the travel point in relation to the 3d world space and translates the indicator an equal ratio on the UI.</p>
+                  <img src="../Images/FastTravelWork_10Aug.png" class="center" alt="Fast Travel UI"/>
+                  <br/>
+                  <p>After having worked on the map view for the fast travel UI, I realised that with a slight change to the script I wrote for it, I could use the same code for a minimap on the player's HUD and to display their location on the map and possibly the locations of mission objectives at a later point. As shown below, the minimap has been integrated into the player HUD with the white square once again as a temporary placeholder.</p>
+                  <img src="../Images/PlayerHUD_10Aug.png" class="center" alt="Player HUD UI with Minimap"/>
+                  <br/>
+                  <p>At this point I took a look at the current gameplay of Project Crescent and the systems implimented thus far before moving onto my next task, this led to the development of a treasure table system for enemies. The treasure table defines the drop items of the enemy and the likelihood of them dropping through a ratio based percentage system. To help randomnly pick and item from the treasure table with respect to the ratio based percentage chance, I wrote an algorithim as an extension method to pick a random item from the list and place it into a collectable item object which is instantiated on the death of the enemy, spawning at the point where they were defeated on the terrain.</p>
+                  <p>Since I had been working on UI quite a bit during the week, I decided to integrate Sam's Quest UI into the current Pause Screen UI alongside the other various systems, adding the UI and updating the relevant scripts to interact with the new addition so that we could swap between each menu in the pause screen and return to the root menu. I then started on unifying the asthetics of the quest UI with the theme of the other menu's on the pause screen. This involved the addition of Quest icons, replacing Unity Text components with TextMeshPro Text components for a crisper and sharper text at higher resolutions as well as the creation of some new sprites for the UI in Adobe Illustrator.</p>
+                  <img src="../Images/QuestUI_10Aug.png" class="center" alt="Quest UI"/>
+                  <br/>
+                  <p>Aiming to reach our minimum viable project in the event that anything catastrophic or unexpected were to happen, I developed a title screen for the game and implimented the load game and new game logic into it. It took a few tries to get the plan of how the game would load its data nailed down, the final concept was that the title screen would handle selecting which slot to select and the overwriting of data for a new game. Then when the core game scene is loaded, it fires off a method which grabs the file associated with the slot and loads the data in, applying it to the various objects and instantiating and neccessary game objects. This sytem proved to work very well for the flow of the game and reduced the overhead of transferring a lot of data between two scenes, only needing to pass on a single integer to load the data in.</p>                  
+                  <img src="../Images/Title_10Aug.png" class="center" alt="Quest UI"/>
+                  <br/>
+                  <img src="../Images/TitleLoad_10Aug.png" class="center" alt="Quest UI"/>
+                  <br/>
+                  <p>In terms of the asthetics, the file slots have a very simple feel to them and a placeholder for a Project Crescent icon to help players identify which save slot was theres if they are sharing the same device. For example, one icon will be blue, another red and the final one being green though if I have enough time I may expand that to a little bit of artwork instead.</p>
+                  <img src="../Images/TitleNewGame_10Aug.png" class="center" alt="Quest UI"/>
+                  <br/>
+                  <p>Another important part of the title screen is the settings menu which uses the same scripts as the gameplay scene's settings but when bringing the prefab over to the title scene, all the UI elements resized automatically making them unusable so I had to redo the gameobject part of the settings UI manually.</p>
+                  <img src="../Images/TitleSettings_10Aug.png" class="center" alt="Quest UI"/>
+                  <br/>
+                  <p>With the addition of various new pause menu options, I felt that the UI was starting to feel cluttered and hard to read as it was a list of buttons with just text and it didn't really give the UI/UX feel of a smartphone in real life. It felt more like a beginners tutorial for creating an app in Kotlin, so I revisted the design and decided to update the UI. This led me to change from text buttons to anicon based menu similar to an actual smartphone as shown below, this led me to be able to add in placeholders for some work I'm planning on finishing next week.</p>
+                  <img src="../Images/PauseMenu_10Aug.png" class="center" alt="Quest UI"/>
+                  <br/>
+                  <p>
+                    By Ronan Cassidy - 3rd of August 2020
+                  </p>
+                </article>
+              </div>
+              <br/>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_15"></a>
+                  <p class="title">Working Towards The Merge - #15</p>
+                  <p>After taking a week off to recover from some burnout due to working on the project non-stop for several weeks and weekends, I returned and we began to work towards merging our branches back into the master and combining our work to complete the minimum viable project. This task has involved various refactors and completition of features.</p>
+                  <p>In the space of the week, I was able to accomplish many goals and fully impliment various features. The first step of this work was to adjust our animation cycles to work correctly with our new model and take into account the redesign of the attack system a few weeks back as the player must no longer sheathe and unsheathe their weapon, this process was time intensive as it required the redesign of various state machines within the player animation component/tree. The key features are the ranged attack being completed alongside its ability tree as well as the ability to equip different weapons via the inventory menu. Other work was carried out such as applying a singleton design pattern to the player and various systems due to their nature in the game as we only need one instance of them at any given point.</p>
+                  <p>We did however run into some issues in regards to the merging of our branches due to an issue in one scene that we couldn't debug as after running diagnostics on it, the script should have been fine but Unity was throwing an exception at us. We resolved this issue by reverting and doing a manual merge for various files to avoid the situation cause by our automatic merge, this took a long time as it was an intensive merge to do manually.</p>
+                  <p>From this point, I evaluated what systems in the game could be simplified to make the merging of prefabs and systems down the line easier for the project, this led me to refactor various HUD elements and carry out hotfixes for some graphical issues that appeared.</p>
+                  <p>
+                    By Ronan Cassidy - 24th of July 2020
+                  </p>
+                </article>
+              </div>
+              <br/>
 
               <div class="tile is-child">
                 <article class="tile is-child notification has-background-light has-text-black">
