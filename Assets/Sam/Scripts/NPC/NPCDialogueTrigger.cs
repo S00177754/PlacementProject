@@ -46,6 +46,12 @@ public class NPCDialogueTrigger : MonoBehaviour
     {
         //Checks if dialogue has updated from quests then starts in Manager
         CheckDialogue(ActiveQuest.Name);
+        if(ActiveQuest.ActiveStep.GetType() == typeof(NPCQuestStep))
+        {
+            ActiveQuest.ActiveStep.isComplete = true;
+            ActiveQuest.GoToNextStep();
+        }
+        
         FindObjectOfType<DialogueManager>().StartDialogue(activeDialogue);
     }
 

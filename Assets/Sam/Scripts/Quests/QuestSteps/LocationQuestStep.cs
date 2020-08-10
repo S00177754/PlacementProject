@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "LocationQuestStep", menuName = "Quest System/LocationQuestStep")]
@@ -10,6 +11,8 @@ public class LocationQuestStep : QuestStep
     public string Description;
     [SerializeField]
     public string Name;
+    [SerializeField]
+    public string ColiderTag;
 
     [Header("Type Specific")]
     public Vector3 StepLocation;
@@ -18,7 +21,9 @@ public class LocationQuestStep : QuestStep
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.CompareTag(ColiderTag))
+            isComplete = true;
+        ParentQuest.GoToNextStep();
     }
 
     void Start()

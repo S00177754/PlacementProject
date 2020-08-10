@@ -35,6 +35,7 @@ public class Quest : ScriptableObject
     {
         foreach (QuestStep step in StepsList)
         {
+            step.ParentQuest = this;
             Steps.Enqueue(step);
             if(ActiveStep == null && !step.isComplete)
                 ActiveStep = step;

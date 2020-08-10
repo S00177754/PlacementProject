@@ -12,6 +12,7 @@ public class QuestStep : ScriptableObject {
     //[SerializeField]
     //public readonly string Name; 
     public bool isComplete;
+    public Quest ParentQuest;
 
     public virtual string GetName()
     {
