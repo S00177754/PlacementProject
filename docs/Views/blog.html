@@ -111,6 +111,20 @@
                 </article>
               </div>
               <br/>
+
+              <div class="tile is-child">
+                <article class="tile is-child notification has-background-light has-text-black">
+                  <a id="blog_post_17"></a>
+                  <p class="title">Combining the Elements</p>
+                  <p>As the NPCs are starting to take shape, interactable NPCs were implemented, allowing the player to select an NPC, and have them 'talk' with eachtother. The NPC will have several dialoge options attached to them, allowing for a default speach pattern and a different, quest specific, dialogue option. The dialogue manager will consult the quest manager to determine if the active quest step has the same name as any dialogue options.</p>
+                  <p>Next, the quest steps require methods by which they can update their conditions. For NPCs and Location quest steps, this can be achieved when a conversation has finished, or with a trigger collider respectively, these events triggering an update on the quest steps to be marked as complete and tell the quest manager to move on to the next step. The Quantity quest steps, that is, the player is required to collect a certain number of items or kill a certain number of enemies, was trikier to implement. The descision was made to create a method that will first, add to the character's counter then check if the quantity is sufficient to trigger a move to the next step in the quest. This method will be reqired in other scripts to trigger it.</p>
+                  <p>This now needs to be fed into the UI. There is a box in the HUD that let's the player know thier current quest and the next step in that quest, but a more detailed UI was created to allow the player to view more details. As this is now implemented in the Pause menu's UI, it has a more consistent design with the rest of the game.</p>
+                  <p>
+                    By Sam ColvilleRea - 10th of August 2020
+                  </p>
+                </article>
+              </div>
+              <br/>
               
               <div class="tile is-child">
                 <article class="tile is-child notification has-background-light has-text-black">
