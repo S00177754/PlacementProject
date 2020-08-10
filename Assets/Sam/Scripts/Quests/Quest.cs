@@ -59,4 +59,18 @@ public class Quest : ScriptableObject
             //TryGetComponent<QuestStep>(Resources.Load("Sam/QuestSystem/MSQ1S" + i.ToString()), out addThis);
         }
     }
+
+    public void CheckCompletedSteps()
+    {
+        CompletedList = new List<QuestStep>();
+        CompletedSteps = new Queue<QuestStep>();
+        foreach (QuestStep step in StepsList)
+        {
+            if (step.isComplete)
+            {
+                CompletedList.Add(step);
+                CompletedSteps.Enqueue(step);
+            }
+        }
+    }
 }

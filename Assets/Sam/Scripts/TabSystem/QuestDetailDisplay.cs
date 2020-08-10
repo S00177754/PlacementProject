@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class QuestDetailDisplay : MonoBehaviour
 {
     /**
-     * TODO: Get questSteps
+     * DONE: Get questSteps 
      * TODO: Add questSteps to list
      * TODO: add items in queststeps to scrollview items
      * TODO: conditional formatting of complete and not complete
@@ -41,7 +41,7 @@ public class QuestDetailDisplay : MonoBehaviour
 
     private void Start()
     {
-        //QuestManager = 
+        QuestManager = FindObjectOfType<QuestManager>();
         if (CurrentQuest != null)
         {
             ActiveStep = CurrentQuest.ActiveStep;

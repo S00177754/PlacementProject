@@ -5,18 +5,20 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LocationQuestStep", menuName = "Quest System/LocationQuestStep")]
 public class LocationQuestStep : QuestStep
 {
-    //Assign to empty
-    public Vector3 StepLocation;
-    [SerializeField]
-    public float TriggerRange;
+    [Header("Required")]
     [SerializeField]
     public string Description;
     [SerializeField]
     public string Name;
 
+    [Header("Type Specific")]
+    public Vector3 StepLocation;
+    [SerializeField]
+    public float TriggerRange;
+
     private void OnTriggerEnter(Collider other)
     {
-        //
+        
     }
 
     void Start()
