@@ -170,8 +170,8 @@ public class PauseMenuController : MonoBehaviour
     {
         ActivateSingleMenu(PauseMenuState.Inventory);
 
-       // Inventory.SubMenuObject.GetComponent<InventoryPanelController>().GenerateList();
-        Inventory.SubMenuObject.GetComponent<InventorySystemController>().FilterList();
+        Inventory.SubMenuObject.GetComponent<InventorySystemController>().Initialize();
+        //Inventory.SubMenuObject.GetComponent<InventorySystemController>().FilterList();
         Inventory.SubMenuObject.GetComponent<InventorySystemController>().ShowInventoryList();
     }
 
