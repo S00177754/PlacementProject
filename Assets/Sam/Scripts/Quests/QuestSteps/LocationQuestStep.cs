@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LocationQuestStep", menuName = "Quest System/LocationQuestStep")]
+[CreateAssetMenu(fileName = "LocationQuestStep", menuName = "Quest System/Quest Step/LocationQuestStep")]
 public class LocationQuestStep : QuestStep
 {
     [Header("Required")]

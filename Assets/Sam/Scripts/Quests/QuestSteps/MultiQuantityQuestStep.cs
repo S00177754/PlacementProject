@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MultiQuantQuestStep", menuName = "Quest System/MultiQuantQuestStep")]
+[CreateAssetMenu(fileName = "MultiQuantQuestStep", menuName = "Quest System/Quest Step/MultiQuantQuestStep")]
 public class MultiQuantityQuestStep : QuestStep
 {
     [SerializeField]

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class QuestButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
+public class QuestButton : MonoBehaviour    //, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
 {
     public QuestSelection questGroup;
     public Quest myQuest;
@@ -17,22 +17,22 @@ public class QuestButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
     public GameObject CurrentStep;
 
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        questGroup.OnQuestSelected(this);
-    }
+    //public void OnPointerClick(PointerEventData eventData)
+    //{
+    //    questGroup.OnQuestSelected(this);
+    //}
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        questGroup.OnQuestEnter(this);
-    }
+    //public void OnPointerEnter(PointerEventData eventData)
+    //{
+    //    questGroup.OnQuestEnter(this);
+    //}
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        questGroup.OnQuestExit(this);
-    }
+    //public void OnPointerExit(PointerEventData eventData)
+    //{
+    //    questGroup.OnQuestExit(this);
+    //}
 
-    public void ButtonClick()
+    public void OnClick()
     {
         //use myQuest
         QuestNameText.text = myQuest.name;
@@ -43,7 +43,7 @@ public class QuestButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
             //ADD stylised text to scrollview
             if (CompletedStep.TryGetComponent( out QuestStepTextObject))
             {
-                QuestStepTextObject.text = string.Format("<bold>" + step.name + "</bold>\n<indent=15%>" + step.GetDescription() + "</indent>");
+                QuestStepTextObject.text = string.Format("<bold>" + step.name + "</bold>\n<indent=5%>" + step.GetDescription() + "</indent>");
             }
         }
 

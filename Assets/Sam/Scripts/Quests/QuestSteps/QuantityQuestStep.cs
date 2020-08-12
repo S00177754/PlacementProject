@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "QuantityQuestStep", menuName = "Quest System/QuantityQuestStep")]
+[CreateAssetMenu(fileName = "QuantityQuestStep", menuName = "Quest System/Quest Step/QuantityQuestStep")]
 public class QuantityQuestStep : QuestStep
 {
     [Header("Required")]

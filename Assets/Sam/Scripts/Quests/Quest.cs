@@ -43,7 +43,6 @@ public class Quest : ScriptableObject
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         
