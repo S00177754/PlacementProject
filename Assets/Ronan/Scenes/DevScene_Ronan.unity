@@ -2092,7 +2092,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875821442}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
   m_Name: 
@@ -4981,6 +4981,16 @@ PrefabInstance:
       propertyPath: TargetUIController
       value: 
       objectReference: {fileID: 1543155782}
+    - target: {fileID: 4939651777001469674, guid: 0f614015ebe29d44dbfd8d3a4430a916,
+        type: 3}
+      propertyPath: DefaultTrack
+      value: Chill
+      objectReference: {fileID: 0}
+    - target: {fileID: 4939651777001469674, guid: 0f614015ebe29d44dbfd8d3a4430a916,
+        type: 3}
+      propertyPath: CurrentTrackName
+      value: placeholder606
+      objectReference: {fileID: 0}
     - target: {fileID: 7863499502588629111, guid: 0f614015ebe29d44dbfd8d3a4430a916,
         type: 3}
       propertyPath: m_HDR

@@ -11,6 +11,8 @@ public class BaubleSetterMenu : MonoBehaviour
     public TMP_Text ButtonTwoText;
     public TMP_Text ButtonThreeText;
 
+    public InventoryItemUsagePanel UsagePanel;
+
     public void Setup(BaubleObj item)
     {
         EquipItem = item;
@@ -23,16 +25,19 @@ public class BaubleSetterMenu : MonoBehaviour
     public void EquipBaubleOne()
     {
         PlayerController.Instance.GetComponent<EquipmentManager>().EquipAccessory(EquipItem, 1);
+        UsagePanel.ReturnFocus();
     }
 
     public void EquipBaubleTwo()
     {
         PlayerController.Instance.GetComponent<EquipmentManager>().EquipAccessory(EquipItem, 2);
+        UsagePanel.ReturnFocus();
     }
 
     public void EquipBaubleThree()
     {
         PlayerController.Instance.GetComponent<EquipmentManager>().EquipAccessory(EquipItem, 3);
+        UsagePanel.ReturnFocus();
     }
 
 }

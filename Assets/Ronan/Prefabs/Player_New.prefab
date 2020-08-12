@@ -1123,6 +1123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameStats:
     Name: 
+    Level: 1
     Experience: 0
     SkillPoints: 0
     AbilityPoints: 0
@@ -1136,12 +1137,12 @@ MonoBehaviour:
     CameraSensitivity: 2
   HUDController: {fileID: 0}
   PauseMenu: {fileID: 0}
+  LevelGuide: {fileID: 0}
+  MusicManager: {fileID: 4939651777001469674}
   Health: 40
   MP: 60
   MaxHealth: 100
   MaxMP: 60
-  StartingMaxHealth: 100
-  StartingMaxMP: 60
   Money: 0
   IsInvincible: 0
 --- !u!114 &4854577525965888832
@@ -2041,6 +2042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8951191268439069337}
   - component: {fileID: 342713312083617525}
+  - component: {fileID: 3877793845332138048}
   - component: {fileID: 4939651777001469674}
   m_Layer: 8
   m_Name: Background Music Player
@@ -2160,6 +2162,103 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!82 &3877793845332138048
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7505156607978206217}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -2614737811092052005, guid: cb3a1a3000cf11642adc9b0bcf72d2fe,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &4939651777001469674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2172,12 +2271,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0743c807076d787458784d85048e65b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SourceOne: {fileID: 342713312083617525}
+  SourceTwo: {fileID: 3877793845332138048}
+  IsSourceOneActive: 0
+  CrossfadeDuration: 2
   BackgroundTracks:
-  - 
-  - 
-  BackgroundTrackNames:
-  - 
-  - 
+  - Track: {fileID: 8300000, guid: 2229b438a7e04cd4f90397e5a125e1d2, type: 3}
+    TrackName: Chill
+  - Track: {fileID: 8300000, guid: b1d3c2c8bfd4f2042bff7e51280c4927, type: 3}
+    TrackName: Fight
 --- !u!1 &7751969915791084405
 GameObject:
   m_ObjectHideFlags: 0
@@ -2652,12 +2754,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f375afdaf9a750547bd90a08c25b146a, type: 3}
---- !u!4 &4854577527393770446 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6662276280490765414, guid: f375afdaf9a750547bd90a08c25b146a,
-    type: 3}
-  m_PrefabInstance: {fileID: 2246104827858778024}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4854577527393770445 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6662276280490765413, guid: f375afdaf9a750547bd90a08c25b146a,
@@ -2670,3 +2766,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd5b85d90e2948c4aa7cf2de1c180532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &4854577527393770446 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6662276280490765414, guid: f375afdaf9a750547bd90a08c25b146a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2246104827858778024}
+  m_PrefabAsset: {fileID: 0}

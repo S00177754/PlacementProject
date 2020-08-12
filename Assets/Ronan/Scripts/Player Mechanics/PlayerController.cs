@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public PlayerHUDController HUDController;
     public PauseMenuController PauseMenu;
     public LevelExpScriptableObj LevelGuide;
+    public BackgroundMusicManager MusicManager;
 
     [Header("Stats")]
     public int Health = 100;
@@ -34,6 +35,10 @@ public class PlayerController : MonoBehaviour
         Instance = this;
         CalculateMaxHP();
         CalculateMaxMP(); 
+    }
+    private void Start()
+    {
+        BackgroundMusicManager.Instance.PlayTrack("Chill");
     }
 
     public void ApplyDamage(int amount)

@@ -44,7 +44,7 @@ public class InventoryItemUsagePanel : MonoBehaviour
 
     public void UseItem()
     {
-        if(ActivatedBy.Item is HealthPotionObj || ActivatedBy.Item is HealthPotionObj)
+        if(ActivatedBy.Item is HealthPotionObj || ActivatedBy.Item is MPPotionObj)
         {
             if (GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().Party.Count == 0)
             {
@@ -133,9 +133,12 @@ public class InventoryItemUsagePanel : MonoBehaviour
         PlayerController.Instance.GetComponent<InputManager>().buttonStates.SetState(EastButtonState.Default);
     }
 
-    private void ReturnFocus()
+    public void ReturnFocus()
     {
+        BaubleSetMenu.gameObject.SetActive(false);
         UIHelper.SelectedObjectSet(ActivatedBy.gameObject);
+        gameObject.SetActive(false);
+        PlayerController.Instance.GetComponent<InputManager>().buttonStates.SetState(EastButtonState.Default);
         //RadialSetter.gameObject.SetActive(false);
     }
 
