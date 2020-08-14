@@ -18,6 +18,10 @@ public abstract class ItemObj : ScriptableObject
 
     [TextArea(10, 15)] //Came across on Unity forms
     public string Description;
+
+    [Header("Merchant Related")]
+    public int BuyPrice;
+    public int SellPrice;
     
     public virtual bool UseItem(PlayerController player)
     {
