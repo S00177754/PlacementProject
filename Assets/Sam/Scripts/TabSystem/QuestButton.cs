@@ -7,9 +7,10 @@ using UnityEngine.UI;
 
 public class QuestButton : MonoBehaviour    //, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
 {
+    [SerializeField]
     public QuestSelection questGroup;
     public Quest myQuest;
-    public TMP_Text QuestNameText;
+    //public TMP_Text QuestNameText;
     public TMP_Text QuestStepTextObject;
     public bool isSelected;
     public GameObject MyPannel;
@@ -35,7 +36,7 @@ public class QuestButton : MonoBehaviour    //, IPointerEnterHandler, IPointerCl
     public void OnClick()
     {
         //use myQuest
-        QuestNameText.text = myQuest.name;
+        //QuestNameText.text = myQuest.name;
         //Place questStep complete stylised
         myQuest.CheckCompletedSteps(); //gets most up to date info on quest status
         foreach (QuestStep step in myQuest.CompletedList)
@@ -64,7 +65,7 @@ public class QuestButton : MonoBehaviour    //, IPointerEnterHandler, IPointerCl
 
     void OnEnable()
     {
-        QuestNameText = GetComponent<TMP_Text>();
+        //QuestNameText = GetComponent<TMP_Text>();
         questGroup.Subscribe(this);
         isSelected = false;
         MyPannel.SetActive(false);
@@ -79,3 +80,4 @@ public class QuestButton : MonoBehaviour    //, IPointerEnterHandler, IPointerCl
     }
 
 }
+

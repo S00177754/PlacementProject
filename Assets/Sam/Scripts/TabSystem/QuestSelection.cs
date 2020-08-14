@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class QuestSelection : MonoBehaviour
 {
+    [SerializeField]
     QuestManager Manager;
 
     public List<QuestButton> questButtons;
@@ -14,7 +16,7 @@ public class QuestSelection : MonoBehaviour
     public GameObject QuestButtonPrefab;
     [SerializeField]
     public GameObject ActivePannel;
-    public Text QuestName;
+    public TMP_Text QuestNameText;
 
     [SerializeField]
     private Color tabIdleColor;
@@ -22,6 +24,7 @@ public class QuestSelection : MonoBehaviour
     private Color tabHoverColor;
     [SerializeField]
     private Color tabActiveColor;
+
     [Header("Required")]
     public GameObject ScrollContent;
 
@@ -30,11 +33,7 @@ public class QuestSelection : MonoBehaviour
     void Start()
     {
         //Load cuttent Quest list
-        Manager = Resources.Load<QuestManager>("ScriptableObjects/QuestManager");
         tabPannels = new List<GameObject>();
-        //Debugging
-        //if (Manager == null)
-        //    Debug.Log("Quest Manager Null");
         if (Manager.FoundMSQuests == null)
             Debug.Log("FoundMSQuest is null");
         else if (Manager.FoundMSQuests.Count == 0)
@@ -111,52 +110,54 @@ public class QuestSelection : MonoBehaviour
 
         foreach (QuestButton button in questButtons)
         {
-            if (button.isSelected)
-                button.QuestNameText.color = tabActiveColor;
+            if (button.isSelected) { }
+                //button.QuestNameText.color = tabActiveColor;
         }
         SwitchPannel();
         //Update quest name
     }
 
-    public void OnQuestEnter(QuestButton questButton)
-    {
-        if (questButton.isSelected)
-            questButton.QuestNameText.color = tabActiveColor;
-        else
-            questButton.QuestNameText.color = tabHoverColor;
-    }
+    //public void OnQuestEnter(QuestButton questButton)
+    //{
+    //    if (questButton.isSelected)
+    //        questButton.QuestNameText.color = tabActiveColor;
+    //    else
+    //        questButton.QuestNameText.color = tabHoverColor;
+    //}
 
-    public void OnQuestExit(QuestButton questButton)
-    {
-        if (questButton.isSelected)
-            questButton.QuestNameText.color = tabActiveColor;
-        else
-            questButton.QuestNameText.color = tabIdleColor;
-    }
+    //public void OnQuestExit(QuestButton questButton)
+    //{
+    //    if (questButton.isSelected)
+    //        questButton.QuestNameText.color = tabActiveColor;
+    //    else
+    //        questButton.QuestNameText.color = tabIdleColor;
+    //}
 
     public void PopulateButtons(List<Quest> PopulationContent)
     {
         foreach (Quest thisQuest in PopulationContent)
         {
-            GameObject next = Instantiate(ScrollContent); //Creates new Scrollview Content
-            next.transform.SetParent(ScrollViewTransfrom.transform.parent, false);
-            next.SetActive(true);
-            QuestButton tryQuest;
-            if(next.TryGetComponent(out tryQuest))
-            {
-                tryQuest.myQuest = thisQuest;
-                QuestName = next.GetComponentInChildren<Text>();
-                if (QuestName != null)
+            GameObject next = Instantiate(QuestButtonPrefab, ScrollContent.transform); //Creates new Scrollview Content
+            //next.transform.SetParent(ScrollViewTransfrom.transform.parent, false);
+
+            //next.SetActive(true);
+            //QuestButton tryQuest;
+
+            //if(next.TryGetComponent(out tryQuest))
+            //{
+                
+                QuestNameText = next.GetComponentInChildren<TMP_Text>();
+                if (QuestNameText != null)
                 {
-                    QuestName.text = thisQuest.Name;
-                    QuestName.color = Color.black;
-                    Debug.Log(QuestName);
+                    QuestNameText.text = thisQuest.Name;
+                    QuestNameText.color = Color.black;
+                    Debug.Log(QuestNameText);
                     Debug.Log("Quest added: " + thisQuest.Name);
                 }
                 else
                     Debug.Log("QuestName is null");
 
-            }
+            //}
         }
     }
 
@@ -182,10 +183,10 @@ public class QuestSelection : MonoBehaviour
     {
         foreach (QuestButton button in questButtons)
         {
-            if (button.isSelected)
-                button.QuestNameText.color = tabActiveColor;
-            else
-                button.QuestNameText.color = tabIdleColor;
+            if (button.isSelected) { }
+            //button.QuestNameText.color = tabActiveColor;
+            else { }
+                //button.QuestNameText.color = tabIdleColor;
         }
     }
 

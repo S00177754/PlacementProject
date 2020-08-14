@@ -19,6 +19,7 @@ public class QuestDetailDisplay : MonoBehaviour
     
     [Header("Required")]
     public GameObject StepListItemPrefab;
+    public GameObject ScrollContent;
 
     //public TMP_Text QuestName;
     public TMP_Text QuestDescription;
@@ -48,7 +49,7 @@ public class QuestDetailDisplay : MonoBehaviour
             foreach (QuestStep step in CurrentQuest.CompletedSteps)
             {
                 //***********
-                Instantiate<GameObject>(StepListItemPrefab);            //NEEDS ATTENTION
+                Instantiate(StepListItemPrefab, ScrollContent.transform);            //NEEDS ATTENTION
                 //***********
                 if (StepListItemPrefab.TryGetComponent<TMP_Text>(out StepDescription))
                 {

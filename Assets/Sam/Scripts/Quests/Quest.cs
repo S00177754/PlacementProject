@@ -5,7 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Quest", menuName = "Quest System/Quest")]
 public class Quest : ScriptableObject 
 {
-    public int ID;
+    //ID used for Structured naming and easier comparison, Name is public view
+    //EG ID: MSQ1, Name: Beginnings
+    public string ID;
     public string Name;
     [TextArea(10, 15)]
     public string Description;

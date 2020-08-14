@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 6039980779016150946}
   - component: {fileID: 8889911563010302940}
   - component: {fileID: 9153381891661880632}
+  - component: {fileID: 6903566613637861875}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ButtonQuestSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,7 +119,34 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8889911563010302940}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6903566613637861875}
+        m_MethodName: QuestButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6903566613637861875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284340584183567127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90d46a37c03291748a3957945a3aa7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  QuestStepPrefab: {fileID: 5789132187374505268, guid: a4d91febacfc4ef499f16cf3170b949d,
+    type: 3}
+  StepScrollContent: {fileID: 4777213710429645746, guid: 89da4586c78e97349885b83e29e415ac,
+    type: 3}
 --- !u!1 &8324772261018181388
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +211,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quest Title
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8c7880e6c7e233440bf07031fd9bade6, type: 2}
   m_sharedMaterial: {fileID: 9008100906227714114, guid: 8c7880e6c7e233440bf07031fd9bade6,
@@ -253,13 +281,13 @@ MonoBehaviour:
   m_margin: {x: 10, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 7178239591766658656}
-    characterCount: 11
+    characterCount: 0
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
