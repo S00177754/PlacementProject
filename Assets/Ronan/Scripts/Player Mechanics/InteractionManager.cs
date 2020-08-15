@@ -29,6 +29,12 @@ public class InteractionManager : MonoBehaviour
                     }
                     break;
 
+                case "Merchant":
+                    GetComponent<PlayerController>().HUDController.SetupItemNotification("Shop");
+                    GetComponent<InputManager>().buttonStates.SetState(WestButtonState.Merchant);
+                    MerchantUIController.Instance.SetMerchant(other.gameObject.GetComponent<MerchantComponent>());
+                    break;
+
                 default:
                     break;
             }
@@ -50,6 +56,12 @@ public class InteractionManager : MonoBehaviour
                 case "TravelPoint":
                     GetComponent<PlayerController>().HUDController.HideItemNotification();
                     GetComponent<InputManager>().buttonStates.SetState(WestButtonState.Default);
+                    break;
+
+                case "Merchant":
+                    GetComponent<PlayerController>().HUDController.HideItemNotification();
+                    GetComponent<InputManager>().buttonStates.SetState(WestButtonState.Default);
+                    MerchantUIController.Instance.SetMerchant(null);
                     break;
 
                 default:

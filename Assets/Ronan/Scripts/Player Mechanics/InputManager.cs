@@ -275,6 +275,22 @@ public class InputManager : MonoBehaviour
             }
                 break;
 
+            case WestButtonState.Merchant:
+                switch (context.phase)
+                {
+                    case InputActionPhase.Performed:
+                        Debug.Log("Merchant activated");
+                        MerchantUIController.Instance.ShowRootMenu();
+                        SwitchToMap("UI");
+                        break;
+
+                    case InputActionPhase.Started:
+                    case InputActionPhase.Canceled:
+                    default:
+                        break;
+                }
+                break;
+
             case WestButtonState.Default:
             switch (context.phase)
             {
@@ -524,7 +540,7 @@ public class InputManager : MonoBehaviour
 public enum NorthButtonState { Default }
 public enum EastButtonState { Default, ItemUsagePanel }
 public enum SouthButtonState { Default, RadialMenu }
-public enum WestButtonState { Default, PickupItem, TravelPoint }
+public enum WestButtonState { Default, PickupItem, TravelPoint, Merchant }
 
 
 public enum LeftShoulderState { Default }

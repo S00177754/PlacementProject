@@ -12,6 +12,7 @@ public class MerchantUIController : MonoBehaviour
 
     public SubMenu RootMenu;
     public SubMenu ItemMenu;
+    public GameObject BackgroundImage;
 
     [Header("External Components")]
     public RectTransform ListContent;
@@ -22,6 +23,12 @@ public class MerchantUIController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        ExitMerchant();
+    }
+
+    public void SetMerchant(MerchantComponent merchant)
+    {
+        ActiveMerchant = merchant;
     }
 
     //Sub Menus
@@ -43,16 +50,23 @@ public class MerchantUIController : MonoBehaviour
 
     public void ShowRootMenu()
     {
+        Time.timeScale = 1;
+        gameObject.SetActive(true);
         RootMenu.SubMenuObject.SetActive(true);
         ItemMenu.SubMenuObject.SetActive(false);
         DescriptionPanel.gameObject.SetActive(false);
+        BackgroundImage.SetActive(true);
     }
 
     public void ExitMerchant()
     {
+        Time.timeScale = 0;
+        gameObject.SetActive(false);
         RootMenu.SubMenuObject.SetActive(false);
         ItemMenu.SubMenuObject.SetActive(false);
         DescriptionPanel.gameObject.SetActive(false);
+        BackgroundImage.SetActive(false);
+        GameStateController.Instance.ChangeAllPlayerMapsTo("Player");
     }
 
     //List Generation
@@ -95,6 +109,7 @@ public class MerchantUIController : MonoBehaviour
                 break;
 
         }
+
         #region Navigation Code
         //if (childAmount > 0)
         //{

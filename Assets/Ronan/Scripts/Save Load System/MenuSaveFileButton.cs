@@ -37,7 +37,7 @@ public class MenuSaveFileButton : MonoBehaviour
 
     private void Setup()
     {
-        SlotName.text = $"Slot Name {SlotNumber}";
+        SlotName.text = SlotNumber.ToString();
         //TODO: Read in header for slot save data and display last played date
         //LastPlayedText.text = $"Last Played: \n{}";
     }
