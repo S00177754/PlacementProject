@@ -9,6 +9,7 @@ public class MerchantUIController : MonoBehaviour
 
     public GameObject ButtonPrefab;
     public MerchantComponent ActiveMerchant;
+    public bool MerchantActive = false;
 
     public SubMenu RootMenu;
     public SubMenu ItemMenu;
@@ -23,7 +24,15 @@ public class MerchantUIController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        ExitMerchant();
+    }
+
+    private void Start()
+    {
+        gameObject.SetActive(false);
+        RootMenu.SubMenuObject.SetActive(false);
+        ItemMenu.SubMenuObject.SetActive(false);
+        DescriptionPanel.gameObject.SetActive(false);
+        BackgroundImage.SetActive(false);
     }
 
     public void SetMerchant(MerchantComponent merchant)
@@ -38,6 +47,8 @@ public class MerchantUIController : MonoBehaviour
         ItemMenu.SubMenuObject.SetActive(true);
         DescriptionPanel.gameObject.SetActive(true);
         Txt_PlayerMoney.text = PlayerController.Instance.Money.ToString();
+        GenerateList(MerchantButtonMode.Buy);
+        MerchantActive = true;
     }
 
     public void ShowSellMenu()
@@ -46,6 +57,8 @@ public class MerchantUIController : MonoBehaviour
         ItemMenu.SubMenuObject.SetActive(true);
         DescriptionPanel.gameObject.SetActive(true);
         Txt_PlayerMoney.text = PlayerController.Instance.Money.ToString();
+        GenerateList(MerchantButtonMode.Sell);
+        MerchantActive = true;
     }
 
     public void ShowRootMenu()
@@ -56,6 +69,7 @@ public class MerchantUIController : MonoBehaviour
         ItemMenu.SubMenuObject.SetActive(false);
         DescriptionPanel.gameObject.SetActive(false);
         BackgroundImage.SetActive(true);
+        MerchantActive = true;
     }
 
     public void ExitMerchant()
@@ -67,6 +81,12 @@ public class MerchantUIController : MonoBehaviour
         DescriptionPanel.gameObject.SetActive(false);
         BackgroundImage.SetActive(false);
         GameStateController.Instance.ChangeAllPlayerMapsTo("Player");
+        MerchantActive = false;
+    }
+
+    public bool IsMerchantActive()
+    {
+        return MerchantActive;
     }
 
     //List Generation
@@ -82,8 +102,10 @@ public class MerchantUIController : MonoBehaviour
         
     }
 
-    public void GenerateList(List<ItemObj> items, MerchantButtonMode mode)
+    public void GenerateList(MerchantButtonMode mode)
     {
+        ClearList();
+
         switch (mode)
         {
 

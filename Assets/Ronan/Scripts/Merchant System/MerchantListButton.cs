@@ -27,6 +27,7 @@ public class MerchantListButton : MonoBehaviour, ISelectHandler, IPointerEnterHa
 
     private void Setup()
     {
+        Merchant = MerchantUIController.Instance;
         Txt_ItemName.text = Item.Name;
 
         switch (Mode)

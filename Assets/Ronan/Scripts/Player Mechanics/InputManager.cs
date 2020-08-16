@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -246,7 +245,10 @@ public class InputManager : MonoBehaviour
         switch(context.phase)
         {
             case InputActionPhase.Performed:
-            GameStateController.SetGameState(GameState.Paused);
+                if (!MerchantUIController.Instance.IsMerchantActive())
+                {
+                    GameStateController.SetGameState(GameState.Paused);
+                }
                 break;
 
             default:
@@ -434,7 +436,10 @@ public class InputManager : MonoBehaviour
         switch(context.phase)
         {
             case InputActionPhase.Performed:
-            GameStateController.ResumePreviousState();
+                if (!MerchantUIController.Instance.IsMerchantActive())
+                {
+                    GameStateController.ResumePreviousState();
+                }
                 break;
 
             default:

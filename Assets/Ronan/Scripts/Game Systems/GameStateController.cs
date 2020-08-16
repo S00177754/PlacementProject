@@ -37,7 +37,7 @@ public class GameStateController : MonoBehaviour
         previousGameState = gameState;
         gameState = state;
 
-        StateRefresh();
+        StateRefresh();  
     }
 
     static public void ResumePreviousState()
@@ -86,19 +86,20 @@ public class GameStateController : MonoBehaviour
     static private void MainMenuRefresh()
     {
         Time.timeScale = 1;
-        PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(false, false);
+        //PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(false, false);
         Instance.ChangeAllPlayerMapsTo("Player");
         Instance.PlayerHUD.SetActive(false);
         PauseMenuClear();
     }
 
     static private void PausedRefresh()
-    {
-        Time.timeScale = 0;
-        Instance.PauseMenu.GetComponent<PauseMenuController>().gameObject.SetActive(true);
-        Instance.PauseMenu.GetComponent<PauseMenuController>().PauseGame();
-        PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(true, true);
-        Instance.ChangeAllPlayerMapsTo("UI");
+    {       
+            Time.timeScale = 0;
+            Instance.PauseMenu.GetComponent<PauseMenuController>().gameObject.SetActive(true);
+            Instance.PauseMenu.GetComponent<PauseMenuController>().PauseGame();
+            //PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(true, true);
+            Instance.ChangeAllPlayerMapsTo("UI");
+        
     }
 
     static private void ExploreRefresh()
@@ -107,7 +108,7 @@ public class GameStateController : MonoBehaviour
         Instance.PlayerHUD.SetActive(true);
         PauseMenuClear();
 
-        PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(false,false);
+        //PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(false,false);
         Instance.ChangeAllPlayerMapsTo("Player");
 
     }
@@ -124,7 +125,7 @@ public class GameStateController : MonoBehaviour
     static private void DrivingRefresh()
     {
         Time.timeScale = 1;
-        PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(false, false);
+        //PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(false, false);
         Instance.ChangeAllPlayerMapsTo("Player");
         Instance.PlayerHUD.SetActive(false);
         PauseMenuClear();
@@ -135,7 +136,7 @@ public class GameStateController : MonoBehaviour
         Time.timeScale = 1;
         Instance.PlayerHUD.SetActive(false);
         PauseMenuClear();
-        PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(true, true);
+        //PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(true, true);
         Instance.ChangeAllPlayerMapsTo("Player");
     }
 

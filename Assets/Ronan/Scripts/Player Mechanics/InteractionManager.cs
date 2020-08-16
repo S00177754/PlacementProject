@@ -32,7 +32,7 @@ public class InteractionManager : MonoBehaviour
                 case "Merchant":
                     GetComponent<PlayerController>().HUDController.SetupItemNotification("Shop");
                     GetComponent<InputManager>().buttonStates.SetState(WestButtonState.Merchant);
-                    MerchantUIController.Instance.SetMerchant(other.gameObject.GetComponent<MerchantComponent>());
+                    MerchantUIController.Instance.SetMerchant(other.gameObject.GetComponent<MerchantComponent>());// Notbeing set
                     break;
 
                 default:
