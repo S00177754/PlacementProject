@@ -43,6 +43,10 @@ public class ScrollController : MonoBehaviour
             button.buttonQuest = quest;
             TitleText = next.GetComponentInChildren<TMP_Text>();
             TitleText.text = quest.Name;
+
+
+            if (button != null)
+                Debug.Log("Button quest is " + button.buttonQuest.name);
             //Debug.Log(quest.Name);
             //TitleText.color = buttonIdleColor;
         }
