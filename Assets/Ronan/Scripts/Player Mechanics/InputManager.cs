@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -31,6 +30,7 @@ public class InputManager : MonoBehaviour
 
     public void SwitchToMap(string map)
     {
+        //Debug.Log(string.Concat("Map: ", map));
         playerInput.SwitchCurrentActionMap(map);
     }
 
@@ -246,7 +246,10 @@ public class InputManager : MonoBehaviour
         switch(context.phase)
         {
             case InputActionPhase.Performed:
-            GameStateController.SetGameState(GameState.Paused);
+                if (!MerchantUIController.Instance.IsMerchantActive())
+                {
+                    GameStateController.SetGameState(GameState.Paused);
+                }
                 break;
 
             default:
@@ -273,6 +276,22 @@ public class InputManager : MonoBehaviour
                 default:
                     break;
             }
+                break;
+
+            case WestButtonState.Merchant:
+                switch (context.phase)
+                {
+                    case InputActionPhase.Performed:
+                        Debug.Log("Merchant activated");
+                        MerchantUIController.Instance.ShowRootMenu();
+                        SwitchToMap("UI");
+                        break;
+
+                    case InputActionPhase.Started:
+                    case InputActionPhase.Canceled:
+                    default:
+                        break;
+                }
                 break;
 
             case WestButtonState.Default:
@@ -418,7 +437,10 @@ public class InputManager : MonoBehaviour
         switch(context.phase)
         {
             case InputActionPhase.Performed:
-            GameStateController.ResumePreviousState();
+                if (!MerchantUIController.Instance.IsMerchantActive())
+                {
+                    GameStateController.ResumePreviousState();
+                }
                 break;
 
             default:
@@ -524,7 +546,7 @@ public class InputManager : MonoBehaviour
 public enum NorthButtonState { Default }
 public enum EastButtonState { Default, ItemUsagePanel }
 public enum SouthButtonState { Default, RadialMenu }
-public enum WestButtonState { Default, PickupItem, TravelPoint }
+public enum WestButtonState { Default, PickupItem, TravelPoint, Merchant }
 
 
 public enum LeftShoulderState { Default }

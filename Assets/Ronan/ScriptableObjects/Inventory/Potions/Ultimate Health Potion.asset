@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d271f5c31ed7e4eab502435fabb7ab, type: 3}
   m_Name: Ultimate Health Potion
   m_EditorClassIdentifier: 
+  ID: 6
   Name: Ultimate Health Potion
   Type: 0
   ItemIcon: {fileID: 1185527514606905908, guid: 10f7aa79e62cd554fb650e2b6d05bbad,
     type: 3}
   ItemWheelDescription: 
   Description: 
+  BuyPrice: 10
+  SellPrice: 0
   HealAmount: 999
   AffectParty: 0

@@ -66,20 +66,23 @@ public class RadialItemSection : RadialMenuSection
         {
             //ItemRadialMenu.InfoPanel.SetInfoPanel(Item.Name, Item.Description, Amount);
             GetComponentInParent<ItemRadialMenuController>().InfoPanel.SetInfoPanel(Item.Name, Item.Description, Amount);
+
+            if (PlayerController.Instance.GetComponent<InventoryManager>().Inventory.GetItemRemainingAmount(Item) <= 0)
+            {
+                PanelBackground.color = restricted;
+            }
+            else
+            {
+                PanelBackground.color = unrestricted;
+            }
         }
         else
         {
             GetComponentInParent<ItemRadialMenuController>().InfoPanel.SetInfoPanel("", "", 0);
-        }
-
-        if(PlayerController.Instance.GetComponent<InventoryManager>().Inventory.GetItemRemainingAmount(Item) <= 0)
-        {
             PanelBackground.color = restricted;
         }
-        else
-        {
-            PanelBackground.color = unrestricted;
-        }
+
+        
     }
 
     

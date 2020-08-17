@@ -104,4 +104,16 @@ public static class SaveUtility
         saveData = null;
         return false;    
     }
+
+    public static bool CheckForFile(int slot)
+    {
+        string path = Application.persistentDataPath + $"/SaveDataFile_{slot}.crescent";
+        if (File.Exists(path))
+        {
+            return true;
+        }
+
+        return false;
+
+    }
 }

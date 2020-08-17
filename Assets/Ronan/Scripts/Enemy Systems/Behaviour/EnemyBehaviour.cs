@@ -15,6 +15,7 @@ public class EnemyBehaviour : MonoBehaviour
     [Header("Enemy Details")]
     protected float CooldownTimer = 0f;
 
+    public string PathID;
     public List<EnemyPathNode> EnemyPath;
     public EnemyPathNode NextEnemyNode;
     protected bool NeedsRecalculation = false;
@@ -28,7 +29,9 @@ public class EnemyBehaviour : MonoBehaviour
         Tracker = GetComponent<EnemyTrackerComponent>();
 
         if(NextEnemyNode != null)
-        GetFullPath();
+        {
+            GetFullPath();
+        }
     }
 
     protected virtual void Update()

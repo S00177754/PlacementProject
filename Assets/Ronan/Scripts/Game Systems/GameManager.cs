@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     public SaveData GrabSaveData()
     {
-        Debug.Log("Grab Save Data");
+        Debug.LogError("Grab Save Data");
         return null;
     }
 

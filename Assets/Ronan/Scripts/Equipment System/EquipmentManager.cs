@@ -56,6 +56,27 @@ public class EquipmentManager : MonoBehaviour
                 return false;
     }
 
+    public int GetBaubleSlot(BaubleObj bauble)
+    {
+        if (CheckLoadout(bauble))
+        { 
+            if (Loadout.AccessorySlotOne == bauble)
+            {
+                return 1;
+            }
+            else if (Loadout.AccessorySlotTwo == bauble)
+            {
+                return 2;
+            }
+            else if (Loadout.AccessorySlotThree == bauble)
+            {
+                return 3;
+            }
+        }
+
+        return -1;
+    }
+
     public void UnEquipWeapon()
     {
         Loadout.EquippedWeapon = null;

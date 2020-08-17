@@ -38,9 +38,11 @@ public class PauseMenuController : MonoBehaviour
         {
             Destroy(this);
         }
+
         SaveConfirm.gameObject.SetActive(false);
         ReturnConfirm.gameObject.SetActive(false);
-        gameObject.SetActive(false);
+        SetMenuState(PauseMenuState.RootMenu);
+        gameObject.SetActive(true);
     }
 
     private void Update()
@@ -170,8 +172,8 @@ public class PauseMenuController : MonoBehaviour
     {
         ActivateSingleMenu(PauseMenuState.Inventory);
 
-       // Inventory.SubMenuObject.GetComponent<InventoryPanelController>().GenerateList();
-        Inventory.SubMenuObject.GetComponent<InventorySystemController>().FilterList();
+        Inventory.SubMenuObject.GetComponent<InventorySystemController>().Initialize();
+        //Inventory.SubMenuObject.GetComponent<InventorySystemController>().FilterList();
         Inventory.SubMenuObject.GetComponent<InventorySystemController>().ShowInventoryList();
     }
 

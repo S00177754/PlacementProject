@@ -73,9 +73,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a9c375ab0bcf942a0c7ec54336d255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainPlayer: {fileID: 0}
-  EnemyDatabase: {fileID: 0}
+  enemyDatabase: {fileID: 0}
   EnemySaveRange: 70
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 256
+  NodeList: []
