@@ -41,8 +41,9 @@ public class ScrollController : MonoBehaviour
             next.TryGetComponent(out button);
             Buttons.Add(button);
             TitleText = next.GetComponentInChildren<TMP_Text>();
+            Debug.Log(quest.Name);
             TitleText.text = quest.Name;
-            TitleText.color = buttonIdleColor;
+            //TitleText.color = buttonIdleColor;
         }
     }
 
