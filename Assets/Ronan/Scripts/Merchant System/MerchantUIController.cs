@@ -18,7 +18,6 @@ public class MerchantUIController : MonoBehaviour
     [Header("External Components")]
     public RectTransform ListContent;
     public DescriptionPanelController DescriptionPanel;
-    public InventoryObj TargetInventory;
     public TMP_Text Txt_PlayerMoney;
 
     private void Awake()
@@ -46,7 +45,7 @@ public class MerchantUIController : MonoBehaviour
         RootMenu.SubMenuObject.SetActive(false);
         ItemMenu.SubMenuObject.SetActive(true);
         DescriptionPanel.gameObject.SetActive(true);
-        Txt_PlayerMoney.text = PlayerController.Instance.Money.ToString();
+        UpdateMoney();
         GenerateList(MerchantButtonMode.Buy);
         MerchantActive = true;
     }
@@ -56,14 +55,14 @@ public class MerchantUIController : MonoBehaviour
         RootMenu.SubMenuObject.SetActive(false);
         ItemMenu.SubMenuObject.SetActive(true);
         DescriptionPanel.gameObject.SetActive(true);
-        Txt_PlayerMoney.text = PlayerController.Instance.Money.ToString();
+        UpdateMoney();
         GenerateList(MerchantButtonMode.Sell);
         MerchantActive = true;
     }
 
     public void ShowRootMenu()
     {
-        Time.timeScale = 1;
+        Time.timeScale = 0;
         gameObject.SetActive(true);
         RootMenu.SubMenuObject.SetActive(true);
         ItemMenu.SubMenuObject.SetActive(false);
@@ -74,7 +73,7 @@ public class MerchantUIController : MonoBehaviour
 
     public void ExitMerchant()
     {
-        Time.timeScale = 0;
+        Time.timeScale = 1;
         gameObject.SetActive(false);
         RootMenu.SubMenuObject.SetActive(false);
         ItemMenu.SubMenuObject.SetActive(false);
@@ -82,6 +81,11 @@ public class MerchantUIController : MonoBehaviour
         BackgroundImage.SetActive(false);
         GameStateController.Instance.ChangeAllPlayerMapsTo("Player");
         MerchantActive = false;
+    }
+
+    public void UpdateMoney()
+    {
+        Txt_PlayerMoney.text = PlayerController.Instance.Money.ToString();
     }
 
     public bool IsMerchantActive()
@@ -105,17 +109,17 @@ public class MerchantUIController : MonoBehaviour
     public void GenerateList(MerchantButtonMode mode)
     {
         ClearList();
-
+        UpdateMoney();
         switch (mode)
         {
 
             case MerchantButtonMode.Sell:
-                for (int i = 0; i < TargetInventory.Collection.Count; i++)
+                for (int i = 0; i < PlayerController.Instance.GetComponent<InventoryManager>().Inventory.Collection.Count; i++)
                 {
-                    if (TargetInventory.Collection[i].Item.Type == ItemType.Treasure)
+                    if (PlayerController.Instance.GetComponent<InventoryManager>().Inventory.Collection[i].Item.Type == ItemType.Treasure && PlayerController.Instance.GetComponent<InventoryManager>().Inventory.Collection[i].Amount > 0)
                     {
                         GameObject btn = Instantiate(ButtonPrefab, ListContent);
-                        btn.GetComponent<MerchantListButton>().Initialize(TargetInventory.Collection[i].Item);
+                        btn.GetComponent<MerchantListButton>().Initialize(PlayerController.Instance.GetComponent<InventoryManager>().Inventory.Collection[i].Item, MerchantButtonMode.Sell);
                         childAmount++;
                     }
                 }
@@ -125,7 +129,7 @@ public class MerchantUIController : MonoBehaviour
                 for (int i = 0; i < ActiveMerchant.ItemsToSell.Count; i++)
                 {
                     GameObject btn = Instantiate(ButtonPrefab, ListContent);
-                    btn.GetComponent<MerchantListButton>().Initialize(ActiveMerchant.ItemsToSell[i]);
+                    btn.GetComponent<MerchantListButton>().Initialize(ActiveMerchant.ItemsToSell[i],MerchantButtonMode.Buy);
                     childAmount++;              
                 }
                 break;

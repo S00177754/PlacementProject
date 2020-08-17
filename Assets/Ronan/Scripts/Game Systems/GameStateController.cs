@@ -142,6 +142,7 @@ public class GameStateController : MonoBehaviour
 
     public void ChangeAllPlayerMapsTo(string map)
     {
+        //Debug.Log(string.Concat("Map: ", map));
         PlayerController.Instance.GetComponent<PlayerInput>().SwitchCurrentActionMap(map);
 
     }

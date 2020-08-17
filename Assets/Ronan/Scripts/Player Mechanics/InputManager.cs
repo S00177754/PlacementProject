@@ -30,6 +30,7 @@ public class InputManager : MonoBehaviour
 
     public void SwitchToMap(string map)
     {
+        //Debug.Log(string.Concat("Map: ", map));
         playerInput.SwitchCurrentActionMap(map);
     }
 

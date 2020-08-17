@@ -42,7 +42,8 @@ public class EnemyStatsScript : MonoBehaviour
         //TODO Death animation
 
         PlayerController.Instance.AddExperience(Info.Experience);
-        
+        MoneyHUDController.Instance.SetAmount(PlayerController.Instance.Money);
+
         RaycastHit hit;
         Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, LayerMask.GetMask("Level Geometry"));
         

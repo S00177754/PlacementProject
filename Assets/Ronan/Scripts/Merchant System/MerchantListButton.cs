@@ -19,9 +19,10 @@ public class MerchantListButton : MonoBehaviour, ISelectHandler, IPointerEnterHa
     [Header("External Systems")]
     public MerchantUIController Merchant;
 
-    public void Initialize(ItemObj item)
+    public void Initialize(ItemObj item,MerchantButtonMode mode)
     {
         Item = item;
+        Mode = mode;
         Setup();
     }
 
@@ -62,12 +63,24 @@ public class MerchantListButton : MonoBehaviour, ISelectHandler, IPointerEnterHa
 
     public void Buy()
     {
-
+        if (PlayerController.Instance.TrySpendMoney(Item.BuyPrice))
+        {
+            PlayerController.Instance.GetComponent<InventoryManager>().Inventory.AddItem(Item, 1);
+            Merchant.UpdateMoney();
+            Merchant.GenerateList(MerchantButtonMode.Buy);
+            MoneyHUDController.Instance.SetAmount(PlayerController.Instance.Money);
+        }
     }
 
     public void Sell()
     {
-
+        PlayerController.Instance.Money += Item.SellPrice;
+        Merchant.UpdateMoney();
+        MoneyHUDController.Instance.SetAmount(PlayerController.Instance.Money);
+        PlayerController.Instance.GetComponent<InventoryManager>().Inventory.RemoveItem(Item, 1);
+        
+        if(PlayerController.Instance.GetComponent<InventoryManager>().Inventory.GetItemRemainingAmount(Item) <= 0)
+        Merchant.GenerateList(MerchantButtonMode.Sell);
     }
 
 
