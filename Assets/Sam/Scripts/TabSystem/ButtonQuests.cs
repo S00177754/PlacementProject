@@ -10,13 +10,14 @@ public class ButtonQuests : MonoBehaviour
 
     public GameObject QuestStepPrefab;
     //public GameObject StepText;
-    public GameObject StepScrollContent;
+    //public GameObject StepScrollContent;
 
     //public GameObject StepListPrefab;
     //public GameObject StepsPanel;
     //private TMP_Text stepListText;
     //private TMP_Text buttonText;
     
+    [SerializeField]
     public Quest buttonQuest;
 
     private QuestDetailController StepController;
@@ -29,6 +30,7 @@ public class ButtonQuests : MonoBehaviour
 
     public void QuestButtonClick()
     {
+
         StepController = QuestStepPrefab.GetComponent<QuestDetailController>();
         if (StepController == null)
             Debug.Log("ButtonQuest: stepcontroller is null");
@@ -66,37 +68,37 @@ public class ButtonQuests : MonoBehaviour
         //FillQuestSteps();
     }
 
-    public void FillQuestSteps()
-    {
-        GameObject instance = Instantiate(QuestStepPrefab, StepScrollContent.transform);
+    //public void FillQuestSteps()
+    //{
+    //    GameObject instance = Instantiate(QuestStepPrefab, StepScrollContent.transform);
 
-        TMP_Text questDescription = instance.GetComponent<TMP_Text>();
-        questDescription.text = buttonQuest.Name;
+    //    TMP_Text questDescription = instance.GetComponent<TMP_Text>();
+    //    questDescription.text = buttonQuest.Name;
 
-        foreach (QuestStep step in buttonQuest.StepsList)
-        {
-            if (step.isComplete)
-            {
-                instance = Instantiate(QuestStepPrefab, instance.transform);
-                questDescription = instance.GetComponent<TMP_Text>();
-                questDescription.text = step.GetDescription();
-                questDescription.color = Color.red;
-                questDescription.alpha = 0.9f;
-            }
-            else
-            {
-                instance = Instantiate(QuestStepPrefab, instance.transform);
-                questDescription = instance.GetComponent<TMP_Text>();
-                questDescription.text = step.GetDescription();
-                questDescription.color = Color.black;
-                questDescription.alpha = 1.0f;
-                break;
-            }
-        }
+    //    foreach (QuestStep step in buttonQuest.StepsList)
+    //    {
+    //        if (step.isComplete)
+    //        {
+    //            instance = Instantiate(QuestStepPrefab, instance.transform);
+    //            questDescription = instance.GetComponent<TMP_Text>();
+    //            questDescription.text = step.GetDescription();
+    //            questDescription.color = Color.red;
+    //            questDescription.alpha = 0.9f;
+    //        }
+    //        else
+    //        {
+    //            instance = Instantiate(QuestStepPrefab, instance.transform);
+    //            questDescription = instance.GetComponent<TMP_Text>();
+    //            questDescription.text = step.GetDescription();
+    //            questDescription.color = Color.black;
+    //            questDescription.alpha = 1.0f;
+    //            break;
+    //        }
+    //    }
 
 
 
-    }
+    //}
 
     public void ClearMe()
     {

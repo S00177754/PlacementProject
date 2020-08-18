@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6039980779016150946}
   - component: {fileID: 8889911563010302940}
   - component: {fileID: 9153381891661880632}
-  - component: {fileID: 6903566613637861875}
+  - component: {fileID: 7214230584766218475}
   m_Layer: 5
   m_Name: ButtonQuestSelect
   m_TagString: Untagged
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6903566613637861875}
+      - m_Target: {fileID: 7214230584766218475}
         m_MethodName: QuestButtonClick
         m_Mode: 1
         m_Arguments:
@@ -131,7 +131,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6903566613637861875
+--- !u!114 &7214230584766218475
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,9 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d46a37c03291748a3957945a3aa7d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuestStepPrefab: {fileID: 3469927153453369269, guid: 7d57e44b75b7d4340b0dd99d1bba5e05,
-    type: 3}
-  StepScrollContent: {fileID: 5965149318905192705, guid: a4dbc86b350ea774d83e22619515a593,
+  QuestStepPrefab: {fileID: 915769214765892307, guid: 5153db7410b399e4d8d0e57b1000f277,
     type: 3}
   buttonQuest: {fileID: 0}
 --- !u!1 &8324772261018181388
