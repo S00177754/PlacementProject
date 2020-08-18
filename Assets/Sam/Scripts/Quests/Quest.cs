@@ -33,7 +33,7 @@ public class Quest : ScriptableObject
             ActiveStep = Steps.Dequeue();
             NextStep = Steps.Peek();
         }
-        AssignActiveStep();
+        //AssignActiveStep();
     }
 
     void Start()
