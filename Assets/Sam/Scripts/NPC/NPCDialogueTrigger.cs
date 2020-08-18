@@ -30,14 +30,6 @@ public class NPCDialogueTrigger : MonoBehaviour
             canTalk = true;
         else
             canTalk = false;
-
-        //****DEBUG****
-        //Debug.Log(activeDialogue.name);
-        //foreach (string scen in activeDialogue.scentances)
-        //{
-        //    Debug.Log(scen);
-        //}
-
         //Conversation manager subscribe NPC to 'talkable'
         FindObjectOfType<DialogueManager>().Subscribe(this);
     }
@@ -95,6 +87,12 @@ public class NPCDialogueTrigger : MonoBehaviour
                 Debug.Log("ActiveQuest null in Start() after side search");
         }
         
+    }
+
+    private void MarkComplete()
+    {
+        ActiveQuest.isComplete = true;
+        ActiveQuest.GoToNextStep();
     }
 
     private void OnTriggerEnter(Collider other)

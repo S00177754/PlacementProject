@@ -14,15 +14,6 @@ public class NPCQuestStep : QuestStep
 
     //OnTalkTo Event Handle
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 
     public override string GetName()
     {

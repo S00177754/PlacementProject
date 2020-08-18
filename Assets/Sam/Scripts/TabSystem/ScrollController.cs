@@ -24,14 +24,25 @@ public class ScrollController : MonoBehaviour
     void Start()
     {
         Panel.SetActive(false);
-        Manager = Resources.Load<QuestManager>("ScriptableObjects/QuestManager");
+        Manager = Resources.Load<QuestManager>("Sam/ScriptableObjects/QuestManager");
         FillScrollView();
     }
 
+    //Ensures side panel is only displayed when a button is pressed
+    private void OnEnable()
+    {
+        Panel.SetActive(false);
+        FillScrollView();
+    }
 
+    private void OnDisable()
+    {
+        Panel.SetActive(false);
+    }
 
     public void FillScrollView()
     {
+        ClearScrollView();
         Manager = Resources.Load<QuestManager>("ScriptableObjects/QuestManager");
 
         if(tag.Equals("Main Scenario"))
@@ -83,5 +94,6 @@ public class ScrollController : MonoBehaviour
             destroyMe.ClearMe();
             Debug.Log("Button Clear");
         }
+        Buttons.Clear();
     }
 }

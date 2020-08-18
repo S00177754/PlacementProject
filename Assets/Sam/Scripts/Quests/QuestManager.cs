@@ -24,10 +24,6 @@ public class QuestManager : ScriptableObject
 
     void Start()
     {
-        FoundMSQuests = new List<Quest>();
-        ActiveSides = new List<Quest>();
-        CompletedSides = new List<Quest>();
-
         //Check next MSQ
         //If the quest is complete, quest is added to found list
         foreach (Quest main in MainScenarioQuests)
@@ -47,7 +43,7 @@ public class QuestManager : ScriptableObject
         {
             if (side.isActive)
                 ActiveSides.Add(side);
-            else if (side.isComplete)
+            if (side.isComplete)
                 CompletedSides.Add(side);
         }
     }
@@ -65,8 +61,16 @@ public class QuestManager : ScriptableObject
     public void LoadSideQuests(){
 
     }
-    public void CheckNextQuest(){
-
+    public void AssignNextQuest()
+    {
+        foreach (Quest main in MainScenarioQuests)
+        {
+            if(!main.isComplete)
+            {
+                ActiveMain = main;
+                break;
+            }
+        }
     }
 
     public void SetAvtiveQuest(Quest setActive){

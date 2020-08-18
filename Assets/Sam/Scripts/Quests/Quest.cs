@@ -25,12 +25,15 @@ public class Quest : ScriptableObject
     public QuestStep ActiveStep;
     public QuestStep NextStep;
 
-    public void GoToNextStep(){
-        if(ActiveStep.isComplete){
+    public void GoToNextStep()
+    {
+        if(ActiveStep.isComplete)
+        {
             CompletedSteps.Enqueue(ActiveStep);
             ActiveStep = Steps.Dequeue();
             NextStep = Steps.Peek();
         }
+        AssignActiveStep();
     }
 
     void Start()
@@ -43,29 +46,31 @@ public class Quest : ScriptableObject
                 ActiveStep = step;
 
         }
+        CheckCompletedSteps();
+        AssignActiveStep();
     }
 
-    void Update()
+    void AssignActiveStep()
     {
-        
-    }
-
-    //Working on generic method to searchfor and add each step to the quest
-    void GetQuests()
-    {
-        GameObject tryThis;
-        QuestStep addThis;
-        for (int i = 1; i < 50; i++)
+        foreach (QuestStep step in StepsList)
         {
-            tryThis = Resources.Load("Sam/QuestSystem/MSQ1S" + i.ToString()) as GameObject;
-            //TryGetComponent<QuestStep>(Resources.Load("Sam/QuestSystem/MSQ1S" + i.ToString()), out addThis);
+            if(!step.isComplete)
+            {
+                ActiveStep = step;
+                break;
+            }
         }
     }
 
+
+    public void SwitchIsActive()
+    {
+        isActive = !isActive;
+    }
+
+
     public void CheckCompletedSteps()
     {
-        CompletedList = new List<QuestStep>();
-        CompletedSteps = new Queue<QuestStep>();
         foreach (QuestStep step in StepsList)
         {
             if (step.isComplete)
