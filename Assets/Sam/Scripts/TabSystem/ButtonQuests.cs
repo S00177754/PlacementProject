@@ -19,7 +19,7 @@ public class ButtonQuests : MonoBehaviour
     
     public Quest buttonQuest;
 
-    //private QuestDetailController StepController;
+    private QuestDetailController StepController;
 
     private void Start()
     {
@@ -29,6 +29,15 @@ public class ButtonQuests : MonoBehaviour
 
     public void QuestButtonClick()
     {
+        StepController = QuestStepPrefab.GetComponent<QuestDetailController>();
+        if (StepController == null)
+            Debug.Log("ButtonQuest: stepcontroller is null");
+        if (buttonQuest == null)
+            Debug.Log("ButtonQuest: buttonQuest is null");
+        StepController.SendQuest(buttonQuest);
+        StepController.FillStepList();
+
+
         //GameObject instance = Instantiate(StepListPrefab, StepsPanel.transform);
 
         //string textToDisplay = "";
@@ -54,7 +63,7 @@ public class ButtonQuests : MonoBehaviour
         //stepListText.alpha = 1.0f;
         //stepListText.color = Color.white;
 
-        FillQuestSteps();
+        //FillQuestSteps();
     }
 
     public void FillQuestSteps()

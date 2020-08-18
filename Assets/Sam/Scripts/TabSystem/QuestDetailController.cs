@@ -14,7 +14,7 @@ public class QuestDetailController : MonoBehaviour
     //private TMP_Text StepText;
     private List<GameObject> CurrentSteps;
 
-    //private Quest buttonQuest;
+    private Quest buttonQuest;
 
     // Start is called before the first frame update
     void Start()
@@ -23,14 +23,14 @@ public class QuestDetailController : MonoBehaviour
     }
 
 
-    public void FillStepList(Quest buttonQ)
+    public void FillStepList()
     {
-        GameObject instance = Instantiate(QuestStepPrefab, StepScrollContent.transform);
-        TMP_Text questDescription = instance.GetComponent<TMP_Text>();
         //questDescription.text = StepText.text;
 
-        foreach (QuestStep step in buttonQ.Steps)
+        foreach (QuestStep step in buttonQuest.StepsList)
         {
+            GameObject instance = Instantiate(QuestStepPrefab, StepScrollContent.transform);
+            TMP_Text questDescription = instance.GetComponent<TMP_Text>();
             if (step.isComplete)
             {
                 instance = Instantiate(QuestStepPrefab, StepScrollContent.transform);
@@ -53,6 +53,11 @@ public class QuestDetailController : MonoBehaviour
         }
 
 
+    }
+
+    public void SendQuest(Quest questFromButton)
+    {
+        buttonQuest = questFromButton;
     }
 
     public void ClearSteps()
