@@ -8,36 +8,52 @@ public class ButtonQuests : MonoBehaviour
 {
     QuestManager Manager;
 
-    public GameObject QuestStepPrefab;
-    //public GameObject StepText;
-    //public GameObject StepScrollContent;
-
-    //public GameObject StepListPrefab;
-    //public GameObject StepsPanel;
-    //private TMP_Text stepListText;
-    //private TMP_Text buttonText;
+    public GameObject Panel;
+    //public Transform QuestStepTransform;
     
-    [SerializeField]
     public Quest buttonQuest;
 
-    private QuestDetailController StepController;
+
+    private string stepListAsText;
+    private StepListController StepController;
 
     private void Start()
     {
-        //buttonQuest = new Quest();
+
     }
 
 
     public void QuestButtonClick()
     {
+        Panel.SetActive(true);
+        TMP_Text DisplayText = Panel.GetComponentInChildren<TMP_Text>();
+        DisplayText.text = "";
+        stepListAsText = "";
+        foreach (QuestStep step in buttonQuest.StepsList)
+        {
+            if(step.isComplete)
+                stepListAsText += string.Format(step.GetDescription() + "\n");
+            else
+            {
+                stepListAsText += string.Format(step.GetDescription() + "\n");
+                break;
+            }
+        }
 
-        StepController = QuestStepPrefab.GetComponent<QuestDetailController>();
-        if (StepController == null)
-            Debug.Log("ButtonQuest: stepcontroller is null");
-        if (buttonQuest == null)
-            Debug.Log("ButtonQuest: buttonQuest is null");
-        StepController.SendQuest(buttonQuest);
-        StepController.FillStepList();
+        DisplayText.text = stepListAsText;
+        DisplayText.alpha = 1.0f;
+
+
+
+
+        //StepController = QuestStepPrefab.GetComponent<StepListController>();
+        //if (StepController == null)
+        //    Debug.Log("ButtonQuest: stepcontroller is null");
+        //if (buttonQuest == null)
+        //    Debug.Log("ButtonQuest: buttonQuest is null");
+
+        //StepController.SendQuest(buttonQuest);
+        //StepController.FillSteps();
 
 
         //GameObject instance = Instantiate(StepListPrefab, StepsPanel.transform);

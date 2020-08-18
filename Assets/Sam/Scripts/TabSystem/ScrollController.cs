@@ -8,7 +8,7 @@ public class ScrollController : MonoBehaviour
     QuestManager Manager;
 
     public GameObject ButtonPrefab;
-
+    public GameObject Panel;
     public GameObject ScrollviewContent;
 
     public List<ButtonQuests> Buttons;
@@ -23,6 +23,7 @@ public class ScrollController : MonoBehaviour
 
     void Start()
     {
+        Panel.SetActive(false);
         Manager = Resources.Load<QuestManager>("ScriptableObjects/QuestManager");
         FillScrollView();
     }
@@ -33,22 +34,45 @@ public class ScrollController : MonoBehaviour
     {
         Manager = Resources.Load<QuestManager>("ScriptableObjects/QuestManager");
 
-        foreach (Quest quest in Manager.FoundMSQuests)
+        if(tag.Equals("Main Scenario"))
         {
-            GameObject next = Instantiate(ButtonPrefab, ScrollviewContent.transform);
-            ButtonQuests button;
-            TMP_Text TitleText;
-            next.TryGetComponent(out button);
-            Buttons.Add(button);
-            button.buttonQuest = quest;
-            TitleText = next.GetComponentInChildren<TMP_Text>();
-            TitleText.text = quest.Name;
+            foreach (Quest quest in Manager.FoundMSQuests)
+            {
+                GameObject next = Instantiate(ButtonPrefab, ScrollviewContent.transform);
+                ButtonQuests button;
+                TMP_Text TitleText;
+                next.TryGetComponent(out button);
+                Buttons.Add(button);
+                button.buttonQuest = quest;
+                button.Panel = Panel;
+                TitleText = next.GetComponentInChildren<TMP_Text>();
+                TitleText.text = quest.Name;
 
 
-            if (button != null)
-                Debug.Log("Button quest is " + button.buttonQuest.name);
-            //Debug.Log(quest.Name);
-            //TitleText.color = buttonIdleColor;
+                if (button != null)
+                    Debug.Log("Button quest is " + button.buttonQuest.name);
+
+            }
+        }
+        else if(tag.Equals("Side Quest"))
+        {
+            foreach (Quest quest in Manager.ActiveSides)
+            {
+                GameObject next = Instantiate(ButtonPrefab, ScrollviewContent.transform);
+                ButtonQuests button;
+                TMP_Text TitleText;
+                next.TryGetComponent(out button);
+                Buttons.Add(button);
+                button.buttonQuest = quest;
+                button.Panel = Panel;
+                TitleText = next.GetComponentInChildren<TMP_Text>();
+                TitleText.text = quest.Name;
+
+
+                if (button != null)
+                    Debug.Log("Button quest is " + button.buttonQuest.name);
+
+            }
         }
     }
 
