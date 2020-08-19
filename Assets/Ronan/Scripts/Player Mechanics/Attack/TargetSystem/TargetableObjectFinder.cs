@@ -50,7 +50,6 @@ public class TargetableObjectFinder : MonoBehaviour
             {
                 Manager.RemoveTarget(obj);
             }
-
         }
     }
 }

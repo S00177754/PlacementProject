@@ -6,6 +6,7 @@ public class EnemyPathNode : MonoBehaviour
 {
     public EnemyPathNode NextNode;
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (!other.isTrigger)
@@ -13,6 +14,7 @@ public class EnemyPathNode : MonoBehaviour
             EnemyBehaviour enemy;
             if (other.TryGetComponent(out enemy))
             {
+                if(enemy.EnemyPath.Contains(this))
                 enemy.NextEnemyNode = NextNode;
             }
         }

@@ -15,7 +15,7 @@ public class EquipmentManager : MonoBehaviour
     }
 
 
-    public void EquipWeapon(GameObject weaponPrefab)
+    public void EquipWeapon(GameObject weaponPrefab,int ID)
     {
         WeaponInfo wi;
 
@@ -29,6 +29,7 @@ public class EquipmentManager : MonoBehaviour
 
             GameObject go = Instantiate(weaponPrefab);
             Loadout.EquippedWeapon = go.GetComponent<WeaponInfo>();
+            Loadout.EquippedWeapon.ItemID = ID;
             GetComponent<PlayerAttack>().AttachPoints.AttatchTo(AttachPoint.RightHand, Loadout.EquippedWeapon);
             GetComponent<PlayerAttack>().ComboAttackCount = GetAttackDetails().PrimaryAtackPattern.Count;
         }
@@ -53,6 +54,27 @@ public class EquipmentManager : MonoBehaviour
                 break;                
         }
                 return false;
+    }
+
+    public int GetBaubleSlot(BaubleObj bauble)
+    {
+        if (CheckLoadout(bauble))
+        { 
+            if (Loadout.AccessorySlotOne == bauble)
+            {
+                return 1;
+            }
+            else if (Loadout.AccessorySlotTwo == bauble)
+            {
+                return 2;
+            }
+            else if (Loadout.AccessorySlotThree == bauble)
+            {
+                return 3;
+            }
+        }
+
+        return -1;
     }
 
     public void UnEquipWeapon()
@@ -146,23 +168,91 @@ public class EquipmentLoadout
     public BaubleObj AccessorySlotTwo; //Lock with ability tree
     public BaubleObj AccessorySlotThree; //Lock with ability tree
 
-    public float GetAttackBonus()
+    public int GetAttackBonus()
     {
-        return AccessorySlotOne.GetAttackBonus() + AccessorySlotTwo.GetAttackBonus() + AccessorySlotThree.GetAttackBonus();
+        int total = 0;
+
+        if(AccessorySlotOne != null)
+        {
+            total += AccessorySlotOne.GetAttackBonus();
+        }
+
+        if(AccessorySlotTwo != null)
+        {
+            total += AccessorySlotTwo.GetAttackBonus();
+        }
+
+        if(AccessorySlotThree != null)
+        {
+            total += AccessorySlotThree.GetAttackBonus();
+        }
+
+        return total;
     }
 
-    public float GetDefenseBonus()
+    public int GetDefenseBonus()
     {
-        return AccessorySlotOne.GetDefenseBonus() + AccessorySlotTwo.GetDefenseBonus() + AccessorySlotThree.GetDefenseBonus();
+        int total = 0;
+
+        if (AccessorySlotOne != null)
+        {
+            total += AccessorySlotOne.GetDefenseBonus();
+        }
+
+        if (AccessorySlotTwo != null)
+        {
+            total += AccessorySlotTwo.GetDefenseBonus();
+        }
+
+        if (AccessorySlotThree != null)
+        {
+            total += AccessorySlotThree.GetDefenseBonus();
+        }
+
+        return total;
     }
 
-    public float GetHealthBonus()
+    public int GetHealthBonus()
     {
-        return AccessorySlotOne.GetHealthBonus() + AccessorySlotTwo.GetHealthBonus() + AccessorySlotThree.GetHealthBonus();
+        int total = 0;
+
+        if (AccessorySlotOne != null)
+        {
+            total += AccessorySlotOne.GetHealthBonus();
+        }
+
+        if (AccessorySlotTwo != null)
+        {
+            total += AccessorySlotTwo.GetHealthBonus();
+        }
+
+        if (AccessorySlotThree != null)
+        {
+            total += AccessorySlotThree.GetHealthBonus();
+        }
+
+        return total;
     }
 
-    public float GetMPBonus()
+    public int GetMPBonus()
     {
-        return AccessorySlotOne.GetMPBonus() + AccessorySlotTwo.GetMPBonus() + AccessorySlotThree.GetMPBonus();
+        int total = 0;
+
+        if (AccessorySlotOne != null)
+        {
+            total += AccessorySlotOne.GetMPBonus();
+        }
+
+        if (AccessorySlotTwo != null)
+        {
+            total += AccessorySlotTwo.GetMPBonus();
+        }
+
+        if (AccessorySlotThree != null)
+        {
+            total += AccessorySlotThree.GetMPBonus();
+        }
+
+        return total;
     }
 }

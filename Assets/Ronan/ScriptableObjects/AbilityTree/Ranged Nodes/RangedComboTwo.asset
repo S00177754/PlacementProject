@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de10802cd8b1c674bbf8cfdc500d9572, type: 3}
+  m_Name: RangedComboTwo
+  m_EditorClassIdentifier: 
+  PreRequirements:
+  - {fileID: 11400000, guid: 05619247de37c314687dfb0c564408df, type: 2}
+  - {fileID: 11400000, guid: c86fe7ac214359b4c9c31cf56a170da9, type: 2}
+  NextNodes:
+  - {fileID: 11400000, guid: 029d69fe5d06c5e498b74d10f5939c81, type: 2}
+  - {fileID: 11400000, guid: 96ab52682d8087c4ab8dc03691c30844, type: 2}
+  IdName: RangeComboTwo
+  NodeUnlocked: 0
+  AbilityPointCost: 3
+  NodeType: 2
+  HealthBonus: 0
+  AttackBonus: 0

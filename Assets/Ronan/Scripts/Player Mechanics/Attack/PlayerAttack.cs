@@ -375,7 +375,7 @@ public class PlayerAttack : MonoBehaviour
         if (AbilityTree.RangedTree.RootNode != null)
         {
             Debug.Log("Before Ability Tree: " + dmg);
-            dmg += AbilityTree.GetRangedBonus();
+            dmg += AbilityTree.GetRangedBonus() + (PlayerController.Instance.GameStats.DexterityStat - 5);
             Debug.Log("After Ability Tree: " + dmg);
         }
 
@@ -388,7 +388,7 @@ public class PlayerAttack : MonoBehaviour
         if (AbilityTree.MeleeTree.RootNode != null)
         {
             Debug.Log("Before Ability Tree: " + dmg);
-            dmg += AbilityTree.GetAttackBonus();
+            dmg += AbilityTree.GetAttackBonus() + (PlayerController.Instance.GameStats.StrengthStat - 5);
             Debug.Log("After Ability Tree: " + dmg);
         }
 

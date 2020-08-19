@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class InventoryItemUsagePanel : MonoBehaviour
@@ -9,6 +10,8 @@ public class InventoryItemUsagePanel : MonoBehaviour
     public InventoryItemPanel ActivatedBy;
     public GameObject FirstButton;
     public ItemSettingRadialMenu RadialSetter;
+    public TMP_Text UseButtonText;
+    public BaubleSetterMenu BaubleSetMenu;
 
     private void Start()
     {
@@ -20,12 +23,28 @@ public class InventoryItemUsagePanel : MonoBehaviour
         ActivatedBy = activatedBy;
         PlayerController.Instance.GetComponent<InputManager>().buttonStates.SetState(EastButtonState.ItemUsagePanel);
         UIHelper.SelectedObjectSet(this.gameObject);
+
+        if(ActivatedBy.Item is WeaponObj || activatedBy.Item is BaubleObj)
+        {
+            if(PlayerController.Instance.GetComponent<EquipmentManager>().CheckLoadout(ActivatedBy.Item))
+            {
+                UseButtonText.text = "Unequip";
+            }
+            else
+            {
+                UseButtonText.text = "Equip";
+            }
+
+        }
+        else if(!(ActivatedBy.Item is TreasureObj))
+        {
+            UseButtonText.text = "Use Item";
+        }
     }
 
     public void UseItem()
     {
-        if(ActivatedBy.Item is HealthPotionObj ||
-           ActivatedBy.Item is HealthPotionObj)
+        if(ActivatedBy.Item is HealthPotionObj || ActivatedBy.Item is MPPotionObj)
         {
             if (GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().Party.Count == 0)
             {
@@ -52,6 +71,23 @@ public class InventoryItemUsagePanel : MonoBehaviour
                 }
             }
         }
+        else if (ActivatedBy.Item is BaubleObj)
+        {
+            if (GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().Party.Count == 0)
+            {
+                if (PlayerController.Instance.GetComponent<EquipmentManager>().CheckLoadout(ActivatedBy.Item))
+                {
+                    PlayerController.Instance.GetComponent<EquipmentManager>().UnequipAccessory(PlayerController.Instance.GetComponent<EquipmentManager>().GetBaubleSlot(ActivatedBy.Item as BaubleObj));
+                }
+                else
+                {
+                    BaubleSetMenu.gameObject.SetActive(true);
+                    BaubleSetMenu.Setup(ActivatedBy.Item as BaubleObj);
+                }
+            }
+        }
+
+
     }
 
     public void ActivateItemRadialSetter()
@@ -93,12 +129,16 @@ public class InventoryItemUsagePanel : MonoBehaviour
     {
         ReturnFocus();
         gameObject.SetActive(false);
+
         PlayerController.Instance.GetComponent<InputManager>().buttonStates.SetState(EastButtonState.Default);
     }
 
-    private void ReturnFocus()
+    public void ReturnFocus()
     {
+        BaubleSetMenu.gameObject.SetActive(false);
         UIHelper.SelectedObjectSet(ActivatedBy.gameObject);
+        gameObject.SetActive(false);
+        PlayerController.Instance.GetComponent<InputManager>().buttonStates.SetState(EastButtonState.Default);
         //RadialSetter.gameObject.SetActive(false);
     }
 

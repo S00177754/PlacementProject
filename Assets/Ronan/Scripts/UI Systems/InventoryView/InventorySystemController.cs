@@ -17,6 +17,7 @@ public class InventorySystemController : MonoBehaviour
     public GameObject RadialMenu;
     public GameObject ItemButtonPrefab;
     public GameObject ItemUsageMenu;
+    public GameObject BaubleMenu;
     public RectTransform ListContent;
     public DescriptionPanelController DescriptionPanel;
 
@@ -37,6 +38,7 @@ public class InventorySystemController : MonoBehaviour
     {
         ListFilter = ItemType.Potion;
         FilterList();
+        BaubleMenu.SetActive(false);
     }
 
     public void ClearList()

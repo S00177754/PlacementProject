@@ -15,6 +15,7 @@ public class TargetManager : MonoBehaviour
         if (TargetUIController == null)
             return;
 
+
         if (!IsLockedOn)
         {
             SetClosestTargetAsPossible();
@@ -43,14 +44,16 @@ public class TargetManager : MonoBehaviour
 
     public void RemoveTarget(TargetableObject newTarget)
     {
-
         TargetsInRange.Remove(newTarget);
+      
+
         if(newTarget == LockedOnTarget)
         {
             IsLockedOn = false;
             LockedOnTarget = null;
         }
         SetClosestTargetAsPossible();
+
     }
 
 

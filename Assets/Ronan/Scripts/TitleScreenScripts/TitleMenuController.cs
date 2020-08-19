@@ -17,6 +17,7 @@ public class TitleMenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         ReturnToMenu();
     }
 
@@ -103,7 +104,7 @@ public class TitleMenuController : MonoBehaviour
     {
         SaveManager.CreateNewGame(slot);
         GameManager.CurrentSaveSlot = slot;
-        SceneManager.LoadScene(1);
+        SceneManagerHelper.TransitionToScene(1);
         Debug.Log(string.Concat("I've overwritten slot ", slot));
     }
 

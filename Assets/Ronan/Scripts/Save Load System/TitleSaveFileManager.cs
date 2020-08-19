@@ -22,7 +22,7 @@ public class TitleSaveFileManager : MonoBehaviour
     {
         PlayerSaveData data = new PlayerSaveData();
 
-        data.EquippedWeapon = StartingWeapon;
+        data.EquippedWeaponID = StartingWeapon.ID;
         PlayerInventory.Collection.Clear();
         PlayerInventory.AddItem(StartingWeapon, 1);
         StartInventory.ForEach(x => PlayerInventory.AddItem(x, 1));
@@ -103,5 +103,17 @@ public static class SaveUtility
         Debug.Log("Save file does not exist.");
         saveData = null;
         return false;    
+    }
+
+    public static bool CheckForFile(int slot)
+    {
+        string path = Application.persistentDataPath + $"/SaveDataFile_{slot}.crescent";
+        if (File.Exists(path))
+        {
+            return true;
+        }
+
+        return false;
+
     }
 }

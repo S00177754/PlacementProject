@@ -16,13 +16,19 @@ public class MeleeAbilityTree
     private int CalculateHealthBonus(MeleeAbilityNode node)
     {
         int healthBonus = 0;
-        
-        if(node.NodeUnlocked)
-        healthBonus += node.HealthBonus;
 
-        foreach (MeleeAbilityNode child in node.NextNodes)
+        if (node != null)
         {
-            healthBonus += CalculateHealthBonus(child);
+
+
+            if (node.NodeUnlocked)
+                healthBonus += node.HealthBonus;
+
+            foreach (MeleeAbilityNode child in node.NextNodes)
+            {
+                healthBonus += CalculateHealthBonus(child);
+            }
+
         }
 
         return healthBonus;
@@ -37,15 +43,16 @@ public class MeleeAbilityTree
     private int CalculateAttackBonus(MeleeAbilityNode node)
     {
         int attackBonus = 0;
-
-        if (node.NodeUnlocked)
-            attackBonus += node.AttackBonus;
-
-        foreach (MeleeAbilityNode child in node.NextNodes)
+        if (node != null)
         {
-            attackBonus += CalculateAttackBonus(child);
-        }
+            if (node.NodeUnlocked)
+                attackBonus += node.AttackBonus;
 
+            foreach (MeleeAbilityNode child in node.NextNodes)
+            {
+                attackBonus += CalculateAttackBonus(child);
+            }
+        }
         return attackBonus;
     }
 
@@ -59,16 +66,19 @@ public class MeleeAbilityTree
     {
         int comboCount = 0;
 
-        if(node.NodeType == MeleeNodeType.ComboUnlock && node.NodeUnlocked)
+        if (node != null)
         {
-            comboCount = 1;
-        }
 
-        foreach (MeleeAbilityNode child in node.NextNodes)
-        {
-            comboCount += CalculateComboCount(child);
-        }
+            if (node.NodeType == MeleeNodeType.ComboUnlock && node.NodeUnlocked)
+            {
+                comboCount = 1;
+            }
 
+            foreach (MeleeAbilityNode child in node.NextNodes)
+            {
+                comboCount += CalculateComboCount(child);
+            }
+        }
         return comboCount;
     }
 }
@@ -81,18 +91,25 @@ public class MagicAbilityTree
     public int GetHealthBoost()
     {
         return CalculateHealthBonus(RootNode);
+
     }
 
     private int CalculateHealthBonus(MagicAbilityNode node)
     {
         int healthBonus = 0;
 
-        if (node.NodeUnlocked)
-            healthBonus += node.HealthBonus;
-
-        foreach (MagicAbilityNode child in node.NextNodes)
+        if (node != null)
         {
-            healthBonus += CalculateHealthBonus(child);
+
+
+            if (node.NodeUnlocked)
+                healthBonus += node.HealthBonus;
+
+            foreach (MagicAbilityNode child in node.NextNodes)
+            {
+                healthBonus += CalculateHealthBonus(child);
+            }
+
         }
 
         return healthBonus;
@@ -107,14 +124,17 @@ public class MagicAbilityTree
     {
         int magicBonus = 0;
 
-        if (node.NodeUnlocked)
-            magicBonus += node.MagicBonus;
-
-        foreach (MagicAbilityNode child in node.NextNodes)
+        if (node != null)
         {
-            magicBonus += CalculateMagicBonus(child);
-        }
 
+            if (node.NodeUnlocked)
+                magicBonus += node.MagicBonus;
+
+            foreach (MagicAbilityNode child in node.NextNodes)
+            {
+                magicBonus += CalculateMagicBonus(child);
+            }
+        }
         return magicBonus;
     }
 }
@@ -132,15 +152,18 @@ public class RangedAbilityTree
     private int CalculateHealthBonus(RangedAbilityNode node)
     {
         int healthBonus = 0;
-
-        if (node.NodeUnlocked)
-            healthBonus += node.HealthBonus;
-
-        foreach (RangedAbilityNode child in node.NextNodes)
+        if(node != null)
         {
-            healthBonus += CalculateHealthBonus(child);
-        }
 
+            if (node.NodeUnlocked)
+                healthBonus += node.HealthBonus;
+
+            foreach (RangedAbilityNode child in node.NextNodes)
+            {
+                healthBonus += CalculateHealthBonus(child);
+            }
+
+        }
         return healthBonus;
     }
 
@@ -153,14 +176,17 @@ public class RangedAbilityTree
     {
         int attackBonus = 0;
 
-        if (node.NodeUnlocked)
-            attackBonus += node.AttackBonus;
-
-        foreach (RangedAbilityNode child in node.NextNodes)
+        if (node != null)
         {
-            attackBonus += CalculateAttackBonus(child);
-        }
 
+            if (node.NodeUnlocked)
+                attackBonus += node.AttackBonus;
+
+            foreach (RangedAbilityNode child in node.NextNodes)
+            {
+                attackBonus += CalculateAttackBonus(child);
+            }
+        }
         return attackBonus;
     }
 
@@ -172,17 +198,18 @@ public class RangedAbilityTree
     private int CalculateComboCount(RangedAbilityNode node)
     {
         int comboCount = 0;
-
-        if (node.NodeType == RangedNodeType.ComboUnlock && node.NodeUnlocked)
+        if (node != null)
         {
-            comboCount = 1;
-        }
+            if (node.NodeType == RangedNodeType.ComboUnlock && node.NodeUnlocked)
+            {
+                comboCount = 1;
+            }
 
-        foreach (RangedAbilityNode child in node.NextNodes)
-        {
-            comboCount += CalculateComboCount(child);
+            foreach (RangedAbilityNode child in node.NextNodes)
+            {
+                comboCount += CalculateComboCount(child);
+            }
         }
-
         return comboCount;
     }
 }

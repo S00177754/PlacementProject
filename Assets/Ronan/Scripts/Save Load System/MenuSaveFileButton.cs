@@ -37,7 +37,7 @@ public class MenuSaveFileButton : MonoBehaviour
 
     private void Setup()
     {
-        SlotName.text = $"Slot Name {SlotNumber}";
+        SlotName.text = SlotNumber.ToString();
         //TODO: Read in header for slot save data and display last played date
         //LastPlayedText.text = $"Last Played: \n{}";
     }
@@ -47,13 +47,34 @@ public class MenuSaveFileButton : MonoBehaviour
         switch (Mode)
         {
             case MenuFileBtnMode.Overwrite:
-                SaveManager.TitleMenuController.ShowConfirmBox(SlotNumber);
+                if (SaveUtility.CheckForFile(SlotNumber))
+                {
+                    SaveManager.TitleMenuController.ShowConfirmBox(SlotNumber);
+                }
+                else
+                {
+                    SaveManager.CreateNewGame(SlotNumber);
+                    GameManager.CurrentSaveSlot = SlotNumber;
+                    SceneManagerHelper.TransitionToScene(1);
+                    Debug.Log(string.Concat("I've created a new game in slot ", SlotNumber));
+                }
                 break;
 
             default:
             case MenuFileBtnMode.Load:
-                GameManager.CurrentSaveSlot = SlotNumber;
-                SceneManager.LoadScene(1);
+                if (SaveUtility.CheckForFile(SlotNumber))
+                {
+                    GameManager.CurrentSaveSlot = SlotNumber;
+                    SceneManager.LoadScene(1);
+                }
+                else
+                {
+                    SaveManager.CreateNewGame(SlotNumber);
+                    GameManager.CurrentSaveSlot = SlotNumber;
+                    SceneManagerHelper.TransitionToScene(1);
+                    Debug.Log(string.Concat("I've created a new game in slot ", SlotNumber));
+                }
+                
                 break;
 
         }

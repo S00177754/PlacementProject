@@ -11,7 +11,7 @@ public class ReturnConfirmController : MonoBehaviour
 
     public void Confirm()
     {
-        SceneManager.LoadScene(0);
+        SceneManagerHelper.TransitionToScene(0);
         gameObject.SetActive(false);
     }
 
