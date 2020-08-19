@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MultiQuantQuestStep", menuName = "Quest System/MultiQuantQuestStep")]
+[CreateAssetMenu(fileName = "MultiQuantQuestStep", menuName = "Quest System/Quest Step/MultiQuantQuestStep")]
 public class MultiQuantityQuestStep : QuestStep
 {
     [SerializeField]
@@ -17,6 +18,12 @@ public class MultiQuantityQuestStep : QuestStep
     {
         int index = TargetIDs.FindIndex(i => i.Name == TargetName);
         Counters[index]++;
+        
+        if(TargetQuantities.Sum() == Counters.Sum())
+        {
+            isComplete = true;
+            ParentQuest.GoToNextStep();
+        }
     }
 
     void Start()

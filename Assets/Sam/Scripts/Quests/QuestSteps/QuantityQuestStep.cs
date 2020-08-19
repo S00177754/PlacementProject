@@ -2,26 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "QuantityQuestStep", menuName = "Quest System/QuantityQuestStep")]
+[CreateAssetMenu(fileName = "QuantityQuestStep", menuName = "Quest System/Quest Step/QuantityQuestStep")]
 public class QuantityQuestStep : QuestStep
 {
+    [Header("Required")]
     [SerializeField]
     public string Description;
     [SerializeField]
     public string Name;
 
-    public int TargetID;
+    [Header("Step Specific")]
+    [SerializeField]
     public string TargetName;
+    //public int TargetID;
     public int TargetQuantity;
-    public int counter;
+    public int TargetObtained;
 
     public void AddToCounter()
     {
-        counter++;
-        if (counter >= TargetQuantity)
+        //check inventory
+        TargetObtained++;
+        if (TargetObtained >= TargetQuantity)
         {
             isComplete = true;
-            //Do other stuff
+            ParentQuest.GoToNextStep();
         }
     }
 
@@ -35,6 +39,10 @@ public class QuantityQuestStep : QuestStep
         
     }
 
+    public string GetItemName()
+    {
+        return TargetName;
+    }
     public override string GetName()
     {
         return Name;

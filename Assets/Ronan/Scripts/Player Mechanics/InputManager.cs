@@ -330,6 +330,19 @@ public class InputManager : MonoBehaviour
                     break;
             }
                 break;
+            case WestButtonState.NPCTalk:
+                switch (context.phase)
+                {
+                    case InputActionPhase.Performed:
+                        GameStateController.SetGameState(GameState.Chatting);
+                        break;
+                    case InputActionPhase.Disabled:
+                    case InputActionPhase.Waiting:
+                    case InputActionPhase.Started:
+                    case InputActionPhase.Canceled:
+                        break;
+                }
+                break;
 
             default:
                 break;
@@ -546,7 +559,9 @@ public class InputManager : MonoBehaviour
 public enum NorthButtonState { Default }
 public enum EastButtonState { Default, ItemUsagePanel }
 public enum SouthButtonState { Default, RadialMenu }
-public enum WestButtonState { Default, PickupItem, TravelPoint, Merchant }
+
+public enum WestButtonState { Default, PickupItem, TravelPoint, Merchant, NPCTalk }
+
 
 
 public enum LeftShoulderState { Default }

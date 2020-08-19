@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 
-public enum GameState {MainMenu, Paused, Explore, Pacifist, Driving, GameOver}
+public enum GameState {MainMenu, Paused, Explore, Pacifist, Driving, GameOver, Chatting}
 
 public class GameStateController : MonoBehaviour
 {
@@ -15,6 +15,7 @@ public class GameStateController : MonoBehaviour
     static public GameState previousGameState;
 
     public PauseMenuController PauseMenu;
+    public DialogueManager DialogueBox;
     public GameObject PlayerHUD;
 
 
@@ -80,6 +81,10 @@ public class GameStateController : MonoBehaviour
             case GameState.GameOver:
                 GameOverRefresh();
                 break;
+
+            case GameState.Chatting:
+                ChattingRefresh();
+                break;
         }
     }
 
@@ -100,6 +105,15 @@ public class GameStateController : MonoBehaviour
             //PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(true, true);
             Instance.ChangeAllPlayerMapsTo("UI");
         
+    }
+
+    static void ChattingRefresh()
+    {
+        Time.timeScale = 0;
+        //Instance.DialogueBox.GetComponent<DialogueManager>().gameObject.SetActive(true);
+        Instance.DialogueBox.GetComponent<DialogueManager>().InteractButtonPress();
+        PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(true, true);
+        Instance.ChangeAllPlayerMapsTo("UI");
     }
 
     static private void ExploreRefresh()
@@ -158,4 +172,6 @@ public class GameStateController : MonoBehaviour
             }
         }
     }
+
+
 }
