@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ScrollController : MonoBehaviour
 {
+    [SerializeField]
     QuestManager Manager;
 
     public GameObject ButtonPrefab;
@@ -24,7 +25,7 @@ public class ScrollController : MonoBehaviour
     void Start()
     {
         Panel.SetActive(false);
-        Manager = Resources.Load<QuestManager>("Sam/ScriptableObjects/QuestManager");
+        
         FillScrollView();
     }
 
@@ -43,9 +44,8 @@ public class ScrollController : MonoBehaviour
     public void FillScrollView()
     {
         ClearScrollView();
-        Manager = Resources.Load<QuestManager>("ScriptableObjects/QuestManager");
 
-        if(tag.Equals("Main Scenario"))
+        if(CompareTag("Main Scenario"))
         {
             foreach (Quest quest in Manager.FoundMSQuests)
             {
@@ -65,7 +65,7 @@ public class ScrollController : MonoBehaviour
 
             }
         }
-        else if(tag.Equals("Side Quest"))
+        else if(CompareTag("Side Quest"))
         {
             foreach (Quest quest in Manager.ActiveSides)
             {
