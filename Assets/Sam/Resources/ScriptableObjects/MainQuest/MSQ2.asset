@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cfaa6bed46a2451baf3fd1ce3b2ed25, type: 3}
+  m_Name: MSQ2
+  m_EditorClassIdentifier: 
+  ID: MSQ2
+  Name: Main Quest 2
+  Description: Main Scnario Quest 2
+  isActive: 0
+  isComplete: 0
+  isFound: 0
+  isMainScenario: 1
+  QuestGiver: {fileID: 0}
+  QuestReturn: {fileID: 0}
+  CompletedList: []
+  StepsList:
+  - {fileID: 11400000, guid: fef0dd6d72fecc94aaa9792e3293d566, type: 2}
+  - {fileID: 11400000, guid: 83e1b86d61f757d488e127f282d01d7c, type: 2}
+  - {fileID: 11400000, guid: 5884c3bde0f475b4abcb7a1d00b71ff9, type: 2}
+  ActiveStep: {fileID: 0}
+  NextStep: {fileID: 0}

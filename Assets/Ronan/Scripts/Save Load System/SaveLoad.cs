@@ -303,7 +303,7 @@ public class QuestObjData
 [Serializable]
 public class QuestStepData
 {
-    public int StepID;
+    public string StepID;
     public bool isComplete;
 }
 
