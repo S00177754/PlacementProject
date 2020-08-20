@@ -21,6 +21,8 @@ public class GameStateController : MonoBehaviour
 
     private void Start()
     {
+        
+
         if (Instance == null)
         {
             Instance = this;

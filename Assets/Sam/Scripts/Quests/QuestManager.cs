@@ -6,7 +6,7 @@ using UnityEngine;
 public class QuestManager : ScriptableObject
 {
     [SerializeField]
-    List<Quest> MainScenarioQuests;
+    public List<Quest> MainScenarioQuests;
     public List<Quest> FoundMSQuests;
     public Quest ActiveMain;
 
@@ -21,6 +21,30 @@ public class QuestManager : ScriptableObject
 
     [SerializeField]
     public Quest TrackedQuest;
+
+    public void Initialise()
+    {
+        foreach (Quest main in MainScenarioQuests)
+        {
+            if (main.isComplete)
+            {
+                FoundMSQuests.Add(main);
+            }
+            else
+            {
+                ActiveMain = main;
+                break;
+            }
+        }
+
+        foreach (Quest side in SideQuests)
+        {
+            if (side.isActive)
+                ActiveSides.Add(side);
+            if (side.isComplete)
+                CompletedSides.Add(side);
+        }
+    }
 
     void Start()
     {
@@ -73,7 +97,7 @@ public class QuestManager : ScriptableObject
         }
     }
 
-    public void SetAvtiveQuest(Quest setActive){
+    public void SetActiveQuest(Quest setActive){
         setActive.isActive = true;
     }
 

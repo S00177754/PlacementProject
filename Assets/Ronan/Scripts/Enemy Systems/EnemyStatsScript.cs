@@ -46,14 +46,20 @@ public class EnemyStatsScript : MonoBehaviour
 
         RaycastHit hit;
         Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, LayerMask.GetMask("Level Geometry"));
-        
+
         //TODO: Instantiate ground item at hit.point then get random item from treasue table
-        if(hit.collider.gameObject != null)
+        if (hit.collider != null)
         {
-            Debug.Log(Info.TreasureTable.GetItemDrop().Name);
-            GameObject go = Instantiate(ItemPickup);
-            go.transform.position = new Vector3(hit.point.x, hit.point.y, hit.point.z);
-            go.GetComponent<CollectableItem>().Item = Info.TreasureTable.GetItemDrop();
+            if (hit.collider.gameObject != null)
+            {
+                if (Info.TreasureTable.Count < 0)
+                {
+                    Debug.Log(Info.TreasureTable.GetItemDrop().Name);
+                    GameObject go = Instantiate(ItemPickup);
+                    go.transform.position = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+                    go.GetComponent<CollectableItem>().Item = Info.TreasureTable.GetItemDrop();
+                }
+            }
         }
 
         yield return new WaitForSeconds(5);

@@ -49,7 +49,7 @@ public class InventoryItemUsagePanel : MonoBehaviour
             if (GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().Party.Count == 0)
             {
 
-                if (ActivatedBy.Item.UseItem(GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer))
+                if (ActivatedBy.Item.UseItem(PlayerController.Instance))
                 {
                     ActivatedBy.InventoryPanel.TargetInventory.Inventory.RemoveItem(ActivatedBy.Item, 1);
                     ActivatedBy.InventoryPanel.FilterList();
@@ -65,7 +65,7 @@ public class InventoryItemUsagePanel : MonoBehaviour
             if (GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().Party.Count == 0)
             {
 
-                if (ActivatedBy.Item.UseItem(GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer))
+                if (ActivatedBy.Item.UseItem(PlayerController.Instance))
                 {
                     ReturnFocus();
                 }
@@ -87,7 +87,7 @@ public class InventoryItemUsagePanel : MonoBehaviour
             }
         }
 
-
+        InventorySystemController.Instance.FilterList();
     }
 
     public void ActivateItemRadialSetter()
@@ -99,7 +99,7 @@ public class InventoryItemUsagePanel : MonoBehaviour
         RadialSetter.gameObject.SetActive(true);
         RadialSetter.ItemToSet = ActivatedBy.Item;
 
-        InputManager inputPlayer = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer.GetComponent<InputManager>();
+        InputManager inputPlayer = PlayerController.Instance.GetComponent<InputManager>();
 
         //Change over of input states in the input manager
         inputPlayer.buttonStates.SetState(RightJoystickState.RadialMenu);
@@ -117,7 +117,7 @@ public class InventoryItemUsagePanel : MonoBehaviour
         ActivatedBy.InventoryPanel.ShowInventoryList();
         RadialSetter.CloseMenu();
 
-        InputManager inputPlayer = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer.GetComponent<InputManager>();
+        InputManager inputPlayer = PlayerController.Instance.GetComponent<InputManager>();
         inputPlayer.buttonStates.SetState(RightJoystickState.Default);
         inputPlayer.buttonStates.SetState(SouthButtonState.Default);
         inputPlayer.buttonStates.SetState(SouthButtonState.Default);

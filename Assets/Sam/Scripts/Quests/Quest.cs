@@ -13,6 +13,9 @@ public class Quest : ScriptableObject
     public string Description;
     public bool isActive;
     public bool isComplete;
+
+    public bool isFound;
+
     [SerializeField]
     public bool isMainScenario;
 

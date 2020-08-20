@@ -10,7 +10,8 @@ public class SaveConfirmController : MonoBehaviour
 
     public void Confirm()
     {
-        SaveUtility.SaveToSlot(GameManager.Instance.GrabSaveData(), GameManager.CurrentSaveSlot);
+        //SaveUtility.SaveToSlot(GameManager.Instance.GrabSaveData(), GameManager.CurrentSaveSlot);
+        GameManager.Instance.GetComponent<SaveLoad>().Save();
         gameObject.SetActive(false);
     }
 

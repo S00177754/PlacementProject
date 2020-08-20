@@ -1488,6 +1488,7 @@ MonoBehaviour:
   SlotMenu: {fileID: 817036025}
   OverwriteConfirmation: {fileID: 263891164}
   SaveManager: {fileID: 561531523}
+  Mixer: {fileID: 24100000, guid: cb3a1a3000cf11642adc9b0bcf72d2fe, type: 2}
 --- !u!1 &422495979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,6 +1847,30 @@ MonoBehaviour:
   StartingWeapon: {fileID: 11400000, guid: 9d324bc599625d746be40b17392e0f10, type: 2}
   PlayerInventory: {fileID: 11400000, guid: 22dea3c22d0a6e64dbdeaa29f6874e42, type: 2}
   StartInventory: []
+  NodeList:
+  - {fileID: 11400000, guid: 3b47798042b8a4c4bb5858df7c8cd42d, type: 2}
+  - {fileID: 11400000, guid: 4874e256bdead7e4cbddb5e3039d0690, type: 2}
+  - {fileID: 11400000, guid: 38453df521e19e148a47040fbf5922a6, type: 2}
+  - {fileID: 11400000, guid: 4bb8c88e5d1581d4a9cd494fb7b75100, type: 2}
+  - {fileID: 11400000, guid: b33c19e157f57464c9ed327a4ea01135, type: 2}
+  - {fileID: 11400000, guid: 4058e9bda6ae6564d86384e9a3c3982c, type: 2}
+  - {fileID: 11400000, guid: 80756bb50e844b548bae2b5d8d8ac410, type: 2}
+  - {fileID: 11400000, guid: 1756672d925d3a447904ecdc7c5c58b9, type: 2}
+  - {fileID: 11400000, guid: bf74d3120061ee846aa452b43bd42259, type: 2}
+  - {fileID: 11400000, guid: 5a71dc34092d58643888d3bc93010ce2, type: 2}
+  - {fileID: 11400000, guid: 868352730a0a6b54abb546d040e9e832, type: 2}
+  - {fileID: 11400000, guid: 89c3695a3cced9f429cec3024cd83325, type: 2}
+  - {fileID: 11400000, guid: cba25d70821474a48b274443abe95fdb, type: 2}
+  - {fileID: 11400000, guid: 47d12d48a6c375640a11b1ff10049e18, type: 2}
+  - {fileID: 11400000, guid: 029d69fe5d06c5e498b74d10f5939c81, type: 2}
+  - {fileID: 11400000, guid: c86fe7ac214359b4c9c31cf56a170da9, type: 2}
+  - {fileID: 11400000, guid: 8d77f8ed589335145abbfc78dd2522c1, type: 2}
+  - {fileID: 11400000, guid: e26670e5796b1e249ae7936eb40d2560, type: 2}
+  - {fileID: 11400000, guid: 163e0a5992b984540941b59b061fa3e9, type: 2}
+  - {fileID: 11400000, guid: ea1d6b58a3a9dfd4182548d0f2fc5cd3, type: 2}
+  - {fileID: 11400000, guid: 96ab52682d8087c4ab8dc03691c30844, type: 2}
+  - {fileID: 11400000, guid: 05619247de37c314687dfb0c564408df, type: 2}
+  Quests: {fileID: 11400000, guid: 468481b6c45183c4e9b765560ee00345, type: 2}
   StartPosition: {x: -46, y: 200, z: 207}
   StartRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &566322143

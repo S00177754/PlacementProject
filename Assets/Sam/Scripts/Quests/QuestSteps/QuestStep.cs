@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class QuestStep : ScriptableObject 
 {    
-    protected int ID;
+    public int ID;
     //[SerializeField]
     //[TextArea(10, 15)]
     //public readonly string Description;
