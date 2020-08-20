@@ -18,11 +18,16 @@ public class InputManager : MonoBehaviour
 
     private InventorySystemController Controller;
 
+    private void Awake()
+    {
+        buttonStates = new ButtonStates();
+        radialMenuState = RadialMenuState.None;
+        
+    }
+
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
-        buttonStates = new ButtonStates();
-        radialMenuState = RadialMenuState.None;
         gameStateController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>();
     }
 

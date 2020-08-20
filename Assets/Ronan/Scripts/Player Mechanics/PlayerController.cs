@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    private void CalculateMaxHP()
+    public void CalculateMaxHP()
     {
         MaxHealth = StartingMaxHealth + GetComponent<AbilityTreeManager>().GetHealthBonus() + ((GameStats.VitalityStat - 5) * 5) + GetComponent<EquipmentManager>().Loadout.GetHealthBonus();
 
@@ -88,13 +88,13 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void CalculateMaxMP()
+    public void CalculateMaxMP()
     {
         MaxMP = StartingMaxMP + GetComponent<AbilityTreeManager>().GetMagicBonus() + ((GameStats.MagicStat - 5) * 5) + GetComponent<EquipmentManager>().Loadout.GetMPBonus();
 
-        if (Health > MaxHealth)
+        if (MP > MaxMP)
         {
-            Health = MaxHealth;
+            MP = MaxMP;
         }
 
     }

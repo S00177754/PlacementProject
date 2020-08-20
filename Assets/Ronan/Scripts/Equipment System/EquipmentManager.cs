@@ -10,7 +10,10 @@ public class EquipmentManager : MonoBehaviour
     private void Start()
     {
         HideWeapon();
-        GetComponent<PlayerAttack>().ComboAttackCount = GetAttackDetails().PrimaryAtackPattern.Count;
+        if(GetAttackDetails() != null)
+        {
+            GetComponent<PlayerAttack>().ComboAttackCount = GetAttackDetails().PrimaryAtackPattern.Count;
+        }
         GetComponent<PlayerAttack>().AttachPoints.AttatchTo(AttachPoint.RightHand, Loadout.EquippedWeapon);
     }
 
@@ -25,6 +28,7 @@ public class EquipmentManager : MonoBehaviour
         }
         else
         {
+            if(GetComponent<PlayerAttack>().Equipment.Loadout.EquippedWeapon != null)
             Destroy(GetComponent<PlayerAttack>().Equipment.Loadout.EquippedWeapon.gameObject);
 
             GameObject go = Instantiate(weaponPrefab);
@@ -144,17 +148,23 @@ public class EquipmentManager : MonoBehaviour
 
     public void ShowWeapon()
     {
-        Loadout.EquippedWeapon.gameObject.GetComponentInChildren<MeshRenderer>().enabled = true;
+        if (Loadout.EquippedWeapon != null)
+            Loadout.EquippedWeapon.gameObject.GetComponentInChildren<MeshRenderer>().enabled = true;
     }
 
     public void HideWeapon()
     {
+        if(Loadout.EquippedWeapon != null)
         Loadout.EquippedWeapon.gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
     }
 
     public bool IsWeaponMeshActive()
     {
-        return Loadout.EquippedWeapon.gameObject.GetComponentInChildren<MeshRenderer>().enabled;
+        if (Loadout.EquippedWeapon != null)
+        {
+            return Loadout.EquippedWeapon.gameObject.GetComponentInChildren<MeshRenderer>().enabled;
+        }
+        else return false;
     }
 
 }
