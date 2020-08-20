@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5a57aa1e62c7044fb9bf6e3f44563c6, type: 3}
+  m_Name: BlasterThreeDetails
+  m_EditorClassIdentifier: 
+  WeaponType: 1
+  StatModifier: 1
+  PrimaryAtackPattern:
+  - {fileID: 11400000, guid: 5006767e2d03bde4bb9087508d57272c, type: 2}
+  - {fileID: 11400000, guid: 560d2d2d39b490846a10ad8053b17636, type: 2}
+  - {fileID: 11400000, guid: 85839f25ecdc2ef49b092baf2711cbce, type: 2}
+  ChargeAttack: {fileID: 11400000, guid: 85839f25ecdc2ef49b092baf2711cbce, type: 2}
+  SlamAttack: {fileID: 11400000, guid: 5006767e2d03bde4bb9087508d57272c, type: 2}

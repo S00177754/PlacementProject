@@ -9,7 +9,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
-       Inventory = Instantiate(Inventory); //Copy of object so i dont have to keep resetting values
+       //Inventory = Instantiate(Inventory); //Copy of object so i dont have to keep resetting values
     }
 
     public void PickUpItem()

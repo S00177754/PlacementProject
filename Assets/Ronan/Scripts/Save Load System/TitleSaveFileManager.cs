@@ -13,6 +13,8 @@ public class TitleSaveFileManager : MonoBehaviour
     public WeaponObj StartingWeapon;
     public InventoryObj PlayerInventory;
     public List<ItemObj> StartInventory;
+    public List<AbilityTreeNode> NodeList;
+    public QuestManager Quests;
     public Vector3 StartPosition;
     public Vector3 StartRotation;
 
@@ -27,10 +29,67 @@ public class TitleSaveFileManager : MonoBehaviour
         PlayerInventory.AddItem(StartingWeapon, 1);
         StartInventory.ForEach(x => PlayerInventory.AddItem(x, 1));
 
+        data.Inventory = PlayerInventory;
+
         data.PlayerStats = StartingStats;
         data.PlayerPosition = StartPosition;
         data.PlayerRotation = StartRotation;
         return data;
+    }
+
+    public List<AbilityNodeData> CreateDefaultNodeData()
+    {
+        List<AbilityNodeData> nodeData = new List<AbilityNodeData>();
+        foreach (var node in NodeList)
+        {
+            nodeData.Add(new AbilityNodeData() { IdName = node.IdName, Unlocked = false });
+        }
+        return nodeData;
+    }
+
+    public QuestData CreateDefaultQuestData()
+    {
+        QuestData data = new QuestData();
+        data.MainQuests = new List<QuestObjData>();
+        foreach (var MQ in Quests.MainScenarioQuests)
+        {
+            data.MainQuests.Add(SaveUtility.GetQuestObject(MQ));
+        }
+
+        data.SideQuests = new List<QuestObjData>();
+        foreach (var SQ in Quests.SideQuests)
+        {
+            data.SideQuests.Add(SaveUtility.GetQuestObject(SQ));
+        }
+
+        OverwriteQuests(ref data.MainQuests);
+        OverwriteQuests(ref data.SideQuests);
+
+        return data;
+    }
+
+    public void OverwriteQuests(ref List<QuestObjData> quests)
+    {
+        foreach (var mq in quests)
+        {
+            mq.IsActive = false;
+            mq.IsFound = false;
+            mq.IsComplete = false;
+
+            foreach (var step in mq.CompletedStepData)
+            {
+                step.isComplete = false;
+
+                if (step.GetType() == typeof(MultiQuantityQuestStepData))
+                {
+                    (step as MultiQuantityQuestStepData).Counters.ForEach(c => c = 0);
+                }
+                else if (step.GetType() == typeof(QuantityQuestStepData))
+                {
+                    (step as QuantityQuestStepData).TargetObtained = 0;
+                }
+            }
+        }
     }
 
     private SaveData NewGameData()
@@ -38,6 +97,8 @@ public class TitleSaveFileManager : MonoBehaviour
         SaveData data = new SaveData();
         data.Player = CreateDefaultPlayerData();
         data.NearbyEnemies = new List<EnemySaveData>();
+        data.AbilityNodes = CreateDefaultNodeData();
+        data.Quests = CreateDefaultQuestData();
         return data;
     }
 
@@ -60,6 +121,7 @@ public static class SaveUtility
 
         BinaryFormatter bf = new BinaryFormatter();
         string path = Application.persistentDataPath + $"/SaveDataFile_{slot}.crescent";
+        Debug.Log(path);
         FileStream fs = new FileStream(path, FileMode.Create);
 
         string json = JsonUtility.ToJson(data);
@@ -115,5 +177,81 @@ public static class SaveUtility
 
         return false;
 
+    }
+
+
+    public static QuestStepData GetQuestStepData(QuestStep step)
+    {
+        if (step.GetType() == typeof(LocationQuestStep))
+        {
+            return new LocationQuestStepData()
+            {
+                isComplete = step.isComplete,
+                StepID = step.ID
+            };
+        }
+        else if (step.GetType() == typeof(MultiQuantityQuestStep))
+        {
+            return new MultiQuantityQuestStepData()
+            {
+                isComplete = step.isComplete,
+                StepID = step.ID,
+                Counters = (step as MultiQuantityQuestStep).Counters,
+            };
+        }
+        else if (step.GetType() == typeof(NPCQuestStep))
+        {
+            return new NPCQuestStepData()
+            {
+                isComplete = step.isComplete,
+                StepID = step.ID,
+            };
+        }
+        else if (step.GetType() == typeof(QuantityQuestStep))
+        {
+            return new QuantityQuestStepData()
+            {
+                isComplete = step.isComplete,
+                StepID = step.ID,
+                TargetObtained = (step as QuantityQuestStep).TargetObtained,
+            };
+        }
+
+        return null;
+    }
+
+    public static QuestObjData GetQuestObject(Quest quest)
+    {
+        QuestObjData data = new QuestObjData();
+        data.ID = quest.ID;
+        data.IsActive = quest.isActive;
+        data.IsComplete = quest.isActive;
+        data.IsFound = quest.isFound;
+        data.CompletedStepData = new List<QuestStepData>();
+
+        foreach (var step in quest.CompletedList)
+        {
+            data.CompletedStepData.Add(GetQuestStepData(step));
+        }
+
+        return data;
+    }
+
+    public static QuestData GetQuestData(QuestManager manager)
+    {
+        QuestData data = new QuestData();
+        data.MainQuests = new List<QuestObjData>();
+        foreach (var MQ in manager.MainScenarioQuests)
+        {
+            data.MainQuests.Add(GetQuestObject(MQ));
+        }
+
+        data.SideQuests = new List<QuestObjData>();
+        foreach (var SQ in manager.SideQuests)
+        {
+            data.SideQuests.Add(GetQuestObject(SQ));
+        }
+
+        return data;
     }
 }

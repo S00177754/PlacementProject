@@ -9,15 +9,19 @@ public class TabGroup : MonoBehaviour
     public TabButton currentlySelected; 
     public List<GameObject> tabPannels;
     public GameObject activePage;
-    public Color tabIdleColor;
-    public Color tabHoverColor;
-    public Color tabActiveColor;
+
+    [SerializeField]
+    private Color tabIdleColor;
+    [SerializeField]
+    private Color tabHoverColor;
+    [SerializeField]
+    private Color tabActiveColor;
 
 
     void Start(){
-        tabIdleColor = new Color(0,0,0,1);
-        tabHoverColor = new Color(0,111,255,1);
-        tabActiveColor = new Color(0,255,0,1);
+        tabIdleColor = new Color(0, 0, 0, 1);
+        tabHoverColor = new Color(0, 111, 255, 1);
+        tabActiveColor = new Color(0, 255, 0, 1);
     }
 
     public void Subscribe(TabButton tabButton){
@@ -47,6 +51,7 @@ public class TabGroup : MonoBehaviour
     }
 
     public void OnTabSelected(TabButton tButton){
+
         ResetTabs();
         tButton.isSelected = !tButton.isSelected;
         activePage = tButton.MyPannel;
@@ -82,10 +87,21 @@ public class TabGroup : MonoBehaviour
 
     void SwitchCanvas()
     {
+        //foreach (GameObject child in activePage.transform)
+        //{
+        //    Button destroyMe;
+        //    if(child.TryGetComponentInChildren<Button>() out destroyMe)
+        //        Destroy(child.gameObject);
+        //}
+        //activePage.GetComponentInChildren<ScrollController>().ClearScrollView();
+        //Debug.Log("ScrollController ClearScrollView");
+
         foreach (GameObject page in tabPannels)
         {
             page.SetActive(false);
         }
         activePage.SetActive(true);
+        //activePage.GetComponentInChildren<ScrollController>().FillScrollView();
+
     }
 }

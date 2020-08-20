@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class InventorySystemController : MonoBehaviour
 {
+    public static InventorySystemController Instance;
+
     public bool ItemListActive = false;
 
     [Header("External Requirements")]
@@ -33,6 +35,10 @@ public class InventorySystemController : MonoBehaviour
     private ItemType ListFilter = ItemType.Potion;
     private int childAmount = 0;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     public void Initialize()
     {

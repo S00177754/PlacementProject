@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public enum TitleMenuState { Root, NewGame, LoadGame, Settings}
@@ -14,10 +15,15 @@ public class TitleMenuController : MonoBehaviour
     public TitleSaveFileManager SaveManager;
     private int slot = 0;
 
+    public AudioMixer Mixer;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Mixer.SetFloat("MasterVol", PlayerPrefs.GetFloat("MasterVol"));
+        Mixer.SetFloat("MusicVol", PlayerPrefs.GetFloat("MusicVol"));
+        Mixer.SetFloat("SFXVol", PlayerPrefs.GetFloat("SFXVol"));
+
         ReturnToMenu();
     }
 

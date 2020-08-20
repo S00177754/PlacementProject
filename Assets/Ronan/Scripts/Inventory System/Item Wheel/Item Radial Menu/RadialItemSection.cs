@@ -42,7 +42,8 @@ public class RadialItemSection : RadialMenuSection
         {
             if (PlayerController.Instance.GetComponent<InventoryManager>().Inventory.GetItemRemainingAmount(Item) > 0)
             {
-                if (Item.UseItem(GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer))
+                //if (Item.UseItem(GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer))
+                if (Item.UseItem(PlayerController.Instance))
                 {
                     PlayerController.Instance.GetComponent<InventoryManager>().Inventory.RemoveItem(Item, 1);
                     //Animation

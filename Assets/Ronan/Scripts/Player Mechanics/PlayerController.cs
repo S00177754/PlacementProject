@@ -38,7 +38,10 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        if(BackgroundMusicManager.Instance != null)
         BackgroundMusicManager.Instance.PlayTrack("Chill");
+
+        if(MoneyHUDController.Instance != null)
         MoneyHUDController.Instance.SetAmount(Money);
     }
 

@@ -29,11 +29,25 @@ public class InteractionManager : MonoBehaviour
                     }
                     break;
 
+                case "NPC":
+                    NPCDialogueTrigger ChattyNPC;
+                    if(other.TryGetComponent(out ChattyNPC))
+                    {
+                        if(ChattyNPC.canTalk)
+                        {
+                            GetComponent<InputManager>().buttonStates.SetState(WestButtonState.NPCTalk);
+                            FindObjectOfType<DialogueManager>().SetActiveNPC(ChattyNPC.name);
+                        }
+                    }
+                    break;
+
+
                 case "Merchant":
                     GetComponent<PlayerController>().HUDController.SetupItemNotification("Shop");
                     GetComponent<InputManager>().buttonStates.SetState(WestButtonState.Merchant);
                     MerchantUIController.Instance.SetMerchant(other.gameObject.GetComponent<MerchantComponent>());// Notbeing set
                     break;
+
 
                 default:
                     break;
@@ -58,11 +72,16 @@ public class InteractionManager : MonoBehaviour
                     GetComponent<InputManager>().buttonStates.SetState(WestButtonState.Default);
                     break;
 
+                case "NPC":
+                    GetComponent<InputManager>().buttonStates.SetState(WestButtonState.Default);
+                    break;
+
                 case "Merchant":
                     GetComponent<PlayerController>().HUDController.HideItemNotification();
                     GetComponent<InputManager>().buttonStates.SetState(WestButtonState.Default);
                     MerchantUIController.Instance.SetMerchant(null);
                     break;
+
 
                 default:
                     break;

@@ -12,7 +12,7 @@ public class SaveLoad : MonoBehaviour
     public float EnemySaveRange = 70f;
     public LayerMask EnemyLayer;
     public List<AbilityTreeNode> NodeList;
-
+    public QuestManager Quests;
     
 
     public void Save()
@@ -21,7 +21,8 @@ public class SaveLoad : MonoBehaviour
         saveData.Player = GetPlayerData();
         saveData.NearbyEnemies = GetNearbyEnemies();
         saveData.AbilityNodes = GetNodeData();
-
+        saveData.Quests = SaveUtility.GetQuestData(Quests);
+        SaveUtility.SaveToSlot(saveData, GameManager.CurrentSaveSlot);
     }
 
     public void Load()
@@ -30,8 +31,11 @@ public class SaveLoad : MonoBehaviour
 
         if(SaveUtility.TryLoadFromSlot(GameManager.CurrentSaveSlot, out saveData))
         {
+            //Character Controller has to be disabled?
+            PlayerController.Instance.GetComponent<CharacterController>().enabled = false;
             PlayerController.Instance.transform.position = saveData.Player.PlayerPosition;
             PlayerController.Instance.transform.eulerAngles = saveData.Player.PlayerRotation;
+            PlayerController.Instance.GetComponent<CharacterController>().enabled = true;
 
             PlayerController.Instance.GameStats = saveData.Player.PlayerStats;
             PlayerController.Instance.Money = saveData.Player.PlayerMoney;
@@ -48,11 +52,17 @@ public class SaveLoad : MonoBehaviour
 
             AssignNodeData(saveData.AbilityNodes);
 
+            AssignQuestData(saveData.Quests);
+
             foreach (var foe in saveData.NearbyEnemies)
             {
                 SpawnEnemy(foe.Transform, foe.RemainingHealth, foe.InfoID);
             }
 
+        }
+        else
+        {
+            Debug.LogError("No Save File Detected");
         }
     }
 
@@ -117,6 +127,8 @@ public class SaveLoad : MonoBehaviour
         return list;
     }
 
+    
+
     //LOAD
     private void AssignNodeData(List<AbilityNodeData> data)
     {
@@ -127,7 +139,7 @@ public class SaveLoad : MonoBehaviour
                 if(saveNode.IdName == gameNode.IdName)
                 {
                     gameNode.NodeUnlocked = saveNode.Unlocked;
-                    return;
+                    //return;
                 }
             }
         }
@@ -142,6 +154,62 @@ public class SaveLoad : MonoBehaviour
         go.transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z);
         EnemyStatsScript enemy = go.GetComponent<EnemyStatsScript>();
         enemy.Health = health;
+    }
+
+    private void AssignQuestStepData(QuestStep step, QuestStepData data)
+    {
+        if (step.GetType() == typeof(LocationQuestStep))
+        {
+            step.isComplete = (data as LocationQuestStepData).isComplete;
+            step.ID = (data as LocationQuestStepData).StepID;     
+        }
+        else if (step.GetType() == typeof(MultiQuantityQuestStep))
+        {
+            step.isComplete = (data as MultiQuantityQuestStepData).isComplete;
+            step.ID = (data as MultiQuantityQuestStepData).StepID;
+            (step as MultiQuantityQuestStep).Counters = (data as MultiQuantityQuestStepData).Counters;
+        }
+        else if (step.GetType() == typeof(NPCQuestStep))
+        { 
+                step.isComplete = (data as NPCQuestStepData).isComplete;
+                step.ID = (data as NPCQuestStepData).StepID;
+        }
+        else if (step.GetType() == typeof(QuantityQuestStep))
+        {
+            step.isComplete = (data as QuantityQuestStepData).isComplete;
+            step.ID = (data as QuantityQuestStepData).StepID;
+            (step as QuantityQuestStep).TargetObtained = (data as QuantityQuestStepData).TargetObtained;
+        }
+    }
+
+    private void AssignQuestData(QuestData data)
+    {
+        foreach (var saveQuest in data.MainQuests)
+        {
+            foreach (var gameQuest in Quests.MainScenarioQuests)
+            {
+                if(gameQuest.ID == saveQuest.ID)
+                {
+                    gameQuest.isActive = saveQuest.IsActive;
+                    gameQuest.isFound = saveQuest.IsFound;
+                    gameQuest.isComplete = saveQuest.IsComplete;
+
+                    foreach (var saveStep in saveQuest.CompletedStepData)
+                    {
+                        foreach (var gameStep in gameQuest.CompletedList)
+                        {
+                            if(gameStep.ID == saveStep.StepID)
+                            {
+                                AssignQuestStepData(gameStep, saveStep);
+                                break;
+                            }
+                        }
+                    }
+
+                    break;
+                }
+            }
+        }
     }
 
     #endregion
@@ -160,6 +228,7 @@ public class SaveData
     public List<EnemySaveData> NearbyEnemies;
     public List<AbilityNodeData> AbilityNodes;
     public BossData BossInfo;
+    public QuestData Quests;
 }
 
 [Serializable]
@@ -197,12 +266,14 @@ public class EnemySaveData
     
 }
 
+[Serializable]
 public class AbilityNodeData
 {
     public string IdName;
     public bool Unlocked;
 }
 
+[Serializable]
 public class BossData
 {
     public bool BossOne;
@@ -210,11 +281,52 @@ public class BossData
     public bool BossThree;
 }
 
+[Serializable]
 public class QuestData
 {
-    public int QuestID;
-    public bool IsActive;
-    public bool IsComplete;
-    public QuestStep ActiveStep; //Maybe int id
-    public QuestStep NextStep; //Maybe int id
+    public List<QuestObjData> MainQuests;
+    public List<QuestObjData> SideQuests;
 }
+
+[Serializable]
+public class QuestObjData
+{
+    public string ID;
+    public bool IsActive;
+    public bool IsFound;
+    public bool IsComplete;
+    public List<QuestStepData> CompletedStepData;
+    
+}
+
+#region Quest Steps
+[Serializable]
+public class QuestStepData
+{
+    public int StepID;
+    public bool isComplete;
+}
+
+[Serializable]
+public class QuantityQuestStepData : QuestStepData
+{
+    public int TargetObtained;
+}
+
+[Serializable]
+public class NPCQuestStepData : QuestStepData
+{
+}
+
+[Serializable]
+public class MultiQuantityQuestStepData : QuestStepData
+{
+    public List<int> Counters;
+}
+
+[Serializable]
+public class LocationQuestStepData : QuestStepData
+{
+}
+
+#endregion

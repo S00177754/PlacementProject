@@ -5,12 +5,17 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Quest", menuName = "Quest System/Quest")]
 public class Quest : ScriptableObject 
 {
-    public int ID;
+    //ID used for Structured naming and easier comparison, Name is public view
+    //EG ID: MSQ1, Name: Beginnings
+    public string ID;
     public string Name;
     [TextArea(10, 15)]
     public string Description;
     public bool isActive;
     public bool isComplete;
+
+    public bool isFound;
+
     [SerializeField]
     public bool isMainScenario;
 
@@ -23,40 +28,59 @@ public class Quest : ScriptableObject
     public QuestStep ActiveStep;
     public QuestStep NextStep;
 
-    public void GoToNextStep(){
-        if(ActiveStep.isComplete){
+    public void GoToNextStep()
+    {
+        if(ActiveStep.isComplete)
+        {
             CompletedSteps.Enqueue(ActiveStep);
             ActiveStep = Steps.Dequeue();
             NextStep = Steps.Peek();
         }
+        //AssignActiveStep();
     }
 
     void Start()
     {
         foreach (QuestStep step in StepsList)
         {
+            step.ParentQuest = this;
             Steps.Enqueue(step);
             if(ActiveStep == null && !step.isComplete)
                 ActiveStep = step;
 
         }
+        CheckCompletedSteps();
+        AssignActiveStep();
     }
 
-    // Update is called once per frame
-    void Update()
+    void AssignActiveStep()
     {
-        
-    }
-
-    //Working on generic method to searchfor and add each step to the quest
-    void GetQuests()
-    {
-        GameObject tryThis;
-        QuestStep addThis;
-        for (int i = 1; i < 50; i++)
+        foreach (QuestStep step in StepsList)
         {
-            tryThis = Resources.Load("Sam/QuestSystem/MSQ1S" + i.ToString()) as GameObject;
-            //TryGetComponent<QuestStep>(Resources.Load("Sam/QuestSystem/MSQ1S" + i.ToString()), out addThis);
+            if(!step.isComplete)
+            {
+                ActiveStep = step;
+                break;
+            }
+        }
+    }
+
+
+    public void SwitchIsActive()
+    {
+        isActive = !isActive;
+    }
+
+
+    public void CheckCompletedSteps()
+    {
+        foreach (QuestStep step in StepsList)
+        {
+            if (step.isComplete)
+            {
+                CompletedList.Add(step);
+                CompletedSteps.Enqueue(step);
+            }
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NPCQuestStep", menuName = "Quest System/NPCQuestStep")]
+[CreateAssetMenu(fileName = "NPCQuestStep", menuName = "Quest System/Quest Step/NPCQuestStep")]
 public class NPCQuestStep : QuestStep
 {
     //Quest step to talk to an NPC
@@ -14,15 +14,6 @@ public class NPCQuestStep : QuestStep
 
     //OnTalkTo Event Handle
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 
     public override string GetName()
     {

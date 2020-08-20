@@ -14,10 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainScenarioQuests:
   - {fileID: 11400000, guid: 14ec31d2fea74ad4cb1b238648e1bb74, type: 2}
+  - {fileID: 11400000, guid: f3252515f2445884eafd7fce4707454e, type: 2}
   FoundMSQuests:
   - {fileID: 11400000, guid: 14ec31d2fea74ad4cb1b238648e1bb74, type: 2}
+  - {fileID: 11400000, guid: f3252515f2445884eafd7fce4707454e, type: 2}
   ActiveMain: {fileID: 11400000, guid: 14ec31d2fea74ad4cb1b238648e1bb74, type: 2}
-  SideQuests: []
-  ActiveSides: []
+  SideQuests:
+  - {fileID: 11400000, guid: 5eb87d36bf97423429dc1baf0ada7ac8, type: 2}
+  ActiveSides:
+  - {fileID: 11400000, guid: 5eb87d36bf97423429dc1baf0ada7ac8, type: 2}
+  - {fileID: 0}
   CompletedSides: []
   TrackedQuest: {fileID: 11400000, guid: 14ec31d2fea74ad4cb1b238648e1bb74, type: 2}
