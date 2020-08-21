@@ -13,6 +13,11 @@ public class BaubleSetterMenu : MonoBehaviour
 
     public InventoryItemUsagePanel UsagePanel;
 
+    private void Start()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void Setup(BaubleObj item)
     {
         EquipItem = item;

@@ -22,6 +22,7 @@ public class SaveLoad : MonoBehaviour
         saveData.NearbyEnemies = GetNearbyEnemies();
         saveData.AbilityNodes = GetNodeData();
         saveData.Quests = SaveUtility.GetQuestData(Quests);
+        saveData.TravelPointData = GetFastTravelData();
         SaveUtility.SaveToSlot(saveData, GameManager.CurrentSaveSlot);
     }
 
@@ -46,6 +47,12 @@ public class SaveLoad : MonoBehaviour
             PlayerController.Instance.CalculateMaxMP();
 
             PlayerController.Instance.GetComponent<InventoryManager>().Inventory = saveData.Player.Inventory;
+            if(PlayerController.Instance.GetComponent<InventoryManager>().Inventory == null)
+            {
+                // PlayerController.Instance.GetComponent<InventoryManager>().Inventory = Instantiate(new InventoryObj()); 
+                Debug.Log("Need to add default empty");
+            }
+
             //TODO: Get Weapon from item database and assign
             PlayerController.Instance.GetComponent<InventoryManager>().EquipWeapon(saveData.Player.EquippedWeaponID);
             PlayerController.Instance.GetComponent<EquipmentManager>().Loadout.AccessorySlotOne = saveData.Player.AccessoryOne;
@@ -55,6 +62,8 @@ public class SaveLoad : MonoBehaviour
             AssignNodeData(saveData.AbilityNodes);
 
             AssignQuestData(saveData.Quests);
+
+            AssignFastTravelPoints(saveData.TravelPointData);
 
             foreach (var foe in saveData.NearbyEnemies)
             {
@@ -88,6 +97,18 @@ public class SaveLoad : MonoBehaviour
         data.AccessoryTwo = PlayerController.Instance.GetComponent<EquipmentManager>().Loadout.AccessorySlotTwo;
         data.AccessoryThree = PlayerController.Instance.GetComponent<EquipmentManager>().Loadout.AccessorySlotThree;
 
+
+        return data;
+    }
+
+    private List<TravelPointData> GetFastTravelData()
+    {
+        List<TravelPointData> data = new List<TravelPointData>();
+
+        foreach (var point in TravelPoint.FastTravelPoints)
+        {
+                data.Add(new TravelPointData() { LocationName = point.Value.LocationName, Unlocked = point.Value.TeleportUnlocked });
+        }
 
         return data;
     }
@@ -142,6 +163,21 @@ public class SaveLoad : MonoBehaviour
                 {
                     gameNode.NodeUnlocked = saveNode.Unlocked;
                     //return;
+                }
+            }
+        }
+    }
+
+    private void AssignFastTravelPoints(List<TravelPointData> data)
+    {
+        foreach (var dataPoint in data)
+        {
+            foreach (var gamePoint in TravelPoint.FastTravelPoints)
+            {
+                if(gamePoint.Value.LocationName == dataPoint.LocationName)
+                {
+                    gamePoint.Value.TeleportUnlocked = dataPoint.Unlocked;
+                    break;
                 }
             }
         }
@@ -229,6 +265,7 @@ public class SaveData
     public PlayerSaveData Player;
     public List<EnemySaveData> NearbyEnemies;
     public List<AbilityNodeData> AbilityNodes;
+    public List<TravelPointData> TravelPointData;
     public BossData BossInfo;
     public QuestData Quests;
 }
@@ -299,6 +336,13 @@ public class QuestObjData
     public bool IsComplete;
     public List<QuestStepData> CompletedStepData;
     
+}
+
+[Serializable]
+public class TravelPointData
+{
+    public string LocationName;
+    public bool Unlocked;
 }
 
 #region Quest Steps

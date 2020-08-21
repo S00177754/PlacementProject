@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RadialMenuController : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class RadialMenuController : MonoBehaviour
     //*************** Private Variables ******************
     private Vector2 input_axis;
     protected int segmentNum = -1;
+    private Vector2 MousePosition;
 
     //**************** Monobehaviour Methods ******************
     public virtual void Update()
@@ -47,8 +49,15 @@ public class RadialMenuController : MonoBehaviour
     //**************** Radial Input & Calculation ********************
     public virtual void Input(Vector2 input)
     {
+        //if (PlayerController.Instance.GetComponent<PlayerInput>().currentControlScheme == "Keyboard&Mouse")
+        //{
+            
+        //}
+        //else
         if (IsActive)
+        {
             input_axis = input;
+        }
     }
 
     protected double DistanceFromCircleOrigin(Vector2 origin, Vector2 point)
@@ -147,6 +156,12 @@ public class RadialMenuController : MonoBehaviour
     {
         segmentNum = -1;
         IsActive = true;
+        if (PlayerController.Instance.GetComponent<PlayerInput>().currentControlScheme == "Keyboard&Mouse")
+        {
+            MousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            Debug.Log("MOUSE POSITION TRACKED - " + MousePosition.ToString());
+        }
+
         Input(Vector2.zero);
     }
 

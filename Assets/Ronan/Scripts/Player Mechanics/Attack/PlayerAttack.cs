@@ -147,7 +147,7 @@ public class PlayerAttack : MonoBehaviour
     #region Main Attack
     public void Charge()
     {
-        if (!IsAttacking && !GetComponent<PlayerMovement>().IsCrouching)
+        if (!IsAttacking && !GetComponent<PlayerMovement>().IsCrouching && GetComponent<EquipmentManager>().Loadout.EquippedWeapon != null)
         {
             Equipment.ShowWeapon();
             GetComponent<PlayerAnimator>().Animator.ResetTrigger("CancelCharge");

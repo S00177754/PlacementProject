@@ -42,7 +42,7 @@ public class PauseMenuController : MonoBehaviour
         SaveConfirm.gameObject.SetActive(false);
         ReturnConfirm.gameObject.SetActive(false);
         SetMenuState(PauseMenuState.RootMenu);
-        gameObject.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     private void Update()

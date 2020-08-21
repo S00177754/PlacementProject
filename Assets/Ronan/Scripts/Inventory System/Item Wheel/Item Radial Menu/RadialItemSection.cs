@@ -40,6 +40,7 @@ public class RadialItemSection : RadialMenuSection
     {
         if (GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().Party.Count == 0)
         {
+            if(Item != null)
             if (PlayerController.Instance.GetComponent<InventoryManager>().Inventory.GetItemRemainingAmount(Item) > 0)
             {
                 //if (Item.UseItem(GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MainPlayer))

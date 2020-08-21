@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ItemRadialMenuController : RadialMenuController
 {
@@ -8,6 +9,8 @@ public class ItemRadialMenuController : RadialMenuController
     [Header("Radial Elements")]
     public ItemWheelPanel InfoPanel;//Refactor to item because not all radial menus need a centre panel
     public Dictionary<int,ItemObj> ItemsToPopulate = new Dictionary<int, ItemObj>();
+
+    
 
     //**************** Monobehaviour Methods ******************
     public override void Update()
@@ -47,6 +50,7 @@ public class ItemRadialMenuController : RadialMenuController
         InfoPanel.ItemDescriptionField.text = "";
         InfoPanel.ItemAmountField.text = "";
 
+        
         PopulateWheel();
     }
 
