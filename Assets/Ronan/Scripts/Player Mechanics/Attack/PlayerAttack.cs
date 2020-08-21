@@ -169,6 +169,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack()
     {
+        if(Equipment.Loadout.EquippedWeapon != null)
         switch (Equipment.Loadout.EquippedWeapon.attackType)
         {
             case AttackType.Melee:

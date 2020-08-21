@@ -31,6 +31,9 @@ public class TitleSaveFileManager : MonoBehaviour
 
         data.Inventory = PlayerInventory;
 
+        data.HP = 100;
+        data.MP = 100;
+
         data.PlayerStats = StartingStats;
         data.PlayerPosition = StartPosition;
         data.PlayerRotation = StartRotation;

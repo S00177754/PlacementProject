@@ -42,10 +42,12 @@ public class SaveLoad : MonoBehaviour
 
             PlayerController.Instance.Health = saveData.Player.HP;
             PlayerController.Instance.MP = saveData.Player.MP;
+            PlayerController.Instance.CalculateMaxHP();
+            PlayerController.Instance.CalculateMaxMP();
 
             PlayerController.Instance.GetComponent<InventoryManager>().Inventory = saveData.Player.Inventory;
             //TODO: Get Weapon from item database and assign
-            //PlayerController.Instance.GetComponent<EquipmentManager>().Loadout.EquippedWeapon
+            PlayerController.Instance.GetComponent<InventoryManager>().EquipWeapon(saveData.Player.EquippedWeaponID);
             PlayerController.Instance.GetComponent<EquipmentManager>().Loadout.AccessorySlotOne = saveData.Player.AccessoryOne;
             PlayerController.Instance.GetComponent<EquipmentManager>().Loadout.AccessorySlotTwo = saveData.Player.AccessoryTwo;
             PlayerController.Instance.GetComponent<EquipmentManager>().Loadout.AccessorySlotOne = saveData.Player.AccessoryOne;

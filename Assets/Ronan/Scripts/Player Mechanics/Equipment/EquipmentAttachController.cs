@@ -17,6 +17,9 @@ public class EquipmentAttachController
 
     public void AttatchTo(AttachPoint attachPoint, WeaponInfo info)
     {
+        if (info == null)
+            return;
+
         Quaternion rotation;
         switch (attachPoint)
         {
