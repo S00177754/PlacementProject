@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cfaa6bed46a2451baf3fd1ce3b2ed25, type: 3}
+  m_Name: MSQ3
+  m_EditorClassIdentifier: 
+  ID: MSQ3
+  Name: Main Quest 3
+  Description: Third Main Quest
+  isActive: 0
+  isComplete: 0
+  isFound: 0
+  isMainScenario: 1
+  QuestGiver: {fileID: 0}
+  QuestReturn: {fileID: 0}
+  CompletedList: []
+  StepsList:
+  - {fileID: 11400000, guid: 2c46171b8f794224fbc39904790380f9, type: 2}
+  - {fileID: 11400000, guid: c66572e3bc568194a9c07ef083b1284a, type: 2}
+  - {fileID: 11400000, guid: d1d4104a456155a4bbe93f21c89b9f51, type: 2}
+  ActiveStep: {fileID: 0}
+  NextStep: {fileID: 0}

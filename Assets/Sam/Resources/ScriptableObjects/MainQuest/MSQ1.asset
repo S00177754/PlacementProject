@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cfaa6bed46a2451baf3fd1ce3b2ed25, type: 3}
+  m_Name: MSQ1
+  m_EditorClassIdentifier: 
+  ID: MSQ1
+  Name: Main Quest 1
+  Description: 'This is a test quest '
+  isActive: 0
+  isComplete: 0
+  isFound: 0
+  isMainScenario: 1
+  QuestGiver: {fileID: 0}
+  QuestReturn: {fileID: 0}
+  CompletedList: []
+  StepsList:
+  - {fileID: 11400000, guid: da84e95096d4d6749a47aa113fdb7b37, type: 2}
+  - {fileID: 11400000, guid: 0d5a87a6d34dfcd40b915f3524fe8608, type: 2}
+  - {fileID: 11400000, guid: 5338950f4196ebd419aaa12b517ccd84, type: 2}
+  - {fileID: 11400000, guid: 0da8afa2d1f974349bdcd757513b159e, type: 2}
+  ActiveStep: {fileID: 11400000, guid: 5338950f4196ebd419aaa12b517ccd84, type: 2}
+  NextStep: {fileID: 11400000, guid: 0da8afa2d1f974349bdcd757513b159e, type: 2}

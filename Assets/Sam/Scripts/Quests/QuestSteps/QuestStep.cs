@@ -5,12 +5,7 @@ using UnityEngine;
 
 public class QuestStep : ScriptableObject 
 {    
-    public int ID;
-    //[SerializeField]
-    //[TextArea(10, 15)]
-    //public readonly string Description;
-    //[SerializeField]
-    //public readonly string Name; 
+    public string ID;
     public bool isComplete;
     public Quest ParentQuest;
 
