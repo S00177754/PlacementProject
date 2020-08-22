@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SQ6
   m_EditorClassIdentifier: 
   ID: SQ6
-  Name: Side Quest 6
-  Description: Sixth Side Quest
+  Name: Caught Red-Bandit
+  Description: Deal with the bandit problem in the old ruins.
   isActive: 0
   isComplete: 0
   isFound: 0
@@ -22,6 +22,10 @@ MonoBehaviour:
   QuestGiver: {fileID: 0}
   QuestReturn: {fileID: 0}
   CompletedList: []
-  StepsList: []
+  StepsList:
+  - {fileID: 11400000, guid: 6a2c096d113474f4caf35a4b29b26708, type: 2}
+  - {fileID: 11400000, guid: 6468217d6415e46f09f7fd1bde2e32c2, type: 2}
+  - {fileID: 11400000, guid: bec8e727292b14da283915301313c7a4, type: 2}
+  - {fileID: 11400000, guid: d62ac9c8935384922aa9de599d793fbc, type: 2}
   ActiveStep: {fileID: 0}
   NextStep: {fileID: 0}
