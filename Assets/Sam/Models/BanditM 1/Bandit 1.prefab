@@ -1685,9 +1685,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 4544557280284553259}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: 0.00050999224, y: 1.6116827, z: 0.05358442}
+    m_Extent: {x: 0.109901585, y: 0.12929535, z: 0.07407745}
+  m_DirtyAABB: 0
 --- !u!1 &3982618435022297500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1895,9 +1895,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 4544557280284553259}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: 0.00051015615, y: 0.8749937, z: 0.022265427}
+    m_Extent: {x: 0.7811907, y: 0.8751329, z: 0.16236803}
+  m_DirtyAABB: 0
 --- !u!1 &4221237312979877106
 GameObject:
   m_ObjectHideFlags: 0
@@ -2370,9 +2370,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 4544557280284553259}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: -0.0013851002, y: 1.658481, z: 0.0068061203}
+    m_Extent: {x: 0.13996431, y: 0.14871371, z: 0.155085}
+  m_DirtyAABB: 0
 --- !u!1 &5021426284086734568
 GameObject:
   m_ObjectHideFlags: 0
@@ -2451,6 +2451,7 @@ GameObject:
   - component: {fileID: 6627121079741802181}
   - component: {fileID: 5732467591399635834}
   - component: {fileID: 2174618845838455839}
+  - component: {fileID: 8948504444322311968}
   m_Layer: 0
   m_Name: Bandit 1
   m_TagString: Untagged
@@ -2740,6 +2741,20 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurveXRangeDegree: 90
     CurveYRangeDegree: 10
+--- !u!136 &8948504444322311968
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5170361011406997439}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.23635769
+  m_Height: 1.7880385
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8951379, z: 0}
 --- !u!1 &5266721177773508911
 GameObject:
   m_ObjectHideFlags: 0

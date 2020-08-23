@@ -3436,6 +3436,7 @@ GameObject:
   - component: {fileID: 3770214757834642839}
   - component: {fileID: 3852808898153224164}
   - component: {fileID: 460525214493501320}
+  - component: {fileID: 185886665216835129}
   m_Layer: 0
   m_Name: BanditF 1
   m_TagString: Untagged
@@ -3725,6 +3726,20 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurveXRangeDegree: 90
     CurveYRangeDegree: 10
+--- !u!136 &185886665216835129
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4516709944550761201}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.23635769
+  m_Height: 1.6193252
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.81078124, z: 0}
 --- !u!1 &4526141748962686043
 GameObject:
   m_ObjectHideFlags: 0

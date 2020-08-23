@@ -1150,9 +1150,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 3434843720285916941}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: 0.00047770888, y: 1.584321, z: 0.036213174}
+    m_Extent: {x: 0.1081648, y: 0.11884248, z: 0.0745693}
+  m_DirtyAABB: 0
 --- !u!1 &2143253038857669750
 GameObject:
   m_ObjectHideFlags: 0
@@ -4365,9 +4365,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 3434843720285916941}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: 0.00047826767, y: 0.8573134, z: -0.02255252}
+    m_Extent: {x: 0.6919993, y: 0.85732365, z: 0.25720194}
+  m_DirtyAABB: 0
 --- !u!1 &6056264586989105966
 GameObject:
   m_ObjectHideFlags: 0
@@ -5193,6 +5193,7 @@ GameObject:
   - component: {fileID: 78243839945443118}
   - component: {fileID: 6023854026573299796}
   - component: {fileID: 7411988456278831417}
+  - component: {fileID: 6622266486069128344}
   m_Layer: 0
   m_Name: Victoria_Rubin
   m_TagString: Untagged
@@ -5482,6 +5483,20 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurveXRangeDegree: 90
     CurveYRangeDegree: 10
+--- !u!136 &6622266486069128344
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7294141083011534304}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.23635769
+  m_Height: 1.7651286
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.88368297, z: 0}
 --- !u!1 &7363733183296499156
 GameObject:
   m_ObjectHideFlags: 0
@@ -6639,9 +6654,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 3434843720285916941}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: -0.02919367, y: 1.5388513, z: -0.03208808}
+    m_Extent: {x: 0.17419976, y: 0.19847614, z: 0.15731189}
+  m_DirtyAABB: 0
 --- !u!1 &8758677853575226721
 GameObject:
   m_ObjectHideFlags: 0

@@ -861,9 +861,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 7309387612966367464}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: 0.00042179227, y: 0.83885705, z: -0.020852305}
+    m_Extent: {x: 0.6919998, y: 0.83897185, z: 0.21904743}
+  m_DirtyAABB: 0
 --- !u!1 &942276023822505611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1396,9 +1396,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 7309387612966367464}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: 0.00042065978, y: 1.5497901, z: 0.035057507}
+    m_Extent: {x: 0.10765467, y: 0.11685252, z: 0.07411061}
+  m_DirtyAABB: 0
 --- !u!1 &1471772741526513097
 GameObject:
   m_ObjectHideFlags: 0
@@ -2481,6 +2481,7 @@ GameObject:
   - component: {fileID: 3063027729921294086}
   - component: {fileID: 5243448295837298216}
   - component: {fileID: 1531616684563145187}
+  - component: {fileID: 1011959844926882409}
   m_Layer: 0
   m_Name: Vita
   m_TagString: Untagged
@@ -2770,6 +2771,20 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurveXRangeDegree: 90
     CurveYRangeDegree: 15.990784
+--- !u!136 &1011959844926882409
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3048104888105384365}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.23635769
+  m_Height: 1.7247765
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8635069, z: 0}
 --- !u!1 &3194894981692653734
 GameObject:
   m_ObjectHideFlags: 0
@@ -5526,9 +5541,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 7309387612966367464}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: -0.0011358857, y: 1.5712323, z: -0.016006619}
+    m_Extent: {x: 0.13728267, y: 0.14173013, z: 0.14051044}
+  m_DirtyAABB: 0
 --- !u!1 &6761227053104767263
 GameObject:
   m_ObjectHideFlags: 0

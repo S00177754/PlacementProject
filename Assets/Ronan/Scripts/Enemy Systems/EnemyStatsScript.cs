@@ -8,6 +8,7 @@ public class EnemyStatsScript : MonoBehaviour
     public int Health = 20;
     public GameObject ItemPickup;
     public static GameObject PickupTemplate;
+    public Animator Anim;
 
     private void Awake()
     {
@@ -40,6 +41,7 @@ public class EnemyStatsScript : MonoBehaviour
     public IEnumerator DeathLogic()
     {
         //TODO Death animation
+        Anim.SetTrigger("Death");
 
         PlayerController.Instance.AddExperience(Info.Experience);
         MoneyHUDController.Instance.SetAmount(PlayerController.Instance.Money);
@@ -62,7 +64,7 @@ public class EnemyStatsScript : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         Destroy(gameObject);
     }
 

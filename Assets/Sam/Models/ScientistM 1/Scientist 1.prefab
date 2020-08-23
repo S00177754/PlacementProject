@@ -1269,9 +1269,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 7577300339263090576}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: 0.0006039068, y: 1.6565592, z: 0.052993402}
+    m_Extent: {x: 0.11186745, y: 0.12348783, z: 0.074746}
+  m_DirtyAABB: 0
 --- !u!1 &4889197309758531473
 GameObject:
   m_ObjectHideFlags: 0
@@ -2054,9 +2054,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 7577300339263090576}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: -0.080598116, y: 1.6474323, z: 0.03610926}
+    m_Extent: {x: 0.10149883, y: 0.16215539, z: 0.11320741}
+  m_DirtyAABB: 0
 --- !u!1 &7489210255106101426
 GameObject:
   m_ObjectHideFlags: 0
@@ -2197,6 +2197,7 @@ GameObject:
   - component: {fileID: 9183615656995564650}
   - component: {fileID: 1660967440921661415}
   - component: {fileID: 3618072593375469322}
+  - component: {fileID: 355891911373155613}
   m_Layer: 0
   m_Name: Scientist 1
   m_TagString: Untagged
@@ -2486,6 +2487,20 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurveXRangeDegree: 90
     CurveYRangeDegree: 10
+--- !u!136 &355891911373155613
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8036404302950351218}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.23635769
+  m_Height: 1.8090229
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9056301, z: 0}
 --- !u!1 &8059367386257222669
 GameObject:
   m_ObjectHideFlags: 0
@@ -2763,9 +2778,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 7577300339263090576}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: 0.00060391426, y: 0.8983637, z: -0.045479886}
+    m_Extent: {x: 0.78119075, y: 0.8983642, z: 0.22833961}
+  m_DirtyAABB: 0
 --- !u!1 &8698013450218723495
 GameObject:
   m_ObjectHideFlags: 0

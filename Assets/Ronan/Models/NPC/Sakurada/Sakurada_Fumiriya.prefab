@@ -793,9 +793,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 6965165664981536064}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: 0.0067339316, y: 1.790456, z: -0.012227982}
+    m_Extent: {x: 0.12867558, y: 0.13109756, z: 0.15897329}
+  m_DirtyAABB: 0
 --- !u!1 &1678875431749641785
 GameObject:
   m_ObjectHideFlags: 0
@@ -3555,9 +3555,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 6965165664981536064}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: 0.0007614121, y: 1.7531402, z: 0.05381564}
+    m_Extent: {x: 0.107745945, y: 0.11893821, z: 0.07199212}
+  m_DirtyAABB: 0
 --- !u!1 &7484779938987201828
 GameObject:
   m_ObjectHideFlags: 0
@@ -3782,6 +3782,7 @@ GameObject:
   - component: {fileID: 202742124178048080}
   - component: {fileID: 5573412533588536034}
   - component: {fileID: 817117706031792007}
+  - component: {fileID: 7959674565260026163}
   m_Layer: 0
   m_Name: Sakurada_Fumiriya
   m_TagString: Untagged
@@ -4071,6 +4072,20 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurveXRangeDegree: 90
     CurveYRangeDegree: 10
+--- !u!136 &7959674565260026163
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8259298608430945659}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.23635769
+  m_Height: 1.9166203
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9594288, z: 0}
 --- !u!1 &8519928144628760924
 GameObject:
   m_ObjectHideFlags: 0
@@ -4427,9 +4442,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 6965165664981536064}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: 0.00076150894, y: 0.94414973, z: 0.028188303}
+    m_Extent: {x: 0.78119063, y: 0.9439949, z: 0.14494818}
+  m_DirtyAABB: 0
 --- !u!1 &9171759430732161013
 GameObject:
   m_ObjectHideFlags: 0

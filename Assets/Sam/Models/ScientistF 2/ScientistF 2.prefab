@@ -1047,9 +1047,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 2153084140831844153}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: 0.0003093779, y: 0.813742, z: -0.038785994}
+    m_Extent: {x: 0.69199884, y: 0.8138179, z: 0.19956607}
+  m_DirtyAABB: 0
 --- !u!1 &1492177593785747517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1471,9 +1471,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 2153084140831844153}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: 0.00030910224, y: 1.4998058, z: 0.0337253}
+    m_Extent: {x: 0.108729124, y: 0.116593, z: 0.07424169}
+  m_DirtyAABB: 0
 --- !u!1 &1978043718179100076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1748,9 +1748,9 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 2153084140831844153}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+    m_Center: {x: 0.007231027, y: 1.360076, z: -0.044856247}
+    m_Extent: {x: 0.18838385, y: 0.28506893, z: 0.15650985}
+  m_DirtyAABB: 0
 --- !u!1 &1981846507689606720
 GameObject:
   m_ObjectHideFlags: 0
@@ -2823,6 +2823,7 @@ GameObject:
   - component: {fileID: 5800391422210631627}
   - component: {fileID: 7871516001889265450}
   - component: {fileID: 7617235559213814176}
+  - component: {fileID: 1487894889070629616}
   m_Layer: 0
   m_Name: ScientistF 2
   m_TagString: Untagged
@@ -3112,6 +3113,20 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurveXRangeDegree: 90
     CurveYRangeDegree: 10
+--- !u!136 &1487894889070629616
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4253517068659627240}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.23635769
+  m_Height: 1.6477292
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.82498324, z: 0}
 --- !u!1 &4312676713593795434
 GameObject:
   m_ObjectHideFlags: 0
