@@ -73,9 +73,7 @@ public class QuestManager : ScriptableObject
     }
 
     public void MoveToNextStepMSQ(Quest moveOn){
-        if(moveOn.isComplete && moveOn.isActive){
-            
-        }
+        moveOn.GoToNextStep();
     }
 
     public void LoadMSQ(){

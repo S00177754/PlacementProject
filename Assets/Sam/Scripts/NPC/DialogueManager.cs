@@ -20,7 +20,7 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
-        scentences = new Queue<string>();
+        //scentences = new Queue<string>();
         gameStateController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>();
 
     }
@@ -85,6 +85,7 @@ public class DialogueManager : MonoBehaviour
         animator.SetBool("IsOpen", false);
         Debug.Log("End of conversation");
         GameStateController.SetGameState(GameState.Explore);
+        
     }
 
     public void SetActiveNPC(string name)

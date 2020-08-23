@@ -26,6 +26,8 @@ public class NPCDialogueTrigger : MonoBehaviour
         CheckForQuest();
         CheckDialogue(ActiveQuest.Name);
 
+        Location = this.gameObject.transform.position;
+        
         if (conversations.Count > 0)
             canTalk = true;
         else

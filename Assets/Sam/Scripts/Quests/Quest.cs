@@ -18,12 +18,14 @@ public class Quest : ScriptableObject
 
     [SerializeField]
     public bool isMainScenario;
+    [SerializeField]
+    QuestManager QuestManager;
 
     public NPCDialogueTrigger QuestGiver;
     public NPCDialogueTrigger QuestReturn;
     public Queue<QuestStep> CompletedSteps;
     public List<QuestStep> CompletedList;
-    public Queue<QuestStep> Steps;
+    public Queue<QuestStep> StepsQueue;
     public List<QuestStep> StepsList;
     public QuestStep ActiveStep;
     public QuestStep NextStep;
@@ -32,9 +34,20 @@ public class Quest : ScriptableObject
     {
         if(ActiveStep.isComplete)
         {
-            CompletedSteps.Enqueue(ActiveStep);
-            ActiveStep = Steps.Dequeue();
-            NextStep = Steps.Peek();
+            if (CompletedSteps.Count != StepsList.Count)
+            {
+                CompletedSteps.Enqueue(ActiveStep);
+
+                if (StepsQueue.Count > 0)
+                    ActiveStep = StepsQueue.Dequeue();
+                if (StepsQueue.Count > 1)
+                    NextStep = StepsQueue.Peek();
+            }
+            else
+            {
+                isComplete = true;
+                QuestManager.AssignNextQuest();
+            }            
         }
         //AssignActiveStep();
     }
@@ -44,7 +57,7 @@ public class Quest : ScriptableObject
         foreach (QuestStep step in StepsList)
         {
             step.ParentQuest = this;
-            Steps.Enqueue(step);
+            StepsQueue.Enqueue(step);
             if(ActiveStep == null && !step.isComplete)
                 ActiveStep = step;
 
@@ -57,10 +70,15 @@ public class Quest : ScriptableObject
     {
         foreach (QuestStep step in StepsList)
         {
-            if(!step.isComplete)
+            if (!step.isComplete)
             {
                 ActiveStep = step;
                 break;
+            }
+            else
+            {
+                isComplete = true;
+
             }
         }
     }
@@ -74,6 +92,8 @@ public class Quest : ScriptableObject
 
     public void CheckCompletedSteps()
     {
+        CompletedList.Clear();
+        CompletedSteps.Clear();
         foreach (QuestStep step in StepsList)
         {
             if (step.isComplete)

@@ -6,6 +6,7 @@ using UnityEngine;
 public class ScrollController : MonoBehaviour
 {
     [SerializeField]
+    [Header("Required")]
     QuestManager Manager;
 
     public GameObject ButtonPrefab;
