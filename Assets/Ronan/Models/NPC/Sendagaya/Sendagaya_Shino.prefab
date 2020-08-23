@@ -521,6 +521,7 @@ GameObject:
   - component: {fileID: 7831520367768424524}
   - component: {fileID: 2237996560772001896}
   - component: {fileID: 2942148999288105227}
+  - component: {fileID: 8009371729963560550}
   m_Layer: 0
   m_Name: Sendagaya_Shino
   m_TagString: Untagged
@@ -810,6 +811,20 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurveXRangeDegree: 90
     CurveYRangeDegree: 10
+--- !u!136 &8009371729963560550
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130681761525534279}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.23635769
+  m_Height: 1.6454248
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8238311, z: 0}
 --- !u!1 &1226016635375347752
 GameObject:
   m_ObjectHideFlags: 0

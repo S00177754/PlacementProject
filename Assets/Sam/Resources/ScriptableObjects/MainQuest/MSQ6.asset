@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: MSQ6
   m_EditorClassIdentifier: 
   ID: MSQ6
-  Name: Main Quest 6
-  Description: Sixth Main Quest
+  Name: Life Vita
+  Description: Talk with the mysterious girl.
   isActive: 0
   isComplete: 0
   isFound: 0
@@ -22,6 +22,10 @@ MonoBehaviour:
   QuestGiver: {fileID: 0}
   QuestReturn: {fileID: 0}
   CompletedList: []
-  StepsList: []
+  StepsList:
+  - {fileID: 11400000, guid: 5bec6175d760f441f82076249dfdabe1, type: 2}
+  - {fileID: 11400000, guid: d460cc9d16c52402fb49bc5d0c56d07a, type: 2}
+  - {fileID: 11400000, guid: 52fe6de67124f406a9b68e6fb39d0a65, type: 2}
+  - {fileID: 11400000, guid: a8d0cf3d059684cb2b16e9e5aa4e7502, type: 2}
   ActiveStep: {fileID: 0}
   NextStep: {fileID: 0}

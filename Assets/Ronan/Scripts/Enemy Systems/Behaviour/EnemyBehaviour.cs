@@ -19,6 +19,8 @@ public class EnemyBehaviour : MonoBehaviour
     public List<EnemyPathNode> EnemyPath;
     public EnemyPathNode NextEnemyNode;
     protected bool NeedsRecalculation = false;
+    public Animator Anim;
+    public Transform ViewPos;
 
 
     protected virtual void Start()
@@ -32,10 +34,27 @@ public class EnemyBehaviour : MonoBehaviour
         {
             GetFullPath();
         }
+
     }
 
     protected virtual void Update()
     {
+        if (!Navigator.isStopped)
+        {
+            if(Navigator.speed == Stats.Info.PatrolSpeed)
+            {
+                Anim.SetFloat("Speed", 0.5f);
+            }
+            else if(Navigator.speed == Stats.Info.ChaseSpeed)
+            {
+                Anim.SetFloat("Speed", 1f);
+            }
+        }
+        else
+        {
+            Anim.SetFloat("Speed", 0f);
+        }
+
         if(Vector3.Distance(PlayerController.Instance.transform.position,transform.position) > PlayerSettings.EnemyDespawnRange)
         {
             Destroy(this.gameObject);
@@ -47,9 +66,14 @@ public class EnemyBehaviour : MonoBehaviour
         EnemyCount--;
     }
 
+    //IEnumerator DestroyLogic()
+    //{
+
+    //}
+
     public bool HasLineOfSight()
     {
-        Ray lineOfSightRay = new Ray(transform.position, (Tracker.trackedObject.transform.position - transform.position).normalized);
+        Ray lineOfSightRay = new Ray(ViewPos.position, (Tracker.trackedObject.transform.position - ViewPos.position).normalized);
 
         RaycastHit hitResult;
         bool HasHit = Physics.Raycast(lineOfSightRay, out hitResult, Mathf.Infinity);

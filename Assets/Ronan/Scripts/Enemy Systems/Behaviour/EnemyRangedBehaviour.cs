@@ -71,6 +71,7 @@ public class EnemyRangedBehaviour : EnemyBehaviour
             Rigidbody rb = Instantiate(ProjectilePrefab, BulletSpawnPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.velocity = (Tracker.trackedObject.transform.position - BulletSpawnPoint.position).normalized * ProjectileVelocity;
             rb.GetComponent<ProjectileBehaviour>().DamageValue = Stats.Info.Attack;
+            Anim.SetTrigger("Attack");
         }
     }
 

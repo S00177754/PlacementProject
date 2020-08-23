@@ -6430,6 +6430,7 @@ GameObject:
   - component: {fileID: 4630360502650719787}
   - component: {fileID: 1680462591160956565}
   - component: {fileID: 7973968224616103346}
+  - component: {fileID: 6991514112200224436}
   m_Layer: 0
   m_Name: Vivi
   m_TagString: Untagged
@@ -6719,6 +6720,20 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurveXRangeDegree: 90
     CurveYRangeDegree: 18.663593
+--- !u!136 &6991514112200224436
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9152990914181475899}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.23635769
+  m_Height: 1.4150577
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.7086475, z: 0}
 --- !u!1 &9164705752353662265
 GameObject:
   m_ObjectHideFlags: 0

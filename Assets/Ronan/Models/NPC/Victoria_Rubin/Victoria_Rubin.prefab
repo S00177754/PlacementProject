@@ -5193,6 +5193,7 @@ GameObject:
   - component: {fileID: 78243839945443118}
   - component: {fileID: 6023854026573299796}
   - component: {fileID: 7411988456278831417}
+  - component: {fileID: 6622266486069128344}
   m_Layer: 0
   m_Name: Victoria_Rubin
   m_TagString: Untagged
@@ -5482,6 +5483,20 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurveXRangeDegree: 90
     CurveYRangeDegree: 10
+--- !u!136 &6622266486069128344
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7294141083011534304}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.23635769
+  m_Height: 1.7651286
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.88368297, z: 0}
 --- !u!1 &7363733183296499156
 GameObject:
   m_ObjectHideFlags: 0
