@@ -8,9 +8,8 @@ public class EnemySpawner : MonoBehaviour
 
     public GameObject SpawnEntity;
     public float SpawnerCooldown = 10f;
-    public EnemyPathNode EnemyPath;
+    public List<EnemyPathNode> EnemyPaths;
     public List<Transform> SpawnPoints;
-    public List<EnemyPathNode> PossibleEnemyPaths;
 
     private bool IsPlayerInRange = false;
     private float SpawnClock = 0f;
@@ -57,12 +56,17 @@ public class EnemySpawner : MonoBehaviour
     {
         //Debug.Log("Spawning");
         GameObject go = Instantiate(SpawnEntity,RandomSpawnPoint().position,Quaternion.identity);
-        go.GetComponent<EnemyBehaviour>().NextEnemyNode = EnemyPath;
+        go.GetComponent<EnemyBehaviour>().NextEnemyNode = RandomEnemyPath();
         go.GetComponent<EnemyBehaviour>().GetFullPath();
     }
 
     private Transform RandomSpawnPoint()
     {
         return SpawnPoints[Random.Range(0, SpawnPoints.Count)];
+    }
+
+    private EnemyPathNode RandomEnemyPath()
+    {
+        return EnemyPaths[Random.Range(0, EnemyPaths.Count)];
     }
 }

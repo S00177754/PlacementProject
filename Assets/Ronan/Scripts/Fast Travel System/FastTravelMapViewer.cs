@@ -8,6 +8,7 @@ public class FastTravelMapViewer : MonoBehaviour
     public RectTransform MapImage;
     public RectTransform LocationIcon;
     public Vector2 maxWorldDiemnsions;
+    public bool PlayerCorrection = false;
 
     public void MoveIcon(Vector3 worldPosition)
     {
@@ -15,7 +16,7 @@ public class FastTravelMapViewer : MonoBehaviour
         float percentageY = worldPosition.z / maxWorldDiemnsions.y;
 
         SetIconVisible(true);
-        LocationIcon.anchoredPosition = new Vector3(percentageX * MapImage.rect.width, percentageY * MapImage.rect.height,0);
+        LocationIcon.anchoredPosition = new Vector3(percentageX * MapImage.rect.width + (PlayerCorrection ? 63 : 0), percentageY * MapImage.rect.height + 10,0);
     }
 
     public void SetIconVisible(bool show)

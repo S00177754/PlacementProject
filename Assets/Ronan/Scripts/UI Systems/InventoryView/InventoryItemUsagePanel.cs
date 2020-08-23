@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryItemUsagePanel : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class InventoryItemUsagePanel : MonoBehaviour
 
     public InventoryItemPanel ActivatedBy;
     public GameObject FirstButton;
+    public Button QuickWheelButton;
     public ItemSettingRadialMenu RadialSetter;
     public TMP_Text UseButtonText;
     public BaubleSetterMenu BaubleSetMenu;
@@ -35,10 +37,23 @@ public class InventoryItemUsagePanel : MonoBehaviour
                 UseButtonText.text = "Equip";
             }
 
+            FirstButton.GetComponent<Button>().interactable = true;
+            QuickWheelButton.interactable = true;
+
         }
         else if(!(ActivatedBy.Item is TreasureObj))
         {
             UseButtonText.text = "Use Item";
+            FirstButton.GetComponent<Button>().interactable = false;
+            QuickWheelButton.interactable = false;
+            
+        }
+        else if (!(ActivatedBy.Item is KeyItemObj))
+        {
+            UseButtonText.text = "Use Item";
+            FirstButton.GetComponent<Button>().interactable = false;
+            QuickWheelButton.interactable = false;
+
         }
     }
 
