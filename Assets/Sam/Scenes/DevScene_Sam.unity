@@ -4458,62 +4458,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1676759557}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1676759559
-MonoBehaviour:
+--- !u!135 &1676759559
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676759558}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 696dc3710f466ed489af0a0f801e27b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NPCName: Vita
-  Description: 
-  Location: {x: 0, y: 0, z: 0}
-  conversations:
-  - name: Vita
-    conversationName: default
-    hasBeenSeen: 0
-    scentances:
-    - Hello.
-    - Thank you for visiting.
-  - name: Vita
-    conversationName: MSQ6S3
-    hasBeenSeen: 0
-    scentances:
-    - Oh. Hello.
-    - My name is VIta.
-  - name: Vita
-    conversationName: MSQ6S4
-    hasBeenSeen: 0
-    scentances:
-    - Thank you for finding me.
-    - I'll need you help with a few things.
-  - name: VIta
-    conversationName: MSQ7S1
-    hasBeenSeen: 0
-    scentances:
-    - Let's get started.
-    - 'I will need 5 <<ITEM>> and 5 <<ITEMS>>.
-
-      Please bring them to me.'
-  - name: VIta
-    conversationName: MSQ7S4
-    hasBeenSeen: 0
-    scentances:
-    - OH! You brought all the items.
-    - I can use them now.
-  activeDialogue:
-    name: 
-    conversationName: 
-    hasBeenSeen: 0
-    scentances: []
-  canTalk: 0
-  DialogueManager: {fileID: 0}
-  ActiveQuest: {fileID: 0}
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1741127710 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: eee582330b8653045b1181e6b16249b2,
