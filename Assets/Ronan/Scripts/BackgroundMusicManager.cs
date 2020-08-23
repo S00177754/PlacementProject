@@ -30,6 +30,11 @@ public class BackgroundMusicManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        PlayTrack("Chill");
+    }
+
     public void PlayTrack(string trackName)
     {
         AudioObj audioObj = BackgroundTracks.Where(bg => bg.TrackName == trackName).SingleOrDefault();

@@ -2525,6 +2525,7 @@ Transform:
   - {fileID: 3037081886853492189}
   - {fileID: 1335913303540245531}
   - {fileID: 3037081888586780463}
+  - {fileID: 6115657435668770638}
   m_Father: {fileID: 3209630304230476739}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4246,6 +4247,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7366322276191122131}
+  - {fileID: 2946340454338737994}
   m_Father: {fileID: 491294800903170342}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5233,10 +5235,10 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: 78a2566f603429049bde72ecd8dfb43a, type: 2}
-  m_TreeDistance: 1127
-  m_TreeBillboardDistance: 148
+  m_TreeDistance: 258
+  m_TreeBillboardDistance: 290
   m_TreeCrossFadeLength: 5
-  m_TreeMaximumFullLODCount: 91
+  m_TreeMaximumFullLODCount: 75
   m_DetailObjectDistance: 80
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
@@ -5309,10 +5311,10 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: 1fd9de7af5426cc4f83a42ce364336d7, type: 2}
-  m_TreeDistance: 5000
-  m_TreeBillboardDistance: 50
+  m_TreeDistance: 270
+  m_TreeBillboardDistance: 290
   m_TreeCrossFadeLength: 5
-  m_TreeMaximumFullLODCount: 50
+  m_TreeMaximumFullLODCount: 75
   m_DetailObjectDistance: 80
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
@@ -5424,10 +5426,10 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: f8aa261de73cc054dbb423b1496de3f5, type: 2}
-  m_TreeDistance: 5000
-  m_TreeBillboardDistance: 50
+  m_TreeDistance: 280
+  m_TreeBillboardDistance: 290
   m_TreeCrossFadeLength: 5
-  m_TreeMaximumFullLODCount: 50
+  m_TreeMaximumFullLODCount: 75
   m_DetailObjectDistance: 80
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
@@ -5500,10 +5502,10 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: eef6c47f522b51843bcd219c5006da9f, type: 2}
-  m_TreeDistance: 100
+  m_TreeDistance: 258
   m_TreeBillboardDistance: 296
   m_TreeCrossFadeLength: 5
-  m_TreeMaximumFullLODCount: 68
+  m_TreeMaximumFullLODCount: 75
   m_DetailObjectDistance: 80
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
@@ -7355,6 +7357,86 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 598396853}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &643117256
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1348466258}
+    m_Modifications:
+    - target: {fileID: 4308610418100261597, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
+        type: 3}
+      propertyPath: LocationName
+      value: Cliffton Village
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115657436177522566, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 582.5548
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115657436177522566, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1053.9153
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115657436177522566, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1510.0067
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115657436177522566, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115657436177522566, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115657436177522566, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115657436177522566, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115657436177522566, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115657436177522566, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115657436177522566, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115657436177522566, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098930655744011669, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
+        type: 3}
+      propertyPath: m_Name
+      value: TeleportPlatform
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c07bb7c95a49d5a40ab421f2ec88ed3e, type: 3}
+--- !u!4 &6115657435668770638 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6115657436177522566, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
+    type: 3}
+  m_PrefabInstance: {fileID: 643117256}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &766299426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7452,6 +7534,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1919643102}
     m_Modifications:
+    - target: {fileID: 4308610418100261597, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
+        type: 3}
+      propertyPath: LocationName
+      value: Arandale Village
+      objectReference: {fileID: 0}
     - target: {fileID: 6115657436177522566, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7795,7 +7882,7 @@ PrefabInstance:
     - target: {fileID: 2213757608874110939, guid: 758771e3e82084b46a1e36831bddf925,
         type: 3}
       propertyPath: LocationName
-      value: Desert RuinsTP1
+      value: Ancient Temple
       objectReference: {fileID: 0}
     - target: {fileID: 2213757608874110939, guid: 758771e3e82084b46a1e36831bddf925,
         type: 3}
@@ -8870,6 +8957,86 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1883989455}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1886235267
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2068579889}
+    m_Modifications:
+    - target: {fileID: 2213757608874110938, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_Name
+      value: Moon Travel Point
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213757608874110939, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: LocationName
+      value: Ancient Citadel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1258.7101
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.050049
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 175.14996
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.55019784
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8350344
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -66.761
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 758771e3e82084b46a1e36831bddf925, type: 3}
+--- !u!4 &2946340454338737994 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2946340452998356425, guid: 758771e3e82084b46a1e36831bddf925,
+    type: 3}
+  m_PrefabInstance: {fileID: 1886235267}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1901472487
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9132,6 +9299,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1198890888}
     m_Modifications:
+    - target: {fileID: 4308610418100261597, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
+        type: 3}
+      propertyPath: LocationName
+      value: Crescent Academy
+      objectReference: {fileID: 0}
     - target: {fileID: 6115657436177522566, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10217,6 +10389,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 945437082}
     m_Modifications:
+    - target: {fileID: 4308610418100261597, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
+        type: 3}
+      propertyPath: LocationName
+      value: Harrowforth Settlement
+      objectReference: {fileID: 0}
     - target: {fileID: 6115657436177522566, guid: c07bb7c95a49d5a40ab421f2ec88ed3e,
         type: 3}
       propertyPath: m_LocalPosition.x

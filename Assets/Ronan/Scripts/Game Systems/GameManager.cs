@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public static int CurrentSaveSlot = 1;
+    public static int CurrentSaveSlot = 0;
 
     public AudioMixer Mixer;
 
@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
         LoadData();
 
         Party = new List<PartyMember>();
+
+        
     }
 
     private void SetMixer(string mixer, float value)
@@ -55,18 +57,5 @@ public class GameManager : MonoBehaviour
         {
             GetComponent<SaveLoad>().Load();
         }
-
-        //SaveData data;
-        //if (SaveUtility.TryLoadFromSlot(CurrentSaveSlot, out data))
-        //{
-        //    Debug.Log(data.Player);
-        //    PlayerController.Instance.transform.position = data.Player.PlayerPosition;
-        //    PlayerController.Instance.transform.eulerAngles = data.Player.PlayerRotation;
-        //    //TODO: Set loaded data to various objects
-        //}
-        //else
-        //{
-        //    Debug.LogError("No Save File Detected");
-        //}
     }
 }
