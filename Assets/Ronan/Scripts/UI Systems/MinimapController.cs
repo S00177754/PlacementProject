@@ -7,6 +7,7 @@ public class MinimapController : MonoBehaviour
     public RectTransform MapImage;
     public RectTransform LocationIcon;
     public Vector2 maxWorldDiemnsions;
+    public bool PlayerCorrection = false;
 
     private void Update()
     {
@@ -17,6 +18,6 @@ public class MinimapController : MonoBehaviour
     {
         float percentageX = worldPosition.x / maxWorldDiemnsions.x;
         float percentageY = worldPosition.z / maxWorldDiemnsions.y;
-        LocationIcon.anchoredPosition = new Vector3(percentageX * MapImage.rect.width, percentageY * MapImage.rect.height, 0);
+        LocationIcon.anchoredPosition = new Vector3(percentageX * MapImage.rect.width + (PlayerCorrection ? 25:0), percentageY * MapImage.rect.height, 0);
     }
 }
