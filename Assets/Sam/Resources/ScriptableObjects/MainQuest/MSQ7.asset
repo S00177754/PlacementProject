@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: MSQ7
   m_EditorClassIdentifier: 
   ID: MSQ7
-  Name: Main Quest 7
-  Description: Seventh Main Quest
+  Name: Collect Effect
+  Description: Collect 5 <<ITEM>> and 5 <<ITEM>> and return them to Vita.
   isActive: 0
   isComplete: 0
   isFound: 0
@@ -22,6 +22,10 @@ MonoBehaviour:
   QuestGiver: {fileID: 0}
   QuestReturn: {fileID: 0}
   CompletedList: []
-  StepsList: []
+  StepsList:
+  - {fileID: 11400000, guid: fa8f5409f5a10994ba85bb7aa45cc00f, type: 2}
+  - {fileID: 11400000, guid: 909644ec2af5ce84392454124653fbc6, type: 2}
+  - {fileID: 11400000, guid: 7f53e918f41a0444a8ce4d632742f665, type: 2}
+  - {fileID: 11400000, guid: 87a31bb7c8422dc46a4295df85a23ed7, type: 2}
   ActiveStep: {fileID: 0}
   NextStep: {fileID: 0}
