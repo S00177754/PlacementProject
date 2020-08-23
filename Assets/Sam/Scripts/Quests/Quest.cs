@@ -45,8 +45,11 @@ public class Quest : ScriptableObject
             }
             else
             {
-                isComplete = true;
-                QuestManager.AssignNextQuest();
+                if(isMainScenario)
+                {
+                    isComplete = true;
+                    QuestManager.AssignNextQuest();
+                }
             }            
         }
         //AssignActiveStep();
