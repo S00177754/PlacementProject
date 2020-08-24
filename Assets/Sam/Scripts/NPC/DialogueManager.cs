@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    [SerializeField]
     static public Dictionary<string, NPCDialogueTrigger> ChattyNPCs = new Dictionary<string, NPCDialogueTrigger>();
 
     public Animator animator;
@@ -23,7 +24,7 @@ public class DialogueManager : MonoBehaviour
     {
         //scentences = new Queue<string>();
         gameStateController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>();
-
+        //ChattyNPCs = new Dictionary<string, NPCDialogueTrigger>();
         scentences = new Queue<string>();
     }
 

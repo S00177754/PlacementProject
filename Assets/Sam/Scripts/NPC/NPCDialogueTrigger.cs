@@ -25,23 +25,24 @@ public class NPCDialogueTrigger : MonoBehaviour
     private void Start()
     {
         //Initiates to find active quest and finds current dialogue option for that
-        CheckForQuest();
-        CheckDialogue(ActiveQuest.Name);
+        //CheckForQuest();
+        //CheckDialogue(ActiveQuest.Name);
 
         Location = this.gameObject.transform.position;
         
-        if (conversations.Count > 0)
-            canTalk = true;
-        else
-            canTalk = false;
+        //if (conversations.Count > 0)
+        //    canTalk = true;
+        //else
+        //    canTalk = false;
         //Conversation manager subscribe NPC to 'talkable'
         FindObjectOfType<DialogueManager>().Subscribe(this);
     }
 
     public void TriggerDialogue()
     {
+        CheckForQuest();
         //Checks if dialogue has updated from quests then starts in Manager
-        CheckDialogue(ActiveQuest.Name);
+        CheckDialogue(ActiveQuest.ActiveStep.ID);
         if(ActiveQuest.ActiveStep.GetType() == typeof(NPCQuestStep))
         {
             ActiveQuest.ActiveStep.isComplete = true;

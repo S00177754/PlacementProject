@@ -35,7 +35,7 @@ public class Quest : ScriptableObject
         Initialise();
         if(ActiveStep.isComplete)
         {
-            if (CompletedList.Count != StepsList.Count)
+            if (CompletedList.Count < StepsList.Count)
             {
                 CompletedSteps.Enqueue(ActiveStep);
 
@@ -46,17 +46,14 @@ public class Quest : ScriptableObject
             }
             else
             {
-                if(isMainScenario)
-                {
-                    isComplete = true;
-                    QuestManager.AssignNextQuest();
-                }
+                isComplete = true;
+                QuestManager.AssignNextQuest();
             }            
         }
         //AssignActiveStep();
     }
 
-    void Initialise()
+    public void Initialise()
     {
         CompletedSteps = new Queue<QuestStep>();
         StepsQueue = new Queue<QuestStep>();
@@ -80,11 +77,6 @@ public class Quest : ScriptableObject
             {
                 ActiveStep = step;
                 break;
-            }
-            else
-            {
-                isComplete = true;
-
             }
         }
     }

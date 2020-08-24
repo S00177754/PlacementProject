@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "QuestManager", menuName = "Quest System/QuestManager")]
@@ -30,13 +31,13 @@ public class QuestManager : ScriptableObject
     {
         foreach (Quest main in MainScenarioQuests)
         {
-            if (main.isComplete)
+            if (main.isFound)
             {
                 FoundMSQuests.Add(main);
             }
             else
             {
-                ActiveMain = main;
+                ActiveMain = MainScenarioQuests.First();
                 break;
             }
         }
@@ -50,31 +51,31 @@ public class QuestManager : ScriptableObject
         }
     }
 
-    void Start()
-    {
-        //Check next MSQ
-        //If the quest is complete, quest is added to found list
-        foreach (Quest main in MainScenarioQuests)
-        {
-            if (main.isComplete)
-            {
-                FoundMSQuests.Add(main);
-            }
-            else
-            {
-                ActiveMain = main;
-                break;
-            }
-        }
+    //void Start()
+    //{
+    //    //Check next MSQ
+    //    //If the quest is complete, quest is added to found list
+    //    foreach (Quest main in MainScenarioQuests)
+    //    {
+    //        if (main.isComplete)
+    //        {
+    //            FoundMSQuests.Add(main);
+    //        }
+    //        else
+    //        {
+    //            ActiveMain = main;
+    //            break;
+    //        }
+    //    }
 
-        foreach (Quest side in SideQuests)
-        {
-            if (side.isActive)
-                ActiveSides.Add(side);
-            if (side.isComplete)
-                CompletedSides.Add(side);
-        }
-    }
+    //    foreach (Quest side in SideQuests)
+    //    {
+    //        if (side.isActive)
+    //            ActiveSides.Add(side);
+    //        if (side.isComplete)
+    //            CompletedSides.Add(side);
+    //    }
+    //}
 
     public void MoveToNextStepMSQ()
     {

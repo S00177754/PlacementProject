@@ -40,10 +40,7 @@ public class QuestHUD : MonoBehaviour
     public void AssignToHUD()
     {
         //Switch Betweeen Main and Side, create 'TrackedQuest' in Manager
-        if (Manager.ActiveMain.isMainScenario)
-            questIcon = Resources.Load<Image>("Images/TEMP_Main");
-        else
-            questIcon = Resources.Load<Image>("Images/TEMP_Side");
+        //questIcon = Resources.Load<Image>("Images/TEMP_Main");
 
         questName.text = Manager.ActiveMain.Name;
         questStep.text = Manager.ActiveMain.ActiveStep.GetDescription();

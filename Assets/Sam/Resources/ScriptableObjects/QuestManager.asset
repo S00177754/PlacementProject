@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfe18b2149e74dd28b2c4976d87a4d8, type: 3}
   m_Name: QuestManager
   m_EditorClassIdentifier: 
+  ActiveMain: {fileID: 11400000, guid: 14ec31d2fea74ad4cb1b238648e1bb74, type: 2}
   MainScenarioQuests:
   - {fileID: 11400000, guid: 14ec31d2fea74ad4cb1b238648e1bb74, type: 2}
   - {fileID: 11400000, guid: f3252515f2445884eafd7fce4707454e, type: 2}
@@ -25,8 +26,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fbbfe35ea2ab38b43aa894037d5f5e51, type: 2}
   FoundMSQuests:
   - {fileID: 11400000, guid: 14ec31d2fea74ad4cb1b238648e1bb74, type: 2}
-  - {fileID: 11400000, guid: f3252515f2445884eafd7fce4707454e, type: 2}
-  ActiveMain: {fileID: 11400000, guid: 14ec31d2fea74ad4cb1b238648e1bb74, type: 2}
   SideQuests:
   - {fileID: 11400000, guid: 5eb87d36bf97423429dc1baf0ada7ac8, type: 2}
   - {fileID: 11400000, guid: f2a6a51b569b6f04791378661b89be5d, type: 2}
@@ -38,8 +37,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 377b0a3a796aba34b81962803b85704f, type: 2}
   - {fileID: 11400000, guid: 4732fd89878cc36468e662ce91b281bd, type: 2}
   - {fileID: 11400000, guid: ef2148313c931dd4192ed72b9b8cab99, type: 2}
-  ActiveSides:
-  - {fileID: 11400000, guid: 5eb87d36bf97423429dc1baf0ada7ac8, type: 2}
-  - {fileID: 11400000, guid: f2a6a51b569b6f04791378661b89be5d, type: 2}
+  ActiveSides: []
   CompletedSides: []
-  TrackedQuest: {fileID: 11400000, guid: 14ec31d2fea74ad4cb1b238648e1bb74, type: 2}

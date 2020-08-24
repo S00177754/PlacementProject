@@ -23,23 +23,23 @@ public class QuestTestingReset : MonoBehaviour
         //Starting.ActiveStep = Starting.StepsList.First();
     }
 
-    public void ResetAllQuests()
-    {
-        foreach (Quest q in QuestManager.MainScenarioQuests)
-        {
-            q.isComplete = false;
-            q.isFound = false;
-            q.CompletedList.Clear();
-            foreach (QuestStep s in q.StepsList)
-            {
-                s.isComplete = false;
-            }
-        }
+    //public void ResetAllQuests()
+    //{
+    //    foreach (Quest q in QuestManager.MainScenarioQuests)
+    //    {
+    //        q.isComplete = false;
+    //        q.isFound = false;
+    //        q.CompletedList.Clear();
+    //        foreach (QuestStep s in q.StepsList)
+    //        {
+    //            s.isComplete = false;
+    //        }
+    //    }
 
-        QuestManager.ActiveMain = QuestManager.MainScenarioQuests.First();
-        QuestManager.ActiveMain.isFound = true;
-        QuestManager.ActiveMain.ActiveStep = QuestManager.ActiveMain.StepsList.First();
-    }
+    //    QuestManager.ActiveMain = QuestManager.MainScenarioQuests.First();
+    //    QuestManager.ActiveMain.isFound = true;
+    //    QuestManager.ActiveMain.ActiveStep = QuestManager.ActiveMain.StepsList.First();
+    //}
 
     // Update is called once per frame
     void Update()
