@@ -22,7 +22,7 @@ public class QuestHUD : MonoBehaviour
         //Manager = Resources.Load<QuestManager>("ScriptableObjects/QuestManager");
 
         //Switch Betweeen Main and Side, create 'TrackedQuest' in Manager
-        if (Manager.TrackedQuest.isMainScenario)
+        if (Manager.ActiveMain.isMainScenario)
             questIcon.sprite = Resources.Load<Sprite>("Images/TEMP_Main");
         else
             questIcon.sprite = Resources.Load<Sprite>("Images/TEMP_Side");
@@ -40,12 +40,12 @@ public class QuestHUD : MonoBehaviour
     public void AssignToHUD()
     {
         //Switch Betweeen Main and Side, create 'TrackedQuest' in Manager
-        if (Manager.TrackedQuest.isMainScenario)
+        if (Manager.ActiveMain.isMainScenario)
             questIcon = Resources.Load<Image>("Images/TEMP_Main");
         else
             questIcon = Resources.Load<Image>("Images/TEMP_Side");
 
-        questName.text = Manager.TrackedQuest.Name;
-        questStep.text = Manager.TrackedQuest.ActiveStep.GetDescription();
+        questName.text = Manager.ActiveMain.Name;
+        questStep.text = Manager.ActiveMain.ActiveStep.GetDescription();
     }
 }

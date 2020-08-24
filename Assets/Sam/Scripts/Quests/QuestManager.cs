@@ -10,8 +10,8 @@ public class QuestManager : ScriptableObject
     [SerializeField]
     List<QuestReward> Rewards;
 
-    [SerializeField]
-    public Quest TrackedQuest;
+    //[SerializeField]
+    //public Quest TrackedQuest;
 
     [Header("Main Quests")]
     [SerializeField]
