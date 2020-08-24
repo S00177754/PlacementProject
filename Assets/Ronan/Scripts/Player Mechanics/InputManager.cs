@@ -326,6 +326,7 @@ public class InputManager : MonoBehaviour
                     if (context.interaction is SlowTapInteraction || context.interaction is TapInteraction)
                     {
                         Debug.Log("Activate teleport Stone");
+                            GetComponent<InteractionManager>().ActivePoint.Interact();
                     }
                     break;
 

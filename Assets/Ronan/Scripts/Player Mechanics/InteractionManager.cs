@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class InteractionManager : MonoBehaviour
 {
+    public TravelPoint ActivePoint;
+
    //Move to interaction manager script
     private void OnTriggerEnter(Collider other)
     {
@@ -25,6 +27,7 @@ public class InteractionManager : MonoBehaviour
                         {
                             GetComponent<PlayerController>().HUDController.SetupNotification(travelPoint.LocationName);
                             GetComponent<InputManager>().buttonStates.SetState(WestButtonState.TravelPoint);
+                            ActivePoint = travelPoint;
                         }
                     }
                     break;
@@ -36,6 +39,7 @@ public class InteractionManager : MonoBehaviour
                         if(ChattyNPC.canTalk)
                         {
                             GetComponent<InputManager>().buttonStates.SetState(WestButtonState.NPCTalk);
+                            GetComponent<PlayerController>().HUDController.SetupNotification(ChattyNPC.NPCName);
                             FindObjectOfType<DialogueManager>().SetActiveNPC(ChattyNPC.name);
                         }
                     }
@@ -70,9 +74,11 @@ public class InteractionManager : MonoBehaviour
                 case "TravelPoint":
                     GetComponent<PlayerController>().HUDController.HideItemNotification();
                     GetComponent<InputManager>().buttonStates.SetState(WestButtonState.Default);
+                    ActivePoint = null;
                     break;
 
                 case "NPC":
+                    GetComponent<PlayerController>().HUDController.HideItemNotification();
                     GetComponent<InputManager>().buttonStates.SetState(WestButtonState.Default);
                     break;
 

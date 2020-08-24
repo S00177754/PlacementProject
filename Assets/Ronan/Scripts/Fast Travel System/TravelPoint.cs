@@ -41,7 +41,7 @@ public class TravelPoint : MonoBehaviour
         }
     }
 
-    private void UnlockTeleportPoint()
+    public void UnlockTeleportPoint()
     {
         TeleportUnlocked = true;
     }
