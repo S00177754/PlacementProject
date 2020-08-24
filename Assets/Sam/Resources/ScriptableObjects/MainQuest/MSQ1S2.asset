@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57f59014af5f16141b2d417857545965, type: 3}
+  m_Script: {fileID: 11500000, guid: 2746824b966f27242aea140e6db97df8, type: 3}
   m_Name: MSQ1S2
   m_EditorClassIdentifier: 
   ID: MSQ1S2
-  isComplete: 1
-  ParentQuest: {fileID: 0}
-  Description: Collect These Items
-  Name: Step 2
-  TargetIDs: []
-  TargetQuantities: 
-  Counters: 
+  isComplete: 0
+  ParentQuest: {fileID: 11400000, guid: 14ec31d2fea74ad4cb1b238648e1bb74, type: 2}
+  Description: Head to the infirmary
+  Name: MSQ1 Step 2
+  ColiderTag: 
+  StepLocation: {x: 0, y: 0, z: 0}
+  TriggerRange: 3

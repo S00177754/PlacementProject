@@ -9,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2746824b966f27242aea140e6db97df8, type: 3}
+  m_Script: {fileID: 11500000, guid: ecf68d177749d9e49a689544fd8c8b77, type: 3}
   m_Name: MSQ1S1
   m_EditorClassIdentifier: 
   ID: MSQ1S1
-  isComplete: 1
-  ParentQuest: {fileID: 0}
-  Description: Travel to the location
-  Name: Step 1
-  ColiderTag: 
-  StepLocation: {x: 0, y: 0, z: 0}
-  TriggerRange: 0
+  isComplete: 0
+  ParentQuest: {fileID: 11400000, guid: 14ec31d2fea74ad4cb1b238648e1bb74, type: 2}
+  Description: Talk with the girl
+  Name: MSQ1 Step 1
+  TargetNPC: {fileID: 2061027445580263722, guid: 91e3cde8de97b7548b7c4bbcb8ee211c,
+    type: 3}

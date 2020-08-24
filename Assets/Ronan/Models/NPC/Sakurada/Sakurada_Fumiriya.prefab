@@ -3783,9 +3783,11 @@ GameObject:
   - component: {fileID: 5573412533588536034}
   - component: {fileID: 817117706031792007}
   - component: {fileID: 7959674565260026163}
+  - component: {fileID: 2977061921610338850}
+  - component: {fileID: 3879982751877279626}
   m_Layer: 0
   m_Name: Sakurada_Fumiriya
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4086,6 +4088,62 @@ CapsuleCollider:
   m_Height: 1.9166203
   m_Direction: 1
   m_Center: {x: 0, y: 0.9594288, z: 0}
+--- !u!135 &2977061921610338850
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8259298608430945659}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3879982751877279626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8259298608430945659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696dc3710f466ed489af0a0f801e27b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPCName: Sakurada Fumiriya
+  Description: NPC Sakurada Fumiriya
+  Location: {x: 0, y: 0, z: 0}
+  conversations:
+  - conversationName: default
+    name: Sakurada Fumiriya
+    hasBeenSeen: 0
+    scentances:
+    - Hey bud! Still going strong?
+  - conversationName: MSQ2S1
+    name: Sakurada Fumiriya
+    hasBeenSeen: 0
+    scentances:
+    - 'Hey, can you get me five monster bones please? I had some but some bandits
+      stole them from me. '
+    - I think they hide out in the River Village with the big water wheel.
+  - conversationName: MSQ2S4
+    name: Sakurada Fumiriya
+    hasBeenSeen: 0
+    scentances:
+    - "Thanks for the hand bud! Hope you didn\u2019t have to go through too much
+      trouble to get these! "
+  activeDialogue:
+    conversationName: 
+    name: 
+    hasBeenSeen: 0
+    scentances: []
+  canTalk: 0
+  DialogueManager: {fileID: 0}
+  ActiveQuest: {fileID: 0}
+  QuestManage: {fileID: 0}
 --- !u!1 &8519928144628760924
 GameObject:
   m_ObjectHideFlags: 0

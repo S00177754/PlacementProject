@@ -13,19 +13,22 @@ MonoBehaviour:
   m_Name: MSQ1
   m_EditorClassIdentifier: 
   ID: MSQ1
-  Name: Main Quest 1
-  Description: 'This is a test quest '
+  Name: Up and at it!
+  Description: You're awake! Help out the people that helped you.
   isActive: 0
   isComplete: 0
   isFound: 0
   isMainScenario: 1
-  QuestGiver: {fileID: 0}
-  QuestReturn: {fileID: 0}
+  QuestManager: {fileID: 11400000, guid: 468481b6c45183c4e9b765560ee00345, type: 2}
+  QuestGiver: {fileID: 2061027445580263722, guid: 91e3cde8de97b7548b7c4bbcb8ee211c,
+    type: 3}
+  QuestReturn: {fileID: 2061027445580263722, guid: 91e3cde8de97b7548b7c4bbcb8ee211c,
+    type: 3}
   CompletedList: []
   StepsList:
   - {fileID: 11400000, guid: da84e95096d4d6749a47aa113fdb7b37, type: 2}
   - {fileID: 11400000, guid: 0d5a87a6d34dfcd40b915f3524fe8608, type: 2}
-  - {fileID: 11400000, guid: 5338950f4196ebd419aaa12b517ccd84, type: 2}
-  - {fileID: 11400000, guid: 0da8afa2d1f974349bdcd757513b159e, type: 2}
-  ActiveStep: {fileID: 11400000, guid: 5338950f4196ebd419aaa12b517ccd84, type: 2}
-  NextStep: {fileID: 11400000, guid: 0da8afa2d1f974349bdcd757513b159e, type: 2}
+  - {fileID: 11400000, guid: 996de7a1a2cb24746885aa1ce8ad4549, type: 2}
+  - {fileID: 11400000, guid: b900de98834975e4d8e6119e86560a9c, type: 2}
+  ActiveStep: {fileID: 0}
+  NextStep: {fileID: 0}

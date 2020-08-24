@@ -17,6 +17,8 @@ public class NPCDialogueTrigger : MonoBehaviour
     DialogueManager DialogueManager;
     [SerializeField]
     Quest ActiveQuest;
+    [SerializeField]
+    QuestManager QuestManage;
 
 
 
@@ -26,6 +28,8 @@ public class NPCDialogueTrigger : MonoBehaviour
         CheckForQuest();
         CheckDialogue(ActiveQuest.Name);
 
+        Location = this.gameObject.transform.position;
+        
         if (conversations.Count > 0)
             canTalk = true;
         else
@@ -73,16 +77,26 @@ public class NPCDialogueTrigger : MonoBehaviour
 
     }
 
+    public void CheckForHandIn()
+    {
+        int questIndex = ActiveQuest.StepsList.IndexOf(ActiveQuest.ActiveStep);
+
+        if (ActiveQuest.StepsList[questIndex - 1].GetType() == typeof(QuantityQuestStep))
+        {
+            //PlayerController.Instance.GetComponent<InventoryObj>().RemoveItem();   
+        }
+    }
+
     private void CheckForQuest()
     {
         //Checks Active Quest and finds conversation of same name.
         //TODO: Will need to be step specific for returning to same NPC to turn in quest
-        ActiveQuest = Resources.Load<QuestManager>("ScriptableObjects/QuestManager").ActiveMain;
-
+        ActiveQuest = QuestManage.ActiveMain;
+        
         if (ActiveQuest == null)
         {
             Debug.Log("ActiveQuest null in Start()");
-            ActiveQuest = Resources.Load<QuestManager>("ScriptableObjects/QuestManager").ActiveSides.First();
+            ActiveQuest = QuestManage.ActiveSides.First();
             if (ActiveQuest == null)
                 Debug.Log("ActiveQuest null in Start() after side search");
         }

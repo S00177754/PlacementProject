@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eccb8cd6467fa64591be871b61ad5c1, type: 3}
   m_Name: MSQ2S3
   m_EditorClassIdentifier: 
-  ID: MSQ2S3
+  ID: MSQ3S3
   isComplete: 0
-  ParentQuest: {fileID: 0}
-  Description: Main Scenario 2 Step 3
-  Name: Step 3
-  TargetName: Testy McTestFace
-  TargetQuantity: 2
+  ParentQuest: {fileID: 11400000, guid: f3252515f2445884eafd7fce4707454e, type: 2}
+  Description: Collect 5 Monster Bones
+  Name: MSQ2 Step 3
+  TargetName: Monster Bone
+  TargetQuantity: 5
   TargetObtained: 0
