@@ -504,14 +504,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd95bb051608224c92bdc9d00714933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnEntity: {fileID: 0}
+  SpawnEntity: {fileID: 1680170759358465000, guid: a3ba0ce74d385cb46a71b35fb6519aa2,
+    type: 3}
   SpawnerCooldown: 10
   EnemyPaths:
   - {fileID: 1377944760954317609}
   SpawnPoints:
   - {fileID: 1377944761905758099}
   - {fileID: 1377944760767349904}
-  PossibleEnemyPaths: []
 --- !u!135 &2652980591783469200
 SphereCollider:
   m_ObjectHideFlags: 0
