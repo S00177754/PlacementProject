@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MSQ3
   m_EditorClassIdentifier: 
   ID: MSQ3
-  Name: Find leading Find
+  Name: Caught Red-Bandit
   Description: Help out Vivi and she might introduce you to Vita.
   isActive: 0
   isComplete: 0
@@ -24,8 +24,9 @@ MonoBehaviour:
   QuestReturn: {fileID: 0}
   CompletedList: []
   StepsList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 7ac8ffb5d31980143b6ac640d35a63db, type: 2}
+  - {fileID: 11400000, guid: 0b867d05a77fba4419a999f7f2161e23, type: 2}
+  - {fileID: 11400000, guid: 01f1d2b5399aa6d4784386fed6f998be, type: 2}
+  - {fileID: 11400000, guid: 04fb0f3e3df20e440bcd51a80703058f, type: 2}
   ActiveStep: {fileID: 0}
   NextStep: {fileID: 0}

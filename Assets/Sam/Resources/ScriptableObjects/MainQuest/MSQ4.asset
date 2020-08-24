@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: MSQ4
   m_EditorClassIdentifier: 
   ID: MSQ4
-  Name: Main Quest 4
-  Description: Fourth Main Quest
+  Name: Curriculum Vita
+  Description: Talk with Vita now that you have her Monster Bones. Maybe she can
+    tell you Where Sendagaya is.
   isActive: 0
   isComplete: 0
   isFound: 0
@@ -23,6 +24,12 @@ MonoBehaviour:
   QuestGiver: {fileID: 0}
   QuestReturn: {fileID: 0}
   CompletedList: []
-  StepsList: []
+  StepsList:
+  - {fileID: 11400000, guid: 88c222bdd1541d34d8e9ce7c5983c1ea, type: 2}
+  - {fileID: 11400000, guid: 8096fd4a0f41c114cbe2658fb1b4b150, type: 2}
+  - {fileID: 11400000, guid: a5d8eb72239f1c3439bcef93f1fe77bb, type: 2}
+  - {fileID: 11400000, guid: 5c24a7c10d879eb40a27358ca4d9a476, type: 2}
+  - {fileID: 11400000, guid: a2d8ffb3eb0656c46bdbcc950c76a369, type: 2}
+  - {fileID: 11400000, guid: 4fbae433162839c49ae388a9dcd40624, type: 2}
   ActiveStep: {fileID: 0}
   NextStep: {fileID: 0}

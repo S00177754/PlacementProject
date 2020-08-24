@@ -6757,12 +6757,27 @@ MonoBehaviour:
     hasBeenSeen: 0
     scentances:
     - Hello! My name is Vivi!
-  - conversationName: MSQ6S1
+  - conversationName: MSQ2S3
     name: Vivi
     hasBeenSeen: 0
     scentances:
-    - I've heard there is a girl that is taking shelter near the old ruins.
-    - Could you go and find her? We need to see if she's a friend of foe.
+    - Oh look! Someone new!
+    - My name is Vivi. It's a pleasure to meet you!
+  - conversationName: MSQ3S1
+    name: Vivi
+    hasBeenSeen: 0
+    scentances:
+    - 'Vita should know how to find your friend. '
+    - 'However, she can be a bit cold. '
+    - 'You should go and get some monster bones from the bandits and bring them back
+      as a gift! '
+  - conversationName: MSQ3S4
+    name: Vivi
+    hasBeenSeen: 0
+    scentances:
+    - 'You did it!  '
+    - 'This is great news. Head over to her now and see if she can help you find
+      your friend. '
   activeDialogue:
     conversationName: 
     name: 

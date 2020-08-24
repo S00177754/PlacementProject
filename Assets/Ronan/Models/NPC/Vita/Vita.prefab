@@ -2869,32 +2869,41 @@ MonoBehaviour:
     scentances:
     - Hello.
     - Thank you for visiting.
-  - conversationName: MSQ6S3
+  - conversationName: MSQ4S1
     name: Vita
     hasBeenSeen: 0
     scentances:
-    - Oh. Hello.
-    - My name is VIta.
-  - conversationName: MSQ6S4
+    - 'Who are you? '
+    - "Oh! You\u2019ve brought Monster Bones. "
+    - "I couldn\u2019t possibly accept these as a gift, but I will help you if you
+      can get something else for me. "
+  - conversationName: MSQ4S2
     name: Vita
     hasBeenSeen: 0
     scentances:
-    - Thank you for finding me.
-    - I'll need you help with a few things.
-  - conversationName: MSQ7S1
+    - 'In the desert, there are some old ruins.  '
+    - 'On top of these ruins, will be an old dagger that once belonged to an assassin. '
+    - 'You will need this if you want to travel further north. '
+  - conversationName: MSQ4S6
     name: VIta
     hasBeenSeen: 0
     scentances:
-    - Let's get started.
-    - 'I will need 5 <<ITEM>> and 5 <<ITEMS>>.
-
-      Please bring them to me.'
-  - conversationName: MSQ7S4
+    - 'You found it! '
+    - 'I can tell you where to go now. '
+  - conversationName: MSQ5S1
     name: VIta
     hasBeenSeen: 0
     scentances:
-    - OH! You brought all the items.
-    - I can use them now.
+    - 'Follow the path in the other direction now, and head northwards. '
+    - 'In the far north east, there is another school.  '
+    - 'Talk to the person in front of the school. They should know more about who
+      has been in the north recently. '
+  - conversationName: MSQ6S5
+    name: VIta
+    hasBeenSeen: 0
+    scentances:
+    - 'Thank you for this potion! '
+    - "You\u2019ve really saved us! "
   activeDialogue:
     conversationName: 
     name: 

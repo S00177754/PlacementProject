@@ -226,7 +226,7 @@ RectTransform:
   - {fileID: 662985115}
   - {fileID: 840737346}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -266,7 +266,7 @@ Transform:
   - {fileID: 1111932410}
   - {fileID: 5511643486581428602}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &52962400
 PrefabInstance:
@@ -708,7 +708,7 @@ PrefabInstance:
     - target: {fileID: 5228689996691661941, guid: c2a011bee30e3eb40abaa885aba84fcd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 5228689996691661941, guid: c2a011bee30e3eb40abaa885aba84fcd,
         type: 3}
@@ -777,7 +777,7 @@ PrefabInstance:
     - target: {fileID: 1551677298000082980, guid: 0783088c1f57d9f408ec1df2205bc3b8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1551677298000082980, guid: 0783088c1f57d9f408ec1df2205bc3b8,
         type: 3}
@@ -811,6 +811,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
         type: 3}
+      propertyPath: conversations.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
+      propertyPath: conversations.Array.data[4].scentances.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
+      propertyPath: conversations.Array.data[1].scentances.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
+      propertyPath: conversations.Array.data[2].scentances.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
       propertyPath: canTalk
       value: 1
       objectReference: {fileID: 0}
@@ -825,6 +845,77 @@ PrefabInstance:
       propertyPath: DialogueManager
       value: 
       objectReference: {fileID: 1277413428}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
+      propertyPath: conversations.Array.data[4].conversationName
+      value: MSQ10S1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
+      propertyPath: conversations.Array.data[4].name
+      value: Sakurada Fumiriya
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
+      propertyPath: conversations.Array.data[4].scentances.Array.data[0]
+      value: 'We can use these to finally put an end to the bandits. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
+      propertyPath: conversations.Array.data[4].scentances.Array.data[1]
+      value: 'Thank you for helping us!  '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
+      propertyPath: conversations.Array.data[1].conversationName
+      value: MSQ8S4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
+      propertyPath: conversations.Array.data[1].scentances.Array.data[0]
+      value: "I can\u2019t believe you finally made it! "
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
+      propertyPath: conversations.Array.data[2].conversationName
+      value: MSQ9S1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
+      propertyPath: conversations.Array.data[2].scentances.Array.data[1]
+      value: "I need your help! All of the monster bones we\u2019ve been saving were
+        stolen by the bandits. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
+      propertyPath: conversations.Array.data[2].scentances.Array.data[2]
+      value: 'Can you head to the south and get at least 10 of them back for us? '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
+      propertyPath: conversations.Array.data[2].scentances.Array.data[3]
+      value: 'I would really appreciate it. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
+      propertyPath: conversations.Array.data[2].scentances.Array.data[0]
+      value: "It\u2019s so good to see you!  "
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
+      propertyPath: conversations.Array.data[3].conversationName
+      value: MSQ9S5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
+      propertyPath: conversations.Array.data[3].scentances.Array.data[0]
+      value: "You found them!\t"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
+      propertyPath: conversations.Array.data[3].scentances.Array.data[1]
+      value: This is great news!
+      objectReference: {fileID: 0}
     - target: {fileID: 8259298608430945659, guid: 0783088c1f57d9f408ec1df2205bc3b8,
         type: 3}
       propertyPath: m_Name
@@ -1496,7 +1587,7 @@ PrefabInstance:
     - target: {fileID: 5322517097025696686, guid: 25df90fcc44bfab46b1c7a1c94d551e2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5322517097025696686, guid: 25df90fcc44bfab46b1c7a1c94d551e2,
         type: 3}
@@ -1607,7 +1698,7 @@ RectTransform:
   m_Children:
   - {fileID: 806549054}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1911,7 +2002,7 @@ PrefabInstance:
     - target: {fileID: 7658799712375245833, guid: c0ba2d63b8c3be647a8fc34bc63615bf,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7658799712375245833, guid: c0ba2d63b8c3be647a8fc34bc63615bf,
         type: 3}
@@ -2963,6 +3054,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806549053}
   m_CullTransparentMesh: 0
+--- !u!1001 &827696944
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5322517097025696683, guid: 25df90fcc44bfab46b1c7a1c94d551e2,
+        type: 3}
+      propertyPath: m_Name
+      value: ItemPickup Dagger
+      objectReference: {fileID: 0}
+    - target: {fileID: 5322517097025696684, guid: 25df90fcc44bfab46b1c7a1c94d551e2,
+        type: 3}
+      propertyPath: Item
+      value: 
+      objectReference: {fileID: 11400000, guid: 0234f9327ebfe0740874295571e8229f,
+        type: 2}
+    - target: {fileID: 5322517097025696686, guid: 25df90fcc44bfab46b1c7a1c94d551e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1498.7938
+      objectReference: {fileID: 0}
+    - target: {fileID: 5322517097025696686, guid: 25df90fcc44bfab46b1c7a1c94d551e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 68.23503
+      objectReference: {fileID: 0}
+    - target: {fileID: 5322517097025696686, guid: 25df90fcc44bfab46b1c7a1c94d551e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 451.8278
+      objectReference: {fileID: 0}
+    - target: {fileID: 5322517097025696686, guid: 25df90fcc44bfab46b1c7a1c94d551e2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5322517097025696686, guid: 25df90fcc44bfab46b1c7a1c94d551e2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5322517097025696686, guid: 25df90fcc44bfab46b1c7a1c94d551e2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5322517097025696686, guid: 25df90fcc44bfab46b1c7a1c94d551e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5322517097025696686, guid: 25df90fcc44bfab46b1c7a1c94d551e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5322517097025696686, guid: 25df90fcc44bfab46b1c7a1c94d551e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5322517097025696686, guid: 25df90fcc44bfab46b1c7a1c94d551e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5322517097025696686, guid: 25df90fcc44bfab46b1c7a1c94d551e2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 25df90fcc44bfab46b1c7a1c94d551e2, type: 3}
 --- !u!1 &840737345
 GameObject:
   m_ObjectHideFlags: 0
@@ -3202,7 +3368,7 @@ PrefabInstance:
     - target: {fileID: 3660763091933327395, guid: 7ab27f1eddfeb8b4d976f10665a6c2df,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3660763091933327395, guid: 7ab27f1eddfeb8b4d976f10665a6c2df,
         type: 3}
@@ -3501,7 +3667,7 @@ PrefabInstance:
     - target: {fileID: 3121717649193224245, guid: 031df76d10512734e8ebccc1828ac5dc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3121717649193224245, guid: 031df76d10512734e8ebccc1828ac5dc,
         type: 3}
@@ -4034,7 +4200,7 @@ PrefabInstance:
     - target: {fileID: 416487001887333192, guid: 91e3cde8de97b7548b7c4bbcb8ee211c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 416487001887333192, guid: 91e3cde8de97b7548b7c4bbcb8ee211c,
         type: 3}
@@ -4156,7 +4322,7 @@ PrefabInstance:
     - target: {fileID: 5322517097025696686, guid: 25df90fcc44bfab46b1c7a1c94d551e2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5322517097025696686, guid: 25df90fcc44bfab46b1c7a1c94d551e2,
         type: 3}
@@ -4194,6 +4360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   QuestManager: {fileID: 11400000, guid: 468481b6c45183c4e9b765560ee00345, type: 2}
+  QuestNumber: 0
 --- !u!114 &1259964538 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4854577525965888833, guid: 0f614015ebe29d44dbfd8d3a4430a916,
@@ -4312,6 +4479,17 @@ PrefabInstance:
       propertyPath: canTalk
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1130457311848340548, guid: 72446b09c230dcd40a9ca8ce806a6068,
+        type: 3}
+      propertyPath: DialogueManager
+      value: 
+      objectReference: {fileID: 1973361929}
+    - target: {fileID: 1130457311848340548, guid: 72446b09c230dcd40a9ca8ce806a6068,
+        type: 3}
+      propertyPath: QuestManage
+      value: 
+      objectReference: {fileID: 11400000, guid: 468481b6c45183c4e9b765560ee00345,
+        type: 2}
     - target: {fileID: 1352732609194568668, guid: 72446b09c230dcd40a9ca8ce806a6068,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4350,7 +4528,7 @@ PrefabInstance:
     - target: {fileID: 1352732609194568668, guid: 72446b09c230dcd40a9ca8ce806a6068,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1352732609194568668, guid: 72446b09c230dcd40a9ca8ce806a6068,
         type: 3}
@@ -4421,6 +4599,52 @@ MonoBehaviour:
     hasBeenSeen: 0
     scentances:
     - Hey there!
+  - conversationName: MSQ5S3
+    name: Sendagaya Shino
+    hasBeenSeen: 0
+    scentances:
+    - "Hello there. I haven\u2019t seen your face up in the north! "
+  - conversationName: MSQ6S1
+    name: Sendagaya Shino
+    hasBeenSeen: 0
+    scentances:
+    - 'My name is Sendagaya. I make it my business to know what is going on in the
+      north. '
+    - 'However, while you were making your way here, Vita messaged me with an urgent
+      request. '
+    - 'I need you to travel into the forest and find a healing potion dropped by
+      one of our friends and bring it to Vita. '
+    - "Check first with the shop nearby. If they don\u2019t have it, you will need
+      to go searching. "
+  - conversationName: MSQ6S7
+    name: Sendagaya Shino
+    hasBeenSeen: 0
+    scentances:
+    - 'Vita just sent work you managed to get the potion to her in time. '
+    - Thank you!
+    - 'Now. I must ask you to find something for me. '
+  - conversationName: MSQ7S1
+    name: Sendagaya Shino
+    hasBeenSeen: 0
+    scentances:
+    - 'In the forest, someone dropped a much stronger potion.  '
+    - 'This could really help us when fighting the bandits.  '
+    - 'I need you to head there and retrieve it. '
+  - conversationName: MSQ7S4
+    name: Sendagaya Shino
+    hasBeenSeen: 0
+    scentances:
+    - You found it!
+    - This will really help... you. You're going to need it!
+  - conversationName: MSQ8S1
+    name: Sendagaya Shino
+    hasBeenSeen: 0
+    scentances:
+    - 'Your friend Sakurada is in the hilltop village due east of here. '
+    - 'Make your way along the base of the hill to a small pathway. '
+    - 'From there, you can follow the path up to the village and Sakurada should
+      be there. '
+    - "Good luck! You\u2019re going to need it! "
   activeDialogue:
     conversationName: 
     name: 
@@ -5098,7 +5322,7 @@ PrefabInstance:
     - target: {fileID: 3918894146501638529, guid: 61678451f74b637479947f7177d78a2e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3918894146501638529, guid: 61678451f74b637479947f7177d78a2e,
         type: 3}
@@ -5187,7 +5411,7 @@ PrefabInstance:
     - target: {fileID: 1836193205003943866, guid: 640746cd97f327041a2b6bff2efaa5d4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1836193205003943866, guid: 640746cd97f327041a2b6bff2efaa5d4,
         type: 3}
@@ -5766,8 +5990,82 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2013171324
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1836193205003943866, guid: 640746cd97f327041a2b6bff2efaa5d4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 540.5976
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836193205003943866, guid: 640746cd97f327041a2b6bff2efaa5d4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 30.802359
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836193205003943866, guid: 640746cd97f327041a2b6bff2efaa5d4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 837.5317
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836193205003943866, guid: 640746cd97f327041a2b6bff2efaa5d4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836193205003943866, guid: 640746cd97f327041a2b6bff2efaa5d4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836193205003943866, guid: 640746cd97f327041a2b6bff2efaa5d4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836193205003943866, guid: 640746cd97f327041a2b6bff2efaa5d4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836193205003943866, guid: 640746cd97f327041a2b6bff2efaa5d4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836193205003943866, guid: 640746cd97f327041a2b6bff2efaa5d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836193205003943866, guid: 640746cd97f327041a2b6bff2efaa5d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836193205003943866, guid: 640746cd97f327041a2b6bff2efaa5d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836193205003943867, guid: 640746cd97f327041a2b6bff2efaa5d4,
+        type: 3}
+      propertyPath: m_Radius
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836193205003943868, guid: 640746cd97f327041a2b6bff2efaa5d4,
+        type: 3}
+      propertyPath: m_Name
+      value: Quest Location
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 640746cd97f327041a2b6bff2efaa5d4, type: 3}
 --- !u!1001 &2016409266
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6535,7 +6833,7 @@ PrefabInstance:
     - target: {fileID: 1836193205003943866, guid: 640746cd97f327041a2b6bff2efaa5d4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 1836193205003943866, guid: 640746cd97f327041a2b6bff2efaa5d4,
         type: 3}
@@ -6996,7 +7294,7 @@ PrefabInstance:
     - target: {fileID: 2175942649210977811, guid: be1ee305d6572574297d421c896814a6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2175942649210977811, guid: be1ee305d6572574297d421c896814a6,
         type: 3}
@@ -9055,7 +9353,7 @@ PrefabInstance:
     - target: {fileID: 4854577525965888834, guid: 0f614015ebe29d44dbfd8d3a4430a916,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4854577525965888834, guid: 0f614015ebe29d44dbfd8d3a4430a916,
         type: 3}
@@ -9180,7 +9478,7 @@ PrefabInstance:
     - target: {fileID: 6524416808174123783, guid: cb132a8a5b8878d4f87c710c325e147f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6524416808174123783, guid: cb132a8a5b8878d4f87c710c325e147f,
         type: 3}
@@ -9419,7 +9717,7 @@ PrefabInstance:
     - target: {fileID: 8950533190122119913, guid: a7be0f3388377a546994c9fca036d9ea,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8950533190122119913, guid: a7be0f3388377a546994c9fca036d9ea,
         type: 3}
