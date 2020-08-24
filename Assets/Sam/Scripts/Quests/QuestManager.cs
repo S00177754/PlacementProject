@@ -5,22 +5,26 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "QuestManager", menuName = "Quest System/QuestManager")]
 public class QuestManager : ScriptableObject
 {
-    [SerializeField]
-    public List<Quest> MainScenarioQuests;
-    public List<Quest> FoundMSQuests;
     public Quest ActiveMain;
-
-    [SerializeField]
-    public List<Quest> SideQuests;
-
-    public List<Quest> ActiveSides;
-    public List<Quest> CompletedSides;
 
     [SerializeField]
     List<QuestReward> Rewards;
 
     [SerializeField]
     public Quest TrackedQuest;
+
+    [Header("Main Quests")]
+    [SerializeField]
+    public List<Quest> MainScenarioQuests;
+    public List<Quest> FoundMSQuests;
+
+    [Header("Side Quests")]
+    [SerializeField]
+    public List<Quest> SideQuests;
+
+    public List<Quest> ActiveSides;
+    public List<Quest> CompletedSides;
+
 
     public void Initialise()
     {

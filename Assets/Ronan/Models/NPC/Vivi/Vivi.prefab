@@ -6435,7 +6435,7 @@ GameObject:
   - component: {fileID: 4562265991259340021}
   m_Layer: 0
   m_Name: Vivi
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6757,6 +6757,12 @@ MonoBehaviour:
     hasBeenSeen: 0
     scentances:
     - Hello! My name is Vivi!
+  - conversationName: MSQ6S1
+    name: Vivi
+    hasBeenSeen: 0
+    scentances:
+    - I've heard there is a girl that is taking shelter near the old ruins.
+    - Could you go and find her? We need to see if she's a friend of foe.
   activeDialogue:
     conversationName: 
     name: 
@@ -6765,6 +6771,7 @@ MonoBehaviour:
   canTalk: 0
   DialogueManager: {fileID: 0}
   ActiveQuest: {fileID: 0}
+  QuestManage: {fileID: 0}
 --- !u!135 &4562265991259340021
 SphereCollider:
   m_ObjectHideFlags: 0

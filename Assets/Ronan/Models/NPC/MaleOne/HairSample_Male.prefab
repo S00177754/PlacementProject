@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 4462040659509805894}
   m_Layer: 0
   m_Name: HairSample_Male
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -985,6 +985,7 @@ MonoBehaviour:
   canTalk: 0
   DialogueManager: {fileID: 0}
   ActiveQuest: {fileID: 0}
+  QuestManage: {fileID: 0}
 --- !u!1 &2178647997305695284
 GameObject:
   m_ObjectHideFlags: 0

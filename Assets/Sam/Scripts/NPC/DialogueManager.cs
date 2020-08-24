@@ -82,6 +82,10 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         //Resets animator to close dialogue box
+        if(ActiveNPC.CheckForHandIn())
+        {
+
+        }
         animator.SetBool("IsOpen", false);
         Debug.Log("End of conversation");
         GameStateController.SetGameState(GameState.Explore);

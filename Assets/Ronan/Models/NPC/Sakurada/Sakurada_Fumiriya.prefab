@@ -3787,7 +3787,7 @@ GameObject:
   - component: {fileID: 3879982751877279626}
   m_Layer: 0
   m_Name: Sakurada_Fumiriya
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4128,6 +4128,7 @@ MonoBehaviour:
     scentances:
     - 'Hey, can you get me five monster bones please? I had some but some bandits
       stole them from me. '
+    - I think they hide out in the River Village with the big water wheel.
   - conversationName: MSQ2S4
     name: Sakurada Fumiriya
     hasBeenSeen: 0
@@ -4142,6 +4143,7 @@ MonoBehaviour:
   canTalk: 0
   DialogueManager: {fileID: 0}
   ActiveQuest: {fileID: 0}
+  QuestManage: {fileID: 0}
 --- !u!1 &8519928144628760924
 GameObject:
   m_ObjectHideFlags: 0

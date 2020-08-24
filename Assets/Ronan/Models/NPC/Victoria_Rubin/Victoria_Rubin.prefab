@@ -5198,7 +5198,7 @@ GameObject:
   - component: {fileID: 2061027445580263722}
   m_Layer: 0
   m_Name: Victoria_Rubin
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5553,6 +5553,7 @@ MonoBehaviour:
   canTalk: 0
   DialogueManager: {fileID: 0}
   ActiveQuest: {fileID: 0}
+  QuestManage: {fileID: 0}
 --- !u!1 &7363733183296499156
 GameObject:
   m_ObjectHideFlags: 0
