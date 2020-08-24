@@ -18,6 +18,7 @@ public class QuantityQuestStep : QuestStep
     public int TargetQuantity;
     public int TargetObtained;
 
+
     public void AddToCounter()
     {
         //check inventory
@@ -27,16 +28,6 @@ public class QuantityQuestStep : QuestStep
             isComplete = true;
             ParentQuest.GoToNextStep();
         }
-    }
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
     }
 
     public string GetItemName()

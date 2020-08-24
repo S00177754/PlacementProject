@@ -77,16 +77,14 @@ public class NPCDialogueTrigger : MonoBehaviour
 
     }
 
-    public bool CheckForHandIn()
+    public void CheckForHandIn()
     {
         int questIndex = ActiveQuest.StepsList.IndexOf(ActiveQuest.ActiveStep);
 
         if (ActiveQuest.StepsList[questIndex - 1].GetType() == typeof(QuantityQuestStep))
         {
-            return true;
+            //PlayerController.Instance.GetComponent<InventoryObj>().RemoveItem();   
         }
-        else
-            return false;
     }
 
     private void CheckForQuest()
