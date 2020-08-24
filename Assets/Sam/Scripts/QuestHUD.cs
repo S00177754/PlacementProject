@@ -34,7 +34,7 @@ public class QuestHUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        AssignToHUD();
     }
 
     public void AssignToHUD()

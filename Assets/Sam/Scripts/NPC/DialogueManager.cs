@@ -88,6 +88,7 @@ public class DialogueManager : MonoBehaviour
         animator.SetBool("IsOpen", false);
         Debug.Log("End of conversation");
         GameStateController.SetGameState(GameState.Explore);
+        Debug.Log(GameStateController.gameState.ToString());
         
     }
 

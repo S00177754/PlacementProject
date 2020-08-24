@@ -7,6 +7,8 @@ public class InventoryManager : MonoBehaviour
 {
     public InventoryObj Inventory;
     private Collider ItemOnGround;
+    [SerializeField]
+    public QuestManager QuestManager;
 
     private void Start()
     {
@@ -23,6 +25,15 @@ public class InventoryManager : MonoBehaviour
             CollectableItem item = ItemOnGround.GetComponent<CollectableItem>();
             Inventory.AddItem(item.Item, 1);
             Destroy(ItemOnGround.gameObject);
+
+            if(QuestManager.ActiveMain.ActiveStep.GetType() == typeof(QuantityQuestStep))
+            {
+                QuantityQuestStep step = QuestManager.ActiveMain.ActiveStep as QuantityQuestStep;
+                if (item.Item == step.targetObject)
+                {
+                    step.AddToCounter();
+                }
+            }
 
             GetComponent<PlayerController>().HUDController.SendNotification(ItemOnGround.GetComponent<CollectableItem>().Item.Name,null,Color.blue);
             GetComponent<PlayerController>().HUDController.HideItemNotification();

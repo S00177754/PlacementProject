@@ -124,7 +124,7 @@ public class GameStateController : MonoBehaviour
         Instance.PlayerHUD.SetActive(true);
         PauseMenuClear();
 
-        //PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(false,false);
+        PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(false,false);
         Instance.ChangeAllPlayerMapsTo("Player");
 
     }

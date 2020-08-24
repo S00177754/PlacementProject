@@ -13,6 +13,7 @@ public class QuantityQuestStep : QuestStep
 
     [Header("Step Specific")]
     [SerializeField]
+    public ItemObj targetObject;
     public string TargetName;
     //public int TargetID;
     public int TargetQuantity;

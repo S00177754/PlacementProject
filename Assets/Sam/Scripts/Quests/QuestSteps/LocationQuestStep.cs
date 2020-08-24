@@ -15,7 +15,8 @@ public class LocationQuestStep : QuestStep
     public string ColiderTag;
 
     [Header("Type Specific")]
-    public Vector3 StepLocation;
+    [SerializeField]
+    public Transform StepLocation;
     [SerializeField]
     public float TriggerRange;
 

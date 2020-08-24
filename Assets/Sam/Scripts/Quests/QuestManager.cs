@@ -76,8 +76,8 @@ public class QuestManager : ScriptableObject
         }
     }
 
-    public void MoveToNextStepMSQ(Quest moveOn){
-        moveOn.GoToNextStep();
+    public void MoveToNextStepMSQ(){
+        ActiveMain.GoToNextStep();
     }
 
     public void LoadMSQ(){
