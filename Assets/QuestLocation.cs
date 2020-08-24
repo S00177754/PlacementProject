@@ -22,10 +22,10 @@ public class QuestLocation : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-            if (QuestManager.ActiveMain.ActiveStep.ID == LocationName)
-            {
-                QuestManager.ActiveMain.ActiveStep.isComplete = true;
-                QuestManager.ActiveMain.GoToNextStep();
-            }   
+        if (QuestManager.ActiveMain.ActiveStep.ID == LocationName)
+        {
+            QuestManager.ActiveMain.ActiveStep.isComplete = true;
+            QuestManager.ActiveMain.GoToNextStep();
+        }   
     }
 }

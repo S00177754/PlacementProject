@@ -48,7 +48,7 @@ public class NPCDialogueTrigger : MonoBehaviour
             ActiveQuest.GoToNextStep();
         }
         
-        FindObjectOfType<DialogueManager>().StartDialogue(activeDialogue);
+        DialogueManager.StartDialogue(activeDialogue);
     }
 
     public void CheckDialogue(string convoName)

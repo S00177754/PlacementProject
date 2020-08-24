@@ -28,6 +28,7 @@ public class QuestTestingReset : MonoBehaviour
         foreach (Quest q in QuestManager.MainScenarioQuests)
         {
             q.isComplete = false;
+            q.isFound = false;
             q.CompletedList.Clear();
             foreach (QuestStep s in q.StepsList)
             {
@@ -36,6 +37,7 @@ public class QuestTestingReset : MonoBehaviour
         }
 
         QuestManager.ActiveMain = QuestManager.MainScenarioQuests.First();
+        QuestManager.ActiveMain.isFound = true;
         QuestManager.ActiveMain.ActiveStep = QuestManager.ActiveMain.StepsList.First();
     }
 

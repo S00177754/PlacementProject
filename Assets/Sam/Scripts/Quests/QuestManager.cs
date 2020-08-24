@@ -76,12 +76,9 @@ public class QuestManager : ScriptableObject
         }
     }
 
-    public void MoveToNextStepMSQ(){
+    public void MoveToNextStepMSQ()
+    {
         ActiveMain.GoToNextStep();
-    }
-
-    public void LoadMSQ(){
-
     }
 
     public void LoadSideQuests(){

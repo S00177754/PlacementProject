@@ -9,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eccb8cd6467fa64591be871b61ad5c1, type: 3}
+  m_Script: {fileID: 11500000, guid: ecf68d177749d9e49a689544fd8c8b77, type: 3}
   m_Name: MSQ2S3
   m_EditorClassIdentifier: 
-  ID: MSQ3S3
+  ID: MSQ2S3
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: f3252515f2445884eafd7fce4707454e, type: 2}
-  Description: Collect 5 Monster Bones
-  Name: MSQ2 Step 3
-  TargetName: Monster Bone
-  TargetQuantity: 5
-  TargetObtained: 0
+  Description: Return the bones to Sakurada
+  Name: MSQ2 Step 4
+  TargetNPC: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+    type: 3}
