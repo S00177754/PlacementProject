@@ -47,7 +47,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &5668061737194697973
 Transform:
@@ -648,7 +648,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &6444870857478745877
 Transform:
@@ -743,7 +743,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd95bb051608224c92bdc9d00714933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnEntity: {fileID: 0}
+  SpawnEntity: {fileID: 9017443438464473356, guid: 24c0522dd59ba494bbd712238dae254f,
+    type: 3}
   SpawnerCooldown: 10
   EnemyPaths:
   - {fileID: 5668061738297494198}
