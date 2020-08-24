@@ -90,7 +90,6 @@ public class NPCDialogueTrigger : MonoBehaviour
     private void CheckForQuest()
     {
         //Checks Active Quest and finds conversation of same name.
-        //TODO: Will need to be step specific for returning to same NPC to turn in quest
         ActiveQuest = QuestManage.ActiveMain;
         
         if (ActiveQuest == null)
@@ -112,6 +111,7 @@ public class NPCDialogueTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         canTalk = true;
+        DialogueManager.ActiveNPC = this;
     }
 
     private void OnTriggerExit(Collider other)

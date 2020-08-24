@@ -16,6 +16,7 @@ public class DialogueManager : MonoBehaviour
     public NPCDialogueTrigger ActiveNPC;
     GameStateController gameStateController;
 
+    [SerializeField]
     private Queue<string> scentences;
 
     void Start()
@@ -23,6 +24,7 @@ public class DialogueManager : MonoBehaviour
         //scentences = new Queue<string>();
         gameStateController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateController>();
 
+        scentences = new Queue<string>();
     }
 
     public void Subscribe(NPCDialogueTrigger addMe)

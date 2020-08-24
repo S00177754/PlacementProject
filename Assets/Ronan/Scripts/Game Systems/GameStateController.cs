@@ -21,7 +21,7 @@ public class GameStateController : MonoBehaviour
 
     private void Start()
     {
-        
+        DialogueBox = GetComponent<DialogueManager>();
 
         if (Instance == null)
         {

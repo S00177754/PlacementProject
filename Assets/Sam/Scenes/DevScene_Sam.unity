@@ -204,6 +204,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8928551916095739292, guid: 61678451f74b637479947f7177d78a2e,
+        type: 3}
+      propertyPath: DialogueManager
+      value: 
+      objectReference: {fileID: 612082092}
+    - target: {fileID: -8928551916095739292, guid: 61678451f74b637479947f7177d78a2e,
+        type: 3}
+      propertyPath: QuestManage
+      value: 
+      objectReference: {fileID: 11400000, guid: 468481b6c45183c4e9b765560ee00345,
+        type: 2}
     - target: {fileID: 211969545054055786, guid: 61678451f74b637479947f7177d78a2e,
         type: 3}
       propertyPath: m_AABB.m_Center.x
@@ -1012,6 +1023,17 @@ PrefabInstance:
       propertyPath: m_DirtyAABB
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
+      propertyPath: QuestManage
+      value: 
+      objectReference: {fileID: 11400000, guid: 468481b6c45183c4e9b765560ee00345,
+        type: 2}
+    - target: {fileID: 3879982751877279626, guid: 0783088c1f57d9f408ec1df2205bc3b8,
+        type: 3}
+      propertyPath: DialogueManager
+      value: 
+      objectReference: {fileID: 612082092}
     - target: {fileID: 4562590926328996770, guid: 0783088c1f57d9f408ec1df2205bc3b8,
         type: 3}
       propertyPath: m_AABB.m_Center.x
@@ -1797,7 +1819,7 @@ PrefabInstance:
         type: 3}
       propertyPath: PauseMenu
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 947970999}
     - target: {fileID: 8950533190122119912, guid: a7be0f3388377a546994c9fca036d9ea,
         type: 3}
       propertyPath: m_Enabled
@@ -2500,6 +2522,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 939247261}
   m_CullTransparentMesh: 0
+--- !u!114 &947970999 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 351607523142494953, guid: d5f4b9644041d394aa35db5b1c7dd7b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1931120319}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e90d42b1f4e5b8c45b7aa560b58d6a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &954356770
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2939,6 +2973,17 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 31
       objectReference: {fileID: 0}
+    - target: {fileID: 4462040659509805894, guid: 031df76d10512734e8ebccc1828ac5dc,
+        type: 3}
+      propertyPath: QuestManage
+      value: 
+      objectReference: {fileID: 11400000, guid: 468481b6c45183c4e9b765560ee00345,
+        type: 2}
+    - target: {fileID: 4462040659509805894, guid: 031df76d10512734e8ebccc1828ac5dc,
+        type: 3}
+      propertyPath: DialogueManager
+      value: 
+      objectReference: {fileID: 612082092}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 031df76d10512734e8ebccc1828ac5dc, type: 3}
 --- !u!1001 &1053477254
@@ -3303,6 +3348,17 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 33
       objectReference: {fileID: 0}
+    - target: {fileID: 2061027445580263722, guid: 91e3cde8de97b7548b7c4bbcb8ee211c,
+        type: 3}
+      propertyPath: QuestManage
+      value: 
+      objectReference: {fileID: 11400000, guid: 468481b6c45183c4e9b765560ee00345,
+        type: 2}
+    - target: {fileID: 2061027445580263722, guid: 91e3cde8de97b7548b7c4bbcb8ee211c,
+        type: 3}
+      propertyPath: DialogueManager
+      value: 
+      objectReference: {fileID: 612082092}
     - target: {fileID: 2788170848718486088, guid: 91e3cde8de97b7548b7c4bbcb8ee211c,
         type: 3}
       propertyPath: m_AABB.m_Center.x
@@ -3639,6 +3695,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 474883453, guid: c0ba2d63b8c3be647a8fc34bc63615bf, type: 3}
+      propertyPath: Manager
+      value: 
+      objectReference: {fileID: 11400000, guid: 468481b6c45183c4e9b765560ee00345,
+        type: 2}
     - target: {fileID: 7024588098699836995, guid: c0ba2d63b8c3be647a8fc34bc63615bf,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -4300,6 +4361,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 185314614100447619, guid: 72446b09c230dcd40a9ca8ce806a6068,
+        type: 3}
+      propertyPath: DialogueManager
+      value: 
+      objectReference: {fileID: 612082092}
+    - target: {fileID: 185314614100447619, guid: 72446b09c230dcd40a9ca8ce806a6068,
+        type: 3}
+      propertyPath: QuestManage
+      value: 
+      objectReference: {fileID: 11400000, guid: 468481b6c45183c4e9b765560ee00345,
+        type: 2}
     - target: {fileID: 1352732609194568668, guid: 72446b09c230dcd40a9ca8ce806a6068,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4450,7 +4522,8 @@ PrefabInstance:
       propertyPath: m_DirtyAABB
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1130457311848340548, guid: 72446b09c230dcd40a9ca8ce806a6068, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 72446b09c230dcd40a9ca8ce806a6068, type: 3}
 --- !u!1 &1741127710 stripped
 GameObject:
@@ -8812,6 +8885,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 612082092}
+    - target: {fileID: 3660763090784866110, guid: 7ab27f1eddfeb8b4d976f10665a6c2df,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3660763090915039352, guid: 7ab27f1eddfeb8b4d976f10665a6c2df,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -8836,11 +8914,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3660763091421283463, guid: 7ab27f1eddfeb8b4d976f10665a6c2df,
-        type: 3}
-      propertyPath: m_UpdateMode
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3660763091933327395, guid: 7ab27f1eddfeb8b4d976f10665a6c2df,
         type: 3}
@@ -14402,6 +14475,12 @@ PrefabInstance:
       propertyPath: DialogueManager
       value: 
       objectReference: {fileID: 612082092}
+    - target: {fileID: 7159621539079226827, guid: dd216edb2dd7ea543b51c2b352b1c671,
+        type: 3}
+      propertyPath: QuestManage
+      value: 
+      objectReference: {fileID: 11400000, guid: 468481b6c45183c4e9b765560ee00345,
+        type: 2}
     - target: {fileID: 7159621539079226828, guid: dd216edb2dd7ea543b51c2b352b1c671,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14461,6 +14540,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NPCPrefab_Cylinder
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159621539079226833, guid: dd216edb2dd7ea543b51c2b352b1c671,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd216edb2dd7ea543b51c2b352b1c671, type: 3}

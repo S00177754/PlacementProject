@@ -32,9 +32,10 @@ public class Quest : ScriptableObject
 
     public void GoToNextStep()
     {
+        Initialise();
         if(ActiveStep.isComplete)
         {
-            if (CompletedSteps.Count != StepsList.Count)
+            if (CompletedList.Count != StepsList.Count)
             {
                 CompletedSteps.Enqueue(ActiveStep);
 
@@ -55,8 +56,10 @@ public class Quest : ScriptableObject
         //AssignActiveStep();
     }
 
-    void Start()
+    void Initialise()
     {
+        CompletedSteps = new Queue<QuestStep>();
+        StepsQueue = new Queue<QuestStep>();
         foreach (QuestStep step in StepsList)
         {
             step.ParentQuest = this;

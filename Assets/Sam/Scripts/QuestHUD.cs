@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class QuestHUD : MonoBehaviour
 {
+    [SerializeField]
     QuestManager Manager;
     //Quest currentQuest;
 
@@ -18,7 +19,7 @@ public class QuestHUD : MonoBehaviour
     
     void Start()
     {
-        Manager = Resources.Load<QuestManager>("ScriptableObjects/QuestManager");
+        //Manager = Resources.Load<QuestManager>("ScriptableObjects/QuestManager");
 
         //Switch Betweeen Main and Side, create 'TrackedQuest' in Manager
         if (Manager.TrackedQuest.isMainScenario)
@@ -26,8 +27,8 @@ public class QuestHUD : MonoBehaviour
         else
             questIcon.sprite = Resources.Load<Sprite>("Images/TEMP_Side");
 
-        questName.text = Manager.TrackedQuest.Name;
-        questStep.text = Manager.TrackedQuest.ActiveStep.GetDescription();
+        questName.text = Manager.ActiveMain.Name;
+        questStep.text = Manager.ActiveMain.ActiveStep.GetDescription();
     }
 
     // Update is called once per frame

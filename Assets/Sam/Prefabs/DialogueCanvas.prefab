@@ -536,15 +536,15 @@ MonoBehaviour:
   Description: Testing NPC
   Location: {x: 0, y: 0, z: 0}
   conversations:
-  - name: NPC1
-    conversationName: default
+  - conversationName: default
+    name: NPC1
     hasBeenSeen: 0
     scentances:
     - Hello! Welcome to this town.
     - Would you like a quest to do?
     - I can also give you some story exposition!
-  - name: NPC1
-    conversationName: Main Quest 1
+  - conversationName: Main Quest 1
+    name: NPC1
     hasBeenSeen: 0
     scentances:
     - Oh! You have a quest!
@@ -552,10 +552,14 @@ MonoBehaviour:
     - Collect 5 items
     - Bring them back to me!
   activeDialogue:
-    name: 
     conversationName: 
+    name: 
     hasBeenSeen: 0
     scentances: []
+  canTalk: 0
+  DialogueManager: {fileID: 0}
+  ActiveQuest: {fileID: 0}
+  QuestManage: {fileID: 0}
 --- !u!1 &3660763090915039353
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,7 +883,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 6d2819b257edf074abdca51908ce3b6c, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
