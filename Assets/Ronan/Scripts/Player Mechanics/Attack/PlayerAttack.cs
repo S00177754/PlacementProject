@@ -278,6 +278,12 @@ public class PlayerAttack : MonoBehaviour
                 CanCombo = true;
                 ComboTimer = 0f;
             }
+            else if(!IsCharging && GetNearestEnemy() == null)
+            {
+                ActiveAttack = Equipment.GetAttackDetails().PrimaryAtackPattern[ComboAttackIndex];
+                PlayAttackAnimation(false, (int)ActiveAttack.Animation);
+                IsAttacking = false;
+            }
             else
             {
                 IsAttacking = false;
