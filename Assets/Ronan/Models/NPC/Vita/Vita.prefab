@@ -2482,7 +2482,6 @@ GameObject:
   - component: {fileID: 5243448295837298216}
   - component: {fileID: 1531616684563145187}
   - component: {fileID: 1011959844926882409}
-  - component: {fileID: 185314614100447619}
   - component: {fileID: 4361281653585296771}
   - component: {fileID: 1130457311848340548}
   m_Layer: 0
@@ -2788,52 +2787,6 @@ CapsuleCollider:
   m_Height: 1.7247765
   m_Direction: 1
   m_Center: {x: 0, y: 0.8635069, z: 0}
---- !u!114 &185314614100447619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3048104888105384365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 696dc3710f466ed489af0a0f801e27b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NPCName: Vita
-  Description: NPC Vita
-  Location: {x: 0, y: 0, z: 0}
-  conversations:
-  - conversationName: default
-    name: Vita
-    hasBeenSeen: 0
-    scentances:
-    - Hello. My name is Vita.
-  - conversationName: 
-    name: 
-    hasBeenSeen: 0
-    scentances: []
-  - conversationName: 
-    name: 
-    hasBeenSeen: 0
-    scentances: []
-  - conversationName: 
-    name: 
-    hasBeenSeen: 0
-    scentances: []
-  - conversationName: 
-    name: 
-    hasBeenSeen: 0
-    scentances: []
-  activeDialogue:
-    conversationName: 
-    name: 
-    hasBeenSeen: 0
-    scentances: []
-  canTalk: 0
-  DialogueManager: {fileID: 0}
-  ActiveQuest: {fileID: 0}
-  QuestManage: {fileID: 0}
 --- !u!135 &4361281653585296771
 SphereCollider:
   m_ObjectHideFlags: 0

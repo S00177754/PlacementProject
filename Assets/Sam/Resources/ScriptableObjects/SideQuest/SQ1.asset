@@ -17,8 +17,9 @@ MonoBehaviour:
   Description: 'This quest is the first side quest '
   isActive: 0
   isComplete: 0
-  isFound: 0
+  isFound: 1
   isMainScenario: 0
+  QuestManager: {fileID: 0}
   QuestGiver: {fileID: 0}
   QuestReturn: {fileID: 0}
   CompletedList: []
