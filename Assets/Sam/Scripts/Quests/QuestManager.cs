@@ -29,6 +29,7 @@ public class QuestManager : ScriptableObject
 
     public void Initialise()
     {
+        FoundMSQuests.Clear();
         foreach (Quest main in MainScenarioQuests)
         {
             if (main.isFound)
@@ -51,31 +52,6 @@ public class QuestManager : ScriptableObject
         }
     }
 
-    //void Start()
-    //{
-    //    //Check next MSQ
-    //    //If the quest is complete, quest is added to found list
-    //    foreach (Quest main in MainScenarioQuests)
-    //    {
-    //        if (main.isComplete)
-    //        {
-    //            FoundMSQuests.Add(main);
-    //        }
-    //        else
-    //        {
-    //            ActiveMain = main;
-    //            break;
-    //        }
-    //    }
-
-    //    foreach (Quest side in SideQuests)
-    //    {
-    //        if (side.isActive)
-    //            ActiveSides.Add(side);
-    //        if (side.isComplete)
-    //            CompletedSides.Add(side);
-    //    }
-    //}
 
     public void MoveToNextStepMSQ()
     {
@@ -91,6 +67,7 @@ public class QuestManager : ScriptableObject
         {
             if(!main.isComplete)
             {
+                FoundMSQuests.Add(main);
                 ActiveMain = main;
                 break;
             }

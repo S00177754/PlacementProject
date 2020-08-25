@@ -5200,6 +5200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QuestManager: {fileID: 11400000, guid: 468481b6c45183c4e9b765560ee00345, type: 2}
   QuestNumber: 1
+  resetAll: 0
 --- !u!114 &1259964538 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4854577525965888833, guid: 0f614015ebe29d44dbfd8d3a4430a916,
@@ -6976,10 +6977,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1836193205003943865, guid: 640746cd97f327041a2b6bff2efaa5d4,
+        type: 3}
+      propertyPath: LocationName
+      value: MSQ3S2
+      objectReference: {fileID: 0}
     - target: {fileID: 1836193205003943866, guid: 640746cd97f327041a2b6bff2efaa5d4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 540.5976
+      value: 561.4
       objectReference: {fileID: 0}
     - target: {fileID: 1836193205003943866, guid: 640746cd97f327041a2b6bff2efaa5d4,
         type: 3}
@@ -6989,7 +6995,7 @@ PrefabInstance:
     - target: {fileID: 1836193205003943866, guid: 640746cd97f327041a2b6bff2efaa5d4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 837.5317
+      value: 851.8
       objectReference: {fileID: 0}
     - target: {fileID: 1836193205003943866, guid: 640746cd97f327041a2b6bff2efaa5d4,
         type: 3}
@@ -7034,7 +7040,7 @@ PrefabInstance:
     - target: {fileID: 1836193205003943867, guid: 640746cd97f327041a2b6bff2efaa5d4,
         type: 3}
       propertyPath: m_Radius
-      value: 29
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1836193205003943868, guid: 640746cd97f327041a2b6bff2efaa5d4,
         type: 3}
@@ -9447,6 +9453,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5354498083783530736, guid: be1ee305d6572574297d421c896814a6,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c7880e6c7e233440bf07031fd9bade6,
+        type: 2}
+    - target: {fileID: 5354498083783530736, guid: be1ee305d6572574297d421c896814a6,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 9008100906227714114, guid: 8c7880e6c7e233440bf07031fd9bade6,
+        type: 2}
     - target: {fileID: 5408566544700929542, guid: be1ee305d6572574297d421c896814a6,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -10449,6 +10467,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Money
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4854577525965888833, guid: 0f614015ebe29d44dbfd8d3a4430a916,
+        type: 3}
+      propertyPath: Settings.CameraSensitivity
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4854577525965888834, guid: 0f614015ebe29d44dbfd8d3a4430a916,
         type: 3}

@@ -8,15 +8,17 @@ public class QuestInitialiser : MonoBehaviour
     QuestManager QuestManager;
     [SerializeField]
     int QuestNumber;
+    public bool resetAll;
 
     // Start is called before the first frame update
     void Start()
     {
-        QuestManager.Initialise();
         /************************
          * REMOVE AFTER TESTING *
          * **********************/
-        ResetAllQuests();
+        if(resetAll)
+            ResetAllQuests();
+        QuestManager.Initialise();
     }
 
     // Update is called once per frame

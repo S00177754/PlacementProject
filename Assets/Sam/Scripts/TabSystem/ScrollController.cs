@@ -46,46 +46,46 @@ public class ScrollController : MonoBehaviour
     {
         ClearScrollView();
 
-        if(CompareTag("Main Scenario"))
+        foreach (Quest quest in Manager.FoundMSQuests)
         {
-            foreach (Quest quest in Manager.FoundMSQuests)
-            {
-                GameObject next = Instantiate(ButtonPrefab, ScrollviewContent.transform);
-                ButtonQuests button;
-                TMP_Text TitleText;
-                next.TryGetComponent(out button);
-                Buttons.Add(button);
-                button.buttonQuest = quest;
-                button.Panel = Panel;
-                TitleText = next.GetComponentInChildren<TMP_Text>();
-                TitleText.text = quest.Name;
+            GameObject next = Instantiate(ButtonPrefab, ScrollviewContent.transform);
+            ButtonQuests button;
+            TMP_Text TitleText;
+            next.TryGetComponent(out button);
+            Buttons.Add(button);
+            button.buttonQuest = quest;
+            button.Panel = Panel;
+            TitleText = next.GetComponentInChildren<TMP_Text>();
+            TitleText.text = quest.Name;
 
 
-                if (button != null)
-                    Debug.Log("Button quest is " + button.buttonQuest.name);
+            if (button != null)
+                Debug.Log("Button quest is " + button.buttonQuest.name);
 
-            }
         }
-        else if(CompareTag("Side Quest"))
-        {
-            foreach (Quest quest in Manager.ActiveSides)
-            {
-                GameObject next = Instantiate(ButtonPrefab, ScrollviewContent.transform);
-                ButtonQuests button;
-                TMP_Text TitleText;
-                next.TryGetComponent(out button);
-                Buttons.Add(button);
-                button.buttonQuest = quest;
-                button.Panel = Panel;
-                TitleText = next.GetComponentInChildren<TMP_Text>();
-                TitleText.text = quest.Name;
+        //if(CompareTag("Main Scenario"))
+        //{
+        //}
+        //else if(CompareTag("Side Quest"))
+        //{
+        //    foreach (Quest quest in Manager.ActiveSides)
+        //    {
+        //        GameObject next = Instantiate(ButtonPrefab, ScrollviewContent.transform);
+        //        ButtonQuests button;
+        //        TMP_Text TitleText;
+        //        next.TryGetComponent(out button);
+        //        Buttons.Add(button);
+        //        button.buttonQuest = quest;
+        //        button.Panel = Panel;
+        //        TitleText = next.GetComponentInChildren<TMP_Text>();
+        //        TitleText.text = quest.Name;
 
 
-                if (button != null)
-                    Debug.Log("Button quest is " + button.buttonQuest.name);
+        //        if (button != null)
+        //            Debug.Log("Button quest is " + button.buttonQuest.name);
 
-            }
-        }
+        //    }
+        //}
     }
 
     public void ClearScrollView()
