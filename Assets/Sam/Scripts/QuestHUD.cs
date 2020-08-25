@@ -43,6 +43,7 @@ public class QuestHUD : MonoBehaviour
         //questIcon = Resources.Load<Image>("Images/TEMP_Main");
 
         questName.text = Manager.ActiveMain.Name;
+        if(Manager.ActiveMain.ActiveStep != null)
         questStep.text = Manager.ActiveMain.ActiveStep.GetDescription();
     }
 }
