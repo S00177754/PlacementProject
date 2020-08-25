@@ -9,14 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2746824b966f27242aea140e6db97df8, type: 3}
-  m_Name: MSQ7S2
+  m_Script: {fileID: 11500000, guid: ecf68d177749d9e49a689544fd8c8b77, type: 3}
+  m_Name: MSQ6S8
   m_EditorClassIdentifier: 
-  ID: MSQ7S2
+  ID: MSQ6S8
   isComplete: 0
   ParentQuest: {fileID: 0}
-  Description: Make your way to the forest to the East of the village
-  Name: MSQ7 Step 2
-  ColiderTag: Quest Location
-  StepLocation: {fileID: 0}
-  TriggerRange: 0
+  Description: Talk with Sendagaya
+  Name: MSQ6 Step 8
+  TargetNPC: {fileID: 0}

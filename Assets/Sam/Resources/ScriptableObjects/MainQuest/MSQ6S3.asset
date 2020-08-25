@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecf68d177749d9e49a689544fd8c8b77, type: 3}
+  m_Script: {fileID: 11500000, guid: 2746824b966f27242aea140e6db97df8, type: 3}
   m_Name: MSQ6S3
   m_EditorClassIdentifier: 
   ID: MSQ6S3
   isComplete: 0
   ParentQuest: {fileID: 0}
-  Description: Talk with Vita
-  Name: Step 3
-  TargetNPC: {fileID: 0}
+  Description: 'Head to the forrest to the south '
+  Name: MSQ6 Step 3
+  ColiderTag: Quest Location
+  StepLocation: {fileID: 0}
+  TriggerRange: 0

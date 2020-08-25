@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: MSQ8
   m_EditorClassIdentifier: 
   ID: MSQ8
-  Name: Main Quest 8
-  Description: Eighth Main Quest
+  Name: In Search of Friends
+  Description: 'You are now ready to find your friend, Sakurada. '
   isActive: 0
   isComplete: 0
   isFound: 0
@@ -23,6 +23,10 @@ MonoBehaviour:
   QuestGiver: {fileID: 0}
   QuestReturn: {fileID: 0}
   CompletedList: []
-  StepsList: []
+  StepsList:
+  - {fileID: 11400000, guid: e9b2d93bbd4e8324cbe726e7988b892c, type: 2}
+  - {fileID: 11400000, guid: 6dc2fae6bab6d6948b420905001893b0, type: 2}
+  - {fileID: 11400000, guid: 5271f19741e4d1b41a4b8e30a641232d, type: 2}
+  - {fileID: 11400000, guid: 59690bc244bcac04fa1ac09e6fa7cfdf, type: 2}
   ActiveStep: {fileID: 0}
   NextStep: {fileID: 0}

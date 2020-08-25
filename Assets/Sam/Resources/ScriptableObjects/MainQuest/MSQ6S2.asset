@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2746824b966f27242aea140e6db97df8, type: 3}
   m_Name: MSQ6S2
   m_EditorClassIdentifier: 
-  ID: MSQ6S1
+  ID: MSQ6S2
   isComplete: 0
   ParentQuest: {fileID: 0}
-  Description: Go to the library
-  Name: Step 2
-  ColiderTag: NPC
-  StepLocation: {x: 0, y: 0, z: 0}
-  TriggerRange: 5
+  Description: Check with the merchant
+  Name: MSQ6 Step 2
+  ColiderTag: Quest Location
+  StepLocation: {fileID: 0}
+  TriggerRange: 0

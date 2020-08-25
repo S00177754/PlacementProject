@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: MSQ9
   m_EditorClassIdentifier: 
   ID: MSQ9
-  Name: Main Quest 9
-  Description: Ninth Main Quest
+  Name: Final Push
+  Description: Sakurada thinks it's possible to finish off the bandits!
   isActive: 0
   isComplete: 0
   isFound: 0
@@ -23,6 +23,11 @@ MonoBehaviour:
   QuestGiver: {fileID: 0}
   QuestReturn: {fileID: 0}
   CompletedList: []
-  StepsList: []
+  StepsList:
+  - {fileID: 11400000, guid: 4e48ae2889d57834cac5558bade2045e, type: 2}
+  - {fileID: 11400000, guid: d43a7d715fc82d64d815896213a19641, type: 2}
+  - {fileID: 11400000, guid: 8f75f755a6e85e749bc6e6522afc5e00, type: 2}
+  - {fileID: 11400000, guid: 81102b63a795e704daeb0a2fc523ceb5, type: 2}
+  - {fileID: 11400000, guid: 313e70b2cfdef514cad7036352c739ba, type: 2}
   ActiveStep: {fileID: 0}
   NextStep: {fileID: 0}

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: MSQ5
   m_EditorClassIdentifier: 
   ID: MSQ5
-  Name: Main Quest 5
-  Description: Fifth Main Quest
+  Name: The North Remembers
+  Description: Head northwards to find Sendagaya. THey should know more about who
+    has been in the north.
   isActive: 0
   isComplete: 0
   isFound: 0
@@ -23,6 +24,9 @@ MonoBehaviour:
   QuestGiver: {fileID: 0}
   QuestReturn: {fileID: 0}
   CompletedList: []
-  StepsList: []
+  StepsList:
+  - {fileID: 11400000, guid: b9a38f61ce767a741b7c2ab9e0a20d53, type: 2}
+  - {fileID: 11400000, guid: fe525bdb77f472d478a5b3d78980f632, type: 2}
+  - {fileID: 11400000, guid: 68586d2b0c1dc4142891777f3db0ea0c, type: 2}
   ActiveStep: {fileID: 0}
   NextStep: {fileID: 0}
