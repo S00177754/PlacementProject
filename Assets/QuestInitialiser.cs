@@ -18,6 +18,7 @@ public class QuestInitialiser : MonoBehaviour
          * **********************/
         if(resetAll)
             ResetAllQuests();
+
         QuestManager.Initialise();
     }
 
