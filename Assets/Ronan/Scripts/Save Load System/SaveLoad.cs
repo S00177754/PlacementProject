@@ -196,6 +196,8 @@ public class SaveLoad : MonoBehaviour
 
     private void AssignQuestStepData(QuestStep step, QuestStepData data)
     {
+        Debug.Log(string.Concat("Step: ",step.ID,"  Type: ",step.GetType()));
+
         if(step == null)
         {
             Debug.LogError("Quest Step is null!");
@@ -209,25 +211,31 @@ public class SaveLoad : MonoBehaviour
 
         if (step.GetType() == typeof(LocationQuestStep))
         {
-            step.isComplete = (data as LocationQuestStepData).isComplete;
-            step.ID = (data as LocationQuestStepData).StepID;     
+            Debug.Log(string.Concat("Quest Step: ",step.ID,"  Data Step: ",data.StepID, "  Complete: ", step.isComplete));
+            step.isComplete = data.isComplete;
+            step.ID = data.StepID;     
         }
         else if (step.GetType() == typeof(MultiQuantityQuestStep))
         {
-            step.isComplete = (data as MultiQuantityQuestStepData).isComplete;
-            step.ID = (data as MultiQuantityQuestStepData).StepID;
+            Debug.Log(string.Concat("Quest Step: ", step.ID, "  Data Step: ", data.StepID, "  Complete: ", step.isComplete));
+            step.isComplete = data.isComplete;
+            step.ID = data.StepID;
             (step as MultiQuantityQuestStep).Counters = (data as MultiQuantityQuestStepData).Counters;
         }
         else if (step.GetType() == typeof(NPCQuestStep))
-        { 
-                step.isComplete = data.isComplete;
-                step.ID = (data as NPCQuestStepData).StepID;
+        {
+            Debug.Log(string.Concat("Quest Step: ", step.ID, "  Data Step: ", data.StepID, "  Complete: ",step.isComplete));
+            step.isComplete = data.isComplete;
+            step.ID = data.StepID;
         }
         else if (step.GetType() == typeof(QuantityQuestStep))
         {
-            step.isComplete = (data as QuantityQuestStepData).isComplete;
-            step.ID = (data as QuantityQuestStepData).StepID;
-            (step as QuantityQuestStep).TargetObtained = (data as QuantityQuestStepData).TargetObtained;
+            Debug.Log(string.Concat("Quest Step: ", step.ID, "  Data Step: ", data.StepID, "  Complete: ", step.isComplete));
+            step.isComplete = data.isComplete;
+            step.ID = data.StepID;
+            QuantityQuestStep qStep = (step as QuantityQuestStep);
+            QuantityQuestStepData qData = data as QuantityQuestStepData;
+            qStep.TargetObtained = qData.TargetObtained;
         }
     }
 
@@ -243,9 +251,9 @@ public class SaveLoad : MonoBehaviour
                     gameQuest.isFound = saveQuest.IsFound;
                     gameQuest.isComplete = saveQuest.IsComplete;
 
-                    foreach (var saveStep in saveQuest.CompletedStepData)
+                    foreach (var saveStep in saveQuest.StepData)
                     {
-                        foreach (var gameStep in gameQuest.CompletedList)
+                        foreach (var gameStep in gameQuest.StepsList)
                         {
                             if(gameStep.ID == saveStep.StepID)
                             {
@@ -345,7 +353,7 @@ public class QuestObjData
     public bool IsActive;
     public bool IsFound;
     public bool IsComplete;
-    public List<QuestStepData> CompletedStepData;
+    public List<QuestStepData> StepData;
     
 }
 

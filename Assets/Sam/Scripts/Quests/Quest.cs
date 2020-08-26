@@ -33,6 +33,7 @@ public class Quest : ScriptableObject
     public void GoToNextStep()
     {
         Initialise();
+
         if(ActiveStep.isComplete)
         {
             if (CompletedList.Count < StepsList.Count)
@@ -43,6 +44,12 @@ public class Quest : ScriptableObject
                     ActiveStep = StepsQueue.Dequeue();
                 if (StepsQueue.Count > 1)
                     NextStep = StepsQueue.Peek();
+
+                //if (CompletedList.Count >= StepsList.Count)
+                //{
+                //    isComplete = true;
+                //}
+
             }
             else
             {

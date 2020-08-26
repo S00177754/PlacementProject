@@ -79,7 +79,7 @@ public class TitleSaveFileManager : MonoBehaviour
             mq.IsFound = false;
             mq.IsComplete = false;
 
-            foreach (var step in mq.CompletedStepData)
+            foreach (var step in mq.StepData)
             {
                 step.isComplete = false;
 
@@ -228,13 +228,13 @@ public static class SaveUtility
         QuestObjData data = new QuestObjData();
         data.ID = quest.ID;
         data.IsActive = quest.isActive;
-        data.IsComplete = quest.isActive;
+        data.IsComplete = quest.isComplete;
         data.IsFound = quest.isFound;
-        data.CompletedStepData = new List<QuestStepData>();
+        data.StepData = new List<QuestStepData>();
 
-        foreach (var step in quest.CompletedList)
+        foreach (var step in quest.StepsList)
         {
-            data.CompletedStepData.Add(GetQuestStepData(step));
+            data.StepData.Add(GetQuestStepData(step));
         }
 
         return data;
