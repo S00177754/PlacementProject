@@ -27,11 +27,11 @@ public class MerchantUIController : MonoBehaviour
 
     private void Start()
     {
-        gameObject.SetActive(false);
         RootMenu.SubMenuObject.SetActive(false);
         ItemMenu.SubMenuObject.SetActive(false);
         DescriptionPanel.gameObject.SetActive(false);
         BackgroundImage.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public void SetMerchant(MerchantComponent merchant)

@@ -614,6 +614,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DescriptionPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 7850779158403449793, guid: ed6904795acfc3c43bcecddb83ad85d5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7850779159641848707, guid: ed6904795acfc3c43bcecddb83ad85d5,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -2322,7 +2327,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &502905513
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8751,7 +8756,7 @@ PrefabInstance:
     - target: {fileID: 2175942649210977800, guid: be1ee305d6572574297d421c896814a6,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2175942649210977811, guid: be1ee305d6572574297d421c896814a6,
         type: 3}
@@ -8971,7 +8976,7 @@ PrefabInstance:
     - target: {fileID: 2175942649860488294, guid: be1ee305d6572574297d421c896814a6,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2175942649996366194, guid: be1ee305d6572574297d421c896814a6,
         type: 3}

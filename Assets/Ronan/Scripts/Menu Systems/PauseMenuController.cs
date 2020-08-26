@@ -42,7 +42,7 @@ public class PauseMenuController : MonoBehaviour
         SaveConfirm.gameObject.SetActive(false);
         ReturnConfirm.gameObject.SetActive(false);
         SetMenuState(PauseMenuState.RootMenu);
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     private void Update()
@@ -52,6 +52,7 @@ public class PauseMenuController : MonoBehaviour
 
     public void PauseGame()
     {
+        Debug.Log("Activate Pause - Root Menu");
         SetMenuState(PauseMenuState.RootMenu);
     }
 
@@ -210,11 +211,11 @@ public class PauseMenuController : MonoBehaviour
         switch (menu)
         {
             case PauseMenuState.RootMenu:
+                RootMenu.SubMenuObject.SetActive(true);
                 Inventory.SubMenuObject.SetActive(false);
                 Settings.SubMenuObject.SetActive(false);
                 AbilityTree.SubMenuObject.SetActive(false);
                 FastTravel.SubMenuObject.SetActive(false);
-                RootMenu.SubMenuObject.SetActive(true);
                 Quests.SubMenuObject.SetActive(false);
                 StatsMenu.SubMenuObject.SetActive(false);
                 SaveConfirm.gameObject.SetActive(false);
@@ -224,11 +225,11 @@ public class PauseMenuController : MonoBehaviour
                 break;
 
             case PauseMenuState.Inventory:
+                Inventory.SubMenuObject.SetActive(true);
                 RootMenu.SubMenuObject.SetActive(false);
                 Settings.SubMenuObject.SetActive(false);
                 AbilityTree.SubMenuObject.SetActive(false);
                 FastTravel.SubMenuObject.SetActive(false);
-                Inventory.SubMenuObject.SetActive(true);
                 Quests.SubMenuObject.SetActive(false);
                 StatsMenu.SubMenuObject.SetActive(false);
                 SaveConfirm.gameObject.SetActive(false);

@@ -253,6 +253,7 @@ public class InputManager : MonoBehaviour
             case InputActionPhase.Performed:
                 if (!MerchantUIController.Instance.IsMerchantActive())
                 {
+                    Debug.Log("On Pause - Call Pause");
                     GameStateController.SetGameState(GameState.Paused);
                 }
                 break;
