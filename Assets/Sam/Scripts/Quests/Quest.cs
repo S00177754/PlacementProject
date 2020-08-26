@@ -36,19 +36,16 @@ public class Quest : ScriptableObject
 
         if(ActiveStep.isComplete)
         {
+
             if (CompletedList.Count < StepsList.Count)
             {
                 CompletedSteps.Enqueue(ActiveStep);
 
                 if (StepsQueue.Count > 0)
                     ActiveStep = StepsQueue.Dequeue();
+
                 if (StepsQueue.Count > 1)
                     NextStep = StepsQueue.Peek();
-
-                //if (CompletedList.Count >= StepsList.Count)
-                //{
-                //    isComplete = true;
-                //}
 
             }
             else
@@ -68,6 +65,7 @@ public class Quest : ScriptableObject
         {
             step.ParentQuest = this;
             StepsQueue.Enqueue(step);
+
             if(ActiveStep == null && !step.isComplete)
                 ActiveStep = step;
 
@@ -78,14 +76,24 @@ public class Quest : ScriptableObject
 
     void AssignActiveStep()
     {
-        foreach (QuestStep step in StepsList)
+        for (int i = 0; i < StepsList.Count; i++)
         {
-            if (!step.isComplete)
+            if (!StepsList[i].isComplete)
             {
-                ActiveStep = step;
+                ActiveStep = StepsList[i];
+                Debug.Log(string.Concat("Active Step: ", ActiveStep.ID));
                 break;
             }
         }
+
+        //foreach (QuestStep step in StepsList)
+        //{
+        //    if (!step.isComplete)
+        //    {
+        //        ActiveStep = step;
+        //        break;
+        //    }
+        //}
     }
 
 

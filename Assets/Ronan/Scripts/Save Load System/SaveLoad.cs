@@ -62,6 +62,7 @@ public class SaveLoad : MonoBehaviour
             AssignNodeData(saveData.AbilityNodes);
 
             AssignQuestData(saveData.Quests);
+            Quests.Initialise();
 
             AssignFastTravelPoints(saveData.TravelPointData);
 
@@ -251,11 +252,47 @@ public class SaveLoad : MonoBehaviour
                     gameQuest.isFound = saveQuest.IsFound;
                     gameQuest.isComplete = saveQuest.IsComplete;
 
-                    foreach (var saveStep in saveQuest.StepData)
+                    foreach (var saveStep in saveQuest.QuantitySteps)
                     {
                         foreach (var gameStep in gameQuest.StepsList)
                         {
                             if(gameStep.ID == saveStep.StepID)
+                            {
+                                AssignQuestStepData(gameStep, saveStep);
+                                break;
+                            }
+                        }
+                    }
+
+                    foreach (var saveStep in saveQuest.MultiQuantitySteps)
+                    {
+                        foreach (var gameStep in gameQuest.StepsList)
+                        {
+                            if (gameStep.ID == saveStep.StepID)
+                            {
+                                AssignQuestStepData(gameStep, saveStep);
+                                break;
+                            }
+                        }
+                    }
+
+                    foreach (var saveStep in saveQuest.NPCSteps)
+                    {
+                        foreach (var gameStep in gameQuest.StepsList)
+                        {
+                            if (gameStep.ID == saveStep.StepID)
+                            {
+                                AssignQuestStepData(gameStep, saveStep);
+                                break;
+                            }
+                        }
+                    }
+
+                    foreach (var saveStep in saveQuest.LocationSteps)
+                    {
+                        foreach (var gameStep in gameQuest.StepsList)
+                        {
+                            if (gameStep.ID == saveStep.StepID)
                             {
                                 AssignQuestStepData(gameStep, saveStep);
                                 break;
@@ -353,7 +390,11 @@ public class QuestObjData
     public bool IsActive;
     public bool IsFound;
     public bool IsComplete;
-    public List<QuestStepData> StepData;
+    //public List<QuestStepData> StepData;
+    public List<QuantityQuestStepData> QuantitySteps;
+    public List<NPCQuestStepData> NPCSteps;
+    public List<MultiQuantityQuestStepData> MultiQuantitySteps;
+    public List<LocationQuestStepData> LocationSteps;
     
 }
 

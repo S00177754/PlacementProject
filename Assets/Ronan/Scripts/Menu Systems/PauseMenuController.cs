@@ -58,10 +58,7 @@ public class PauseMenuController : MonoBehaviour
     //Buttons
     public void ResumeGameButton()
     {
-        if(!SaveConfirm.gameObject.activeSelf && !ReturnConfirm.gameObject.activeSelf)
-        {
-            GameStateController.ResumePreviousState();
-        }
+        GameStateController.ResumePreviousState();
     }
 
     public void InventoryButton()
@@ -103,13 +100,16 @@ public class PauseMenuController : MonoBehaviour
     public void SaveButton()
     {
         if (!SaveConfirm.gameObject.activeSelf && !ReturnConfirm.gameObject.activeSelf)
-            SaveConfirm.gameObject.SetActive(true);
+        {
+            GameManager.Instance.GetComponent<SaveLoad>().Save();
+            SceneManagerHelper.TransitionToScene(0);
+        }
     }
 
     public void ReturnToTitleButton()
     {
         if (!SaveConfirm.gameObject.activeSelf && !ReturnConfirm.gameObject.activeSelf)
-            ReturnConfirm.gameObject.SetActive(true);
+            SceneManagerHelper.TransitionToScene(0);
     }
 
 
@@ -217,6 +217,8 @@ public class PauseMenuController : MonoBehaviour
                 RootMenu.SubMenuObject.SetActive(true);
                 Quests.SubMenuObject.SetActive(false);
                 StatsMenu.SubMenuObject.SetActive(false);
+                SaveConfirm.gameObject.SetActive(false);
+                ReturnConfirm.gameObject.SetActive(false);
                 UIHelper.SelectedObjectSet(RootMenu.DefaultSelectedUIElement);
                 PlayerController.Instance.GetComponent<InputManager>().SetSelecOnRegain(RootMenu.DefaultSelectedUIElement);
                 break;
@@ -229,7 +231,8 @@ public class PauseMenuController : MonoBehaviour
                 Inventory.SubMenuObject.SetActive(true);
                 Quests.SubMenuObject.SetActive(false);
                 StatsMenu.SubMenuObject.SetActive(false);
-
+                SaveConfirm.gameObject.SetActive(false);
+                ReturnConfirm.gameObject.SetActive(false);
                 //UIHelper.SelectedObjectSet(Inventory.DefaultSelectedUIElement);
                 PlayerController.Instance.GetComponent<InputManager>().SetSelecOnRegain(Inventory.DefaultSelectedUIElement);
                 break;
@@ -242,7 +245,8 @@ public class PauseMenuController : MonoBehaviour
                 Settings.SubMenuObject.SetActive(true);
                 Quests.SubMenuObject.SetActive(false);
                 StatsMenu.SubMenuObject.SetActive(false);
-
+                SaveConfirm.gameObject.SetActive(false);
+                ReturnConfirm.gameObject.SetActive(false);
                 UIHelper.SelectedObjectSet(Settings.DefaultSelectedUIElement);
                 PlayerController.Instance.GetComponent<InputManager>().SetSelecOnRegain(Settings.DefaultSelectedUIElement);
                 break;
@@ -255,6 +259,8 @@ public class PauseMenuController : MonoBehaviour
                 Settings.SubMenuObject.SetActive(false);
                 Quests.SubMenuObject.SetActive(false);
                 StatsMenu.SubMenuObject.SetActive(false);
+                SaveConfirm.gameObject.SetActive(false);
+                ReturnConfirm.gameObject.SetActive(false);
                 AbilityTree.SubMenuObject.GetComponent<AbilityTreeUIController>().Setup();
                 UIHelper.SelectedObjectSet(AbilityTree.DefaultSelectedUIElement);
                 PlayerController.Instance.GetComponent<InputManager>().SetSelecOnRegain(AbilityTree.DefaultSelectedUIElement);
@@ -268,6 +274,8 @@ public class PauseMenuController : MonoBehaviour
                 Settings.SubMenuObject.SetActive(false);
                 Quests.SubMenuObject.SetActive(false);
                 StatsMenu.SubMenuObject.SetActive(false);
+                SaveConfirm.gameObject.SetActive(false);
+                ReturnConfirm.gameObject.SetActive(false);
                 //UIHelper.SelectedObjectSet(FastTravel.DefaultSelectedUIElement);
                 PlayerController.Instance.GetComponent<InputManager>().SetSelecOnRegain(FastTravel.DefaultSelectedUIElement);
                 break;
@@ -280,6 +288,8 @@ public class PauseMenuController : MonoBehaviour
                 StatsMenu.SubMenuObject.SetActive(false);
                 Quests.SubMenuObject.SetActive(true);
                 Settings.SubMenuObject.SetActive(Quests.DefaultSelectedUIElement);
+                SaveConfirm.gameObject.SetActive(false);
+                ReturnConfirm.gameObject.SetActive(false);
                 UIHelper.SelectedObjectSet(AbilityTree.DefaultSelectedUIElement);
                 PlayerController.Instance.GetComponent<InputManager>().SetSelecOnRegain(Quests.DefaultSelectedUIElement);
                 break;
@@ -292,6 +302,8 @@ public class PauseMenuController : MonoBehaviour
                 Quests.SubMenuObject.SetActive(false);
                 StatsMenu.SubMenuObject.SetActive(true);
                 Settings.SubMenuObject.SetActive(Quests.DefaultSelectedUIElement);
+                SaveConfirm.gameObject.SetActive(false);
+                ReturnConfirm.gameObject.SetActive(false);
                 StatsMenu.SubMenuObject.GetComponent<SkillPointPanelController>().Setup();
                 UIHelper.SelectedObjectSet(AbilityTree.DefaultSelectedUIElement);
                 PlayerController.Instance.GetComponent<InputManager>().SetSelecOnRegain(Quests.DefaultSelectedUIElement);

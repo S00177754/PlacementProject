@@ -33,7 +33,7 @@ public class ScrollController : MonoBehaviour
     //Ensures side panel is only displayed when a button is pressed
     private void OnEnable()
     {
-        Panel.SetActive(false);
+        Panel.SetActive(true);
         FillScrollView();
     }
 

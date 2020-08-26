@@ -102,7 +102,7 @@ public class GameStateController : MonoBehaviour
     static private void PausedRefresh()
     {       
             Time.timeScale = 0;
-            Instance.PauseMenu.GetComponent<PauseMenuController>().gameObject.SetActive(true);
+            Instance.PauseMenu.gameObject.SetActive(true);
             Instance.PauseMenu.GetComponent<PauseMenuController>().PauseGame();
             //PlayerController.Instance.GetComponent<PlayerMovement>().SetFreeze(true, true);
             Instance.ChangeAllPlayerMapsTo("UI");

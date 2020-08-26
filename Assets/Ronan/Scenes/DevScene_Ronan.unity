@@ -4507,7 +4507,7 @@ PrefabInstance:
     - target: {fileID: 2078291587889534664, guid: 031df76d10512734e8ebccc1828ac5dc,
         type: 3}
       propertyPath: m_Name
-      value: Casual Boy
+      value: Cecil Gershwin Palmer
       objectReference: {fileID: 0}
     - target: {fileID: 3121717649193224245, guid: 031df76d10512734e8ebccc1828ac5dc,
         type: 3}
@@ -4594,6 +4594,16 @@ PrefabInstance:
         type: 3}
       propertyPath: conversations.Array.data[0].scentances.Array.data[0]
       value: Hey there! I was thinking of making a moat. Could you be the crocodile?
+      objectReference: {fileID: 0}
+    - target: {fileID: 4462040659509805894, guid: 031df76d10512734e8ebccc1828ac5dc,
+        type: 3}
+      propertyPath: conversations.Array.data[0].name
+      value: Cecil  Palmer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4462040659509805894, guid: 031df76d10512734e8ebccc1828ac5dc,
+        type: 3}
+      propertyPath: NPCName
+      value: Cecil Palmer
       objectReference: {fileID: 0}
     - target: {fileID: 8304588418270884295, guid: 031df76d10512734e8ebccc1828ac5dc,
         type: 3}
@@ -5239,14 +5249,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259964533}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c249fe2acad6bdc44b84d8ed48375f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   QuestManager: {fileID: 11400000, guid: 468481b6c45183c4e9b765560ee00345, type: 2}
   QuestNumber: 0
-  resetAll: 1
+  resetAll: 0
 --- !u!114 &1259964535
 MonoBehaviour:
   m_ObjectHideFlags: 0

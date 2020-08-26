@@ -78,19 +78,27 @@ public class TitleSaveFileManager : MonoBehaviour
             mq.IsActive = false;
             mq.IsFound = false;
             mq.IsComplete = false;
+            OverwriteSteps(ref mq.LocationSteps);
+            OverwriteSteps(ref mq.MultiQuantitySteps);
+            OverwriteSteps(ref mq.NPCSteps);
+            OverwriteSteps(ref mq.QuantitySteps);
+            
+        }
+    }
 
-            foreach (var step in mq.StepData)
+    public void OverwriteSteps<T>(ref List<T> data) where T : QuestStepData
+    {
+        foreach (var step in data)
+        {
+            step.isComplete = false;
+
+            if (step.GetType() == typeof(MultiQuantityQuestStepData))
             {
-                step.isComplete = false;
-
-                if (step.GetType() == typeof(MultiQuantityQuestStepData))
-                {
-                    (step as MultiQuantityQuestStepData).Counters.ForEach(c => c = 0);
-                }
-                else if (step.GetType() == typeof(QuantityQuestStepData))
-                {
-                    (step as QuantityQuestStepData).TargetObtained = 0;
-                }
+                (step as MultiQuantityQuestStepData).Counters.ForEach(c => c = 0);
+            }
+            else if (step.GetType() == typeof(QuantityQuestStepData))
+            {
+                (step as QuantityQuestStepData).TargetObtained = 0;
             }
         }
     }
@@ -183,44 +191,42 @@ public static class SaveUtility
     }
 
 
-    public static QuestStepData GetQuestStepData(QuestStep step)
+    public static void GetQuestStepData(ref QuestObjData data, QuestStep step)
     {
         if (step.GetType() == typeof(LocationQuestStep))
         {
-            return new LocationQuestStepData()
+            data.LocationSteps.Add(new LocationQuestStepData()
             {
                 isComplete = step.isComplete,
                 StepID = step.ID
-            };
+            });
         }
         else if (step.GetType() == typeof(MultiQuantityQuestStep))
         {
-            return new MultiQuantityQuestStepData()
+            data.MultiQuantitySteps.Add( new MultiQuantityQuestStepData()
             {
                 isComplete = step.isComplete,
                 StepID = step.ID,
                 Counters = (step as MultiQuantityQuestStep).Counters,
-            };
+            });
         }
         else if (step.GetType() == typeof(NPCQuestStep))
         {
-            return new NPCQuestStepData()
+            data.NPCSteps.Add(new NPCQuestStepData()
             {
                 isComplete = step.isComplete,
                 StepID = step.ID,
-            };
+            });
         }
         else if (step.GetType() == typeof(QuantityQuestStep))
         {
-            return new QuantityQuestStepData()
+            data.QuantitySteps.Add(new QuantityQuestStepData()
             {
                 isComplete = step.isComplete,
                 StepID = step.ID,
                 TargetObtained = (step as QuantityQuestStep).TargetObtained,
-            };
+            });
         }
-
-        return null;
     }
 
     public static QuestObjData GetQuestObject(Quest quest)
@@ -230,11 +236,15 @@ public static class SaveUtility
         data.IsActive = quest.isActive;
         data.IsComplete = quest.isComplete;
         data.IsFound = quest.isFound;
-        data.StepData = new List<QuestStepData>();
+
+        data.QuantitySteps = new List<QuantityQuestStepData>();
+        data.NPCSteps = new List<NPCQuestStepData>();
+        data.MultiQuantitySteps = new List<MultiQuantityQuestStepData>();
+        data.LocationSteps = new List<LocationQuestStepData>();
 
         foreach (var step in quest.StepsList)
         {
-            data.StepData.Add(GetQuestStepData(step));
+            GetQuestStepData(ref data, step);
         }
 
         return data;

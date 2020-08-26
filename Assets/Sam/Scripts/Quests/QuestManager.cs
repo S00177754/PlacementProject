@@ -39,6 +39,7 @@ public class QuestManager : ScriptableObject
             else
             {
                 ActiveMain = MainScenarioQuests.First();
+                ActiveMain.Initialise();
                 break;
             }
         }
@@ -58,9 +59,7 @@ public class QuestManager : ScriptableObject
         ActiveMain.GoToNextStep();
     }
 
-    public void LoadSideQuests(){
 
-    }
     public void AssignNextQuest()
     {
         foreach (Quest main in MainScenarioQuests)
