@@ -8,6 +8,7 @@ public class SceneManagerHelper
     public static void TransitionToScene(int scene)
     {
         TravelPoint.FastTravelPoints.Clear();
+        DialogueManager.ChattyNPCs.Clear();
         SceneManager.LoadScene(scene);
     }
 }

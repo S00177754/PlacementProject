@@ -97,4 +97,6 @@ public class DialogueManager : MonoBehaviour
     {
         ActiveNPC = ChattyNPCs[name];
     }
+
+    
 }

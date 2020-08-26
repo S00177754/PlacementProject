@@ -36,7 +36,7 @@ public class InventoryManager : MonoBehaviour
             }
 
             //GetComponent<PlayerController>().HUDController.SendNotification(ItemOnGround.GetComponent<CollectableItem>().Item.Name,null,Color.blue);
-            //GetComponent<PlayerController>().HUDController.HideItemNotification();
+            GetComponent<PlayerController>().HUDController.HideItemNotification();
             GetComponent<InputManager>().buttonStates.SetState(WestButtonState.Default);
             ItemOnGround = null;
         }

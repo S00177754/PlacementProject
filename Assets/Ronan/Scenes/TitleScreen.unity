@@ -1838,7 +1838,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TitleMenuController: {fileID: 420006761}
   StartingStats:
-    Name: Test
+    Name: Cara
     Level: 1
     Experience: 0
     SkillPoints: 0
@@ -1848,9 +1848,11 @@ MonoBehaviour:
     MagicStat: 5
     VitalityStat: 5
     DefenceStat: 5
-  StartingWeapon: {fileID: 11400000, guid: 9d324bc599625d746be40b17392e0f10, type: 2}
+  StartingWeapon: {fileID: 11400000, guid: 9f3da5c4cb22fb9428175e941fe31c81, type: 2}
   PlayerInventory: {fileID: 11400000, guid: 22dea3c22d0a6e64dbdeaa29f6874e42, type: 2}
-  StartInventory: []
+  StartInventory:
+  - {fileID: 11400000, guid: 301ed3bd06554074da10235dda3eff66, type: 2}
+  - {fileID: 11400000, guid: 3e5c449f69f29664ca95d4b47fbbcd06, type: 2}
   NodeList:
   - {fileID: 11400000, guid: 3b47798042b8a4c4bb5858df7c8cd42d, type: 2}
   - {fileID: 11400000, guid: 4874e256bdead7e4cbddb5e3039d0690, type: 2}
@@ -1875,7 +1877,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 96ab52682d8087c4ab8dc03691c30844, type: 2}
   - {fileID: 11400000, guid: 05619247de37c314687dfb0c564408df, type: 2}
   Quests: {fileID: 11400000, guid: 468481b6c45183c4e9b765560ee00345, type: 2}
-  StartPosition: {x: -46, y: 200, z: 207}
+  StartPosition: {x: -46, y: 34, z: 207}
   StartRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &566322143
 GameObject:

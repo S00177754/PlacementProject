@@ -26,7 +26,7 @@ public class InventoryItemUsagePanel : MonoBehaviour
         PlayerController.Instance.GetComponent<InputManager>().buttonStates.SetState(EastButtonState.ItemUsagePanel);
         UIHelper.SelectedObjectSet(this.gameObject);
 
-        if(ActivatedBy.Item is WeaponObj || activatedBy.Item is BaubleObj)
+        if(ActivatedBy.Item is WeaponObj || ActivatedBy.Item is BaubleObj)
         {
             if(PlayerController.Instance.GetComponent<EquipmentManager>().CheckLoadout(ActivatedBy.Item))
             {
@@ -41,20 +41,28 @@ public class InventoryItemUsagePanel : MonoBehaviour
             QuickWheelButton.interactable = true;
 
         }
-        else if(!(ActivatedBy.Item is TreasureObj))
+        else if((ActivatedBy.Item is TreasureObj))
         {
             UseButtonText.text = "Use Item";
             FirstButton.GetComponent<Button>().interactable = false;
             QuickWheelButton.interactable = false;
             
         }
-        else if (!(ActivatedBy.Item is KeyItemObj))
+        else if ((ActivatedBy.Item is KeyItemObj))
         {
             UseButtonText.text = "Use Item";
             FirstButton.GetComponent<Button>().interactable = false;
             QuickWheelButton.interactable = false;
 
+
         }
+        else if (ActivatedBy.Item is HealthPotionObj || ActivatedBy.Item is MPPotionObj)
+        {
+            UseButtonText.text = "Use Item";
+            FirstButton.GetComponent<Button>().interactable = true;
+            QuickWheelButton.interactable = true;
+        }
+
     }
 
     public void UseItem()

@@ -59,6 +59,29 @@ public class InteractionManager : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other != null)
+        {
+            switch (other.tag)
+            {
+                case "TravelPoint":
+                    TravelPoint travelPoint;
+                    if (other.TryGetComponent(out travelPoint))
+                    {
+                        if (travelPoint.TeleportUnlocked)
+                        {
+                            GetComponent<PlayerController>().HUDController.SetupNotification("Teleport Unlocked");
+                        }
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other != null)

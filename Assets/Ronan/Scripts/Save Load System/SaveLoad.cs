@@ -196,6 +196,17 @@ public class SaveLoad : MonoBehaviour
 
     private void AssignQuestStepData(QuestStep step, QuestStepData data)
     {
+        if(step == null)
+        {
+            Debug.LogError("Quest Step is null!");
+            return;
+        }
+        else if (data == null)
+        {
+            Debug.LogError("Quest Step Data is null!");
+            return;
+        }
+
         if (step.GetType() == typeof(LocationQuestStep))
         {
             step.isComplete = (data as LocationQuestStepData).isComplete;
@@ -209,7 +220,7 @@ public class SaveLoad : MonoBehaviour
         }
         else if (step.GetType() == typeof(NPCQuestStep))
         { 
-                step.isComplete = (data as NPCQuestStepData).isComplete;
+                step.isComplete = data.isComplete;
                 step.ID = (data as NPCQuestStepData).StepID;
         }
         else if (step.GetType() == typeof(QuantityQuestStep))
