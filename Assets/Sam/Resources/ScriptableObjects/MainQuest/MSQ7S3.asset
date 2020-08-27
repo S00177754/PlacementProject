@@ -15,7 +15,11 @@ MonoBehaviour:
   ID: MSQ7S3
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 0632e9312f610ee4498ef4e87bf20c27, type: 2}
-  Description: FInd the Supreme Magic Potion
+  SpawnObjectAtQuestStart: 1
+  ItemSpawnLocation: {x: 675, y: 46, z: 1796}
+  SpawnPrefab: {fileID: 7711856488366579890, guid: 77a2dc2e98096564ab43e4c6ccbbfcdc,
+    type: 3}
+  Description: FInd the potion at the bandit hideout
   Name: MSQ7 Step 3
   targetObject: {fileID: 11400000, guid: 9cf39b674f89df54ab2e946565e2444c, type: 2}
   TargetName: Supreme Magic Potion

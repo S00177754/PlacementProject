@@ -15,7 +15,10 @@ MonoBehaviour:
   ID: MSQ7S4
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: c2748ce399b40184aba854f046e08147, type: 2}
-  Description: Head back to Sendagaya
+  SpawnObjectAtQuestStart: 0
+  ItemSpawnLocation: {x: 0, y: 0, z: 0}
+  SpawnPrefab: {fileID: 0}
+  Description: Head back to Rose
   Name: MSQ7 Step 4
   ColiderTag: Quest Location
   StepLocation: {fileID: 0}

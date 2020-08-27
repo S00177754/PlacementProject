@@ -15,6 +15,9 @@ MonoBehaviour:
   ID: MSQ7S1
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 0632e9312f610ee4498ef4e87bf20c27, type: 2}
-  Description: Find out what Sendagaya knows
+  SpawnObjectAtQuestStart: 0
+  ItemSpawnLocation: {x: 0, y: 0, z: 0}
+  SpawnPrefab: {fileID: 0}
+  Description: Talk To Rose
   Name: MSQ7 Step 1
   TargetNPC: {fileID: 0}

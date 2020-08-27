@@ -15,7 +15,10 @@ MonoBehaviour:
   ID: MSQ3S2
   isComplete: 0
   ParentQuest: {fileID: 0}
-  Description: Head to the lake near by.
+  SpawnObjectAtQuestStart: 0
+  ItemSpawnLocation: {x: 0, y: 0, z: 0}
+  SpawnPrefab: {fileID: 0}
+  Description: Head to the bandit hideout
   Name: MSQ3 Step 2
   ColiderTag: Quest Location
   StepLocation: {fileID: 0}

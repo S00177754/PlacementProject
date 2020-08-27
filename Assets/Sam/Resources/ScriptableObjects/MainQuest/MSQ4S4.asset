@@ -15,7 +15,11 @@ MonoBehaviour:
   ID: MSQ4S4
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 4a43683ff24a7954f9a9522ce1b3bcb5, type: 2}
-  Description: Collect the Assassins Dagger
+  SpawnObjectAtQuestStart: 1
+  ItemSpawnLocation: {x: 1476, y: 69, z: 459}
+  SpawnPrefab: {fileID: 4220561100686958471, guid: 90f42877e43c14242bbfbb2952170c1c,
+    type: 3}
+  Description: Find the dagger in the ruins
   Name: MSQ4 Step 4
   targetObject: {fileID: 11400000, guid: 0234f9327ebfe0740874295571e8229f, type: 2}
   TargetName: 

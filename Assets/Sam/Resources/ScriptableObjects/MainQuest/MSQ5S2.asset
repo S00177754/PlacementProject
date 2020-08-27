@@ -15,7 +15,10 @@ MonoBehaviour:
   ID: MSQ5S2
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: da84bd4776d82924583e59327cad17f2, type: 2}
-  Description: Head north to find the school
+  SpawnObjectAtQuestStart: 0
+  ItemSpawnLocation: {x: 0, y: 0, z: 0}
+  SpawnPrefab: {fileID: 0}
+  Description: Head north to Arandale
   Name: MSQ5 Step 2
   ColiderTag: Quest Location
   StepLocation: {fileID: 0}

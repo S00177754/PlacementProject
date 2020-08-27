@@ -15,7 +15,10 @@ MonoBehaviour:
   ID: MSQ6S5
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 2d2515d803925cd4c84d24eb6a49d7cd, type: 2}
-  Description: Head back to the river village to Vita
+  SpawnObjectAtQuestStart: 0
+  ItemSpawnLocation: {x: 0, y: 0, z: 0}
+  SpawnPrefab: {fileID: 0}
+  Description: Head back to Doveport and talk to Vita
   Name: MSQ6 Step 5
   ColiderTag: Quest Location
   StepLocation: {fileID: 0}

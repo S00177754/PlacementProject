@@ -15,8 +15,11 @@ MonoBehaviour:
   ID: MSQ2S2
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: f3252515f2445884eafd7fce4707454e, type: 2}
-  Description: Head to the River Village
+  SpawnObjectAtQuestStart: 0
+  ItemSpawnLocation: {x: 0, y: 0, z: 0}
+  SpawnPrefab: {fileID: 0}
+  Description: Head to Doveport
   Name: MSQ2 Step 2
   ColiderTag: 
-  StepLocation: {x: 0, y: 0, z: 0}
+  StepLocation: {fileID: 0}
   TriggerRange: 10
