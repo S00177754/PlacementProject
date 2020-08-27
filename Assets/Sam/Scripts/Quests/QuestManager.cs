@@ -68,6 +68,7 @@ public class QuestManager : ScriptableObject
             {
                 FoundMSQuests.Add(main);
                 ActiveMain = main;
+                ActiveMain.Initialise();
                 break;
             }
         }

@@ -32,29 +32,51 @@ public class Quest : ScriptableObject
 
     public void GoToNextStep()
     {
-        Initialise();
+        //Initialise();
 
-        if(ActiveStep.isComplete)
+        if (ActiveStep.isComplete)
         {
 
             if (CompletedList.Count < StepsList.Count)
             {
+                if (CompletedSteps == null)
+                    CompletedSteps = new Queue<QuestStep>();
+
                 CompletedSteps.Enqueue(ActiveStep);
+                
+                Debug.Log(string.Concat("Completed Active Step: ", ActiveStep.ID));
 
-                if (StepsQueue.Count > 0)
-                    ActiveStep = StepsQueue.Dequeue();
+                if (CompletedSteps.Count >= StepsList.Count)
+                {
+                    isComplete = true;
+                    QuestManager.AssignNextQuest();
+                }
+                else
+                {
+                    if (StepsQueue.Count > 1 && ActiveStep == StepsQueue.Peek())
+                        StepsQueue.Dequeue();
 
-                if (StepsQueue.Count > 1)
-                    NextStep = StepsQueue.Peek();
+                    if (StepsQueue.Count > 0)
+                        ActiveStep = StepsQueue.Dequeue();
+
+                    if (StepsQueue.Count > 1)
+                        NextStep = StepsQueue.Peek();
+
+                    Debug.Log(string.Concat("New Active Step: ", ActiveStep.ID));
+                    QuestHUD.Instance.AssignToHUD(ActiveStep);
+                }
 
             }
             else
             {
                 isComplete = true;
                 QuestManager.AssignNextQuest();
-            }            
+            }
+
         }
         //AssignActiveStep();
+
+
     }
 
     public void Initialise()
@@ -74,6 +96,7 @@ public class Quest : ScriptableObject
         AssignActiveStep();
     }
 
+
     void AssignActiveStep()
     {
         for (int i = 0; i < StepsList.Count; i++)
@@ -81,6 +104,7 @@ public class Quest : ScriptableObject
             if (!StepsList[i].isComplete)
             {
                 ActiveStep = StepsList[i];
+                QuestHUD.Instance.AssignToHUD(ActiveStep);
                 Debug.Log(string.Concat("Active Step: ", ActiveStep.ID));
                 break;
             }

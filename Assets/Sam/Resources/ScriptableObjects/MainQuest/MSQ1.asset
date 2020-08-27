@@ -24,15 +24,11 @@ MonoBehaviour:
     type: 3}
   QuestReturn: {fileID: 2061027445580263722, guid: 91e3cde8de97b7548b7c4bbcb8ee211c,
     type: 3}
-  CompletedList:
-  - {fileID: 11400000, guid: da84e95096d4d6749a47aa113fdb7b37, type: 2}
-  - {fileID: 11400000, guid: 0d5a87a6d34dfcd40b915f3524fe8608, type: 2}
-  - {fileID: 11400000, guid: 996de7a1a2cb24746885aa1ce8ad4549, type: 2}
-  - {fileID: 11400000, guid: b900de98834975e4d8e6119e86560a9c, type: 2}
+  CompletedList: []
   StepsList:
   - {fileID: 11400000, guid: da84e95096d4d6749a47aa113fdb7b37, type: 2}
   - {fileID: 11400000, guid: 0d5a87a6d34dfcd40b915f3524fe8608, type: 2}
   - {fileID: 11400000, guid: 996de7a1a2cb24746885aa1ce8ad4549, type: 2}
   - {fileID: 11400000, guid: b900de98834975e4d8e6119e86560a9c, type: 2}
   ActiveStep: {fileID: 11400000, guid: b900de98834975e4d8e6119e86560a9c, type: 2}
-  NextStep: {fileID: 0}
+  NextStep: {fileID: 11400000, guid: 996de7a1a2cb24746885aa1ce8ad4549, type: 2}

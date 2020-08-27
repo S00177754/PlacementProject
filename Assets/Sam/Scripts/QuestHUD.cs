@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class QuestHUD : MonoBehaviour
 {
+    public static QuestHUD Instance;
+
     [SerializeField]
     QuestManager Manager;
     //Quest currentQuest;
@@ -16,7 +18,12 @@ public class QuestHUD : MonoBehaviour
     TMP_Text questName;
     [SerializeField]
     TMP_Text questStep;
-    
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         //Manager = Resources.Load<QuestManager>("ScriptableObjects/QuestManager");
@@ -34,16 +41,17 @@ public class QuestHUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AssignToHUD();
+       //AssignToHUD();
     }
 
-    public void AssignToHUD()
+    public void AssignToHUD(QuestStep step)
     {
         //Switch Betweeen Main and Side, create 'TrackedQuest' in Manager
         //questIcon = Resources.Load<Image>("Images/TEMP_Main");
 
-        questName.text = Manager.ActiveMain.Name;
+        //questName.text = Manager.ActiveMain.Name;
+        questName.text = step.ParentQuest.Name;
         
-        questStep.text = Manager.ActiveMain.ActiveStep.GetDescription();
+        questStep.text = step.GetDescription();
     }
 }
