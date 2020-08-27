@@ -55,5 +55,6 @@ public class QuestInitialiser : MonoBehaviour
         QuestManager.ActiveMain = QuestManager.MainScenarioQuests[index - 1];
         QuestManager.ActiveMain.isFound = true;
         QuestManager.ActiveMain.ActiveStep = QuestManager.ActiveMain.StepsList[index - 1];
+        QuestManager.FoundMSQuests.Add(QuestManager.ActiveMain);
     }
 }

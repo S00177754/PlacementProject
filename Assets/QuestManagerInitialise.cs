@@ -10,5 +10,6 @@ public class QuestManagerInitialise : MonoBehaviour
     void Start()
     {
         QuestManager.Initialise();
+        QuestManager.FoundMSQuests.Add(QuestManager.ActiveMain);
     }
 }
