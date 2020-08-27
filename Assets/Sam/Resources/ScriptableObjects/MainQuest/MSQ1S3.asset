@@ -15,9 +15,13 @@ MonoBehaviour:
   ID: MSQ1S3
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 14ec31d2fea74ad4cb1b238648e1bb74, type: 2}
-  Description: Collect a minor health potion
+  SpawnObjectAtQuestStart: 1
+  ItemSpawnLocation: {x: 53, y: 30.01, z: 324}
+  SpawnPrefab: {fileID: 8431820679709049627, guid: 108bae831a6bd724e858efcbfd2f5870,
+    type: 3}
+  Description: Pickup the potion
   Name: MSQ1 Step 3
   targetObject: {fileID: 11400000, guid: 301ed3bd06554074da10235dda3eff66, type: 2}
   TargetName: Minor Health Potion
   TargetQuantity: 1
-  TargetObtained: 1
+  TargetObtained: 0

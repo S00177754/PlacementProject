@@ -29,19 +29,28 @@ public class QuestManager : ScriptableObject
 
     public void Initialise()
     {
-        FoundMSQuests.Clear();
+        ActiveMain = null;
+        UpdateFoundQuests();
+
         foreach (Quest main in MainScenarioQuests)
         {
-            if (main.isFound)
+            if (main.isFound && !main.isComplete)
+            //{
+            //    FoundMSQuests.Add(main);
+            //}
+            //else
             {
-                FoundMSQuests.Add(main);
-            }
-            else
-            {
-                ActiveMain = MainScenarioQuests.First();
+                //ActiveMain = MainScenarioQuests.First();
+                ActiveMain = main;
                 ActiveMain.Initialise();
                 break;
             }
+        }
+
+        if (ActiveMain == null)
+        {
+            ActiveMain = MainScenarioQuests.First();
+            ActiveMain.Initialise();
         }
 
         foreach (Quest side in SideQuests)
@@ -50,6 +59,17 @@ public class QuestManager : ScriptableObject
                 ActiveSides.Add(side);
             if (side.isComplete)
                 CompletedSides.Add(side);
+        }
+    }
+
+    public void UpdateFoundQuests()
+    {
+        FoundMSQuests.Clear();
+        
+        foreach (Quest main in MainScenarioQuests)
+        {
+            if(main.isFound)
+            FoundMSQuests.Add(main);
         }
     }
 
@@ -66,9 +86,10 @@ public class QuestManager : ScriptableObject
         {
             if(!main.isComplete)
             {
-                FoundMSQuests.Add(main);
+                
                 ActiveMain = main;
                 ActiveMain.Initialise();
+                UpdateFoundQuests();
                 break;
             }
         }

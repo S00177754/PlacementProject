@@ -46,23 +46,48 @@ public class ScrollController : MonoBehaviour
     {
         ClearScrollView();
 
-        foreach (Quest quest in Manager.FoundMSQuests)
+        foreach (Quest quest in Manager.MainScenarioQuests)
         {
-            GameObject next = Instantiate(ButtonPrefab, ScrollviewContent.transform);
-            ButtonQuests button;
-            TMP_Text TitleText;
-            next.TryGetComponent(out button);
-            Buttons.Add(button);
-            button.buttonQuest = quest;
-            button.Panel = Panel;
-            TitleText = next.GetComponentInChildren<TMP_Text>();
-            TitleText.text = quest.Name;
+            if (quest.isFound)
+            {
+                GameObject next = Instantiate(ButtonPrefab, ScrollviewContent.transform);
 
 
-            if (button != null)
-                Debug.Log("Button quest is " + button.buttonQuest.name);
+                ButtonQuests button;
+                next.TryGetComponent(out button);
+                Buttons.Add(button);
+                button.buttonQuest = quest;
+                button.Panel = Panel;
+                
+                TMP_Text TitleText;
+                TitleText = next.GetComponentInChildren<TMP_Text>();
+                TitleText.text = quest.Name;
+
+
+                if (button != null)
+                    Debug.Log("Button quest is " + button.buttonQuest.name);
+            }
 
         }
+
+        //foreach (Quest quest in Manager.FoundMSQuests)
+        //{
+        //    GameObject next = Instantiate(ButtonPrefab, ScrollviewContent.transform);
+        //    ButtonQuests button;
+        //    TMP_Text TitleText;
+        //    next.TryGetComponent(out button);
+        //    Buttons.Add(button);
+        //    button.buttonQuest = quest;
+        //    button.Panel = Panel;
+        //    TitleText = next.GetComponentInChildren<TMP_Text>();
+        //    TitleText.text = quest.Name;
+
+
+        //    if (button != null)
+        //        Debug.Log("Button quest is " + button.buttonQuest.name);
+
+        //}
+
         //if(CompareTag("Main Scenario"))
         //{
         //}

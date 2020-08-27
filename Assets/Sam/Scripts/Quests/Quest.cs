@@ -57,13 +57,17 @@ public class Quest : ScriptableObject
                         StepsQueue.Dequeue();
 
                     if (StepsQueue.Count > 0)
+                    {
                         ActiveStep = StepsQueue.Dequeue();
+                        ActiveStep.Initialise();
+                    }
 
                     if (StepsQueue.Count > 1)
                         NextStep = StepsQueue.Peek();
 
                     Debug.Log(string.Concat("New Active Step: ", ActiveStep.ID));
                     QuestHUD.Instance.AssignToHUD(ActiveStep);
+                    
                 }
 
             }
@@ -81,6 +85,8 @@ public class Quest : ScriptableObject
 
     public void Initialise()
     {
+        isFound = true;
+
         CompletedSteps = new Queue<QuestStep>();
         StepsQueue = new Queue<QuestStep>();
         foreach (QuestStep step in StepsList)
@@ -89,7 +95,11 @@ public class Quest : ScriptableObject
             StepsQueue.Enqueue(step);
 
             if(ActiveStep == null && !step.isComplete)
+            {
                 ActiveStep = step;
+                
+                QuestHUD.Instance.AssignToHUD(ActiveStep);
+            }
 
         }
         CheckCompletedSteps();
@@ -104,6 +114,7 @@ public class Quest : ScriptableObject
             if (!StepsList[i].isComplete)
             {
                 ActiveStep = StepsList[i];
+                ActiveStep.Initialise();
                 QuestHUD.Instance.AssignToHUD(ActiveStep);
                 Debug.Log(string.Concat("Active Step: ", ActiveStep.ID));
                 break;

@@ -197,7 +197,7 @@ public class SaveLoad : MonoBehaviour
 
     private void AssignQuestStepData(QuestStep step, QuestStepData data)
     {
-        Debug.Log(string.Concat("Step: ",step.ID,"  Type: ",step.GetType()));
+        //Debug.Log(string.Concat("Step: ",step.ID,"  Type: ",step.GetType()));
 
         if(step == null)
         {

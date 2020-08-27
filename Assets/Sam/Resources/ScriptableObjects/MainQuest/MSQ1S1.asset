@@ -15,7 +15,10 @@ MonoBehaviour:
   ID: MSQ1S1
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 14ec31d2fea74ad4cb1b238648e1bb74, type: 2}
-  Description: Talk with the girl
+  SpawnObjectAtQuestStart: 0
+  ItemSpawnLocation: {x: 0, y: 0, z: 0}
+  SpawnPrefab: {fileID: 0}
+  Description: Talk with Victoria
   Name: MSQ1 Step 1
   TargetNPC: {fileID: 2061027445580263722, guid: 91e3cde8de97b7548b7c4bbcb8ee211c,
     type: 3}

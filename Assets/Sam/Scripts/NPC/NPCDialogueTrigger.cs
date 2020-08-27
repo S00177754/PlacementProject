@@ -18,7 +18,7 @@ public class NPCDialogueTrigger : MonoBehaviour
     [SerializeField]
     Quest ActiveQuest;
     [SerializeField]
-    QuestManager QuestManage;
+    QuestManager QuestManager;
 
 
 
@@ -42,7 +42,7 @@ public class NPCDialogueTrigger : MonoBehaviour
     {
         CheckForQuest();
         //Checks if dialogue has updated from quests then starts in Manager
-        CheckDialogue(ActiveQuest.ActiveStep.ID);
+        CheckDialogue(ActiveQuest != null ? ActiveQuest.ActiveStep.ID : "default");
         if(ActiveQuest.ActiveStep.GetType() == typeof(NPCQuestStep))
         {
             ActiveQuest.ActiveStep.isComplete = true;
@@ -91,14 +91,15 @@ public class NPCDialogueTrigger : MonoBehaviour
     private void CheckForQuest()
     {
         //Checks Active Quest and finds conversation of same name.
-        ActiveQuest = QuestManage.ActiveMain;
+        ActiveQuest = QuestManager.ActiveMain;
         
         if (ActiveQuest == null)
         {
-            Debug.Log("ActiveQuest null in Start()");
-            ActiveQuest = QuestManage.ActiveSides.First();
+            Debug.LogError("ActiveMain is null");
+
+            ActiveQuest = QuestManager.ActiveSides.First();
             if (ActiveQuest == null)
-                Debug.Log("ActiveQuest null in Start() after side search");
+                Debug.LogError("ActiveSide is null");
         }
         
     }
@@ -113,6 +114,7 @@ public class NPCDialogueTrigger : MonoBehaviour
     {
         canTalk = true;
         DialogueManager.ActiveNPC = this;
+        
     }
 
     private void OnTriggerExit(Collider other)
