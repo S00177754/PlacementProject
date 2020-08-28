@@ -45,7 +45,7 @@ public class NPCDialogueTrigger : MonoBehaviour
         CheckDialogue(ActiveQuest != null ? ActiveQuest.ActiveStep.ID : "default");
         if(ActiveQuest.ActiveStep.GetType() == typeof(NPCQuestStep))
         {
-            ActiveQuest.ActiveStep.isComplete = true;
+            ActiveQuest.ActiveStep.SetComplete();
             ActiveQuest.GoToNextStep();
         }
         

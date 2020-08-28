@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum SpawnLifeTime { Permanent, Step }
 
 public class QuestStep : ScriptableObject 
 {    
@@ -11,18 +13,34 @@ public class QuestStep : ScriptableObject
 
     [Header("Spawn Object Options")]
     public bool SpawnObjectAtQuestStart;
-    public Vector3 ItemSpawnLocation;
-    public GameObject SpawnPrefab;
+    public List<QuestStepSpawnable> Spawnables;
 
 
     public virtual void Initialise()
     {
-        if(SpawnPrefab != null && SpawnObjectAtQuestStart)
+        for (int i = 0; i < Spawnables.Count; i++)
         {
-            GameObject go = Instantiate(SpawnPrefab);
-            go.transform.position = new Vector3(ItemSpawnLocation.x,ItemSpawnLocation.y,ItemSpawnLocation.z);
-            Debug.Log(string.Concat("Spawned Quest Obejct: ",ID));
+            if (Spawnables[i].Prefab != null && SpawnObjectAtQuestStart)
+            {
+                Spawnables[i].Spawned = Instantiate(Spawnables[i].Prefab);
+                Spawnables[i].Spawned.transform.position = new Vector3(Spawnables[i].SpawnLocation.x, Spawnables[i].SpawnLocation.y, Spawnables[i].SpawnLocation.z);
+                Debug.Log(string.Concat("Spawned Quest Obejct: ", ID));
+            }
         }
+    }
+
+    public virtual void SetComplete()
+    {
+        isComplete = true;
+
+        for (int i = 0; i < Spawnables.Count; i++)
+        {
+            if (Spawnables[i].Spawned != null && Spawnables[i].LifeTime == SpawnLifeTime.Step)
+            {
+                Destroy(Spawnables[i].Spawned);
+            }
+        }
+
     }
 
     public virtual string GetName()
@@ -34,4 +52,14 @@ public class QuestStep : ScriptableObject
     {
         return string.Empty;
     }
+}
+
+[Serializable]
+public class QuestStepSpawnable
+{
+    public SpawnLifeTime LifeTime;
+    public GameObject Prefab;
+    public Vector3 SpawnLocation;
+    [NonSerialized]
+    public GameObject Spawned;
 }

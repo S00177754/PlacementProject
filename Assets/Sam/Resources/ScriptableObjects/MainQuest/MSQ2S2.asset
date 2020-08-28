@@ -15,11 +15,14 @@ MonoBehaviour:
   ID: MSQ2S2
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: f3252515f2445884eafd7fce4707454e, type: 2}
-  SpawnObjectAtQuestStart: 0
-  ItemSpawnLocation: {x: 0, y: 0, z: 0}
-  SpawnPrefab: {fileID: 0}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 2595459401199239789, guid: d7f4e3fe9d1c4ae4ebda41ef9ceb6b13,
+      type: 3}
+    SpawnLocation: {x: 492, y: 30, z: 756}
   Description: Head to Doveport
   Name: MSQ2 Step 2
-  ColiderTag: 
+  ColiderTag: Quest Location
   StepLocation: {fileID: 0}
   TriggerRange: 10

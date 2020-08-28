@@ -26,7 +26,7 @@ public class QuantityQuestStep : QuestStep
         TargetObtained++;
         if (TargetObtained >= TargetQuantity)
         {
-            isComplete = true;
+            SetComplete();
             ParentQuest.GoToNextStep();
         }
     }

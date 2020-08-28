@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: MSQ1S2
   m_EditorClassIdentifier: 
   ID: MSQ1S2
-  isComplete: 0
+  isComplete: 1
   ParentQuest: {fileID: 11400000, guid: 14ec31d2fea74ad4cb1b238648e1bb74, type: 2}
-  SpawnObjectAtQuestStart: 0
-  ItemSpawnLocation: {x: 0, y: 0, z: 0}
-  SpawnPrefab: {fileID: 0}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 3290129759341544560, guid: 3e510d9b7bc74ba41b5628cecb4ab2e7,
+      type: 3}
+    SpawnLocation: {x: 53, y: 30, z: 324}
   Description: Head to the quest marker
   Name: MSQ1 Step 2
   ColiderTag: Quest Location

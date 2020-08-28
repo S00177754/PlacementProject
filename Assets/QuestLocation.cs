@@ -24,7 +24,8 @@ public class QuestLocation : MonoBehaviour
     {
         if (QuestManager.ActiveMain.ActiveStep.ID == LocationName)
         {
-            QuestManager.ActiveMain.ActiveStep.isComplete = true;
+            //QuestManager.ActiveMain.ActiveStep.isComplete = true;
+            QuestManager.ActiveMain.ActiveStep.SetComplete();
             QuestManager.ActiveMain.GoToNextStep();
         }   
     }

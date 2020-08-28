@@ -6,6 +6,7 @@ using UnityEngine;
 public class NPCQuestStep : QuestStep
 {
     //Quest step to talk to an NPC
+    [Header("NPC Steps")]
     [SerializeField]
     public string Description;
     [SerializeField]

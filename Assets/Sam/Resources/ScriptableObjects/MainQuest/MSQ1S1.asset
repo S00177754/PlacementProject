@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: MSQ1S1
   m_EditorClassIdentifier: 
   ID: MSQ1S1
-  isComplete: 0
+  isComplete: 1
   ParentQuest: {fileID: 11400000, guid: 14ec31d2fea74ad4cb1b238648e1bb74, type: 2}
-  SpawnObjectAtQuestStart: 0
-  ItemSpawnLocation: {x: 0, y: 0, z: 0}
-  SpawnPrefab: {fileID: 0}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 4550779703217194201, guid: e0d298a1cef1c4840981f9a1a1fb2a27,
+      type: 3}
+    SpawnLocation: {x: 39, y: 30, z: 298}
   Description: Talk with Victoria
   Name: MSQ1 Step 1
   TargetNPC: {fileID: 2061027445580263722, guid: 91e3cde8de97b7548b7c4bbcb8ee211c,

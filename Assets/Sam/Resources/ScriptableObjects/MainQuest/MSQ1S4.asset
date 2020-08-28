@@ -15,6 +15,12 @@ MonoBehaviour:
   ID: MSQ1S4
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 14ec31d2fea74ad4cb1b238648e1bb74, type: 2}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 4550779703217194201, guid: e0d298a1cef1c4840981f9a1a1fb2a27,
+      type: 3}
+    SpawnLocation: {x: 39, y: 30, z: 298}
   Description: Return to Victoria with the potion
   Name: MSQ1 Step 4
   TargetNPC: {fileID: 0}

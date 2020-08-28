@@ -20,10 +20,10 @@ public class LocationQuestStep : QuestStep
     [SerializeField]
     public float TriggerRange;
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag(ColiderTag))
-            isComplete = true;
+            SetComplete();
         ParentQuest.GoToNextStep();
     }
 

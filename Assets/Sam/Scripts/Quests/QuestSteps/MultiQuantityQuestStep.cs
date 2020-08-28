@@ -21,7 +21,7 @@ public class MultiQuantityQuestStep : QuestStep
         
         if(TargetQuantities.Sum() == Counters.Sum())
         {
-            isComplete = true;
+            SetComplete();
             ParentQuest.GoToNextStep();
         }
     }
