@@ -15,6 +15,12 @@ MonoBehaviour:
   ID: MSQ10S1
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: ef2148313c931dd4192ed72b9b8cab99, type: 2}
-  Description: Finish with your friend.
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 4550779703217194201, guid: e0d298a1cef1c4840981f9a1a1fb2a27,
+      type: 3}
+    SpawnLocation: {x: 1323, y: 60, z: 1787}
+  Description: Talk to Sakurada
   Name: MSQ10 Step 1
   TargetNPC: {fileID: 0}

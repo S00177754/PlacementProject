@@ -15,9 +15,12 @@ MonoBehaviour:
   ID: MSQ5S2
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: da84bd4776d82924583e59327cad17f2, type: 2}
-  SpawnObjectAtQuestStart: 0
-  ItemSpawnLocation: {x: 0, y: 0, z: 0}
-  SpawnPrefab: {fileID: 0}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 6642504050068803534, guid: 69794639be1efc8498b35c9ded98723f,
+      type: 3}
+    SpawnLocation: {x: 118, y: 80, z: 1548}
   Description: Head north to Arandale
   Name: MSQ5 Step 2
   ColiderTag: Quest Location

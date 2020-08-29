@@ -15,10 +15,13 @@ MonoBehaviour:
   ID: MSQ6S5
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 2d2515d803925cd4c84d24eb6a49d7cd, type: 2}
-  SpawnObjectAtQuestStart: 0
-  ItemSpawnLocation: {x: 0, y: 0, z: 0}
-  SpawnPrefab: {fileID: 0}
-  Description: Head back to Doveport and talk to Vita
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 3869279088538562234, guid: 0adfba41f3db01b47a21c8f39c456639,
+      type: 3}
+    SpawnLocation: {x: 486, y: 30, z: 693}
+  Description: Head back to Doveport
   Name: MSQ6 Step 5
   ColiderTag: Quest Location
   StepLocation: {fileID: 0}

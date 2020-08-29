@@ -226,10 +226,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!FreezeCamera)
         {
-
             rotation.y += direction.x * Controller.Settings.CameraSensitivity; //Camera Sensitivity
 
-            if (Controller.Settings.InvertYAxis)
+            if (PlayerPrefs.GetString("yaxis") == "true" ? true : false)
             {
                 rotation.x += -direction.y * Controller.Settings.CameraSensitivity;
             }

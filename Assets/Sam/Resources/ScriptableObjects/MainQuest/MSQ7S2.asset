@@ -15,9 +15,12 @@ MonoBehaviour:
   ID: MSQ7S2
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 0632e9312f610ee4498ef4e87bf20c27, type: 2}
-  SpawnObjectAtQuestStart: 0
-  ItemSpawnLocation: {x: 0, y: 0, z: 0}
-  SpawnPrefab: {fileID: 0}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 8851648104515385372, guid: 7e6767db35c758540b9a0cb6e2442ebf,
+      type: 3}
+    SpawnLocation: {x: 676, y: 42, z: 1785}
   Description: Make your way to the woods,  east of Arandale
   Name: MSQ7 Step 2
   ColiderTag: Quest Location

@@ -15,6 +15,12 @@ MonoBehaviour:
   ID: MSQ4S6
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 4a43683ff24a7954f9a9522ce1b3bcb5, type: 2}
+  SpawnObjectAtQuestStart: 0
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 4550779703217194201, guid: e0d298a1cef1c4840981f9a1a1fb2a27,
+      type: 3}
+    SpawnLocation: {x: 486, y: 30, z: 693}
   Description: Show Vita the Dagger
   Name: MSQ4 Step 6
   TargetNPC: {fileID: 0}

@@ -15,6 +15,12 @@ MonoBehaviour:
   ID: MSQ6S2
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 2d2515d803925cd4c84d24eb6a49d7cd, type: 2}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 2351791861055756448, guid: afa3e0aa31d0f744b93d51993fe3fa33,
+      type: 3}
+    SpawnLocation: {x: 113, y: 80, z: 1599}
   Description: Check with the merchant
   Name: MSQ6 Step 2
   ColiderTag: Quest Location

@@ -16,9 +16,15 @@ MonoBehaviour:
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 2d2515d803925cd4c84d24eb6a49d7cd, type: 2}
   SpawnObjectAtQuestStart: 1
-  ItemSpawnLocation: {x: 40, y: 59, z: 1291}
-  SpawnPrefab: {fileID: 4458083984870666340, guid: 555e1f5dd35a3c149833d54df9ee1e45,
-    type: 3}
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 3409845736821351639, guid: b525b81b04826fa47be19f3c632fdc2a,
+      type: 3}
+    SpawnLocation: {x: 40, y: 59, z: 1291}
+  - LifeTime: 0
+    Prefab: {fileID: 4458083984870666340, guid: 555e1f5dd35a3c149833d54df9ee1e45,
+      type: 3}
+    SpawnLocation: {x: 40, y: 59, z: 1291}
   Description: Find the potion in the woods
   Name: MSQ6 Step 4
   targetObject: {fileID: 11400000, guid: 8e796d8fd06104c4bb2586baf6207880, type: 2}

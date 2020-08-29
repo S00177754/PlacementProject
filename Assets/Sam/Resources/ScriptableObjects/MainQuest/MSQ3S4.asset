@@ -15,9 +15,12 @@ MonoBehaviour:
   ID: MSQ3S4
   isComplete: 0
   ParentQuest: {fileID: 0}
-  SpawnObjectAtQuestStart: 0
-  ItemSpawnLocation: {x: 0, y: 0, z: 0}
-  SpawnPrefab: {fileID: 0}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 4550779703217194201, guid: e0d298a1cef1c4840981f9a1a1fb2a27,
+      type: 3}
+    SpawnLocation: {x: 480, y: 29, z: 749}
   Description: 'Return to Vivi '
   Name: MSQ3 Step 4
   TargetNPC: {fileID: 0}

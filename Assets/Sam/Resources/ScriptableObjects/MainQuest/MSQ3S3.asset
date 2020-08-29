@@ -15,9 +15,12 @@ MonoBehaviour:
   ID: MSQ3S3
   isComplete: 0
   ParentQuest: {fileID: 0}
-  SpawnObjectAtQuestStart: 0
-  ItemSpawnLocation: {x: 0, y: 0, z: 0}
-  SpawnPrefab: {fileID: 0}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 4850737085720186875, guid: 0c98876fe8984314caeda43b13009706,
+      type: 3}
+    SpawnLocation: {x: 543, y: 33, z: 841}
   Description: Defeat the bandits and collect 5 Bones
   Name: 
   targetObject: {fileID: 11400000, guid: c2a71d39b96585448a339595483e3222, type: 2}

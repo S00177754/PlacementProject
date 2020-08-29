@@ -15,6 +15,12 @@ MonoBehaviour:
   ID: MSQ9S4
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 0d6354c79b32f4a43b477bdbbbdcb897, type: 2}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 7684466430876614762, guid: 8e4640247908af945a8581de381a184f,
+      type: 3}
+    SpawnLocation: {x: 1324, y: 60, z: 1781}
   Description: Head back to Sakurada
   Name: MSQ9 Step 4
   ColiderTag: Quest Location

@@ -15,9 +15,12 @@ MonoBehaviour:
   ID: MSQ8S3
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 379cce2bff17c4d48bc1aed2b73085cd, type: 2}
-  SpawnObjectAtQuestStart: 0
-  ItemSpawnLocation: {x: 0, y: 0, z: 0}
-  SpawnPrefab: {fileID: 0}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 5222210611309967695, guid: b3df4e64149e590438163a5f53b44a17,
+      type: 3}
+    SpawnLocation: {x: 1396, y: 57, z: 1739}
   Description: Head to the Cliffton Village
   Name: MSQ8 Step 3
   ColiderTag: Quest Location

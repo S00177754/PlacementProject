@@ -54,7 +54,7 @@ public class EnemyStatsScript : MonoBehaviour
         {
             if (hit.collider.gameObject != null)
             {
-                if (Info.TreasureTable.Count < 0)
+                if (Info.TreasureTable.Count > 0)
                 {
                     Debug.Log(Info.TreasureTable.GetItemDrop().Name);
                     GameObject go = Instantiate(ItemPickup);
@@ -64,7 +64,7 @@ public class EnemyStatsScript : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }
 

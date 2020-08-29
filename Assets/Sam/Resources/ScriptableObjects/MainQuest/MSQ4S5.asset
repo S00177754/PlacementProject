@@ -15,9 +15,12 @@ MonoBehaviour:
   ID: MSQ4S5
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 4a43683ff24a7954f9a9522ce1b3bcb5, type: 2}
-  SpawnObjectAtQuestStart: 0
-  ItemSpawnLocation: {x: 0, y: 0, z: 0}
-  SpawnPrefab: {fileID: 0}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 1713637658994883891, guid: 4aa7554ab77a59d42a6385b08afd8eed,
+      type: 3}
+    SpawnLocation: {x: 494, y: 30, z: 752}
   Description: Return to Doveport
   Name: MSQ4 Step 5
   ColiderTag: Quest Location

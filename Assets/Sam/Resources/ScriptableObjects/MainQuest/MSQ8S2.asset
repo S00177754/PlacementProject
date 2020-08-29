@@ -15,6 +15,12 @@ MonoBehaviour:
   ID: MSQ8S2
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 379cce2bff17c4d48bc1aed2b73085cd, type: 2}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 4146716241664164698, guid: b165c4dfd3d7fcb4184ff30660e2bda8,
+      type: 3}
+    SpawnLocation: {x: 1600, y: 35, z: 1188}
   Description: 'Find the valley entrance '
   Name: MSQ8 Step 2
   ColiderTag: Quest Location

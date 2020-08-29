@@ -15,6 +15,12 @@ MonoBehaviour:
   ID: MSQ6S8
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 2d2515d803925cd4c84d24eb6a49d7cd, type: 2}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 4550779703217194201, guid: e0d298a1cef1c4840981f9a1a1fb2a27,
+      type: 3}
+    SpawnLocation: {x: 90, y: 80, z: 1630}
   Description: Talk with Rose
   Name: MSQ6 Step 8
   TargetNPC: {fileID: 0}

@@ -15,9 +15,12 @@ MonoBehaviour:
   ID: MSQ4S3
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 4a43683ff24a7954f9a9522ce1b3bcb5, type: 2}
-  SpawnObjectAtQuestStart: 0
-  ItemSpawnLocation: {x: 0, y: 0, z: 0}
-  SpawnPrefab: {fileID: 0}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 5773338419893360960, guid: 2eca32d6ff75e6f40a63e8e98f41bb6e,
+      type: 3}
+    SpawnLocation: {x: 1352, y: 45, z: 516}
   Description: Head to the old ruins in the sand dunes
   Name: MSQ4 Step 3
   ColiderTag: Quest Location

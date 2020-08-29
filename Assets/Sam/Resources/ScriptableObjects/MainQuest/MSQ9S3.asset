@@ -15,6 +15,12 @@ MonoBehaviour:
   ID: MSQ9S3
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 0d6354c79b32f4a43b477bdbbbdcb897, type: 2}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 3409845736821351639, guid: b525b81b04826fa47be19f3c632fdc2a,
+      type: 3}
+    SpawnLocation: {x: 1287, y: 30, z: 805}
   Description: Defeat bandits and collect 10 monster bones
   Name: MSQ9 Step 3
   targetObject: {fileID: 11400000, guid: c2a71d39b96585448a339595483e3222, type: 2}

@@ -15,6 +15,12 @@ MonoBehaviour:
   ID: MSQ9S2
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 0d6354c79b32f4a43b477bdbbbdcb897, type: 2}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 4912177247686909968, guid: 27268e34458806c4a9c47c1e186d4797,
+      type: 3}
+    SpawnLocation: {x: 1287, y: 30, z: 805}
   Description: Head to the Bandit Camps
   Name: MSQ9 Step 2
   ColiderTag: Quest Location

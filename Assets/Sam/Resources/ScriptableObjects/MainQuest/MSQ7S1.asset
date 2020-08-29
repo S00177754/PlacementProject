@@ -15,9 +15,12 @@ MonoBehaviour:
   ID: MSQ7S1
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 0632e9312f610ee4498ef4e87bf20c27, type: 2}
-  SpawnObjectAtQuestStart: 0
-  ItemSpawnLocation: {x: 0, y: 0, z: 0}
-  SpawnPrefab: {fileID: 0}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 4550779703217194201, guid: e0d298a1cef1c4840981f9a1a1fb2a27,
+      type: 3}
+    SpawnLocation: {x: 90, y: 80, z: 1630}
   Description: Talk To Rose
   Name: MSQ7 Step 1
   TargetNPC: {fileID: 0}

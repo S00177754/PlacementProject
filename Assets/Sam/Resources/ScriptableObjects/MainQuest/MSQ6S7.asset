@@ -15,9 +15,12 @@ MonoBehaviour:
   ID: MSQ6S7
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 2d2515d803925cd4c84d24eb6a49d7cd, type: 2}
-  SpawnObjectAtQuestStart: 0
-  ItemSpawnLocation: {x: 0, y: 0, z: 0}
-  SpawnPrefab: {fileID: 0}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 4550779703217194201, guid: e0d298a1cef1c4840981f9a1a1fb2a27,
+      type: 3}
+    SpawnLocation: {x: 103, y: 80, z: 1588}
   Description: Head back to Rose
   Name: MSQ6 Step 7
   ColiderTag: Quest Location

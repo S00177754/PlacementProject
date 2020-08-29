@@ -15,9 +15,11 @@ MonoBehaviour:
   ID: MSQ6S3
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 2d2515d803925cd4c84d24eb6a49d7cd, type: 2}
-  SpawnObjectAtQuestStart: 0
-  ItemSpawnLocation: {x: 0, y: 0, z: 0}
-  SpawnPrefab: {fileID: 0}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 808999594875541874, guid: 7e83e9e3416b9ee499187acec38c5848, type: 3}
+    SpawnLocation: {x: 41, y: 58, z: 1290}
   Description: 'Head to the forest to the south '
   Name: MSQ6 Step 3
   ColiderTag: Quest Location

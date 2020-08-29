@@ -15,6 +15,12 @@ MonoBehaviour:
   ID: MSQ3S1
   isComplete: 0
   ParentQuest: {fileID: 0}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 4550779703217194201, guid: e0d298a1cef1c4840981f9a1a1fb2a27,
+      type: 3}
+    SpawnLocation: {x: 480, y: 30, z: 749}
   Description: Talk with Vivi about Vita
   Name: MSQ3 Step 1
   TargetNPC: {fileID: -8928551916095739292, guid: 61678451f74b637479947f7177d78a2e,

@@ -15,9 +15,12 @@ MonoBehaviour:
   ID: MSQ3S2
   isComplete: 0
   ParentQuest: {fileID: 0}
-  SpawnObjectAtQuestStart: 0
-  ItemSpawnLocation: {x: 0, y: 0, z: 0}
-  SpawnPrefab: {fileID: 0}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 4850737085720186875, guid: 0c98876fe8984314caeda43b13009706,
+      type: 3}
+    SpawnLocation: {x: 543, y: 44, z: 841}
   Description: Head to the bandit hideout
   Name: MSQ3 Step 2
   ColiderTag: Quest Location

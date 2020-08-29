@@ -15,6 +15,12 @@ MonoBehaviour:
   ID: MSQ8S4
   isComplete: 0
   ParentQuest: {fileID: 11400000, guid: 379cce2bff17c4d48bc1aed2b73085cd, type: 2}
+  SpawnObjectAtQuestStart: 1
+  Spawnables:
+  - LifeTime: 1
+    Prefab: {fileID: 4550779703217194201, guid: e0d298a1cef1c4840981f9a1a1fb2a27,
+      type: 3}
+    SpawnLocation: {x: 1323, y: 60, z: 1787}
   Description: Talk to Sakuada
   Name: MSQ8 Step 4
   TargetNPC: {fileID: 0}
