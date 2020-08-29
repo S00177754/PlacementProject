@@ -1592,27 +1592,41 @@ PrefabInstance:
     - target: {fileID: 2171698100963594890, guid: c0ba2d63b8c3be647a8fc34bc63615bf,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 81
       objectReference: {fileID: 0}
     - target: {fileID: 2171698100963594890, guid: c0ba2d63b8c3be647a8fc34bc63615bf,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2171698100963594890, guid: c0ba2d63b8c3be647a8fc34bc63615bf,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2171698100963594890, guid: c0ba2d63b8c3be647a8fc34bc63615bf,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2171698100963594890, guid: c0ba2d63b8c3be647a8fc34bc63615bf,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171698100963594890, guid: c0ba2d63b8c3be647a8fc34bc63615bf,
+        type: 3}
+      propertyPath: m_text
+      value: 'Controls:
+
+        W,A,S,D To Move
+
+        E To Interact
+
+        Left
+        Shift To Sprint
+
+        Left Click To Attack'
       objectReference: {fileID: 0}
     - target: {fileID: 2524591331819886556, guid: c0ba2d63b8c3be647a8fc34bc63615bf,
         type: 3}

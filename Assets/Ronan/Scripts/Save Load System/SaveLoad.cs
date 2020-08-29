@@ -23,6 +23,12 @@ public class SaveLoad : MonoBehaviour
         saveData.AbilityNodes = GetNodeData();
         saveData.Quests = SaveUtility.GetQuestData(Quests);
         saveData.TravelPointData = GetFastTravelData();
+
+        SaveSlotData slotData = new SaveSlotData();
+        slotData.LastPlayed = string.Concat(DateTime.Now.ToShortDateString()," - ",DateTime.Now.ToShortTimeString());
+        slotData.PercentageComplete = Quests.GetCompletitionPercentage();
+
+        SaveUtility.SaveSlotInfo(slotData, GameManager.CurrentSaveSlot);
         SaveUtility.SaveToSlot(saveData, GameManager.CurrentSaveSlot);
     }
 
@@ -324,6 +330,13 @@ public class SaveData
     public List<TravelPointData> TravelPointData;
     public BossData BossInfo;
     public QuestData Quests;
+}
+
+[Serializable]
+public class SaveSlotData
+{
+    public string LastPlayed;
+    public float PercentageComplete;
 }
 
 [Serializable]

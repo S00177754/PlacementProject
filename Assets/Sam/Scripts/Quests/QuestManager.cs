@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -101,6 +102,26 @@ public class QuestManager : ScriptableObject
 
     public void MarkAsComplete(Quest setComplete){
         setComplete.isComplete = true;
+    }
+
+    public float GetCompletitionPercentage()
+    {
+        int TotalQuestSteps = 0;
+        int CompletedQuestSteps = 0;
+
+        foreach (var mainQuest in MainScenarioQuests)
+        {
+            foreach (var step in mainQuest.StepsList)
+            {
+                TotalQuestSteps++;
+                if (step.isComplete)
+                {
+                    CompletedQuestSteps++;
+                }
+            }
+        }
+
+        return ((float)CompletedQuestSteps / (float)TotalQuestSteps) * 100;
     }
 }
 

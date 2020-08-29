@@ -18,7 +18,7 @@ public class TitleSaveFileManager : MonoBehaviour
     public Vector3 StartPosition;
     public Vector3 StartRotation;
 
-
+    
 
     private PlayerSaveData CreateDefaultPlayerData()
     {
@@ -181,6 +181,75 @@ public static class SaveUtility
     public static bool CheckForFile(int slot)
     {
         string path = Application.persistentDataPath + $"/SaveDataFile_{slot}.crescent";
+        if (File.Exists(path))
+        {
+            return true;
+        }
+
+        return false;
+
+    }
+
+    //SLOT INFO
+    public static void SaveSlotInfo(SaveSlotData data, int slot)
+    {
+        if (data == null)
+        {
+            Debug.LogError("Save slot info is null.");
+            return;
+        }
+
+        BinaryFormatter bf = new BinaryFormatter();
+        string path = Application.persistentDataPath + $"/SaveSlotInfo_{slot}.crescent";
+        Debug.Log(path);
+        FileStream fs = new FileStream(path, FileMode.Create);
+
+        string json = JsonUtility.ToJson(data);
+
+        bf.Serialize(fs, json);
+        fs.Close();
+    }
+
+    public static SaveSlotData LoadSlotInfo(int slot)
+    {
+        string path = Application.persistentDataPath + $"/SaveSlotInfo_{slot}.crescent";
+        if (File.Exists(path))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fs = new FileStream(path, FileMode.Open);
+
+            string json = bf.Deserialize(fs) as string;
+            SaveSlotData data = JsonUtility.FromJson(json, typeof(SaveSlotData)) as SaveSlotData;
+            return data;
+        }
+        else
+        {
+            Debug.LogError("Save slot info does not exist.");
+            return null;
+        }
+    }
+
+    public static bool TryLoadSlotInfo(int slot, out SaveSlotData saveData)
+    {
+        string path = Application.persistentDataPath + $"/SaveSlotInfo_{slot}.crescent";
+        if (File.Exists(path))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fs = new FileStream(path, FileMode.Open);
+
+            string json = bf.Deserialize(fs) as string;
+            saveData = JsonUtility.FromJson(json, typeof(SaveSlotData)) as SaveSlotData;
+            return true;
+        }
+
+        Debug.Log("Save slot info does not exist.");
+        saveData = null;
+        return false;
+    }
+
+    public static bool CheckForSlotInfo(int slot)
+    {
+        string path = Application.persistentDataPath + $"/SaveSlotInfo_{slot}.crescent";
         if (File.Exists(path))
         {
             return true;

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -40,6 +41,12 @@ public class MenuSaveFileButton : MonoBehaviour
         SlotName.text = SlotNumber.ToString();
         //TODO: Read in header for slot save data and display last played date
         //LastPlayedText.text = $"Last Played: \n{}";
+        SaveSlotData data;
+        SaveUtility.TryLoadSlotInfo(SlotNumber,out data);
+        if(data != null)
+        {
+            LastPlayedText.text = string.Concat("Progress: ", Math.Round(data.PercentageComplete, 2), "%  \nLast Played: ", data.LastPlayed);
+        }
     }
 
     public void ButtonAction()
