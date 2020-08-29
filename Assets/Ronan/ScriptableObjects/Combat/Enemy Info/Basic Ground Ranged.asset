@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Basic Ground Ranged
   m_EditorClassIdentifier: 
   ID: 1
-  Prefab: {fileID: 0}
+  Prefab: {fileID: 9017443438464473356, guid: 24c0522dd59ba494bbd712238dae254f, type: 3}
   Health: 25
   Attack: 5
   AttackRange: 6
   AttackCooldown: 3
-  Experience: 0
+  Experience: 20
   PatrolSpeed: 2
   ChaseSpeed: 5
   TreasureTable:
-  - ItemDrop: {fileID: 0}
-    DropChancePercentage: 0
-  - ItemDrop: {fileID: 0}
-    DropChancePercentage: 0
+  - ItemDrop: {fileID: 11400000, guid: c2a71d39b96585448a339595483e3222, type: 2}
+    DropChancePercentage: 98
+  - ItemDrop: {fileID: 11400000, guid: 301ed3bd06554074da10235dda3eff66, type: 2}
+    DropChancePercentage: 2

@@ -51,6 +51,8 @@ public class MenuSaveFileButton : MonoBehaviour
 
     public void ButtonAction()
     {
+        
+
         switch (Mode)
         {
             case MenuFileBtnMode.Overwrite:
@@ -69,6 +71,7 @@ public class MenuSaveFileButton : MonoBehaviour
 
             default:
             case MenuFileBtnMode.Load:
+                //SceneTransitionController.Instance.FadeOut();
                 if (SaveUtility.CheckForFile(SlotNumber))
                 {
                     GameManager.CurrentSaveSlot = SlotNumber;

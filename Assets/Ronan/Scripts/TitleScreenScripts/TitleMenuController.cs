@@ -120,6 +120,7 @@ public class TitleMenuController : MonoBehaviour
 
     public void ConfirmOverwrite()
     {
+        //SceneTransitionController.Instance.FadeOut();
         SaveManager.CreateNewGame(slot);
         GameManager.CurrentSaveSlot = slot;
         SceneManagerHelper.TransitionToScene(1);

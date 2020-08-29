@@ -7,6 +7,11 @@ public class SceneManagerHelper
 {
     public static void TransitionToScene(int scene)
     {
+        //if(SceneTransitionController.Instance != null)
+        //{
+        //    SceneTransitionController.Instance.FadeOut();
+        //}
+
         TravelPoint.FastTravelPoints.Clear();
         DialogueManager.ChattyNPCs.Clear();
         SceneManager.LoadScene(scene);
